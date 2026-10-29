@@ -1,0 +1,13 @@
+
+{
+  "version": 1,
+  "afectaciones": [
+    {
+      "id": "santo_padre_con_maria_moreno",
+      "nombre": "Santo Padre con María Moreno",
+      "carpeta": "Santo_Padre_con_Maria_Moreno",
+      "manifest": "Santo_Padre_con_Maria_Moreno/geodata/manifest.json",
+      "activa": true
+    }
+  ]
+}
