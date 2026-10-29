@@ -1,0 +1,505 @@
+==========================================================================================
+LOG DE RUTEO - fid_co sin desvío (detalle por fid_co)
+Generado: 2026-10-19 15:50:45
+Buffer de cortes (ROI) final: 700 m | Ciclos de auto-buffer: 1
+fid_co con diagnóstico (pasaron por 1er proceso sin ruta): 20
+  -> recuperados en la 2da pasada de refinamiento: 3
+  -> recuperados en la 4ta pasada por herencia OD: 0
+  -> recuperados en la 5ta pasada por herencia geométrica ruta-OD: 3
+  -> recuperados en la 6ta pasada por destino sintético longitudinal: 4
+  -> recuperados en la 7ma pasada por ROI adaptativo: 0
+  -> recuperados en la 8va pasada por herencia de corredor: 5
+  -> resueltos en un ciclo previo de AutoBuffer (la pasada final no los reprodujo): 0
+  -> sin ruta definitiva (tras todas las pasadas): 5
+==========================================================================================
+
+------------------------------------------------------------------------------------------
+fid_co: 9  |  Línea: 160  Recorrido: D  Sentido: VUELTA
+Estado final: RECUPERADO en 6ta pasada por destino sintético longitudinal
+Orígenes detectados: 7  |  Destinos detectados: 0  |  Pares OD evaluados (1er proceso): 0
+¿Se encontró algún camino en el grafo (1er proceso)?: No
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: No
+Motivo de fallo (1er proceso): sin_destino_valido
+Detalle: No se detectó ningún punto destino (vertex_pos=-1) para este fid_co dentro del buffer de corte/ROI vigente.
+Aristas indebidas detectadas durante el 1er proceso: ninguna registrada.
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_origen_o_destino_para_refinar
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: sin_origen_o_destino_para_comparar_od
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: sin_origen_o_destino_para_interseccion_geometrica
+Resultado 6ta pasada (destino sintético longitudinal): SE ENCONTRÓ RUTA
+Motivo 6ta pasada: destino_sintetico_longitudinal_encontrado node=(370227.6648162517, 6171980.029469116)
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: no_aplicado
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: no_aplicado
+
+------------------------------------------------------------------------------------------
+fid_co: 40  |  Línea: 060  Recorrido: G  Sentido: VUELTA
+Estado final: RECUPERADO en 8va pasada por herencia operacional de corredor
+Orígenes detectados: 9  |  Destinos detectados: 8  |  Pares OD evaluados (1er proceso): 16
+¿Se encontró algún camino en el grafo (1er proceso)?: Sí
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: No
+Motivo de fallo (1er proceso): giro_prohibido
+Detalle: Se encontraron caminos en el grafo, pero todas las alternativas evaluadas requerían atravesar una o más aristas con giro no permitido (arista indebida), incluso tras penalizarlas y volver a intentar.
+Aristas indebidas detectadas (giro no permitido) durante el 1er proceso: 2
+   - ((370227.6648162517, 6171980.029469116) -> (370310.9029576327, 6172053.908097969)) calle: ARAOZ  [penalizada 1956 vez/veces en todo el proceso]
+   - ((370397.75670110947, 6171847.729497827) -> (370474.25302565255, 6171925.947371608)) calle: SALGUERO, JERONIMO  [penalizada 4136 vez/veces en todo el proceso]
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: sin_ruta_donante_con_mismo_par_OD
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: ninguna_ruta_valida_toca_origen_y_destino_en_sentido_correcto
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: sin_ruta_valida_con_radio_2000m
+Resultado 8va pasada (herencia operacional por corredor): SE ADOPTÓ RUTA
+Motivo 8va pasada: ruta_adoptada_por_corredor_desde_fid_498 (tol=12.0m; dist_O=5.84m; dist_D=3.27m; avance=1885.44m)
+Diagnóstico ROI adaptativo:
+   - radio=1000.0m | O_snap=9 | D_snap=8 | nodos=993 | aristas=1838 | comp_source=983 | D_mismo_comp=8/8
+   - radio=1400.0m | O_snap=9 | D_snap=8 | nodos=1462 | aristas=2762 | comp_source=1445 | D_mismo_comp=8/8
+   - radio=2000.0m | O_snap=9 | D_snap=8 | nodos=2215 | aristas=4328 | comp_source=2195 | D_mismo_comp=8/8
+
+------------------------------------------------------------------------------------------
+fid_co: 87  |  Línea: 160  Recorrido: C  Sentido: VUELTA
+Estado final: RECUPERADO en 6ta pasada por destino sintético longitudinal
+Orígenes detectados: 7  |  Destinos detectados: 0  |  Pares OD evaluados (1er proceso): 0
+¿Se encontró algún camino en el grafo (1er proceso)?: No
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: No
+Motivo de fallo (1er proceso): sin_destino_valido
+Detalle: No se detectó ningún punto destino (vertex_pos=-1) para este fid_co dentro del buffer de corte/ROI vigente.
+Aristas indebidas detectadas durante el 1er proceso: ninguna registrada.
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_origen_o_destino_para_refinar
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: sin_origen_o_destino_para_comparar_od
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: sin_origen_o_destino_para_interseccion_geometrica
+Resultado 6ta pasada (destino sintético longitudinal): SE ENCONTRÓ RUTA
+Motivo 6ta pasada: destino_sintetico_longitudinal_encontrado node=(370227.6648162517, 6171980.029469116)
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: no_aplicado
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: no_aplicado
+
+------------------------------------------------------------------------------------------
+fid_co: 157  |  Línea: 166  Recorrido: C  Sentido: IDA
+Estado final: RECUPERADO en 2da pasada
+Orígenes detectados: 3  |  Destinos detectados: 6  |  Pares OD evaluados (1er proceso): 10
+¿Se encontró algún camino en el grafo (1er proceso)?: Sí
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: Sí
+Motivo de fallo (1er proceso): giro_prohibido
+Detalle: Se encontraron caminos en el grafo, pero todas las alternativas evaluadas requerían atravesar una o más aristas con giro no permitido (arista indebida), incluso tras penalizarlas y volver a intentar.
+Aristas indebidas detectadas (giro no permitido) durante el 1er proceso: 1
+   - ((369157.1207325227, 6172810.353696082) -> (369088.7313080525, 6172708.393532611)) calle: JUSTO, JUAN B. AV.  [penalizada 256 vez/veces en todo el proceso]
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): SE ENCONTRÓ RUTA
+Motivo 2da pasada: ruta_encontrada_en_2da_pasada_relajando_filtro_direccional
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: no_aplicado
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: no_aplicado
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: no_aplicado
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: no_aplicado
+
+------------------------------------------------------------------------------------------
+fid_co: 167  |  Línea: 166  Recorrido: C  Sentido: VUELTA
+Estado final: SIN RUTA (definitivo)
+Orígenes detectados: 6  |  Destinos detectados: 0  |  Pares OD evaluados (1er proceso): 0
+¿Se encontró algún camino en el grafo (1er proceso)?: No
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: No
+Motivo de fallo (1er proceso): sin_destino_valido
+Detalle: No se detectó ningún punto destino (vertex_pos=-1) para este fid_co dentro del buffer de corte/ROI vigente.
+Aristas indebidas detectadas durante el 1er proceso: ninguna registrada.
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_origen_o_destino_para_refinar
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: sin_origen_o_destino_para_comparar_od
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: sin_origen_o_destino_para_interseccion_geometrica
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: se_encontraron_destinos_sinteticos_pero_no_path_valido
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: no_aplicado
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: ninguna_ruta_donante_valida_con_extremos_sobre_corredor_receptor
+
+------------------------------------------------------------------------------------------
+fid_co: 170  |  Línea: 034  Recorrido: B  Sentido: VUELTA
+Estado final: RECUPERADO en 2da pasada
+Orígenes detectados: 6  |  Destinos detectados: 1  |  Pares OD evaluados (1er proceso): 6
+¿Se encontró algún camino en el grafo (1er proceso)?: Sí
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: Sí
+Motivo de fallo (1er proceso): giro_prohibido
+Detalle: Se encontraron caminos en el grafo, pero todas las alternativas evaluadas requerían atravesar una o más aristas con giro no permitido (arista indebida), incluso tras penalizarlas y volver a intentar.
+Aristas indebidas detectadas (giro no permitido) durante el 1er proceso: 1
+   - ((369157.1207325227, 6172810.353696082) -> (369118.64708245406, 6172838.7870826535)) calle: SANTA FE AV.  [penalizada 320 vez/veces en todo el proceso]
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): SE ENCONTRÓ RUTA
+Motivo 2da pasada: ruta_encontrada_en_2da_pasada_relajando_filtro_direccional
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: no_aplicado
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: no_aplicado
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: no_aplicado
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: no_aplicado
+
+------------------------------------------------------------------------------------------
+fid_co: 228  |  Línea: 012  Recorrido: A  Sentido: IDA
+Estado final: RECUPERADO en 5ta pasada por herencia geométrica ruta-OD
+Orígenes detectados: 15  |  Destinos detectados: 3  |  Pares OD evaluados (1er proceso): 0
+¿Se encontró algún camino en el grafo (1er proceso)?: No
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: No
+Motivo de fallo (1er proceso): sin_path_en_grafo
+Detalle: El algoritmo de caminos mínimos no encontró ninguna ruta entre los puntos origen y destino dentro del grafo vigente (posible desconexión o ROI/buffer insuficiente para cubrir el desvío real).
+Aristas indebidas detectadas durante el 1er proceso: ninguna registrada.
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: sin_ruta_donante_con_mismo_par_OD
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): SE ADOPTÓ RUTA
+Motivo 5ta pasada: ruta_adoptada_por_interseccion_geometrica_OD_con_fid_214 con_sentido_origen_a_destino (tol=10.0m; dist_origen=0.00m; dist_destino=0.00m; loc_origen=1146.82m; loc_destino=2767.85m; avance=1621.03m)
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: no_aplicado
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: no_aplicado
+
+------------------------------------------------------------------------------------------
+fid_co: 303  |  Línea: 034  Recorrido: C  Sentido: IDA
+Estado final: RECUPERADO en 2da pasada
+Orígenes detectados: 3  |  Destinos detectados: 6  |  Pares OD evaluados (1er proceso): 10
+¿Se encontró algún camino en el grafo (1er proceso)?: Sí
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: Sí
+Motivo de fallo (1er proceso): giro_prohibido
+Detalle: Se encontraron caminos en el grafo, pero todas las alternativas evaluadas requerían atravesar una o más aristas con giro no permitido (arista indebida), incluso tras penalizarlas y volver a intentar.
+Aristas indebidas detectadas (giro no permitido) durante el 1er proceso: 1
+   - ((369157.1207325227, 6172810.353696082) -> (369088.7313080525, 6172708.393532611)) calle: JUSTO, JUAN B. AV.  [penalizada 256 vez/veces en todo el proceso]
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): SE ENCONTRÓ RUTA
+Motivo 2da pasada: ruta_encontrada_en_2da_pasada_relajando_filtro_direccional
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: no_aplicado
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: no_aplicado
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: no_aplicado
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: no_aplicado
+
+------------------------------------------------------------------------------------------
+fid_co: 328  |  Línea: 034  Recorrido: C  Sentido: VUELTA
+Estado final: SIN RUTA (definitivo)
+Orígenes detectados: 6  |  Destinos detectados: 0  |  Pares OD evaluados (1er proceso): 0
+¿Se encontró algún camino en el grafo (1er proceso)?: No
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: No
+Motivo de fallo (1er proceso): sin_destino_valido
+Detalle: No se detectó ningún punto destino (vertex_pos=-1) para este fid_co dentro del buffer de corte/ROI vigente.
+Aristas indebidas detectadas durante el 1er proceso: ninguna registrada.
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_origen_o_destino_para_refinar
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: sin_origen_o_destino_para_comparar_od
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: sin_origen_o_destino_para_interseccion_geometrica
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: se_encontraron_destinos_sinteticos_pero_no_path_valido
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: no_aplicado
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: ninguna_ruta_donante_valida_con_extremos_sobre_corredor_receptor
+
+------------------------------------------------------------------------------------------
+fid_co: 330  |  Línea: 037  Recorrido: A  Sentido: IDA
+Estado final: SIN RUTA (definitivo)
+Orígenes detectados: 3  |  Destinos detectados: 8  |  Pares OD evaluados (1er proceso): 10
+¿Se encontró algún camino en el grafo (1er proceso)?: Sí
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: Sí
+Motivo de fallo (1er proceso): giro_prohibido
+Detalle: Se encontraron caminos en el grafo, pero todas las alternativas evaluadas requerían atravesar una o más aristas con giro no permitido (arista indebida), incluso tras penalizarlas y volver a intentar.
+Aristas indebidas detectadas (giro no permitido) durante el 1er proceso: 2
+   - ((370227.6648162517, 6171980.029469116) -> (370310.9029576327, 6172053.908097969)) calle: ARAOZ  [penalizada 1956 vez/veces en todo el proceso]
+   - ((370397.75670110947, 6171847.729497827) -> (370474.25302565255, 6171925.947371608)) calle: SALGUERO, JERONIMO  [penalizada 4136 vez/veces en todo el proceso]
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: sin_ruta_donante_con_mismo_par_OD
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: ninguna_ruta_valida_toca_origen_y_destino_en_sentido_correcto
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: sin_ruta_valida_con_radio_2000m
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: ninguna_ruta_donante_valida_con_extremos_sobre_corredor_receptor
+Diagnóstico ROI adaptativo:
+   - radio=1000.0m | O_snap=3 | D_snap=8 | nodos=996 | aristas=1843 | comp_source=986 | D_mismo_comp=8/8
+   - radio=1400.0m | O_snap=3 | D_snap=8 | nodos=1465 | aristas=2767 | comp_source=1448 | D_mismo_comp=8/8
+   - radio=2000.0m | O_snap=3 | D_snap=8 | nodos=2218 | aristas=4333 | comp_source=2198 | D_mismo_comp=8/8
+
+------------------------------------------------------------------------------------------
+fid_co: 342  |  Línea: 012  Recorrido: C  Sentido: IDA
+Estado final: RECUPERADO en 5ta pasada por herencia geométrica ruta-OD
+Orígenes detectados: 15  |  Destinos detectados: 3  |  Pares OD evaluados (1er proceso): 0
+¿Se encontró algún camino en el grafo (1er proceso)?: No
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: No
+Motivo de fallo (1er proceso): sin_path_en_grafo
+Detalle: El algoritmo de caminos mínimos no encontró ninguna ruta entre los puntos origen y destino dentro del grafo vigente (posible desconexión o ROI/buffer insuficiente para cubrir el desvío real).
+Aristas indebidas detectadas durante el 1er proceso: ninguna registrada.
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: sin_ruta_donante_con_mismo_par_OD
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): SE ADOPTÓ RUTA
+Motivo 5ta pasada: ruta_adoptada_por_interseccion_geometrica_OD_con_fid_214 con_sentido_origen_a_destino (tol=10.0m; dist_origen=0.00m; dist_destino=0.00m; loc_origen=1146.82m; loc_destino=2767.85m; avance=1621.03m)
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: no_aplicado
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: no_aplicado
+
+------------------------------------------------------------------------------------------
+fid_co: 353  |  Línea: 059  Recorrido: A  Sentido: VUELTA
+Estado final: RECUPERADO en 8va pasada por herencia operacional de corredor
+Orígenes detectados: 5  |  Destinos detectados: 8  |  Pares OD evaluados (1er proceso): 12
+¿Se encontró algún camino en el grafo (1er proceso)?: Sí
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: Sí
+Motivo de fallo (1er proceso): giro_prohibido
+Detalle: Se encontraron caminos en el grafo, pero todas las alternativas evaluadas requerían atravesar una o más aristas con giro no permitido (arista indebida), incluso tras penalizarlas y volver a intentar.
+Aristas indebidas detectadas (giro no permitido) durante el 1er proceso: 2
+   - ((370227.6648162517, 6171980.029469116) -> (370310.9029576327, 6172053.908097969)) calle: ARAOZ  [penalizada 1956 vez/veces en todo el proceso]
+   - ((370397.75670110947, 6171847.729497827) -> (370474.25302565255, 6171925.947371608)) calle: SALGUERO, JERONIMO  [penalizada 4136 vez/veces en todo el proceso]
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: sin_ruta_donante_con_mismo_par_OD
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: ninguna_ruta_valida_toca_origen_y_destino_en_sentido_correcto
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: sin_ruta_valida_con_radio_2000m
+Resultado 8va pasada (herencia operacional por corredor): SE ADOPTÓ RUTA
+Motivo 8va pasada: ruta_adoptada_por_corredor_desde_fid_498 (tol=12.0m; dist_O=5.84m; dist_D=3.27m; avance=1885.44m)
+Diagnóstico ROI adaptativo:
+   - radio=1000.0m | O_snap=5 | D_snap=8 | nodos=1001 | aristas=1853 | comp_source=991 | D_mismo_comp=8/8
+   - radio=1400.0m | O_snap=5 | D_snap=8 | nodos=1470 | aristas=2777 | comp_source=1453 | D_mismo_comp=8/8
+   - radio=2000.0m | O_snap=5 | D_snap=8 | nodos=2223 | aristas=4343 | comp_source=2203 | D_mismo_comp=8/8
+
+------------------------------------------------------------------------------------------
+fid_co: 355  |  Línea: 059  Recorrido: B  Sentido: VUELTA
+Estado final: RECUPERADO en 8va pasada por herencia operacional de corredor
+Orígenes detectados: 5  |  Destinos detectados: 8  |  Pares OD evaluados (1er proceso): 12
+¿Se encontró algún camino en el grafo (1er proceso)?: Sí
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: Sí
+Motivo de fallo (1er proceso): giro_prohibido
+Detalle: Se encontraron caminos en el grafo, pero todas las alternativas evaluadas requerían atravesar una o más aristas con giro no permitido (arista indebida), incluso tras penalizarlas y volver a intentar.
+Aristas indebidas detectadas (giro no permitido) durante el 1er proceso: 2
+   - ((370227.6648162517, 6171980.029469116) -> (370310.9029576327, 6172053.908097969)) calle: ARAOZ  [penalizada 1956 vez/veces en todo el proceso]
+   - ((370397.75670110947, 6171847.729497827) -> (370474.25302565255, 6171925.947371608)) calle: SALGUERO, JERONIMO  [penalizada 4136 vez/veces en todo el proceso]
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: sin_ruta_donante_con_mismo_par_OD
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: ninguna_ruta_valida_toca_origen_y_destino_en_sentido_correcto
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: sin_ruta_valida_con_radio_2000m
+Resultado 8va pasada (herencia operacional por corredor): SE ADOPTÓ RUTA
+Motivo 8va pasada: ruta_adoptada_por_corredor_desde_fid_498 (tol=12.0m; dist_O=5.84m; dist_D=3.27m; avance=1885.44m)
+Diagnóstico ROI adaptativo:
+   - radio=1000.0m | O_snap=5 | D_snap=8 | nodos=1001 | aristas=1853 | comp_source=991 | D_mismo_comp=8/8
+   - radio=1400.0m | O_snap=5 | D_snap=8 | nodos=1470 | aristas=2777 | comp_source=1453 | D_mismo_comp=8/8
+   - radio=2000.0m | O_snap=5 | D_snap=8 | nodos=2223 | aristas=4343 | comp_source=2203 | D_mismo_comp=8/8
+
+------------------------------------------------------------------------------------------
+fid_co: 357  |  Línea: 059  Recorrido: C  Sentido: VUELTA
+Estado final: RECUPERADO en 8va pasada por herencia operacional de corredor
+Orígenes detectados: 5  |  Destinos detectados: 8  |  Pares OD evaluados (1er proceso): 12
+¿Se encontró algún camino en el grafo (1er proceso)?: Sí
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: Sí
+Motivo de fallo (1er proceso): giro_prohibido
+Detalle: Se encontraron caminos en el grafo, pero todas las alternativas evaluadas requerían atravesar una o más aristas con giro no permitido (arista indebida), incluso tras penalizarlas y volver a intentar.
+Aristas indebidas detectadas (giro no permitido) durante el 1er proceso: 2
+   - ((370227.6648162517, 6171980.029469116) -> (370310.9029576327, 6172053.908097969)) calle: ARAOZ  [penalizada 1956 vez/veces en todo el proceso]
+   - ((370397.75670110947, 6171847.729497827) -> (370474.25302565255, 6171925.947371608)) calle: SALGUERO, JERONIMO  [penalizada 4136 vez/veces en todo el proceso]
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: sin_ruta_donante_con_mismo_par_OD
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: ninguna_ruta_valida_toca_origen_y_destino_en_sentido_correcto
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: sin_ruta_valida_con_radio_2000m
+Resultado 8va pasada (herencia operacional por corredor): SE ADOPTÓ RUTA
+Motivo 8va pasada: ruta_adoptada_por_corredor_desde_fid_498 (tol=12.0m; dist_O=5.84m; dist_D=3.27m; avance=1885.44m)
+Diagnóstico ROI adaptativo:
+   - radio=1000.0m | O_snap=5 | D_snap=8 | nodos=1001 | aristas=1853 | comp_source=991 | D_mismo_comp=8/8
+   - radio=1400.0m | O_snap=5 | D_snap=8 | nodos=1470 | aristas=2777 | comp_source=1453 | D_mismo_comp=8/8
+   - radio=2000.0m | O_snap=5 | D_snap=8 | nodos=2223 | aristas=4343 | comp_source=2203 | D_mismo_comp=8/8
+
+------------------------------------------------------------------------------------------
+fid_co: 526  |  Línea: 130  Recorrido: B  Sentido: VUELTA
+Estado final: SIN RUTA (definitivo)
+Orígenes detectados: 19  |  Destinos detectados: 10  |  Pares OD evaluados (1er proceso): 20
+¿Se encontró algún camino en el grafo (1er proceso)?: Sí
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: Sí
+Motivo de fallo (1er proceso): giro_prohibido
+Detalle: Se encontraron caminos en el grafo, pero todas las alternativas evaluadas requerían atravesar una o más aristas con giro no permitido (arista indebida), incluso tras penalizarlas y volver a intentar.
+Aristas indebidas detectadas (giro no permitido) durante el 1er proceso: 2
+   - ((370227.6648162517, 6171980.029469116) -> (370310.9029576327, 6172053.908097969)) calle: ARAOZ  [penalizada 1956 vez/veces en todo el proceso]
+   - ((370397.75670110947, 6171847.729497827) -> (370474.25302565255, 6171925.947371608)) calle: SALGUERO, JERONIMO  [penalizada 4136 vez/veces en todo el proceso]
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: sin_ruta_donante_con_mismo_par_OD
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: ninguna_ruta_valida_toca_origen_y_destino_en_sentido_correcto
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: sin_ruta_valida_con_radio_2000m
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: ninguna_ruta_donante_valida_con_extremos_sobre_corredor_receptor
+Diagnóstico ROI adaptativo:
+   - radio=1000.0m | O_snap=19 | D_snap=10 | nodos=1027 | aristas=1905 | comp_source=1017 | D_mismo_comp=10/10
+   - radio=1400.0m | O_snap=19 | D_snap=10 | nodos=1496 | aristas=2829 | comp_source=1479 | D_mismo_comp=10/10
+   - radio=2000.0m | O_snap=19 | D_snap=10 | nodos=2249 | aristas=4395 | comp_source=2229 | D_mismo_comp=10/10
+
+------------------------------------------------------------------------------------------
+fid_co: 591  |  Línea: 160  Recorrido: G  Sentido: VUELTA
+Estado final: RECUPERADO en 6ta pasada por destino sintético longitudinal
+Orígenes detectados: 7  |  Destinos detectados: 0  |  Pares OD evaluados (1er proceso): 0
+¿Se encontró algún camino en el grafo (1er proceso)?: No
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: No
+Motivo de fallo (1er proceso): sin_destino_valido
+Detalle: No se detectó ningún punto destino (vertex_pos=-1) para este fid_co dentro del buffer de corte/ROI vigente.
+Aristas indebidas detectadas durante el 1er proceso: ninguna registrada.
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_origen_o_destino_para_refinar
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: sin_origen_o_destino_para_comparar_od
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: sin_origen_o_destino_para_interseccion_geometrica
+Resultado 6ta pasada (destino sintético longitudinal): SE ENCONTRÓ RUTA
+Motivo 6ta pasada: destino_sintetico_longitudinal_encontrado node=(370227.6648162517, 6171980.029469116)
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: no_aplicado
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: no_aplicado
+
+------------------------------------------------------------------------------------------
+fid_co: 599  |  Línea: 160  Recorrido: J  Sentido: VUELTA
+Estado final: RECUPERADO en 6ta pasada por destino sintético longitudinal
+Orígenes detectados: 7  |  Destinos detectados: 0  |  Pares OD evaluados (1er proceso): 0
+¿Se encontró algún camino en el grafo (1er proceso)?: No
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: No
+Motivo de fallo (1er proceso): sin_destino_valido
+Detalle: No se detectó ningún punto destino (vertex_pos=-1) para este fid_co dentro del buffer de corte/ROI vigente.
+Aristas indebidas detectadas durante el 1er proceso: ninguna registrada.
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_origen_o_destino_para_refinar
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: sin_origen_o_destino_para_comparar_od
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: sin_origen_o_destino_para_interseccion_geometrica
+Resultado 6ta pasada (destino sintético longitudinal): SE ENCONTRÓ RUTA
+Motivo 6ta pasada: destino_sintetico_longitudinal_encontrado node=(370227.6648162517, 6171980.029469116)
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: no_aplicado
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: no_aplicado
+
+------------------------------------------------------------------------------------------
+fid_co: 710  |  Línea: 130  Recorrido: A  Sentido: VUELTA
+Estado final: SIN RUTA (definitivo)
+Orígenes detectados: 6  |  Destinos detectados: 10  |  Pares OD evaluados (1er proceso): 15
+¿Se encontró algún camino en el grafo (1er proceso)?: Sí
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: No
+Motivo de fallo (1er proceso): giro_prohibido
+Detalle: Se encontraron caminos en el grafo, pero todas las alternativas evaluadas requerían atravesar una o más aristas con giro no permitido (arista indebida), incluso tras penalizarlas y volver a intentar.
+Aristas indebidas detectadas (giro no permitido) durante el 1er proceso: 2
+   - ((370227.6648162517, 6171980.029469116) -> (370310.9029576327, 6172053.908097969)) calle: ARAOZ  [penalizada 1956 vez/veces en todo el proceso]
+   - ((370397.75670110947, 6171847.729497827) -> (370474.25302565255, 6171925.947371608)) calle: SALGUERO, JERONIMO  [penalizada 4136 vez/veces en todo el proceso]
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: sin_ruta_donante_con_mismo_par_OD
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: ninguna_ruta_valida_toca_origen_y_destino_en_sentido_correcto
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: sin_ruta_valida_con_radio_2000m
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: ninguna_ruta_donante_valida_con_extremos_sobre_corredor_receptor
+Diagnóstico ROI adaptativo:
+   - radio=1000.0m | O_snap=6 | D_snap=10 | nodos=1028 | aristas=1907 | comp_source=1018 | D_mismo_comp=10/10
+   - radio=1400.0m | O_snap=6 | D_snap=10 | nodos=1497 | aristas=2831 | comp_source=1480 | D_mismo_comp=10/10
+   - radio=2000.0m | O_snap=6 | D_snap=10 | nodos=2250 | aristas=4397 | comp_source=2230 | D_mismo_comp=10/10
+
+------------------------------------------------------------------------------------------
+fid_co: 714  |  Línea: 012  Recorrido: B  Sentido: IDA
+Estado final: RECUPERADO en 5ta pasada por herencia geométrica ruta-OD
+Orígenes detectados: 15  |  Destinos detectados: 3  |  Pares OD evaluados (1er proceso): 0
+¿Se encontró algún camino en el grafo (1er proceso)?: No
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: No
+Motivo de fallo (1er proceso): sin_path_en_grafo
+Detalle: El algoritmo de caminos mínimos no encontró ninguna ruta entre los puntos origen y destino dentro del grafo vigente (posible desconexión o ROI/buffer insuficiente para cubrir el desvío real).
+Aristas indebidas detectadas durante el 1er proceso: ninguna registrada.
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: sin_ruta_donante_con_mismo_par_OD
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): SE ADOPTÓ RUTA
+Motivo 5ta pasada: ruta_adoptada_por_interseccion_geometrica_OD_con_fid_214 con_sentido_origen_a_destino (tol=10.0m; dist_origen=0.00m; dist_destino=0.00m; loc_origen=1146.82m; loc_destino=2767.85m; avance=1621.03m)
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: no_aplicado
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: no_aplicado
+
+------------------------------------------------------------------------------------------
+fid_co: 892  |  Línea: 060  Recorrido: A  Sentido: VUELTA
+Estado final: RECUPERADO en 8va pasada por herencia operacional de corredor
+Orígenes detectados: 9  |  Destinos detectados: 8  |  Pares OD evaluados (1er proceso): 16
+¿Se encontró algún camino en el grafo (1er proceso)?: Sí
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: No
+Motivo de fallo (1er proceso): giro_prohibido
+Detalle: Se encontraron caminos en el grafo, pero todas las alternativas evaluadas requerían atravesar una o más aristas con giro no permitido (arista indebida), incluso tras penalizarlas y volver a intentar.
+Aristas indebidas detectadas (giro no permitido) durante el 1er proceso: 2
+   - ((370227.6648162517, 6171980.029469116) -> (370310.9029576327, 6172053.908097969)) calle: ARAOZ  [penalizada 1956 vez/veces en todo el proceso]
+   - ((370397.75670110947, 6171847.729497827) -> (370474.25302565255, 6171925.947371608)) calle: SALGUERO, JERONIMO  [penalizada 4136 vez/veces en todo el proceso]
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: sin_ruta_donante_con_mismo_par_OD
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: ninguna_ruta_valida_toca_origen_y_destino_en_sentido_correcto
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: sin_ruta_valida_con_radio_2000m
+Resultado 8va pasada (herencia operacional por corredor): SE ADOPTÓ RUTA
+Motivo 8va pasada: ruta_adoptada_por_corredor_desde_fid_498 (tol=12.0m; dist_O=5.84m; dist_D=3.27m; avance=1885.44m)
+Diagnóstico ROI adaptativo:
+   - radio=1000.0m | O_snap=9 | D_snap=8 | nodos=1028 | aristas=1907 | comp_source=1018 | D_mismo_comp=8/8
+   - radio=1400.0m | O_snap=9 | D_snap=8 | nodos=1497 | aristas=2831 | comp_source=1480 | D_mismo_comp=8/8
+   - radio=2000.0m | O_snap=9 | D_snap=8 | nodos=2250 | aristas=4397 | comp_source=2230 | D_mismo_comp=8/8

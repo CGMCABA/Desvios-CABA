@@ -1,0 +1,3811 @@
+<?xml version='1.0' encoding='utf-8'?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document id="root_doc">
+    <Style id="line-A52714-10106-normal"><LineStyle><color>ff1427a5</color><width>10.106</width></LineStyle></Style><Style id="line-A52714-10106-highlight"><LineStyle><color>ff1427a5</color><width>15.159</width></LineStyle></Style><StyleMap id="line-A52714-10106"><Pair><key>normal</key><styleUrl>#line-A52714-10106-normal</styleUrl></Pair><Pair><key>highlight</key><styleUrl>#line-A52714-10106-highlight</styleUrl></Pair></StyleMap><Document id="tramos_afectados_20261019_155054">
+      <name>tramos_afectados_20261019_155054</name>
+      <Placemark id="tramos_afectados_20261019_155054.1">
+        <name>FIGUEROA ALCORTA, PRES. AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4198297934061,-34.5655297497723,0
+            -58.420087690578,-34.5653957902767,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.2">
+        <name>LA PAMPA</name><description>entre ARTILLEROS y MIÑONES</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4419649848582,-34.5576051700245,0
+            -58.4430659596446,-34.5582513578825,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.3">
+        <name>MIÑONES</name><description>entre SUCRE, ANTONIO JOSE DE, MCAL. y LA PAMPA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4430659596446,-34.5582513578825,0
+            -58.4438802013824,-34.5573094266728,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.4">
+        <name>MIÑONES</name><description>entre LA PAMPA y HERNANDEZ, JOSE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.441634561915,-34.5588468298067,0
+            -58.4430659596446,-34.5582513578825,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.5">
+        <name>LA PAMPA</name><description>entre MIÑONES y MIGUELETES</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4430659596446,-34.5582513578825,0
+            -58.4439907693462,-34.5588021537709,0
+            -58.4441989512821,-34.5589252878575,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.6">
+        <name>MIGUELETES</name><description>entre SUCRE, ANTONIO JOSE DE, MCAL. y LA PAMPA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4441989512821,-34.5589252878575,0
+            -58.4450091020535,-34.5579784188942,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.7">
+        <name>LA PAMPA</name><description>entre MIGUELETES y DEL LIBERTADOR AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4441989512821,-34.5589252878575,0
+            -58.4452359550054,-34.5595385579329,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.8">
+        <name>DEL LIBERTADOR AV.</name><description>entre SUCRE, ANTONIO JOSE DE, MCAL. y LA PAMPA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4452359550054,-34.5595385579329,0
+            -58.4460483126392,-34.5585942177627,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.9">
+        <name>HERNANDEZ, JOSE</name><description>entre MIÑONES y MIGUELETES</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.441634561915,-34.5588468298067,0
+            -58.4433840138744,-34.5598777844407,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.10">
+        <name>MIGUELETES</name><description>entre LA PAMPA y HERNANDEZ, JOSE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4433840138744,-34.5598777844407,0
+            -58.4441989512821,-34.5589252878575,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.11">
+        <name>LA PAMPA</name><description>entre DEL LIBERTADOR AV. y MONTAÑESES</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4452359550054,-34.5595385579329,0
+            -58.4462491420906,-34.5601377309981,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.12">
+        <name>MONTAÑESES</name><description>entre SUCRE, ANTONIO JOSE DE, MCAL. y LA PAMPA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4462491420906,-34.5601377309981,0
+            -58.4468327385063,-34.5597769580516,0
+            -58.4472455090283,-34.559303622235,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.13">
+        <name>LA PAMPA</name><description>entre MONTAÑESES y VERTIZ VIRREY AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4462491420906,-34.5601377309981,0
+            -58.4466935224913,-34.5604005445352,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.14">
+        <name>HERNANDEZ, JOSE</name><description>entre MIGUELETES y DEL LIBERTADOR AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4433840138744,-34.5598777844407,0
+            -58.4442822070503,-34.5604070525669,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.15">
+        <name>PINO, VIRREY DEL</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4422407026361,-34.5606079608175,0
+            -58.4425828521099,-34.5608140802305,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.16">
+        <name>MIGUELETES</name><description>entre HERNANDEZ, JOSE y PINO, VIRREY DEL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4425828521099,-34.5608140802305,0
+            -58.4433840138744,-34.5598777844407,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.17">
+        <name>HERNANDEZ, JOSE</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4445353900835,-34.5605557569198,0
+            -58.445010094474,-34.560833482497,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.18">
+        <name>PINO, VIRREY DEL</name><description>entre MIGUELETES y DEL LIBERTADOR AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4425828521099,-34.5608140802305,0
+            -58.4434944961821,-34.5613495953905,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.19">
+        <name>VERTIZ VIRREY AV.</name><description>entre HERNANDEZ, JOSE y PINO, VIRREY DEL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.444188174355,-34.5617554894771,0
+            -58.4455290345292,-34.5611417349219,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.20">
+        <name>PINO, VIRREY DEL</name><description>entre VERTIZ VIRREY AV. y CAMPOS, LUIS M. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.444188174355,-34.5617554894771,0
+            -58.4444789249048,-34.5619277919276,0
+            -58.4446213218666,-34.5620110550489,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.21">
+        <name>CAMPOS, LUIS M. AV.</name><description>entre VERTIZ VIRREY AV. y HERNANDEZ, JOSE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4446213218666,-34.5620110550489,0
+            -58.4455290345292,-34.5611417349219,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.22">
+        <name>DEL LIBERTADOR AV.</name><description>entre VERTIZ VIRREY AV. y PINO, VIRREY DEL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4429779362803,-34.562135322712,0
+            -58.444188174355,-34.5617554894771,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.23">
+        <name>SOLDADO DE LA INDEPENDENCIA</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4429779362803,-34.562135322712,0
+            -58.4430902506489,-34.561993909416,0
+            -58.4433170525433,-34.5618041713038,0
+            -58.4433711035105,-34.5617183165279,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.24">
+        <name>DEL LIBERTADOR AV.</name><description>entre SOLDADO DE LA INDEPENDENCIA y LORETO, VIRREY</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4426914374274,-34.5622237218003,0
+            -58.4429779362803,-34.562135322712,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.25">
+        <name>SOLDADO DE LA INDEPENDENCIA</name><description>entre DEL LIBERTADOR AV. y LORETO, VIRREY</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4428083991028,-34.562339292486,0
+            -58.4429779362803,-34.562135322712,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.26">
+        <name>DEL LIBERTADOR AV.</name><description>entre 11 DE SEPTIEMBRE DE 1888 y VILELA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4412998910332,-34.5622306169588,0
+            -58.4419268840829,-34.5620933185973,0
+            -58.4424109356552,-34.5619676333705,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.27">
+        <name>DEL LIBERTADOR AV.</name><description>entre ZABALA y LORETO, VIRREY</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4414988535501,-34.562522872462,0
+            -58.4426914374274,-34.5622237218003,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.28">
+        <name>LORETO, VIRREY</name><description>entre SOLDADO DE LA INDEPENDENCIA y CAMPOS, LUIS M. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4428083991028,-34.562339292486,0
+            -58.4436358820787,-34.5628269743664,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.29">
+        <name>CAMPOS, LUIS M. AV.</name><description>entre PINO, VIRREY DEL y LORETO, VIRREY</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4436358820787,-34.5628269743664,0
+            -58.4444701906932,-34.5621557532945,0
+            -58.4446213218666,-34.5620110550489,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.30">
+        <name>GARCIA, TEODORO</name><description>entre MIGUELETES y DEL LIBERTADOR AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4396229915598,-34.5627831810835,0
+            -58.4398503186002,-34.563042859896,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.31">
+        <name>MIGUELETES</name><description>entre GARCIA, TEODORO y DEL LIBERTADOR AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4398503186002,-34.563042859896,0
+            -58.4404406882644,-34.5626896697504,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.32">
+        <name>ZABALA</name><description>entre DEL LIBERTADOR AV. y SOLDADO DE LA INDEPENDENCIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4414988535501,-34.562522872462,0
+            -58.4419708295375,-34.5630533898596,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.33">
+        <name>SOLDADO DE LA INDEPENDENCIA</name><description>entre LORETO, VIRREY y ZABALA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4419708295375,-34.5630533898596,0
+            -58.4428083991028,-34.562339292486,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.34">
+        <name>OLLEROS AV.</name><description>entre DEL LIBERTADOR AV. y ALSINA, VALENTIN AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4353967354426,-34.5625501608,0
+            -58.4356961525319,-34.5628220966616,0
+            -58.4361092452618,-34.5631823854971,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.35">
+        <name>DEL LIBERTADOR AV.</name><description>entre LACROZE, FEDERICO y OLLEROS AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4367814908993,-34.563466302524,0
+            -58.4369035345916,-34.5633997959352,0
+            -58.4371684177928,-34.5632759638135,0
+            -58.4375754377155,-34.5631217624305,0
+            -58.4380469229287,-34.5629771466477,0
+            -58.4381776018918,-34.5629468208404,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.36">
+        <name>CAMPOS, LUIS M. AV.</name><description>entre LORETO, VIRREY y ZABALA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4426233565075,-34.5636265426518,0
+            -58.4428152682744,-34.5634872058065,0
+            -58.4436358820787,-34.5628269743664,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.37">
+        <name>LACROZE, FEDERICO</name><description>entre MIGUELETES y DEL LIBERTADOR AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4381776018918,-34.5629468208404,0
+            -58.438811161318,-34.563664570685,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.38">
+        <name>MIGUELETES</name><description>entre GARCIA, TEODORO y LACROZE, FEDERICO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.438811161318,-34.563664570685,0
+            -58.4398503186002,-34.563042859896,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.39">
+        <name>ZABALA</name><description>entre SOLDADO DE LA INDEPENDENCIA y CAMPOS, LUIS M. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4419708295375,-34.5630533898596,0
+            -58.4425367661161,-34.5636894166325,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.40">
+        <name>CAMPOS, LUIS M. AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4425367661161,-34.5636894166325,0
+            -58.4426233565075,-34.5636265426518,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.41">
+        <name>GARCIA, TEODORO</name><description>entre MIGUELETES y SOLDADO DE LA INDEPENDENCIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4398503186002,-34.563042859896,0
+            -58.4406006504318,-34.563900273708,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.42">
+        <name>SOLDADO DE LA INDEPENDENCIA</name><description>entre ZABALA y GARCIA, TEODORO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4406006504318,-34.563900273708,0
+            -58.4419708295375,-34.5630533898596,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.43">
+        <name>DEL LIBERTADOR AV.</name><description>entre GOROSTIAGA y OLLEROS AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4354915830995,-34.5642545061258,0
+            -58.4364091094314,-34.5636950717704,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.44">
+        <name>OLLEROS AV.</name><description>entre DEL LIBERTADOR AV. y MIGUELETES</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4367814908993,-34.563466302524,0
+            -58.4368873036203,-34.5637525322323,0
+            -58.437577008945,-34.5644028538433,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.45">
+        <name>MIGUELETES</name><description>entre LACROZE, FEDERICO y OLLEROS AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.437577008945,-34.5644028538433,0
+            -58.438811161318,-34.563664570685,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.46">
+        <name>LACROZE, FEDERICO</name><description>entre MIGUELETES y SOLDADO DE LA INDEPENDENCIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.438811161318,-34.563664570685,0
+            -58.439567872779,-34.5645217103392,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.47">
+        <name>SOLDADO DE LA INDEPENDENCIA</name><description>entre GARCIA, TEODORO y LACROZE, FEDERICO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.439567872779,-34.5645217103392,0
+            -58.4400695340483,-34.5642192651476,0
+            -58.4406006504318,-34.563900273708,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.48">
+        <name>GARCIA, TEODORO</name><description>entre SOLDADO DE LA INDEPENDENCIA y CAMPOS, LUIS M. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4406006504318,-34.563900273708,0
+            -58.4412693982482,-34.5646095663414,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.49">
+        <name>CAMPOS, LUIS M. AV.</name><description>entre ZABALA y GARCIA, TEODORO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4412693982482,-34.5646095663414,0
+            -58.4425367661161,-34.5636894166325,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.50">
+        <name>CAMPOS, LUIS M. AV.</name><description>entre GARCIA, TEODORO y LACROZE, FEDERICO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4403841175238,-34.5653339258435,0
+            -58.4411339325334,-34.5647079946259,0
+            -58.4412693982482,-34.5646095663414,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.51">
+        <name>DEL LIBERTADOR AV.</name><description>entre GOROSTIAGA y MAURE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4344113419102,-34.5648886350159,0
+            -58.4354915830995,-34.5642545061258,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.52">
+        <name>GOROSTIAGA</name><description>entre DEL LIBERTADOR AV. y MIGUELETES</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4354915830995,-34.5642545061258,0
+            -58.4362771874691,-34.5651804769451,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.53">
+        <name>MIGUELETES</name><description>entre GOROSTIAGA y OLLEROS AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4362771874691,-34.5651804769451,0
+            -58.4374046883882,-34.5645059469008,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.54">
+        <name>OLLEROS AV.</name><description>entre MIGUELETES y SOLDADO DE LA INDEPENDENCIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.437577008945,-34.5644028538433,0
+            -58.4384592157582,-34.5651900251551,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.55">
+        <name>SOLDADO DE LA INDEPENDENCIA</name><description>entre LACROZE, FEDERICO y OLLEROS AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4384592157582,-34.5651900251551,0
+            -58.439567872779,-34.5645217103392,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.56">
+        <name>LACROZE, FEDERICO</name><description>entre SOLDADO DE LA INDEPENDENCIA y CAMPOS, LUIS M. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.439567872779,-34.5645217103392,0
+            -58.4403270677805,-34.5653815217656,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.57">
+        <name>CAMPOS, LUIS M. AV.</name><description>entre LACROZE, FEDERICO y LACROZE, FEDERICO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4403270677805,-34.5653815217656,0
+            -58.4403841175238,-34.5653339258435,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.58">
+        <name>DEL LIBERTADOR AV.</name><description>entre MAURE y NEWBERY, JORGE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4333120103841,-34.5655364822739,0
+            -58.4338001606286,-34.5652459612445,0
+            -58.4344113419102,-34.5648886350159,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.59">
+        <name>MAURE</name><description>entre DEL LIBERTADOR AV. y MIGUELETES</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4344113419102,-34.5648886350159,0
+            -58.4351998344606,-34.5658152471697,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.60">
+        <name>MIGUELETES</name><description>entre GOROSTIAGA y MAURE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4351998344606,-34.5658152471697,0
+            -58.4357755074963,-34.5654805120789,0
+            -58.4362771874691,-34.5651804769451,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.61">
+        <name>GOROSTIAGA</name><description>entre MIGUELETES y SOLDADO DE LA INDEPENDENCIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4362771874691,-34.5651804769451,0
+            -58.4370211109328,-34.5660573480633,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.62">
+        <name>SOLDADO DE LA INDEPENDENCIA</name><description>entre GOROSTIAGA y OLLEROS AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4370211109328,-34.5660573480633,0
+            -58.4371753946712,-34.5659676609736,0
+            -58.4377939789556,-34.5655910936745,0
+            -58.4382897555597,-34.5652921927209,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.63">
+        <name>OLLEROS AV.</name><description>entre SOLDADO DE LA INDEPENDENCIA y CAMPOS, LUIS M. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4384592157582,-34.5651900251551,0
+            -58.4394009701071,-34.5659980997945,0
+            -58.4394194073207,-34.5660536138023,0
+            -58.4394154550294,-34.5661424896806,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.64">
+        <name>CAMPOS, LUIS M. AV.</name><description>entre LACROZE, FEDERICO y OLLEROS AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4394154550294,-34.5661424896806,0
+            -58.4403270677805,-34.5653815217656,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.65">
+        <name>DEL LIBERTADOR AV.</name><description>entre NEWBERY, JORGE y MATIENZO, BENJAMIN, TENIENTE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.432247229958,-34.5661701027001,0
+            -58.4333120103841,-34.5655364822739,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.66">
+        <name>NEWBERY, JORGE</name><description>entre DEL LIBERTADOR AV. y MIGUELETES</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4333120103841,-34.5655364822739,0
+            -58.4341001592771,-34.5664546504635,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.67">
+        <name>MIGUELETES</name><description>entre MAURE y NEWBERY, JORGE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4341001592771,-34.5664546504635,0
+            -58.4351998344606,-34.5658152471697,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.68">
+        <name>MAURE</name><description>entre MIGUELETES y SOLDADO DE LA INDEPENDENCIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4351998344606,-34.5658152471697,0
+            -58.4359401790529,-34.5666851519806,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.69">
+        <name>SOLDADO DE LA INDEPENDENCIA</name><description>entre GOROSTIAGA y MAURE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4359401790529,-34.5666851519806,0
+            -58.4361197534171,-34.5665815983695,0
+            -58.4370211109328,-34.5660573480633,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.70">
+        <name>FIGUEROA ALCORTA, PRES. AV.</name><description>entre DORREGO AV. y ROLDAN, BELISARIO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4179607994944,-34.5667387432525,0
+            -58.4184063255982,-34.5665117904778,0
+            -58.4184953974207,-34.5664646391141,0
+            -58.4185485344114,-34.5664355734881,0
+            -58.4186035455151,-34.5664041141086,0
+            -58.4186479980399,-34.5663770875553,0
+            -58.4187042036368,-34.5663404876141,0
+            -58.4188062271779,-34.5662703121002,0
+            -58.4188573246325,-34.5662340623458,0
+            -58.4189233260739,-34.5661860571781,0
+            -58.418965311922,-34.5661546633226,0
+            -58.4190067871445,-34.5661229171471,0
+            -58.4190753452222,-34.5660694197505,0
+            -58.4191781401299,-34.565988187631,0
+            -58.4192300057606,-34.5659475012834,0
+            -58.4192821266933,-34.5659068854295,0
+            -58.4193501730456,-34.5658545144763,0
+            -58.4194523699239,-34.5657763101404,0
+            -58.4195038939215,-34.5657372433046,0
+            -58.4195557583159,-34.5656983174169,0
+            -58.4196080478314,-34.5656603071712,0
+            -58.4196932934118,-34.5656013223209,0
+            -58.4198297934061,-34.5655297497723,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.71">
+        <name>DEL LIBERTADOR AV.</name><description>entre MATIENZO, BENJAMIN, TENIENTE y SAN BENITO DE PALERMO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4312289254114,-34.5667761197744,0
+            -58.432247229958,-34.5661701027001,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.72">
+        <name>GOROSTIAGA</name><description>entre SOLDADO DE LA INDEPENDENCIA y ARCE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4370211109328,-34.5660573480633,0
+            -58.4377440302462,-34.5669094208776,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.73">
+        <name>MATIENZO, BENJAMIN, TENIENTE</name><description>entre DEL LIBERTADOR AV. y MIGUELETES</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.432247229958,-34.5661701027001,0
+            -58.4330255010965,-34.5670794722163,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.74">
+        <name>MIGUELETES</name><description>entre NEWBERY, JORGE y MATIENZO, BENJAMIN, TENIENTE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4330255010965,-34.5670794722163,0
+            -58.4341001592771,-34.5664546504635,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.75">
+        <name>CAMPOS, LUIS M. AV.</name><description>entre OLLEROS y GOROSTIAGA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4380999213347,-34.5673287994177,0
+            -58.4383123843959,-34.567127219156,0
+            -58.4392630354365,-34.5662697159691,0
+            -58.4394154550294,-34.5661424896806,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.76">
+        <name>NEWBERY, JORGE</name><description>entre MIGUELETES y SOLDADO DE LA INDEPENDENCIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4341001592771,-34.5664546504635,0
+            -58.4348417770849,-34.5673185761068,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.77">
+        <name>SOLDADO DE LA INDEPENDENCIA</name><description>entre MAURE y NEWBERY, JORGE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4348417770849,-34.5673185761068,0
+            -58.4359401790529,-34.5666851519806,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.78">
+        <name>GOROSTIAGA</name><description>entre CAMPOS, LUIS M. AV. y ARCE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4377440302462,-34.5669094208776,0
+            -58.4380999213347,-34.5673287994177,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.79">
+        <name>DEL LIBERTADOR AV.</name><description>entre SAN BENITO DE PALERMO y ORTEGA Y GASSET</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4301769755005,-34.5673914151335,0
+            -58.4306808110585,-34.5671023194078,0
+            -58.4312289254114,-34.5667761197744,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.80">
+        <name>SAN BENITO DE PALERMO</name><description>entre DEL LIBERTADOR AV. y MIGUELETES</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4312289254114,-34.5667761197744,0
+            -58.432369084025,-34.5674611466237,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.81">
+        <name>MIGUELETES</name><description>entre MATIENZO, BENJAMIN, TENIENTE y SAN BENITO DE PALERMO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.432369084025,-34.5674611466237,0
+            -58.4330255010965,-34.5670794722163,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.82">
+        <name>MAURE</name><description>entre SOLDADO DE LA INDEPENDENCIA y ARCE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4359401790529,-34.5666851519806,0
+            -58.4366664976017,-34.5675385699044,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.83">
+        <name>ARCE</name><description>entre GOROSTIAGA y MAURE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4366664976017,-34.5675385699044,0
+            -58.4377440302462,-34.5669094208776,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.84">
+        <name>ARCE</name><description>entre MAURE y VOLTA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4361594428547,-34.5678345911555,0
+            -58.4366664976017,-34.5675385699044,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.85">
+        <name>MATIENZO, BENJAMIN, TENIENTE</name><description>entre MIGUELETES y SOLDADO DE LA INDEPENDENCIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4330255010965,-34.5670794722163,0
+            -58.4337633681926,-34.5679415019424,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.86">
+        <name>SOLDADO DE LA INDEPENDENCIA</name><description>entre NEWBERY, JORGE y MATIENZO, BENJAMIN, TENIENTE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4337633681926,-34.5679415019424,0
+            -58.4345341364045,-34.567495972495,0
+            -58.4348417770849,-34.5673185761068,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.87">
+        <name>SAN BENITO DE PALERMO</name><description>entre MIGUELETES y SOLDADO DE LA INDEPENDENCIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.432369084025,-34.5674611466237,0
+            -58.4334601505564,-34.5681167839549,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.88">
+        <name>SOLDADO DE LA INDEPENDENCIA</name><description>entre CERRILLOS y VILELA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4334601505564,-34.5681167839549,0
+            -58.4337633681926,-34.5679415019424,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.89">
+        <name>FIGUEROA ALCORTA, PRES. AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4167287020711,-34.5681129559113,0
+            -58.4168107301404,-34.5680306615304,0
+            -58.4168446324384,-34.5679951807441,0
+            -58.4168820303627,-34.5679502644622,0
+            -58.4169179835456,-34.56790077006,0
+            -58.4169577042884,-34.5678119804874,0
+            -58.4169750986765,-34.5677624085963,0
+            -58.4169875552082,-34.5677131869491,0
+            -58.417002319804,-34.5676467827201,0
+            -58.4170180281981,-34.5675670687106,0
+            -58.4170286278916,-34.5674887612418,0
+            -58.417055748286,-34.5674010232145,0
+            -58.4170782545036,-34.5673440587215,0
+            -58.417098631551,-34.567288642746,0
+            -58.4171241939088,-34.5672471022566,0
+            -58.4171914907896,-34.5671688866266,0
+            -58.4172281182483,-34.5671307306457,0
+            -58.4172755581773,-34.5670910294025,0
+            -58.4173402823401,-34.5670464753928,0
+            -58.4173848214042,-34.5670182521272,0
+            -58.417435916801,-34.5669877073164,0
+            -58.4175086403669,-34.5669481563262,0
+            -58.4176052896961,-34.5669012197299,0
+            -58.4176559557465,-34.5668771536743,0
+            -58.4177518373895,-34.5668326815146,0
+            -58.4179607994944,-34.5667387432525,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.90">
+        <name>NEWBERY, JORGE</name><description>entre SOLDADO DE LA INDEPENDENCIA y ARCE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4348417770849,-34.5673185761068,0
+            -58.4355767724857,-34.5681747489821,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.91">
+        <name>ARCE</name><description>entre VOLTA y NEWBERY, JORGE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4355767724857,-34.5681747489821,0
+            -58.4361594428547,-34.5678345911555,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.92">
+        <name>ORTEGA Y GASSET</name><description>entre DEL LIBERTADOR AV. y MIGUELETES</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4301769755005,-34.5673914151335,0
+            -58.4309410219856,-34.568291427501,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.93">
+        <name>MIGUELETES</name><description>entre SAN BENITO DE PALERMO y ORTEGA Y GASSET</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4309410219856,-34.568291427501,0
+            -58.432369084025,-34.5674611466237,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.94">
+        <name>MAURE</name><description>entre ARCE y CAMPOS, LUIS M. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4366664976017,-34.5675385699044,0
+            -58.4373547055412,-34.5683472560593,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.95">
+        <name>CAMPOS, LUIS M. AV.</name><description>entre GOROSTIAGA y MAURE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4373547055412,-34.5683472560593,0
+            -58.4375082714708,-34.5681134105087,0
+            -58.4378809853632,-34.5675365752675,0
+            -58.4380999213347,-34.5673287994177,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.96">
+        <name>MIGUELETES</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4307431295811,-34.568406447689,0
+            -58.4309410219856,-34.568291427501,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.97">
+        <name>SOLDADO DE LA INDEPENDENCIA</name><description>entre SAN BENITO DE PALERMO y REPUBLICA DE ESLOVENIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4327225800872,-34.5685418919348,0
+            -58.4330216280232,-34.5683702023571,0
+            -58.4334601505564,-34.5681167839549,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.98">
+        <name>DORREGO AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4218557177201,-34.5685948141546,0
+            -58.4206445737696,-34.5665771410716,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.99">
+        <name>CAMPOS, LUIS M. AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4370206631084,-34.5688340256642,0
+            -58.4370714196731,-34.5687787537484,0
+            -58.4373547055412,-34.5683472560593,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.100">
+        <name>MATIENZO, BENJAMIN, TENIENTE</name><description>entre SOLDADO DE LA INDEPENDENCIA y ARCE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4337633681926,-34.5679415019424,0
+            -58.4345007398868,-34.5688030340052,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.101">
+        <name>ARCE</name><description>entre NEWBERY, JORGE y MATIENZO, BENJAMIN, TENIENTE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4345007398868,-34.5688030340052,0
+            -58.4355767724857,-34.5681747489821,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.102">
+        <name>VOLTA</name><description>entre ARCE y CAMPOS, LUIS M. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4361594428547,-34.5678345911555,0
+            -58.4370206631084,-34.5688340256642,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.103">
+        <name>NEWBERY, JORGE</name><description>entre ARCE y BAEZ</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4355767724857,-34.5681747489821,0
+            -58.4363176549042,-34.5690378201671,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.104">
+        <name>ORTEGA Y GASSET</name><description>entre MIGUELETES y SOLDADO DE LA INDEPENDENCIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4309410219856,-34.568291427501,0
+            -58.4316764077935,-34.5691576944478,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.105">
+        <name>SOLDADO DE LA INDEPENDENCIA</name><description>entre REPUBLICA DE ESLOVENIA y ORTEGA Y GASSET</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4316764077935,-34.5691576944478,0
+            -58.4325508313489,-34.5686404423811,0
+            -58.4327225800872,-34.5685418919348,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.106">
+        <name>NEWBERY, JORGE</name><description>entre CAMPOS, LUIS M. AV. y BAEZ</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4363176549042,-34.5690378201671,0
+            -58.4365671721972,-34.569328374005,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.107">
+        <name>CAMPOS, LUIS M. AV.</name><description>entre VOLTA y NEWBERY, JORGE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4365671721972,-34.569328374005,0
+            -58.4370206631084,-34.5688340256642,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.108">
+        <name>REPUBLICA DE ESLOVENIA</name><description>entre SOLDADO DE LA INDEPENDENCIA y ARCE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4327225800872,-34.5685418919348,0
+            -58.4334638606914,-34.5694084312561,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.109">
+        <name>ARCE</name><description>entre MATIENZO, BENJAMIN, TENIENTE y REPUBLICA DE ESLOVENIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4334638606914,-34.5694084312561,0
+            -58.4345007398868,-34.5688030340052,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.110">
+        <name>SOLDADO DE LA INDEPENDENCIA</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4311756041396,-34.569509049779,0
+            -58.4313134026164,-34.5693723930171,0
+            -58.4316764077935,-34.5691576944478,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.111">
+        <name>MATIENZO, BENJAMIN, TENIENTE</name><description>entre ARCE y BAEZ</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4345007398868,-34.5688030340052,0
+            -58.4352399139103,-34.5696666042054,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.112">
+        <name>BAEZ</name><description>entre NEWBERY, JORGE y MATIENZO, BENJAMIN, TENIENTE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4352399139103,-34.5696666042054,0
+            -58.4363176549042,-34.5690378201671,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.113">
+        <name>FREYRE, MARCELINO E., CNEL. AV.</name><description>entre DORREGO AV. y ISABEL, INFANTA AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4218557177201,-34.5685948141546,0
+            -58.4212308559833,-34.568909184357,0
+            -58.4207144927212,-34.5693054923306,0
+            -58.4202033511511,-34.5699670166201,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.114">
+        <name>ORTEGA Y GASSET</name><description>entre SOLDADO DE LA INDEPENDENCIA y ARCE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4316764077935,-34.5691576944478,0
+            -58.4324111281163,-34.5700230411651,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.115">
+        <name>ARCE</name><description>entre REPUBLICA DE ESLOVENIA y ORTEGA Y GASSET</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4324111281163,-34.5700230411651,0
+            -58.4334638606914,-34.5694084312561,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.116">
+        <name>MATIENZO, BENJAMIN, TENIENTE</name><description>entre BAEZ y CAMPOS, LUIS M. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4352399139103,-34.5696666042054,0
+            -58.435730776122,-34.5702400376439,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.117">
+        <name>CAMPOS, LUIS M. AV.</name><description>entre NEWBERY, JORGE y MATIENZO, BENJAMIN, TENIENTE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.435730776122,-34.5702400376439,0
+            -58.4365671721972,-34.569328374005,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.118">
+        <name>REPUBLICA DE ESLOVENIA</name><description>entre ARCE y BAEZ</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4334638606914,-34.5694084312561,0
+            -58.4342025186108,-34.5702717962523,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.119">
+        <name>BAEZ</name><description>entre MATIENZO, BENJAMIN, TENIENTE y REPUBLICA DE ESLOVENIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4342025186108,-34.5702717962523,0
+            -58.4352399139103,-34.5696666042054,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.120">
+        <name>CHENAUT, INDALESIO, GRAL. AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4309401213694,-34.569791984352,0
+            -58.4315674322091,-34.5705155812875,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.121">
+        <name>ARCE</name><description>entre ORTEGA Y GASSET y CHENAUT, INDALESIO, GRAL. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4315674322091,-34.5705155812875,0
+            -58.4324111281163,-34.5700230411651,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.122">
+        <name>LEVILLIER, ROBERTO, DR.</name><description>entre ROLDAN, BELISARIO AV. y FIGUEROA ALCORTA, PRES. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4128390149565,-34.5700838448178,0
+            -58.4128896242548,-34.5701592897974,0
+            -58.412951906722,-34.5702186829061,0
+            -58.4130291861038,-34.570256180306,0
+            -58.4131103920606,-34.5702764958237,0
+            -58.4132103266879,-34.5702983683011,0
+            -58.4132650428162,-34.5703405746964,0
+            -58.4133008479804,-34.5704014356729,0
+            -58.4133537308757,-34.5705197695813,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.123">
+        <name>DORREGO AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.424077262795,-34.5708229818481,0
+            -58.4237093022208,-34.570409551074,0
+            -58.4236202976045,-34.5703482913608,0
+            -58.4234401716416,-34.5702658470227,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.124">
+        <name>DEL LIBERTADOR AV.</name><description>entre ORTEGA Y GASSET y DORREGO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.424077262795,-34.5708229818481,0
+            -58.4244301452951,-34.5706770378209,0
+            -58.4247745714015,-34.5705062393822,0
+            -58.4258913796419,-34.5698505799831,0
+            -58.4301769755005,-34.5673914151335,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.125">
+        <name>ISABEL, INFANTA AV.</name><description>entre FREYRE, MARCELINO E., CNEL. AV. y MONTT, PEDRO, PRES. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4212542362721,-34.5708317668865,0
+            -58.420936626889,-34.5704387617766,0
+            -58.4208905090095,-34.570389448986,0
+            -58.420844388822,-34.5703447841586,0
+            -58.42078729212,-34.5702887772324,0
+            -58.4207329157728,-34.5702406587121,0
+            -58.4206758141137,-34.5701946519347,0
+            -58.4206162424734,-34.5701508978337,0
+            -58.4205542859492,-34.5701094668593,0
+            -58.4204837297111,-34.570070427252,0
+            -58.420417339976,-34.5700413892714,0
+            -58.4203496717549,-34.5700153086116,0
+            -58.4202803845783,-34.5699920443025,0
+            -58.4202033511511,-34.5699670166201,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.126">
+        <name>ORTEGA Y GASSET</name><description>entre ARCE y BAEZ</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4324111281163,-34.5700230411651,0
+            -58.4331456934141,-34.5708883128788,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.127">
+        <name>BAEZ</name><description>entre REPUBLICA DE ESLOVENIA y ORTEGA Y GASSET</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4331456934141,-34.5708883128788,0
+            -58.4342025186108,-34.5702717962523,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.128">
+        <name>DEL LIBERTADOR AV.</name><description>entre DORREGO AV. y BULLRICH, INT. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4232469985726,-34.5711682888884,0
+            -58.4235255296447,-34.5710557720512,0
+            -58.4238667128105,-34.5709166132028,0
+            -58.424077262795,-34.5708229818481,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.129">
+        <name>REPUBLICA DE ESLOVENIA</name><description>entre BAEZ y CAMPOS, LUIS M. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4342025186108,-34.5702717962523,0
+            -58.4349194909007,-34.5711098694176,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.130">
+        <name>CAMPOS, LUIS M. AV.</name><description>entre MATIENZO, BENJAMIN, TENIENTE y REPUBLICA DE ESLOVENIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4349194909007,-34.5711098694176,0
+            -58.4352654318739,-34.5707472659388,0
+            -58.435730776122,-34.5702400376439,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.131">
+        <name>SARMIENTO AV.</name><description>entre LUGONES, LEOPOLDO AV. y CASARES AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4112192871877,-34.5708803416514,0
+            -58.4094584516512,-34.5690088915983,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.132">
+        <name>AREVALO</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4304233006452,-34.5711834610776,0
+            -58.4299894805304,-34.5706829107794,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.133">
+        <name>ARCE</name><description>entre AREVALO y CHENAUT, INDALESIO, GRAL. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4304233006452,-34.5711834610776,0
+            -58.4314377844279,-34.5705912634648,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.134">
+        <name>CHENAUT, INDALESIO, GRAL. AV.</name><description>entre ARCE y BAEZ</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4315674322091,-34.5705155812875,0
+            -58.4323122965226,-34.5713753675529,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.135">
+        <name>BAEZ</name><description>entre ORTEGA Y GASSET y CHENAUT, INDALESIO, GRAL. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4323122965226,-34.5713753675529,0
+            -58.4329830511314,-34.570983204097,0
+            -58.4331456934141,-34.5708883128788,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.136">
+        <name>FIGUEROA ALCORTA, PRES. AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4124819976115,-34.5711451970856,0
+            -58.4133537308757,-34.5705197695813,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.137">
+        <name>ARGUIBEL, ANDRES</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4293801459538,-34.5717924837411,0
+            -58.4291487700681,-34.5715267096449,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.138">
+        <name>ARCE</name><description>entre AREVALO y ARGUIBEL, ANDRES</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4293801459538,-34.5717924837411,0
+            -58.4304233006452,-34.5711834610776,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.139">
+        <name>ISABEL, INFANTA AV.</name><description>entre DEL LIBERTADOR AV. y MONTT, PEDRO, PRES. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4217436095808,-34.5718228699623,0
+            -58.4215450475637,-34.5711916627218,0
+            -58.4212542362721,-34.5708317668865,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.140">
+        <name>DEL LIBERTADOR AV.</name><description>entre ISABEL, INFANTA AV. y BULLRICH, INT. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4217436095808,-34.5718228699623,0
+            -58.4226972573028,-34.5713902948543,0
+            -58.4232469985726,-34.5711682888884,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.141">
+        <name>FIGUEROA ALCORTA, PRES. AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4076092548466,-34.5745051802867,0
+            -58.4078708398178,-34.5743181830104,0
+            -58.411156130831,-34.5720524026239,0
+            -58.4112219282462,-34.5720085489234,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.142">
+        <name>ORTEGA Y GASSET</name><description>entre BAEZ y CAMPOS, LUIS M. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4331456934141,-34.5708883128788,0
+            -58.43408043106,-34.5719892666823,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.143">
+        <name>CAMPOS, LUIS M. AV.</name><description>entre REPUBLICA DE ESLOVENIA y ORTEGA Y GASSET</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.43408043106,-34.5719892666823,0
+            -58.4349194909007,-34.5711098694176,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.144">
+        <name>AREVALO</name><description>entre ARCE y BAEZ</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4311690102438,-34.5720438882663,0
+            -58.4304233006452,-34.5711834610776,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.145">
+        <name>BAEZ</name><description>entre AREVALO y CHENAUT, INDALESIO, GRAL. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4311690102438,-34.5720438882663,0
+            -58.4321808058053,-34.5714522560105,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.146">
+        <name>ISABEL, INFANTA AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4202033511511,-34.5699670166201,0
+            -58.4201382301999,-34.5699542468728,0
+            -58.4200363350603,-34.5699343512416,0
+            -58.4199798130218,-34.5699209506414,0
+            -58.4199234626226,-34.5699049443889,0
+            -58.4198682203046,-34.5698864032416,0
+            -58.4198143414374,-34.5698653977159,0
+            -58.4197618259511,-34.5698420686615,0
+            -58.4197109292508,-34.5698164161714,0
+            -58.4196381627148,-34.5697725160304,0
+            -58.4195739100032,-34.5697279146559,0
+            -58.4195119569682,-34.5696814126249,0
+            -58.419452303721,-34.5696327986689,0
+            -58.4193967355517,-34.5695868622638,0
+            -58.4193480575956,-34.5695517031827,0
+            -58.4192969946049,-34.5695190784853,0
+            -58.4192438019784,-34.569488988261,0
+            -58.419188479639,-34.5694615733549,0
+            -58.4191313681548,-34.5694367634635,0
+            -58.4190725524318,-34.5694149811589,0
+            -58.4190122027692,-34.5693961560765,0
+            -58.4189506596954,-34.5693802883377,0
+            -58.418888008263,-34.5693675188196,0
+            -58.4188101177818,-34.5693550958362,0
+            -58.4187308634233,-34.5693459822321,0
+            -58.4186511817967,-34.5693398966513,0
+            -58.4185712431222,-34.5693369095795,0
+            -58.4184912177335,-34.5693368802305,0
+            -58.4183962071265,-34.5693400848207,0
+            -58.418294979953,-34.5693466673961,0
+            -58.4182394773442,-34.5693519159703,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.147">
+        <name>SARMIENTO AV.</name><description>entre BERRO, ADOLFO AV. y FIGUEROA ALCORTA, PRES. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4124658071419,-34.572148661203,0
+            -58.4123039189711,-34.5719420402469,0
+            -58.4121996215506,-34.5718122757194,0
+            -58.4121436644075,-34.5717105601002,0
+            -58.412115954802,-34.5716376596969,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.148">
+        <name>IRAOLA AV.</name><description>entre SARMIENTO AV. y BERRO, ADOLFO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4137313884089,-34.5720971383972,0
+            -58.4134346438125,-34.5720296922426,0
+            -58.4131416174744,-34.572009219666,0
+            -58.4127801955233,-34.5720407613939,0
+            -58.4124658071419,-34.572148661203,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.149">
+        <name>CHENAUT, INDALESIO, GRAL. AV.</name><description>entre BAEZ y HUERGO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4323122965226,-34.5713753675529,0
+            -58.4330575165346,-34.5722356422114,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.150">
+        <name>DEL LIBERTADOR AV.</name><description>entre ISABEL, INFANTA AV. y SINCLAIR</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4205504928619,-34.5723640885249,0
+            -58.4217436095808,-34.5718228699623,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.151">
+        <name>DEL LIBERTADOR AV.</name><description>entre GODOY CRUZ y BUSCHIAZZO, JUAN A.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4200245662665,-34.5726026403687,0
+            -58.4205504928619,-34.5723640885249,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.152">
+        <name>ARGUIBEL, ANDRES</name><description>entre ARCE y BAEZ</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.430128574862,-34.5726522841381,0
+            -58.4293801459538,-34.5717924837411,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.153">
+        <name>BAEZ</name><description>entre AREVALO y ARGUIBEL, ANDRES</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.430128574862,-34.5726522841381,0
+            -58.4311690102438,-34.5720438882663,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.154">
+        <name>CHENAUT, INDALESIO, GRAL. AV.</name><description>entre CAMPOS, LUIS M. AV. y HUERGO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4330575165346,-34.5722356422114,0
+            -58.4334324726389,-34.5726683488384,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.155">
+        <name>CAMPOS, LUIS M. AV.</name><description>entre ORTEGA Y GASSET y CHENAUT, INDALESIO, GRAL. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4334324726389,-34.5726683488384,0
+            -58.43408043106,-34.5719892666823,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.156">
+        <name>IRAOLA AV.</name><description>entre MONTT, PEDRO, PRES. AV. y KENNEDY, JOHN FITZGERALD</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4168099414488,-34.5727828345297,0
+            -58.4166675427616,-34.5728240765137,0
+            -58.416575076462,-34.5728500425287,0
+            -58.4164234357955,-34.5728851627188,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.157">
+        <name>MONTT, PEDRO, PRES. AV.</name><description>entre ISABEL, INFANTA AV. y IRAOLA AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4212542362721,-34.5708317668865,0
+            -58.4207086673316,-34.5708793956186,0
+            -58.4206063294501,-34.5708904164304,0
+            -58.4205044157734,-34.5709042542636,0
+            -58.4203414533097,-34.5709315919429,0
+            -58.4202773400381,-34.5709443865239,0
+            -58.4202128007084,-34.5709578851604,0
+            -58.4201484312279,-34.5709721584864,0
+            -58.4200843168026,-34.5709870656843,0
+            -58.41998052396,-34.5710124519439,0
+            -58.4198999738956,-34.5710360153581,0
+            -58.4198197628233,-34.5710624662221,0
+            -58.4197409125778,-34.5710913823575,0
+            -58.4196581440342,-34.5711241703586,0
+            -58.4195704359958,-34.5711599847642,0
+            -58.4194830680909,-34.5711964330442,0
+            -58.4193961254163,-34.571233585654,0
+            -58.4192253045611,-34.5713081734893,0
+            -58.4191360610625,-34.571348987128,0
+            -58.4189569769204,-34.5714323745906,0
+            -58.4188461850509,-34.5714897298158,0
+            -58.4187698818638,-34.5715304070493,0
+            -58.4186939188443,-34.5715716477507,0
+            -58.4186184662627,-34.5716134519831,0
+            -58.4185435240805,-34.5716558901712,0
+            -58.4184663671573,-34.571700440218,0
+            -58.4184171439811,-34.571727746622,0
+            -58.4183506305002,-34.5717693427023,0
+            -58.4182861590005,-34.5718131930654,0
+            -58.418223814692,-34.5718591568981,0
+            -58.4181663236763,-34.5719039957101,0
+            -58.4180738241776,-34.5719811461209,0
+            -58.417980898063,-34.5720597047811,0
+            -58.4178798808046,-34.5721438238509,0
+            -58.4178323534988,-34.5721828914468,0
+            -58.4177840601519,-34.5722215361946,0
+            -58.4177350859765,-34.5722596172773,0
+            -58.4176856012074,-34.5722972051817,0
+            -58.4176354356101,-34.5723342294196,0
+            -58.4175812675128,-34.5723731535841,0
+            -58.4174982276944,-34.5724310109348,0
+            -58.4174553029886,-34.5724599390612,0
+            -58.417411867743,-34.5724883035888,0
+            -58.4173678368213,-34.5725161044852,0
+            -58.4173232953604,-34.5725433417817,0
+            -58.4172784137507,-34.5725698042703,0
+            -58.4171862683279,-34.5726196296442,0
+            -58.4171143081193,-34.5726551665275,0
+            -58.4170404762439,-34.5726881673971,0
+            -58.4169650281558,-34.5727185619225,0
+            -58.4168099414488,-34.5727828345297,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.158">
+        <name>AREVALO</name><description>entre BAEZ y HUERGO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4319132034246,-34.5729024793695,0
+            -58.4311690102438,-34.5720438882663,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.159">
+        <name>HUERGO</name><description>entre AREVALO y CHENAUT, INDALESIO, GRAL. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4319132034246,-34.5729024793695,0
+            -58.4329242670947,-34.5723132931096,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.160">
+        <name>IRAOLA AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4156440383707,-34.5729349518013,0
+            -58.4154277456944,-34.572856863042,0
+            -58.41527843869,-34.5727679110492,0
+            -58.4150285521342,-34.5726374577755,0
+            -58.4147287874404,-34.5724878288391,0
+            -58.4143982099941,-34.5723286795907,0
+            -58.4141175900986,-34.5722013107813,0
+            -58.4137313884089,-34.5720971383972,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.161">
+        <name>DEL LIBERTADOR AV.</name><description>entre BUSCHIAZZO, JUAN A. y FRAY JUSTO SANTAMARIA DE ORO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4192068885714,-34.5729715100284,0
+            -58.4195024687553,-34.5728394307115,0
+            -58.4200245662665,-34.5726026403687,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.162">
+        <name>CLAY</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4295278778991,-34.5730035348875,0
+            -58.4284036890175,-34.5724830674393,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.163">
+        <name>BAEZ</name><description>entre ARGUIBEL, ANDRES y CLAY</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4295278778991,-34.5730035348875,0
+            -58.430128574862,-34.5726522841381,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.164">
+        <name>SINCLAIR</name><description>entre ISABEL, INFANTA AV. y DEL LIBERTADOR AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4224329210595,-34.5731108749196,0
+            -58.4217436095808,-34.5718228699623,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.165">
+        <name>SEGUI, JUAN FRANCISCO</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4224329210595,-34.5731108749196,0
+            -58.4231023273233,-34.5728152462371,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.166">
+        <name>DORREGO AV.</name><description>entre DEL LIBERTADOR AV. y CERVIÑO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4273313065001,-34.57283144932,0
+            -58.4270036672472,-34.5726669915676,0
+            -58.4261886400365,-34.5722540964429,0
+            -58.4244723380942,-34.5712479600733,0
+            -58.424077262795,-34.5708229818481,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.167">
+        <name>BAEZ</name><description>entre CLAY y DORREGO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4286949496407,-34.5734905648118,0
+            -58.4295278778991,-34.5730035348875,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.168">
+        <name>KENNEDY, JOHN FITZGERALD</name><description>entre IRAOLA AV. y DEL LIBERTADOR AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4179516599525,-34.5735379628117,0
+            -58.417680069139,-34.5732291230943,0
+            -58.4176462902797,-34.573191292813,0
+            -58.4175896131839,-34.5731467636756,0
+            -58.4175027217002,-34.5730853214348,0
+            -58.4174572740456,-34.5730568531051,0
+            -58.4173516504556,-34.572999277036,0
+            -58.4172919846554,-34.5729714371069,0
+            -58.4172196344822,-34.5729417613384,0
+            -58.4171351948627,-34.5729121513792,0
+            -58.4169818609119,-34.5728563155337,0
+            -58.4168949740756,-34.5728241631875,0
+            -58.4168099414488,-34.5727828345297,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.169">
+        <name>DEL LIBERTADOR AV.</name><description>entre RAMSAY y BASAVILBASO, LEOPOLDO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4179516599525,-34.5735379628117,0
+            -58.4181757143222,-34.5734322691019,0
+            -58.4192068885714,-34.5729715100284,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.170">
+        <name>CLAY</name><description>entre BAEZ y HUERGO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4307604414915,-34.5735742331449,0
+            -58.4295278778991,-34.5730035348875,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.171">
+        <name>HUERGO</name><description>entre AREVALO y CLAY</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4307604414915,-34.5735742331449,0
+            -58.4319132034246,-34.5729024793695,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.172">
+        <name>AREVALO</name><description>entre HUERGO y CAMPOS, LUIS M. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4325300145661,-34.5736141294515,0
+            -58.4319132034246,-34.5729024793695,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.173">
+        <name>CAMPOS, LUIS M. AV.</name><description>entre AREVALO y CHENAUT, INDALESIO, GRAL. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4325300145661,-34.5736141294515,0
+            -58.4333280189265,-34.5727778183017,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.174">
+        <name>GODOY CRUZ</name><description>entre DEL LIBERTADOR AV. y SEGUI, JUAN FRANCISCO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4212591282275,-34.5736291485556,0
+            -58.4205504928619,-34.5723640885249,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.175">
+        <name>SEGUI, JUAN FRANCISCO</name><description>entre SINCLAIR y GODOY CRUZ</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4212591282275,-34.5736291485556,0
+            -58.4224329210595,-34.5731108749196,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.176">
+        <name>BUSCHIAZZO, JUAN A.</name><description>entre DEL LIBERTADOR AV. y SEGUI, JUAN FRANCISCO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4208184411863,-34.5738237885657,0
+            -58.4200245662665,-34.5726026403687,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.177">
+        <name>SEGUI, JUAN FRANCISCO</name><description>entre GODOY CRUZ y BUSCHIAZZO, JUAN A.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4208184411863,-34.5738237885657,0
+            -58.4212591282275,-34.5736291485556,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.178">
+        <name>HUERGO</name><description>entre CLAY y DORREGO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4299293391343,-34.5739905567981,0
+            -58.4307604414915,-34.5735742331449,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.179">
+        <name>SINCLAIR</name><description>entre SEGUI, JUAN FRANCISCO y DEMARIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4229138728029,-34.5739676716956,0
+            -58.4224329210595,-34.5731108749196,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.180">
+        <name>DEMARIA</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4229138728029,-34.5739676716956,0
+            -58.4235539901591,-34.5736860452478,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.181">
+        <name>KENNEDY, JOHN FITZGERALD</name><description>entre MONROE y RAMSAY</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4183317439247,-34.5741305466964,0
+            -58.4179516599525,-34.5735379628117,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.182">
+        <name>CLAY</name><description>entre HUERGO y CAMPOS, LUIS M. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4319899574845,-34.5741435096473,0
+            -58.4307604414915,-34.5735742331449,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.183">
+        <name>CAMPOS, LUIS M. AV.</name><description>entre AREVALO y CLAY</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4319899574845,-34.5741435096473,0
+            -58.4322389853086,-34.5739192730595,0
+            -58.4325300145661,-34.5736141294515,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.184">
+        <name>FRAY JUSTO SANTAMARIA DE ORO</name><description>entre DEL LIBERTADOR AV. y SEGUI, JUAN FRANCISCO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4200266470847,-34.5741733764899,0
+            -58.4192068885714,-34.5729715100284,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.185">
+        <name>SEGUI, JUAN FRANCISCO</name><description>entre BUSCHIAZZO, JUAN A. y FRAY JUSTO SANTAMARIA DE ORO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4200266470847,-34.5741733764899,0
+            -58.4208184411863,-34.5738237885657,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.186">
+        <name>CAMPOS, LUIS M. AV.</name><description>entre CLAY y DORREGO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4317560029772,-34.5743541577972,0
+            -58.4319899574845,-34.5741435096473,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.187">
+        <name>SARMIENTO AV.</name><description>entre IRAOLA AV. y DEL LIBERTADOR AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4150561214182,-34.574570906523,0
+            -58.4146601445743,-34.5744273469478,0
+            -58.4144590694765,-34.5743325225808,0
+            -58.4128602337579,-34.5726242326112,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.188">
+        <name>DEL LIBERTADOR AV.</name><description>entre SARMIENTO AV. y IRAOLA AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4154039389714,-34.5749799758396,0
+            -58.4160407417125,-34.5745449389375,0
+            -58.4163030765901,-34.5743808310375,0
+            -58.4166232129692,-34.5741762737372,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.189">
+        <name>GODOY CRUZ</name><description>entre SEGUI, JUAN FRANCISCO y DEMARIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4217367506713,-34.5744855966268,0
+            -58.4214272950822,-34.5739294235649,0
+            -58.4212591282275,-34.5736291485556,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.190">
+        <name>DEMARIA</name><description>entre SINCLAIR y GODOY CRUZ</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4217367506713,-34.5744855966268,0
+            -58.4229138728029,-34.5739676716956,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.191">
+        <name>DORREGO AV.</name><description>entre HUERGO y CAMPOS, LUIS M. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4315831978153,-34.5745097498884,0
+            -58.4299293391343,-34.5739905567981,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.192">
+        <name>CAMPOS, LUIS M. AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4315831978153,-34.5745097498884,0
+            -58.4317560029772,-34.5743541577972,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.193">
+        <name>IRAOLA AV.</name><description>entre SARMIENTO AV. y DEL LIBERTADOR AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4150561214182,-34.574570906523,0
+            -58.4151001583752,-34.5744541411779,0
+            -58.4152952280773,-34.5742534245803,0
+            -58.4154392088364,-34.574049760148,0
+            -58.415529789543,-34.5738938423865,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.194">
+        <name>BULLRICH, INT. AV.</name><description>entre DEL LIBERTADOR AV. y CERVIÑO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4232469985726,-34.5711682888884,0
+            -58.4248556440849,-34.574281262635,0
+            -58.4249896110082,-34.5745562397458,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.195">
+        <name>CERVIÑO AV.</name><description>entre DORREGO AV. y BULLRICH, INT. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4249896110082,-34.5745562397458,0
+            -58.4273313065001,-34.57283144932,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.196">
+        <name>DEL LIBERTADOR AV.</name><description>entre SARMIENTO AV. y IRAOLA AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4146313329556,-34.5748221216281,0
+            -58.4148038530686,-34.5746527300402,0
+            -58.4150561214182,-34.574570906523,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.197">
+        <name>KENNEDY, JOHN FITZGERALD</name><description>entre SEGUI, JUAN FRANCISCO y COLOMBIA AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4188285540955,-34.5747023928923,0
+            -58.4185727131534,-34.5742856207154,0
+            -58.4183317439247,-34.5741305466964,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.198">
+        <name>SEGUI, JUAN FRANCISCO</name><description>entre FRAY JUSTO SANTAMARIA DE ORO y KENNEDY, JOHN FITZGERALD</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4188285540955,-34.5747023928923,0
+            -58.4200266470847,-34.5741733764899,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.199">
+        <name>CAMPOS, LUIS M. AV.</name><description>entre DORREGO AV. y RAVIGNANI, EMILIO, DR.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4313127040746,-34.5747532756459,0
+            -58.4315831978153,-34.5745097498884,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.200">
+        <name>SARMIENTO AV.</name><description>entre DEL LIBERTADOR AV. y IRAOLA AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4154039389714,-34.5749799758396,0
+            -58.415398457154,-34.5748203978134,0
+            -58.415275996309,-34.5746764132529,0
+            -58.4150561214182,-34.574570906523,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.201">
+        <name>FRAY JUSTO SANTAMARIA DE ORO</name><description>entre SEGUI, JUAN FRANCISCO y DEMARIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4205873755851,-34.574991266108,0
+            -58.4202004532275,-34.5744281613082,0
+            -58.4200266470847,-34.5741733764899,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.202">
+        <name>DEMARIA</name><description>entre GODOY CRUZ y FRAY JUSTO SANTAMARIA DE ORO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4205873755851,-34.574991266108,0
+            -58.4217367506713,-34.5744855966268,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.203">
+        <name>CASARES AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4079984223341,-34.5750215644962,0
+            -58.4078149062737,-34.5748271112229,0
+            -58.4076092548466,-34.5745051802867,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.204">
+        <name>SINCLAIR</name><description>entre DEMARIA y CERVIÑO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4235315367688,-34.5750681074003,0
+            -58.4229138728029,-34.5739676716956,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.205">
+        <name>CERVIÑO AV.</name><description>entre SINCLAIR y BULLRICH, INT. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4235315367688,-34.5750681074003,0
+            -58.4249896110082,-34.5745562397458,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.206">
+        <name>COLOMBIA AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4183519174363,-34.5758640015429,0
+            -58.4184244915008,-34.575640925318,0
+            -58.4184532792239,-34.5754629042627,0
+            -58.4184773117521,-34.5752611485916,0
+            -58.4184815665795,-34.5751064992458,0
+            -58.4184806784621,-34.5750162858882,0
+            -58.4184779213308,-34.574918536484,0
+            -58.4184741212568,-34.5748604353593,0
+            -58.418469383979,-34.5748036015202,0
+            -58.4184677400176,-34.5747257235407,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.207">
+        <name>DEL LIBERTADOR AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4131614791606,-34.5757966968685,0
+            -58.4140474112368,-34.5753962762899,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.208">
+        <name>FIGUEROA ALCORTA, PRES. AV.</name><description>entre CASARES AV. y SCALABRINI ORTIZ, RAUL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4066343710503,-34.5752003789866,0
+            -58.4076092548466,-34.5745051802867,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.209">
+        <name>CASARES AV.</name><description>entre BERRO, ADOLFO AV. y GELLY</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4082179280276,-34.5752542034913,0
+            -58.4079984223341,-34.5750215644962,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.210">
+        <name>BERRO, ADOLFO AV.</name><description>entre CASARES AV. y SARMIENTO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4123186646929,-34.5721726253867,0
+            -58.4120513223499,-34.572216165297,0
+            -58.4119596960612,-34.5722480288398,0
+            -58.4118360520436,-34.5722902311383,0
+            -58.4117593267261,-34.5723184387667,0
+            -58.4117009090004,-34.5723413018676,0
+            -58.411599486079,-34.5723823161099,0
+            -58.4115380019103,-34.5724075018237,0
+            -58.411476687628,-34.57243325097,0
+            -58.4113628291139,-34.5724829923033,0
+            -58.4113078146566,-34.5725090257405,0
+            -58.4112520327064,-34.5725370306959,0
+            -58.4111747881461,-34.5725780548909,0
+            -58.4111164488358,-34.5726111292154,0
+            -58.4110683282679,-34.5726404049922,0
+            -58.4110246353078,-34.5726688375588,0
+            -58.4109645874458,-34.5727109957663,0
+            -58.4109167182467,-34.5727465393209,0
+            -58.410846021041,-34.5728000311525,0
+            -58.410805731319,-34.5728317750273,0
+            -58.4107657797666,-34.5728672515028,0
+            -58.4106963565345,-34.5729253213506,0
+            -58.4106334076665,-34.5729769853739,0
+            -58.4105762497803,-34.5730259053325,0
+            -58.410532888635,-34.5730675775638,0
+            -58.4104834757114,-34.5731203037182,0
+            -58.4104463294923,-34.573161978607,0
+            -58.4104124199706,-34.5732012604731,0
+            -58.4103791062447,-34.5732407538595,0
+            -58.4103462176831,-34.5732810220842,0
+            -58.4103054035771,-34.5733334701989,0
+            -58.410241503733,-34.5734070354453,0
+            -58.4102009494344,-34.5734523708202,0
+            -58.4101599696725,-34.5734972834524,0
+            -58.4101154976526,-34.5735446593864,0
+            -58.4100702615869,-34.5735885137743,0
+            -58.4100064580722,-34.5736439095637,0
+            -58.4099626750401,-34.573678679859,0
+            -58.4099155713257,-34.5737138712297,0
+            -58.4098706830035,-34.5737461761708,0
+            -58.409807058037,-34.5737882618109,0
+            -58.4097570627103,-34.573818451754,0
+            -58.4096784514911,-34.5738634181327,0
+            -58.4096167900359,-34.5738969128168,0
+            -58.4095023261932,-34.5739563706361,0
+            -58.4094037875209,-34.574008863412,0
+            -58.409352943628,-34.574034263987,0
+            -58.409248107732,-34.5740818241787,0
+            -58.4091103131553,-34.5741448629147,0
+            -58.4090167155623,-34.5741919349279,0
+            -58.4089396381469,-34.5742337324335,0
+            -58.4088917724437,-34.5742612468591,0
+            -58.4088318113111,-34.5742975588587,0
+            -58.4087721894848,-34.5743357020021,0
+            -58.4087246609085,-34.5743682870343,0
+            -58.4086571975279,-34.5744197367348,0
+            -58.408612985575,-34.5744579571209,0
+            -58.408561958798,-34.5745018083481,0
+            -58.408514253023,-34.5745446751094,0
+            -58.4084633923494,-34.5745947236736,0
+            -58.4084153370759,-34.574651041206,0
+            -58.4083798886788,-34.5746976458919,0
+            -58.4083423058379,-34.5747532638669,0
+            -58.4083125574001,-34.5748063500985,0
+            -58.4082792189817,-34.574880843573,0
+            -58.4082618197097,-34.574927738053,0
+            -58.4082440707156,-34.5749885058825,0
+            -58.4082355267127,-34.5750341367213,0
+            -58.4082179280276,-34.5752542034913,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.211">
+        <name>KENNEDY, JOHN FITZGERALD</name><description>entre SEGUI, JUAN FRANCISCO y DEMARIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4194296409401,-34.5755006541816,0
+            -58.4188285540955,-34.5747023928923,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.212">
+        <name>DEMARIA</name><description>entre FRAY JUSTO SANTAMARIA DE ORO y KENNEDY, JOHN FITZGERALD</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4194296409401,-34.5755006541816,0
+            -58.4205873755851,-34.574991266108,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.213">
+        <name>GODOY CRUZ</name><description>entre DEMARIA y CERVIÑO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4223051458068,-34.5755070060278,0
+            -58.4217367506713,-34.5744855966268,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.214">
+        <name>CERVIÑO AV.</name><description>entre SINCLAIR y GODOY CRUZ</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4223051458068,-34.5755070060278,0
+            -58.4232579368838,-34.5751671043986,0
+            -58.4235315367688,-34.5750681074003,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.215">
+        <name>CASARES AV.</name><description>entre BERRO, ADOLFO AV. y CASTEX</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4085461837591,-34.5755778785975,0
+            -58.4084521559163,-34.5754993137306,0
+            -58.4083272559597,-34.575370029679,0
+            -58.4082179280276,-34.5752542034913,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.216">
+        <name>GELLY</name><description>entre CASARES AV. y SCALABRINI ORTIZ, RAUL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4069994275609,-34.5756106263064,0
+            -58.4079984223341,-34.5750215644962,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.217">
+        <name>FRAY JUSTO SANTAMARIA DE ORO</name><description>entre DEMARIA y CERVIÑO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4212146466611,-34.5759041778522,0
+            -58.4205873755851,-34.574991266108,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.218">
+        <name>CERVIÑO AV.</name><description>entre GODOY CRUZ y FRAY JUSTO SANTAMARIA DE ORO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4212146466611,-34.5759041778522,0
+            -58.4221304084123,-34.5755693427983,0
+            -58.4223051458068,-34.5755070060278,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.219">
+        <name>CASTEX</name><description>entre CASARES AV. y SCALABRINI ORTIZ, RAUL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4075184757308,-34.5761941153402,0
+            -58.4085461837591,-34.5755778785975,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.220">
+        <name>CERVIÑO AV.</name><description>entre COLOMBIA AV. y KENNEDY, JOHN FITZGERALD</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4183519174363,-34.5758640015429,0
+            -58.4197221353845,-34.5762405620619,0
+            -58.4200276763661,-34.5762947563186,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.221">
+        <name>KENNEDY, JOHN FITZGERALD</name><description>entre DEMARIA y CERVIÑO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4200276763661,-34.5762947563186,0
+            -58.4194296409401,-34.5755006541816,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.222">
+        <name>CERVIÑO AV.</name><description>entre FRAY JUSTO SANTAMARIA DE ORO y KENNEDY, JOHN FITZGERALD</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4200276763661,-34.5762947563186,0
+            -58.4202270077167,-34.5762609529274,0
+            -58.4209910273278,-34.57598593312,0
+            -58.4212146466611,-34.5759041778522,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.223">
+        <name>SINCLAIR</name><description>entre CERVIÑO AV. y JUNCAL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4242568300032,-34.5763601272691,0
+            -58.4235315367688,-34.5750681074003,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.224">
+        <name>JUNCAL</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4242568300032,-34.5763601272691,0
+            -58.4247641526948,-34.5760560572406,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.225">
+        <name>DEL LIBERTADOR AV.</name><description>entre REPUBLICA DE LA INDIA y LAFINUR</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4117497196904,-34.5764347126989,0
+            -58.4131614791606,-34.5757966968685,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.226">
+        <name>CAMPOS, LUIS M. AV.</name><description>entre RAVIGNANI, EMILIO, DR. y DRESCO, ARTURO ANTONIO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4290488079189,-34.5768157493252,0
+            -58.4310573687767,-34.5749832129829,0
+            -58.4313127040746,-34.5747532756459,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.227">
+        <name>GODOY CRUZ</name><description>entre CERVIÑO AV. y JUNCAL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4235320768748,-34.5767945495777,0
+            -58.4223051458068,-34.5755070060278,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.228">
+        <name>JUNCAL</name><description>entre SINCLAIR y GODOY CRUZ</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4235320768748,-34.5767945495777,0
+            -58.4242568300032,-34.5763601272691,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.229">
+        <name>DEL LIBERTADOR AV.</name><description>entre LAFINUR y REPUBLICA ARABE SIRIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4109418466711,-34.5767997984011,0
+            -58.4117497196904,-34.5764347126989,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.230">
+        <name>REPUBLICA DE LA INDIA</name><description>entre DEL LIBERTADOR AV. y SEGUI, JUAN FRANCISCO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.413979194021,-34.5770426878737,0
+            -58.4131614791606,-34.5757966968685,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.231">
+        <name>DEL LIBERTADOR AV.</name><description>entre REPUBLICA ARABE SIRIA y UGARTECHE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4099584424746,-34.5772395923115,0
+            -58.4107274005646,-34.5768967503424,0
+            -58.4109418466711,-34.5767997984011,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.232">
+        <name>COLOMBIA AV.</name><description>entre CERVIÑO AV. y SARMIENTO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4183519174363,-34.5758640015429,0
+            -58.4181992931594,-34.5762779673548,0
+            -58.418012482855,-34.576614242713,0
+            -58.4177396979225,-34.5769148512163,0
+            -58.4173453766628,-34.5772836541424,0
+            -58.4172704158941,-34.5773494018058,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.233">
+        <name>CASARES AV.</name><description>entre CASTEX y DEL LIBERTADOR AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4098664634514,-34.5772806092043,0
+            -58.4097838129847,-34.5768478182165,0
+            -58.409771668693,-34.5767996429516,0
+            -58.4097494892551,-34.5767335756148,0
+            -58.4097272188833,-34.5766765929153,0
+            -58.4097008610149,-34.5766208056224,0
+            -58.4096705008428,-34.5765661433472,0
+            -58.4096310351367,-34.5765045050953,0
+            -58.4096013479811,-34.5764625898223,0
+            -58.4095702128307,-34.576421659839,0
+            -58.4095375446367,-34.576381574259,0
+            -58.4095033434002,-34.576342333081,0
+            -58.4094676942175,-34.5763040067653,0
+            -58.4094305970895,-34.5762665953105,0
+            -58.4093921371117,-34.5762301691769,0
+            -58.4093523142391,-34.5761947987869,0
+            -58.4092997256325,-34.5761512535649,0
+            -58.4092280736372,-34.5760953756945,0
+            -58.409155484328,-34.5760408354198,0
+            -58.4090817876057,-34.5759873509681,0
+            -58.4090068982838,-34.5759349927233,0
+            -58.4089446026788,-34.5758935557454,0
+            -58.4088556742865,-34.5758275993419,0
+            -58.4087757672347,-34.5757672103912,0
+            -58.4085461837591,-34.5755778785975,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.234">
+        <name>DEL LIBERTADOR AV.</name><description>entre CASARES AV. y UGARTECHE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4098664634514,-34.5772806092043,0
+            -58.4099584424746,-34.5772395923115,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.235">
+        <name>SARMIENTO AV.</name><description>entre COLOMBIA AV. y DEL LIBERTADOR AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4172704158941,-34.5773494018058,0
+            -58.4155761091209,-34.5755430824282,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.236">
+        <name>FRAY JUSTO SANTAMARIA DE ORO</name><description>entre CERVIÑO AV. y JUNCAL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4225906530385,-34.5773588275489,0
+            -58.4212146466611,-34.5759041778522,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.237">
+        <name>JUNCAL</name><description>entre GODOY CRUZ y FRAY JUSTO SANTAMARIA DE ORO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4225906530385,-34.5773588275489,0
+            -58.4235320768748,-34.5767945495777,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.238">
+        <name>LAFINUR</name><description>entre DEL LIBERTADOR AV. y SEGUI, JUAN FRANCISCO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4125356129899,-34.5776209099194,0
+            -58.4117497196904,-34.5764347126989,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.239">
+        <name>SEGUI, JUAN FRANCISCO</name><description>entre REPUBLICA DE LA INDIA y LAFINUR</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4125356129899,-34.5776209099194,0
+            -58.413979194021,-34.5770426878737,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.240">
+        <name>GODOY CRUZ</name><description>entre JUNCAL y BERUTI</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4243531885424,-34.5776821553424,0
+            -58.4235320768748,-34.5767945495777,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.241">
+        <name>BERUTI</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4243531885424,-34.5776821553424,0
+            -58.4253574585264,-34.5770736571529,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.242">
+        <name>JUNCAL</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4219381044619,-34.5777499536884,0
+            -58.4225906530385,-34.5773588275489,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.243">
+        <name>DEL LIBERTADOR AV.</name><description>entre CASARES AV. y SCALABRINI ORTIZ, RAUL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4086193723546,-34.5778366168098,0
+            -58.4098664634514,-34.5772806092043,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.244">
+        <name>REPUBLICA ARABE SIRIA</name><description>entre DEL LIBERTADOR AV. y SEGUI, JUAN FRANCISCO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4117074035988,-34.5779525408127,0
+            -58.4109418466711,-34.5767997984011,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.245">
+        <name>SEGUI, JUAN FRANCISCO</name><description>entre LAFINUR y REPUBLICA ARABE SIRIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4117074035988,-34.5779525408127,0
+            -58.4125356129899,-34.5776209099194,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.246">
+        <name>DEL LIBERTADOR AV.</name><description>entre AZURDUY JUANA y PEDRAZA, MANUELA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4079100142538,-34.5781529226985,0
+            -58.4086193723546,-34.5778366168098,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.247">
+        <name>FRAY JUSTO SANTAMARIA DE ORO</name><description>entre JUNCAL y BERUTI</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4234178041744,-34.5782489063719,0
+            -58.4228746228187,-34.5776639277768,0
+            -58.4225906530385,-34.5773588275489,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.248">
+        <name>BERUTI</name><description>entre GODOY CRUZ y FRAY JUSTO SANTAMARIA DE ORO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4234178041744,-34.5782489063719,0
+            -58.4243531885424,-34.5776821553424,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.249">
+        <name>LAFINUR</name><description>entre SEGUI, JUAN FRANCISCO y TUPIZA PJE.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4129701222875,-34.5782767361536,0
+            -58.4125356129899,-34.5776209099194,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.250">
+        <name>TUPIZA PJE.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4129701222875,-34.5782767361536,0
+            -58.4139086415587,-34.5778562664634,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.251">
+        <name>REPUBLICA DE LA INDIA</name><description>entre SEGUI, JUAN FRANCISCO y CERVIÑO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4147271976334,-34.578182269026,0
+            -58.413979194021,-34.5770426878737,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.252">
+        <name>UGARTECHE</name><description>entre DEL LIBERTADOR AV. y SEGUI, JUAN FRANCISCO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.41063970585,-34.5783808957971,0
+            -58.4099584424746,-34.5772395923115,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.253">
+        <name>SEGUI, JUAN FRANCISCO</name><description>entre REPUBLICA ARABE SIRIA y UGARTECHE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.41063970585,-34.5783808957971,0
+            -58.4112470099901,-34.5781369263147,0
+            -58.4117074035988,-34.5779525408127,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.254">
+        <name>BERUTI</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4225304420331,-34.5787865107433,0
+            -58.4234178041744,-34.5782489063719,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.255">
+        <name>LAFINUR</name><description>entre TUPIZA PJE. y CERVIÑO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.41325284803,-34.57870345411,0
+            -58.4129701222875,-34.5782767361536,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.256">
+        <name>CERVIÑO AV.</name><description>entre LAFINUR y REPUBLICA DE LA INDIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4133412639641,-34.5788368992425,0
+            -58.4148085875674,-34.5783062837647,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.257">
+        <name>SCALABRINI ORTIZ, RAUL</name><description>entre DEL LIBERTADOR AV. y SEGUI, JUAN FRANCISCO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4092709378733,-34.5789306600956,0
+            -58.4086193723546,-34.5778366168098,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.258">
+        <name>SEGUI, JUAN FRANCISCO</name><description>entre UGARTECHE y SCALABRINI ORTIZ, RAUL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4092709378733,-34.5789306600956,0
+            -58.41063970585,-34.5783808957971,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.259">
+        <name>REPUBLICA ARABE SIRIA</name><description>entre SEGUI, JUAN FRANCISCO y CERVIÑO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4124078259643,-34.5790072473198,0
+            -58.4117074035988,-34.5779525408127,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.260">
+        <name>CERVIÑO AV.</name><description>entre REPUBLICA ARABE SIRIA y LAFINUR</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4124973953792,-34.5791421200667,0
+            -58.4133412639641,-34.5788368992425,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.261">
+        <name>REPUBLICA DE LA INDIA</name><description>entre CERVIÑO AV. y CABELLO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4154350301837,-34.5792607744462,0
+            -58.4148085875674,-34.5783062837647,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.262">
+        <name>UGARTECHE</name><description>entre SEGUI, JUAN FRANCISCO y CERVIÑO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4112304895029,-34.5793703932929,0
+            -58.41063970585,-34.5783808957971,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.263">
+        <name>UGARTECHE</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4113432723622,-34.5795593885673,0
+            -58.4112304895029,-34.5793703932929,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.264">
+        <name>CERVIÑO AV.</name><description>entre UGARTECHE y REPUBLICA ARABE SIRIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4113432723622,-34.5795593885673,0
+            -58.4124973953792,-34.5791421200667,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.265">
+        <name>SEGUI, JUAN FRANCISCO</name><description>entre SCALABRINI ORTIZ, RAUL y SALGUERO, JERONIMO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4077061836778,-34.5795591945931,0
+            -58.4092709378733,-34.5789306600956,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.266">
+        <name>LAFINUR</name><description>entre CERVIÑO AV. y CABELLO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4139332465321,-34.5797303259496,0
+            -58.4133412639641,-34.5788368992425,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.267">
+        <name>CABELLO</name><description>entre REPUBLICA DE LA INDIA y LAFINUR</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4139332465321,-34.5797303259496,0
+            -58.4154350301837,-34.5792607744462,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.268">
+        <name>SCALABRINI ORTIZ, RAUL</name><description>entre SEGUI, JUAN FRANCISCO y CERVIÑO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.409834745983,-34.5798771937573,0
+            -58.4092709378733,-34.5789306600956,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.269">
+        <name>CERVIÑO AV.</name><description>entre UGARTECHE y SCALABRINI ORTIZ, RAUL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.409834745983,-34.5798771937573,0
+            -58.4112304895029,-34.5793703932929,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.270">
+        <name>REPUBLICA ARABE SIRIA</name><description>entre CERVIÑO AV. y CABELLO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4130677652244,-34.5800009638138,0
+            -58.4124973953792,-34.5791421200667,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.271">
+        <name>CABELLO</name><description>entre LAFINUR y REPUBLICA ARABE SIRIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4130677652244,-34.5800009638138,0
+            -58.4139332465321,-34.5797303259496,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.272">
+        <name>REPUBLICA DE LA INDIA</name><description>entre CABELLO y GUTIERREZ, JUAN MARIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.415971907336,-34.5800787456451,0
+            -58.4154350301837,-34.5792607744462,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.273">
+        <name>UGARTECHE</name><description>entre CERVIÑO AV. y CABELLO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4118366823493,-34.5803858102488,0
+            -58.4113432723622,-34.5795593885673,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.274">
+        <name>CABELLO</name><description>entre REPUBLICA ARABE SIRIA y UGARTECHE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4118366823493,-34.5803858102488,0
+            -58.4130677652244,-34.5800009638138,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.275">
+        <name>CERVIÑO AV.</name><description>entre SCALABRINI ORTIZ, RAUL y SALGUERO, JERONIMO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4084318317217,-34.580386510245,0
+            -58.409834745983,-34.5798771937573,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.276">
+        <name>LAFINUR</name><description>entre CABELLO y GUTIERREZ, JUAN MARIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4144730088784,-34.5805449244955,0
+            -58.4139332465321,-34.5797303259496,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.277">
+        <name>GUTIERREZ, JUAN MARIA</name><description>entre REPUBLICA DE LA INDIA y LAFINUR</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4144730088784,-34.5805449244955,0
+            -58.415971907336,-34.5800787456451,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.278">
+        <name>SARMIENTO AV.</name><description>entre COLOMBIA AV. y CALZADA CIRCULAR PLAZA ITALIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4205865857438,-34.5807939862154,0
+            -58.4172704158941,-34.5773494018058,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.279">
+        <name>REPUBLICA ARABE SIRIA</name><description>entre CABELLO y GUTIERREZ, JUAN MARIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4136076920807,-34.5808140168904,0
+            -58.4130677652244,-34.5800009638138,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.280">
+        <name>GUTIERREZ, JUAN MARIA</name><description>entre LAFINUR y REPUBLICA ARABE SIRIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4136076920807,-34.5808140168904,0
+            -58.4144730088784,-34.5805449244955,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.281">
+        <name>SCALABRINI ORTIZ, RAUL</name><description>entre CERVIÑO AV. y CABELLO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4104000978252,-34.5808263310243,0
+            -58.409834745983,-34.5798771937573,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.282">
+        <name>CABELLO</name><description>entre UGARTECHE y SCALABRINI ORTIZ, RAUL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4104000978252,-34.5808263310243,0
+            -58.4108287971884,-34.5807008799427,0
+            -58.4118366823493,-34.5803858102488,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.283">
+        <name>CABELLO</name><description>entre SCALABRINI ORTIZ, RAUL y ZAZPE, VICENTE FAUSTINO MONSEÑOR</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4098198908516,-34.5810031941312,0
+            -58.4100624344364,-34.5809251297041,0
+            -58.4104000978252,-34.5808263310243,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.284">
+        <name>UGARTECHE</name><description>entre CABELLO y GUTIERREZ, JUAN MARIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4123295916526,-34.5812115253802,0
+            -58.4118366823493,-34.5803858102488,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.285">
+        <name>GUTIERREZ, JUAN MARIA</name><description>entre REPUBLICA ARABE SIRIA y UGARTECHE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4123295916526,-34.5812115253802,0
+            -58.4136076920807,-34.5808140168904,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.286">
+        <name>REPUBLICA DE LA INDIA</name><description>entre GUTIERREZ, JUAN MARIA y LAS HERAS GENERAL AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4169532176886,-34.5815737274774,0
+            -58.415971907336,-34.5800787456451,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.287">
+        <name>LAS HERAS GENERAL AV.</name><description>entre REPUBLICA DE LA INDIA y CALZADA CIRCULAR PLAZA ITALIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4169532176886,-34.5815737274774,0
+            -58.420119387377,-34.5813704483093,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.288">
+        <name>LAFINUR</name><description>entre GUTIERREZ, JUAN MARIA y LAS HERAS GENERAL AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4152280983346,-34.5816844707059,0
+            -58.4144730088784,-34.5805449244955,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.289">
+        <name>LAS HERAS GENERAL AV.</name><description>entre REPUBLICA DE LA INDIA y LAFINUR</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4152280983346,-34.5816844707059,0
+            -58.4169532176886,-34.5815737274774,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.290">
+        <name>REPUBLICA ARABE SIRIA</name><description>entre GUTIERREZ, JUAN MARIA y LAS HERAS GENERAL AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4142284466265,-34.5817486515355,0
+            -58.4136076920807,-34.5808140168904,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.291">
+        <name>LAS HERAS GENERAL AV.</name><description>entre LAFINUR y REPUBLICA ARABE SIRIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4142284466265,-34.5817486515355,0
+            -58.4152280983346,-34.5816844707059,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.292">
+        <name>UGARTECHE</name><description>entre GUTIERREZ, JUAN MARIA y LAS HERAS GENERAL AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4127085303823,-34.5818461313722,0
+            -58.4123295916526,-34.5812115253802,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.293">
+        <name>LAS HERAS GENERAL AV.</name><description>entre REPUBLICA ARABE SIRIA y UGARTECHE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4127085303823,-34.5818461313722,0
+            -58.4142284466265,-34.5817486515355,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.294">
+        <name>SCALABRINI ORTIZ, RAUL</name><description>entre CABELLO y LAS HERAS GENERAL AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4110987599364,-34.5819777798611,0
+            -58.4104000978252,-34.5808263310243,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.295">
+        <name>LAS HERAS GENERAL AV.</name><description>entre UGARTECHE y SCALABRINI ORTIZ, RAUL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4110987599364,-34.5819777798611,0
+            -58.4127085303823,-34.5818461313722,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.296">
+        <name>LAS HERAS GENERAL AV.</name><description>entre SCALABRINI ORTIZ, RAUL y SALGUERO, JERONIMO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4101916170716,-34.5822364777623,0
+            -58.4110987599364,-34.5819777798611,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.297">
+        <name>REPUBLICA ARABE SIRIA</name><description>entre PEDRAZA, MANUELA y CAMPOS SALLES</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4148446688156,-34.5824475021243,0
+            -58.4142284466265,-34.5817486515355,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.298">
+        <name>SCALABRINI ORTIZ, RAUL</name><description>entre LAS HERAS GENERAL AV. y FRENCH</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4121076634328,-34.5826638535691,0
+            -58.4110987599364,-34.5819777798611,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.299">
+        <name>UGARTECHE</name><description>entre LAS HERAS GENERAL AV. y JUNCAL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.414116188647,-34.5829651779432,0
+            -58.4128094115771,-34.5820150494926,0
+            -58.4127085303823,-34.5818461313722,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.300">
+        <name>JUNCAL</name><description>entre REPUBLICA ARABE SIRIA y UGARTECHE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.414116188647,-34.5829651779432,0
+            -58.4148446688156,-34.5824475021243,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.301">
+        <name>REPUBLICA ARABE SIRIA</name><description>entre JUNCAL y BERUTI</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4155279471917,-34.5832343351386,0
+            -58.4148446688156,-34.5824475021243,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.302">
+        <name>FRENCH</name><description>entre SCALABRINI ORTIZ, RAUL y ARAOZ</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4114380418287,-34.5832534407645,0
+            -58.4121076634328,-34.5826638535691,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.303">
+        <name>SCALABRINI ORTIZ, RAUL</name><description>entre FRENCH y JUNCAL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4133791810438,-34.583488902326,0
+            -58.4121076634328,-34.5826638535691,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.304">
+        <name>JUNCAL</name><description>entre UGARTECHE y SCALABRINI ORTIZ, RAUL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4133791810438,-34.583488902326,0
+            -58.414116188647,-34.5829651779432,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.305">
+        <name>REPUBLICA ARABE SIRIA</name><description>entre BERUTI y ARENALES</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4160664102822,-34.5838543446935,0
+            -58.4155279471917,-34.5832343351386,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.306">
+        <name>JUNCAL</name><description>entre SCALABRINI ORTIZ, RAUL y ARAOZ</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4125718864268,-34.5840625939167,0
+            -58.4133791810438,-34.583488902326,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.307">
+        <name>SCALABRINI ORTIZ, RAUL</name><description>entre JUNCAL y BERUTI</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4142785104283,-34.5840724464296,0
+            -58.4133791810438,-34.583488902326,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.308">
+        <name>BERUTI</name><description>entre REPUBLICA ARABE SIRIA y SCALABRINI ORTIZ, RAUL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4142785104283,-34.5840724464296,0
+            -58.4155279471917,-34.5832343351386,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.309">
+        <name>SCALABRINI ORTIZ, RAUL</name><description>entre BERUTI y ARENALES</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4149986809585,-34.584539713812,0
+            -58.4142785104283,-34.5840724464296,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.310">
+        <name>ARENALES</name><description>entre REPUBLICA ARABE SIRIA y SCALABRINI ORTIZ, RAUL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4149986809585,-34.584539713812,0
+            -58.4160664102822,-34.5838543446935,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.311">
+        <name>BERUTI</name><description>entre SCALABRINI ORTIZ, RAUL y ARAOZ</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4134058149635,-34.5846577371216,0
+            -58.4142785104283,-34.5840724464296,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.312">
+        <name>ARENALES</name><description>entre SCALABRINI ORTIZ, RAUL y ARAOZ</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4140729322867,-34.5851338616191,0
+            -58.4149986809585,-34.584539713812,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.313">
+        <name>CERVIÑO AV.</name><description>entre LAFINUR y REPUBLICA ARABE SIRIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4124078259643,-34.5790072473198,0
+            -58.41325284803,-34.57870345411,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.314">
+        <name>CERVIÑO AV.</name><description>entre REPUBLICA DE LA INDIA y LAFINUR</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.41325284803,-34.57870345411,0
+            -58.4147271976334,-34.578182269026,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.315">
+        <name>HERNANDEZ, JOSE</name><description>entre VERTIZ VIRREY AV. y CAMPOS, LUIS M. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4447340210902,-34.5612679782658,0
+            -58.4449536211155,-34.5612543826297,0
+            -58.4453035304298,-34.5611408149725,0
+            -58.445407752286,-34.5611193779537,0
+            -58.4455290345292,-34.5611417349219,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.316">
+        <name>LORETO, VIRREY</name><description>entre DEL LIBERTADOR AV. y SOLDADO DE LA INDEPENDENCIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4426914374274,-34.5622237218003,0
+            -58.4428083991028,-34.562339292486,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.317">
+        <name>CERVIÑO AV.</name><description>entre REPUBLICA ARABE SIRIA y UGARTECHE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4112304895029,-34.5793703932929,0
+            -58.4113192595733,-34.5794057984674,0
+            -58.4124078259643,-34.5790072473198,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.318">
+        <name>DORREGO AV.</name><description>entre BAEZ y HUERGO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4299293391343,-34.5739905567981,0
+            -58.4294609851907,-34.5738312913456,0
+            -58.4292017235916,-34.5737308940025,0
+            -58.4289842840875,-34.5736339673615,0
+            -58.4287459365281,-34.5735301154356,0
+            -58.4286949496407,-34.5734905648118,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.319">
+        <name>CALZADA CIRCULAR PLAZA ITALIA</name><description>entre SARMIENTO AV. y LAS HERAS GENERAL AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.420119387377,-34.5813704483093,0
+            -58.4201476729545,-34.5812430555625,0
+            -58.420231300688,-34.5811091818748,0
+            -58.4204037267009,-34.5809407836956,0
+            -58.4205865857438,-34.5807939862154,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.320">
+        <name>CALZADA CIRCULAR PLAZA ITALIA</name><description>entre SARMIENTO AV. y SANTA FE AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4205865857438,-34.5807939862154,0
+            -58.4207328544579,-34.5807119675909,0
+            -58.4209522164618,-34.5806688493062,0
+            -58.4212864466447,-34.5806732842739,0
+            -58.4214691975147,-34.5807381389339,0
+            -58.4215997032063,-34.5808461700726,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.321">
+        <name>DORREGO AV.</name><description>entre BAEZ y CERVIÑO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4286949496407,-34.5734905648118,0
+            -58.4273313065001,-34.57283144932,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.322">
+        <name>OLLEROS AV.</name><description>entre MIGUELETES y DEL LIBERTADOR AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4364091094314,-34.5636950717704,0
+            -58.4365789523832,-34.56375332547,0
+            -58.4366593622452,-34.5637986543347,0
+            -58.4374046883882,-34.5645059469008,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.323">
+        <name>OLLEROS AV.</name><description>entre SOLDADO DE LA INDEPENDENCIA y MIGUELETES</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4374046883882,-34.5645059469008,0
+            -58.4382897555597,-34.5652921927209,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.324">
+        <name>OLLEROS AV.</name><description>entre CAMPOS, LUIS M. AV. y OLLEROS</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4382897555597,-34.5652921927209,0
+            -58.4392255087466,-34.5661168687799,0
+            -58.4393070047252,-34.56614293495,0
+            -58.4394154550294,-34.5661424896806,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.325">
+        <name>SOLDADO DE LA INDEPENDENCIA</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4382897555597,-34.5652921927209,0
+            -58.4384592157582,-34.5651900251551,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.326">
+        <name>MIGUELETES</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4374046883882,-34.5645059469008,0
+            -58.437577008945,-34.5644028538433,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.327">
+        <name>CHENAUT, INDALESIO, GRAL. AV.</name><description>entre FITZ ROY y HUMBOLDT</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4308306937985,-34.5698878468848,0
+            -58.4314377844279,-34.5705912634648,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.328">
+        <name>CHENAUT, INDALESIO, GRAL. AV.</name><description>entre ARCE y BAEZ</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4314377844279,-34.5705912634648,0
+            -58.4321808058053,-34.5714522560105,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.329">
+        <name>CHENAUT, INDALESIO, GRAL. AV.</name><description>entre BAEZ y HUERGO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4321808058053,-34.5714522560105,0
+            -58.4329242670947,-34.5723132931096,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.330">
+        <name>ARCE</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4314377844279,-34.5705912634648,0
+            -58.4315674322091,-34.5705155812875,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.331">
+        <name>BAEZ</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4321808058053,-34.5714522560105,0
+            -58.4323122965226,-34.5713753675529,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.332">
+        <name>HUERGO</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4329242670947,-34.5723132931096,0
+            -58.4330575165346,-34.5722356422114,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.333">
+        <name>CHENAUT, INDALESIO, GRAL. AV.</name><description>entre HUERGO y CAMPOS, LUIS M. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4329242670947,-34.5723132931096,0
+            -58.4333280189265,-34.5727778183017,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.334">
+        <name>CASARES AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4076092548466,-34.5745051802867,0
+            -58.407322628065,-34.5740726003771,0
+            -58.4067802237001,-34.5734031984691,0
+            -58.4062036568625,-34.5726505656972,0
+            -58.4060986173082,-34.5724329902988,0
+            -58.4060784683103,-34.572293487846,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.335">
+        <name>REPUBLICA ARABE SIRIA</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4124973953792,-34.5791421200667,0
+            -58.4124078259643,-34.5790072473198,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.336">
+        <name>LAFINUR</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4133412639641,-34.5788368992425,0
+            -58.41325284803,-34.57870345411,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.337">
+        <name>REPUBLICA DE LA INDIA</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4148085875674,-34.5783062837647,0
+            -58.4147271976334,-34.578182269026,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.338">
+        <name>DEL LIBERTADOR AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4149624158383,-34.575278464354,0
+            -58.4152635249961,-34.5751525184424,0
+            -58.4154039389714,-34.5749799758396,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.339">
+        <name>CHENAUT, INDALESIO, GRAL. AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4308306937985,-34.5698878468848,0
+            -58.4309401213694,-34.569791984352,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.340">
+        <name>IRAOLA AV.</name><description>entre PLAZA y HOLMBERG</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4166232129692,-34.5741762737372,0
+            -58.4160817904068,-34.574324724841,0
+            -58.4157990194804,-34.5743421452492,0
+            -58.415639129595,-34.5742464896561,0
+            -58.4155726173917,-34.5741516351454,0
+            -58.4155782209553,-34.574052985082,0
+            -58.415529789543,-34.5738938423865,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.341">
+        <name>DEL LIBERTADOR AV.</name><description>entre PINO, VIRREY DEL y VERTIZ VIRREY AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4433711035105,-34.5617183165279,0
+            -58.4441541788387,-34.5614917999965,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.342">
+        <name>LORETO, VIRREY</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4424109356552,-34.5619676333705,0
+            -58.4425937499565,-34.5620296458296,0
+            -58.4426754775981,-34.5621184250719,0
+            -58.4426914374274,-34.5622237218003,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.343">
+        <name>DEL LIBERTADOR AV.</name><description>entre SOLDADO DE LA INDEPENDENCIA y LORETO, VIRREY</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4424109356552,-34.5619676333705,0
+            -58.4433711035105,-34.5617183165279,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.344">
+        <name>PINO, VIRREY DEL</name><description>entre VERTIZ VIRREY AV. y DEL LIBERTADOR AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4441541788387,-34.5614917999965,0
+            -58.4441678918821,-34.5615615686758,0
+            -58.4441828448971,-34.5616452548951,0
+            -58.444188174355,-34.5617554894771,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.345">
+        <name>DEL LIBERTADOR AV.</name><description>entre GARCIA, TEODORO y LACROZE, FEDERICO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4381776018918,-34.5629468208404,0
+            -58.4396229915598,-34.5627831810835,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.346">
+        <name>DEL LIBERTADOR AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4381776018918,-34.5629468208404,0
+            -58.4388347197533,-34.5627002855442,0
+            -58.4394473393633,-34.5625325004533,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.347">
+        <name>DEL LIBERTADOR AV.</name><description>entre GARCIA, TEODORO y MIGUELETES</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4396229915598,-34.5627831810835,0
+            -58.4404406882644,-34.5626896697504,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.348">
+        <name>DEL LIBERTADOR AV.</name><description>entre MIGUELETES y ZABALA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4404406882644,-34.5626896697504,0
+            -58.4414988535501,-34.562522872462,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.349">
+        <name>DEL LIBERTADOR AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4394473393633,-34.5625325004533,0
+            -58.4404877606976,-34.562372773541,0
+            -58.4412998910332,-34.5622306169588,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.350">
+        <name>DEL LIBERTADOR AV.</name><description>entre COSTA RICA y VOLTAIRE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4434944961821,-34.5613495953905,0
+            -58.4442822070503,-34.5604070525669,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.351">
+        <name>DEL LIBERTADOR AV.</name><description>entre LA PAMPA y HERNANDEZ, JOSE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4442822070503,-34.5604070525669,0
+            -58.4450496927248,-34.5595355745994,0
+            -58.4452359550054,-34.5595385579329,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.352">
+        <name>DEL LIBERTADOR AV.</name><description>entre LA PAMPA y HERNANDEZ, JOSE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4445353900835,-34.5605557569198,0
+            -58.4452710582528,-34.5597096195867,0
+            -58.4452359550054,-34.5595385579329,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.353">
+        <name>DEL LIBERTADOR AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4439127581866,-34.5612541501849,0
+            -58.4445353900835,-34.5605557569198,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.354">
+        <name>VERTIZ VIRREY AV.</name><description>entre LA PAMPA y HERNANDEZ, JOSE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.445290111654,-34.5610278164895,0
+            -58.4466935224913,-34.5604005445352,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.355">
+        <name>VERTIZ VIRREY AV.</name><description>entre HERNANDEZ, JOSE y PINO, VIRREY DEL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4441541788387,-34.5614917999965,0
+            -58.4443206210997,-34.561444964328,0
+            -58.4447340210902,-34.5612679782658,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.356">
+        <name>DEL LIBERTADOR AV.</name><description>entre LA PAMPA y LACROZE, FEDERICO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4381776018918,-34.5629468208404,0
+            -58.4389239599775,-34.5627736585385,0
+            -58.4395272815151,-34.562673775347,0
+            -58.4399296085818,-34.562607161442,0
+            -58.4408594911166,-34.5624390928231,0
+            -58.4413460966523,-34.5623511512177,0
+            -58.4423405427546,-34.5621361619399,0
+            -58.4431266203453,-34.5618371157911,0
+            -58.4436691796766,-34.5613823306642,0
+            -58.443870972383,-34.5611250030736,0
+            -58.4444192365662,-34.5604877511355,0
+            -58.4452359550054,-34.5595385579329,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.357">
+        <name>DEL LIBERTADOR AV.</name><description>entre IRAOLA AV. y PASEO UCRANIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4166232129692,-34.5741762737372,0
+            -58.4167929210458,-34.5740938694061,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.358">
+        <name>IRAOLA AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.415529789543,-34.5738938423865,0
+            -58.4156239700284,-34.5737317275846,0
+            -58.4156586539077,-34.5735250468984,0
+            -58.4156626556566,-34.57322602845,0
+            -58.4156440383707,-34.5729349518013,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.359">
+        <name>DEL LIBERTADOR AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4140474112368,-34.5753962762899,0
+            -58.4143399535576,-34.5753639247876,0
+            -58.4146078759448,-34.5752987594881,0
+            -58.4149624158383,-34.575278464354,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.360">
+        <name>DEL LIBERTADOR AV.</name><description>entre SARMIENTO AV. y IRAOLA AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4150561214182,-34.574570906523,0
+            -58.4153201759912,-34.5745649305649,0
+            -58.4158618804436,-34.5744536422304,0
+            -58.4160996644255,-34.5743645343578,0
+            -58.4166232129692,-34.5741762737372,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.361">
+        <name>SARMIENTO AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4155761091209,-34.5755430824282,0
+            -58.4154986294045,-34.5755035174739,0
+            -58.4151673611571,-34.5753341907528,0
+            -58.4149624158383,-34.575278464354,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.362">
+        <name>SARMIENTO AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4149624158383,-34.575278464354,0
+            -58.4147267118125,-34.5751749052485,0
+            -58.414631188823,-34.575069448967,0
+            -58.4146313329556,-34.5748221216281,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.363">
+        <name>SARMIENTO AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4155761091209,-34.5755430824282,0
+            -58.4155437868371,-34.5754891954983,0
+            -58.4155042037716,-34.575328402225,0
+            -58.4154604587129,-34.5751507055651,0
+            -58.4154039389714,-34.5749799758396,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.364">
+        <name>DEL LIBERTADOR AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4140474112368,-34.5753962762899,0
+            -58.4141948297501,-34.575243619735,0
+            -58.4144228557556,-34.5750835566374,0
+            -58.4146313329556,-34.5748221216281,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.365">
+        <name>DORREGO AV.</name><description>entre GARCIA, TEODORO y LACROZE, FEDERICO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4234401716416,-34.5702658470227,0
+            -58.4230768773317,-34.5699742650321,0
+            -58.4224375134539,-34.5692926302836,0
+            -58.4219816103265,-34.5688045090413,0
+            -58.4218557177201,-34.5685948141546,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.366">
+        <name>DEL LIBERTADOR AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4232469985726,-34.5711682888884,0
+            -58.4234398854275,-34.570865618142,0
+            -58.4235591629287,-34.5707696936425,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.367">
+        <name>DORREGO AV.</name><description>entre DORREGO AV. y DORREGO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4206445737696,-34.5665771410716,0
+            -58.4205579762558,-34.5665409577599,0
+            -58.4203225192997,-34.5663645897016,0
+            -58.4201241417074,-34.5660603594011,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.368">
+        <name>DORREGO AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4206445737696,-34.5665771410716,0
+            -58.4205837259551,-34.566318238994,0
+            -58.4204996164398,-34.5661773114714,0
+            -58.4203713792102,-34.5659624458669,0
+            -58.420232940165,-34.5657304853929,0
+            -58.420087690578,-34.5653957902767,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.369">
+        <name>DORREGO AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4201241417074,-34.5660603594011,0
+            -58.4198801088234,-34.5656861090085,0
+            -58.4198297934061,-34.5655297497723,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.370">
+        <name>DORREGO AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4201241417074,-34.5660603594011,0
+            -58.4201072035573,-34.5658610579124,0
+            -58.4200718328602,-34.5657171001902,0
+            -58.4200751213452,-34.565589150061,0
+            -58.420087690578,-34.5653957902767,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.371">
+        <name>FIGUEROA ALCORTA, PRES. AV.</name><description>entre FIGUEROA ALCORTA, PRES. AV. y FIGUEROA ALCORTA, PRES. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4155376908144,-34.5689573175261,0
+            -58.4163480044889,-34.5683919707778,0
+            -58.4167287020711,-34.5681129559113,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.372">
+        <name>FIGUEROA ALCORTA, PRES. AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4155376908144,-34.5689573175261,0
+            -58.4157612295805,-34.5686320074541,0
+            -58.4161675500015,-34.5682356528828,0
+            -58.4162775639612,-34.5681283363584,0
+            -58.4163954144295,-34.5680133750507,0
+            -58.4164593934289,-34.5679263324042,0
+            -58.416511928968,-34.5678409453143,0
+            -58.4165476778869,-34.5676934368505,0
+            -58.416576291783,-34.5675488760852,0
+            -58.4166477000405,-34.5674131830019,0
+            -58.4167583391494,-34.5672804552805,0
+            -58.4170116862888,-34.5670681196761,0
+            -58.4178976207071,-34.5665827677553,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.373">
+        <name>FIGUEROA ALCORTA, PRES. AV.</name><description>entre DORREGO AV. y ROLDAN, BELISARIO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4178976207071,-34.5665827677553,0
+            -58.4180819785118,-34.5664931842966,0
+            -58.4182960494941,-34.5663516420967,0
+            -58.4184418302215,-34.5662552524326,0
+            -58.4185600864383,-34.5661452080721,0
+            -58.4187313460135,-34.5660243025111,0
+            -58.4190738792961,-34.5657529862235,0
+            -58.4194806172699,-34.5654639893587,0
+            -58.4195992310789,-34.5653797108322,0
+            -58.419727637312,-34.5652268244757,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.374">
+        <name>DEL LIBERTADOR AV.</name><description>entre COLOMBIA AV. y CALZADA CIRCULAR PLAZA ITALIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4434944961821,-34.5613495953905,0
+            -58.4439127581866,-34.5612541501849,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.375">
+        <name>DEL LIBERTADOR AV.</name><description>entre BURMEISTER, GERMAN AV. y PATRICIAS ARGENTINAS AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4235591629287,-34.5707696936425,0
+            -58.4236172042688,-34.5706924086817,0
+            -58.4236075938445,-34.5705724513158,0
+            -58.4235335366594,-34.5704471416691,0
+            -58.4234401716416,-34.5702658470227,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.376">
+        <name>DEL LIBERTADOR AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4235591629287,-34.5707696936425,0
+            -58.4237468280672,-34.5707915596987,0
+            -58.4239250484642,-34.5708123250103,0
+            -58.424077262795,-34.5708229818481,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.377">
+        <name>COLOMBIA AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4184677400176,-34.5747257235407,0
+            -58.4184604206423,-34.5746342968385,0
+            -58.4184541324107,-34.5745829229391,0
+            -58.4184452189127,-34.5745197935579,0
+            -58.4184320958279,-34.5744549212182,0
+            -58.418421068204,-34.5744083344505,0
+            -58.4184095149779,-34.5743604414307,0
+            -58.4183317439247,-34.5741305466964,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.378">
+        <name>COLOMBIA AV.</name><description>entre KENNEDY, JOHN FITZGERALD y SEGUI, JUAN FRANCISCO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4184677400176,-34.5747257235407,0
+            -58.4186214390425,-34.5746996587497,0
+            -58.4187203897098,-34.5746944706994,0
+            -58.4188285540955,-34.5747023928923,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.379">
+        <name>SARMIENTO AV.</name><description>entre IRAOLA AV. y BERRO, ADOLFO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4128602337579,-34.5726242326112,0
+            -58.4124658071419,-34.572148661203,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.380">
+        <name>SARMIENTO AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4128602337579,-34.5726242326112,0
+            -58.4123186646929,-34.5721726253867,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.381">
+        <name>SARMIENTO AV.</name><description>entre BERRO, ADOLFO AV. y FIGUEROA ALCORTA, PRES. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4123186646929,-34.5721726253867,0
+            -58.4120227146418,-34.571979654863,0
+            -58.4117833234435,-34.5718612544832,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.382">
+        <name>FIGUEROA ALCORTA, PRES. AV.</name><description>entre CURUPAYTI y LARSEN</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4112219282462,-34.5720085489234,0
+            -58.4114865967212,-34.5716934516403,0
+            -58.4115786332911,-34.5715482764881,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.383">
+        <name>FIGUEROA ALCORTA, PRES. AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4118672685056,-34.5713688877929,0
+            -58.4120758887659,-34.5713063686221,0
+            -58.4123809921133,-34.5712027617895,0
+            -58.4124819976115,-34.5711451970856,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.384">
+        <name>SARMIENTO AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.412115954802,-34.5716376596969,0
+            -58.4120953144832,-34.5715599029995,0
+            -58.412071601893,-34.571494257928,0
+            -58.4120334064468,-34.5714446634305,0
+            -58.4119848182869,-34.5714052056012,0
+            -58.4118672685056,-34.5713688877929,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.385">
+        <name>BERRO, ADOLFO AV.</name><description>entre SARMIENTO AV. y IRAOLA AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4124658071419,-34.572148661203,0
+            -58.4123186646929,-34.5721726253867,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.386">
+        <name>FIGUEROA ALCORTA, PRES. AV.</name><description>entre CASTILLA, RAMON, MARISCAL y SANCHEZ DE BUSTAMANTE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4112219282462,-34.5720085489234,0
+            -58.4115567627489,-34.5719130507145,0
+            -58.4117833234435,-34.5718612544832,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.387">
+        <name>FIGUEROA ALCORTA, PRES. AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4117833234435,-34.5718612544832,0
+            -58.4119858523672,-34.5717511141078,0
+            -58.412115954802,-34.5716376596969,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.388">
+        <name>FIGUEROA ALCORTA, PRES. AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.412115954802,-34.5716376596969,0
+            -58.4122952808972,-34.5714107965212,0
+            -58.4124216882011,-34.5712361223599,0
+            -58.4124819976115,-34.5711451970856,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.389">
+        <name>SARMIENTO AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4117833234435,-34.5718612544832,0
+            -58.4116799202067,-34.5717152966971,0
+            -58.4115786332911,-34.5715482764881,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.390">
+        <name>PINO, VIRREY DEL</name><description>entre DEL LIBERTADOR AV. y VERTIZ VIRREY AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4434944961821,-34.5613495953905,0
+            -58.4436691796766,-34.5613823306642,0
+            -58.4438051009609,-34.561409000039,0
+            -58.4441541788387,-34.5614917999965,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.391">
+        <name>VERTIZ VIRREY AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4447340210902,-34.5612679782658,0
+            -58.4451794250925,-34.5610772881369,0
+            -58.445290111654,-34.5610278164895,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.392">
+        <name>HERNANDEZ, JOSE</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.445010094474,-34.560833482497,0
+            -58.445290111654,-34.5610278164895,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.393">
+        <name>DEL LIBERTADOR AV.</name><description>entre REPUBLICA DE LA INDIA y SARMIENTO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4131614791606,-34.5757966968685,0
+            -58.4134321859978,-34.5760057222229,0
+            -58.4147625566854,-34.5754189255235,0
+            -58.4148454476724,-34.5754368461648,0
+            -58.4149564513354,-34.5754577591017,0
+            -58.4150919809795,-34.5754506567918,0
+            -58.41515542662,-34.5754363710288,0
+            -58.4152473965755,-34.5754191281601,0
+            -58.4155761091209,-34.5755430824282,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.394">
+        <name>DEL LIBERTADOR AV.</name><description>entre REPUBLICA DE LA INDIA y SARMIENTO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4131614791606,-34.5757966968685,0
+            -58.4137093872683,-34.5753558989626,0
+            -58.4143958607148,-34.5750174908883,0
+            -58.4146313329556,-34.5748221216281,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.395">
+        <name>ISABEL, INFANTA AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4182394773442,-34.5693519159703,0
+            -58.4181940917,-34.5693562078199,0
+            -58.4180936275286,-34.5693686357004,0
+            -58.4180342849144,-34.569377135011,0
+            -58.4179803056567,-34.5693857067079,0
+            -58.4178754955909,-34.569405527313,0
+            -58.4177720461142,-34.5694280948705,0
+            -58.417669616568,-34.5694536205286,0
+            -58.417546068172,-34.5694894905113,0
+            -58.4174838242318,-34.5695101013905,0
+            -58.4174219204084,-34.5695314166054,0
+            -58.4173603567007,-34.5695534361566,0
+            -58.417299133146,-34.5695760896206,0
+            -58.4172383348769,-34.5695993770301,0
+            -58.4171778767198,-34.5696233687774,0
+            -58.4171161407826,-34.5696486980668,0
+            -58.4168874974943,-34.5697553036683,0
+            -58.4166480383497,-34.569867749896,0
+            -58.4165981374238,-34.56988998479,0
+            -58.4165476406519,-34.5699120081633,0
+            -58.4164969740194,-34.5699332567868,0
+            -58.4164458820071,-34.5699539418342,0
+            -58.4162355570954,-34.5700317498348,0
+            -58.4161535564634,-34.5700609441388,0
+            -58.4160713007301,-34.5700895044732,0
+            -58.4159902375372,-34.5701167975828,0
+            -58.4158579998304,-34.5701595640332,0
+            -58.4157911575255,-34.5701805243792,0
+            -58.4157239750511,-34.5702007803163,0
+            -58.4156566226371,-34.5702204023342,0
+            -58.4155886746133,-34.5702393902664,0
+            -58.4153477978376,-34.5702947195425,0
+            -58.4152363427309,-34.570319394521,0
+            -58.4151395334795,-34.5703392159231,0
+            -58.4150319112957,-34.5703604414525,0
+            -58.4149241191556,-34.5703810330039,0
+            -58.4148160720086,-34.5704008496951,0
+            -58.4147077697758,-34.5704200323733,0
+            -58.4146164959962,-34.5704364752133,0
+            -58.4145321169672,-34.5704548221868,0
+            -58.4144487577859,-34.5704761273164,0
+            -58.4143665887958,-34.5705002498247,0
+            -58.4142875684573,-34.5705265566847,0
+            -58.414217230601,-34.5705549092798,0
+            -58.4141670732146,-34.5705771430739,0
+            -58.4141193840022,-34.570600575049,0
+            -58.4140752672662,-34.5706293606672,0
+            -58.4140210961255,-34.570672508699,0
+            -58.4139709218138,-34.5707231936854,0
+            -58.4139265344881,-34.5707774726136,0
+            -58.4138881898502,-34.5708348526255,0
+            -58.4138562287817,-34.5708947704731,0
+            -58.4138296278378,-34.5709603244008,0
+            -58.4138108711738,-34.5710058106747,0
+            -58.4137935571952,-34.5710590441657,0
+            -58.413779477998,-34.5711128423577,0
+            -58.413768633588,-34.5711672052519,0
+            -58.4137609389613,-34.5712219215428,0
+            -58.4137567365036,-34.5712738927159,0
+            -58.4137614683721,-34.5713341071171,0
+            -58.4137647482247,-34.571402278835,0
+            -58.4137643671699,-34.5714705899144,0
+            -58.4137604104597,-34.5715388291179,0
+            -58.4137526221352,-34.5716079118528,0
+            -58.4137313884089,-34.5720971383972,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.396">
+        <name>DEL LIBERTADOR AV.</name><description>entre KENNEDY, JOHN FITZGERALD y PASEO UCRANIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4167929210458,-34.5740938694061,0
+            -58.417465483021,-34.573767292804,0
+            -58.4179516599525,-34.5735379628117,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.397">
+        <name>IRAOLA AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4164234357955,-34.5728851627188,0
+            -58.416334674307,-34.572898894033,0
+            -58.4162570070115,-34.5729126295588,0
+            -58.4161405099069,-34.5729263500395,0
+            -58.4159666934647,-34.5729385187029,0
+            -58.4156440383707,-34.5729349518013,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.398">
+        <name>PASEO UCRANIA</name><description>entre DEL LIBERTADOR AV. y IRAOLA AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4167929210458,-34.5740938694061,0
+            -58.4166623816816,-34.5737884195787,0
+            -58.416483300996,-34.5732927954662,0
+            -58.4164556245068,-34.5731872498627,0
+            -58.4164372276189,-34.5730205281106,0
+            -58.416431707966,-34.5729715822282,0
+            -58.4164234357955,-34.5728851627188,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.399">
+        <name>OLLEROS AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4361092452618,-34.5631823854971,0
+            -58.436409500797,-34.5632827076602,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.400">
+        <name>OLLEROS AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4362897731719,-34.5634264756449,0
+            -58.4363091599199,-34.5635067784267,0
+            -58.4364091094314,-34.5636950717704,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.401">
+        <name>OLLEROS AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4361092452618,-34.5631823854971,0
+            -58.4361556751146,-34.5632495024309,0
+            -58.4361979461158,-34.5633137506197,0
+            -58.4362450729515,-34.5633699700199,0
+            -58.4362897731719,-34.5634264756449,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.402">
+        <name>OLLEROS AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.436409500797,-34.5632827076602,0
+            -58.4364102820318,-34.5632829686871,0
+            -58.4365933024377,-34.563324305232,0
+            -58.4367814908993,-34.563466302524,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.403">
+        <name>OLLEROS AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.436409500797,-34.5632827076602,0
+            -58.4363624312208,-34.5633216734844,0
+            -58.4363277577872,-34.563346328938,0
+            -58.4363090300889,-34.5633721350296,0
+            -58.4362897731719,-34.5634264756449,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261019_155054.404">
+        <name>DEL LIBERTADOR AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4364091094314,-34.5636950717704,0
+            -58.4367814908993,-34.563466302524,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+    </Document>
+  </Document>
+</kml>
