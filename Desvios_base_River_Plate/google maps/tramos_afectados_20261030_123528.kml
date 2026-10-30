@@ -1,0 +1,1022 @@
+<?xml version='1.0' encoding='utf-8'?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document id="root_doc">
+    <Style id="line-A52714-10106-normal"><LineStyle><color>ff1427a5</color><width>10.106</width></LineStyle></Style><Style id="line-A52714-10106-highlight"><LineStyle><color>ff1427a5</color><width>15.159</width></LineStyle></Style><StyleMap id="line-A52714-10106"><Pair><key>normal</key><styleUrl>#line-A52714-10106-normal</styleUrl></Pair><Pair><key>highlight</key><styleUrl>#line-A52714-10106-highlight</styleUrl></Pair></StyleMap><Document id="tramos_afectados_20261030_123528">
+      <name>tramos_afectados_20261030_123528</name>
+      <Placemark id="tramos_afectados_20261030_123528.1">
+        <name>UDAONDO, GUILLERMO AV.</name><description>entre CANTILO, INT. y LUGONES, LEOPOLDO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4488340792352,-34.5420829906872,0
+            -58.4492760223971,-34.5426531973628,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.2">
+        <name>UDAONDO, GUILLERMO AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4492760223971,-34.5426531973628,0
+            -58.4494701554494,-34.5428705913781,0
+            -58.4499659218458,-34.5435432968247,0
+            -58.4504239623541,-34.5441358958877,0
+            -58.4507495311002,-34.5445282949249,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.3">
+        <name>FIGUEROA ALCORTA, PRES. AV.</name><description>entre UDAONDO, GUILLERMO AV. y BETBEDER, ONOFRE, ALTE.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4516738017674,-34.5463531180078,0
+            -58.4521252343293,-34.546285130327,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.4">
+        <name>FIGUEROA ALCORTA, PRES. AV.</name><description>entre BETBEDER, ONOFRE, ALTE. y PLAZA, VICTORINO DE LA, DR.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4510628686773,-34.5464451028081,0
+            -58.4516738017674,-34.5463531180078,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.5">
+        <name>FIGUEROA ALCORTA, PRES. AV.</name><description>entre PLAZA, VICTORINO DE LA, DR. y SOLIER, DANIEL DE, ALTE.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4503305642692,-34.5465553820244,0
+            -58.4510628686773,-34.5464451028081,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.6">
+        <name>FIGUEROA ALCORTA, PRES. AV.</name><description>entre SOLIER, DANIEL DE, ALTE. y QUINTEROS, LIDORO J. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4496315425213,-34.5466605843893,0
+            -58.4503305642692,-34.5465553820244,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.7">
+        <name>FIGUEROA ALCORTA, PRES. AV.</name><description>entre QUINTEROS, LIDORO J. AV. y GARCIA, MANUEL J., ALTE.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4487752195767,-34.5467895083952,0
+            -58.449487952218,-34.5466821941176,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.8">
+        <name>FIGUEROA ALCORTA, PRES. AV.</name><description>entre GARCIA, MANUEL J., ALTE. y PLAZA, VICTORINO DE LA, DR.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4480455476436,-34.5468993516684,0
+            -58.4487752195767,-34.5467895083952,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.9">
+        <name>FIGUEROA ALCORTA, PRES. AV.</name><description>entre PLAZA, VICTORINO DE LA, DR. y SAENZ VALIENTE, JUAN PABLO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4472911909852,-34.5470129198301,0
+            -58.4480455476436,-34.5468993516684,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.10">
+        <name>UDAONDO, GUILLERMO AV.</name><description>entre FIGUEROA ALCORTA, PRES. AV. y BAVIO, ERNESTO A.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4521252343293,-34.546285130327,0
+            -58.4521762018286,-34.5463854895411,0
+            -58.4528483771252,-34.5472566264401,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.11">
+        <name>BAVIO, ERNESTO A.</name><description>entre UDAONDO, GUILLERMO AV. y AGOTE PEDRO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4525050329956,-34.547308147114,0
+            -58.4528483771252,-34.5472566264401,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.12">
+        <name>BETBEDER, ONOFRE, ALTE.</name><description>entre FIGUEROA ALCORTA, PRES. AV. y BAVIO, ERNESTO A.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4516738017674,-34.5463531180078,0
+            -58.4519064352328,-34.5473980244826,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.13">
+        <name>BAVIO, ERNESTO A.</name><description>entre AGOTE PEDRO y BETBEDER, ONOFRE, ALTE.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4519064352328,-34.5473980244826,0
+            -58.4525050329956,-34.547308147114,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.14">
+        <name>PLAZA, VICTORINO DE LA, DR.</name><description>entre FIGUEROA ALCORTA, PRES. AV. y BAVIO, ERNESTO A.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4512920051741,-34.5474902213591,0
+            -58.4510628686773,-34.5464451028081,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.15">
+        <name>BAVIO, ERNESTO A.</name><description>entre PLAZA, VICTORINO DE LA, DR. y BETBEDER, ONOFRE, ALTE.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4512920051741,-34.5474902213591,0
+            -58.4519064352328,-34.5473980244826,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.16">
+        <name>FIGUEROA ALCORTA, PRES. AV.</name><description>entre SAENZ VALIENTE, JUAN PABLO y BASAVILBASO, LEOPOLDO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4440228275424,-34.547504853883,0
+            -58.4472911909852,-34.5470129198301,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.17">
+        <name>FIGUEROA ALCORTA, PRES. AV.</name><description>entre RAMSAY y BASAVILBASO, LEOPOLDO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4438311504528,-34.5475336974096,0
+            -58.4440228275424,-34.547504853883,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.18">
+        <name>SOLIER, DANIEL DE, ALTE.</name><description>entre FIGUEROA ALCORTA, PRES. AV. y BAVIO, ERNESTO A.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4503305642692,-34.5465553820244,0
+            -58.4505600324221,-34.5476000794188,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.19">
+        <name>BAVIO, ERNESTO A.</name><description>entre PLAZA, VICTORINO DE LA, DR. y SOLIER, DANIEL DE, ALTE.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4505600324221,-34.5476000794188,0
+            -58.4512920051741,-34.5474902213591,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.20">
+        <name>QUINTEROS, LIDORO J. AV.</name><description>entre FIGUEROA ALCORTA, PRES. AV. y BAVIO, ERNESTO A.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.449487952218,-34.5466821941176,0
+            -58.4497176655913,-34.5477264705543,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.21">
+        <name>BAVIO, ERNESTO A.</name><description>entre SOLIER, DANIEL DE, ALTE. y QUINTEROS, LIDORO J. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4498543208882,-34.5477059668226,0
+            -58.4505600324221,-34.5476000794188,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.22">
+        <name>FIGUEROA ALCORTA, PRES. AV.</name><description>entre MONROE y RAMSAY</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4421936351302,-34.5477745579246,0
+            -58.4425540941909,-34.5477259565528,0
+            -58.4438311504528,-34.5475336974096,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.23">
+        <name>GARCIA, MANUEL J., ALTE.</name><description>entre FIGUEROA ALCORTA, PRES. AV. y BAVIO, ERNESTO A.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4487752195767,-34.5467895083952,0
+            -58.4490053499708,-34.5478333636565,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.24">
+        <name>BAVIO, ERNESTO A.</name><description>entre QUINTEROS, LIDORO J. AV. y GARCIA, MANUEL J., ALTE.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4490053499708,-34.5478333636565,0
+            -58.4497176655913,-34.5477264705543,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.25">
+        <name>PLAZA, VICTORINO DE LA, DR.</name><description>entre FIGUEROA ALCORTA, PRES. AV. y BAVIO, ERNESTO A.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4480455476436,-34.5468993516684,0
+            -58.4482762650853,-34.5479427858116,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.26">
+        <name>BAVIO, ERNESTO A.</name><description>entre GARCIA, MANUEL J., ALTE. y PLAZA, VICTORINO DE LA, DR.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4482762650853,-34.5479427858116,0
+            -58.4490053499708,-34.5478333636565,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.27">
+        <name>SAENZ VALIENTE, JUAN PABLO</name><description>entre FIGUEROA ALCORTA, PRES. AV. y BAVIO, ERNESTO A.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4472911909852,-34.5470129198301,0
+            -58.4475218142786,-34.5480560032445,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.28">
+        <name>BAVIO, ERNESTO A.</name><description>entre PLAZA, VICTORINO DE LA, DR. y SAENZ VALIENTE, JUAN PABLO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4475218142786,-34.5480560032445,0
+            -58.4482762650853,-34.5479427858116,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.29">
+        <name>UDAONDO, GUILLERMO AV.</name><description>entre RICCHERI, PABLO, TTE. GRAL. y BAVIO, ERNESTO A.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4528483771252,-34.5472566264401,0
+            -58.4536055690668,-34.5482385773886,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.30">
+        <name>RICCHERI, PABLO, TTE. GRAL.</name><description>entre UDAONDO, GUILLERMO AV. y PRINS, ENRIQUE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4532561793309,-34.54837584262,0
+            -58.4534673600039,-34.5483439939774,0
+            -58.4536055690668,-34.5482385773886,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.31">
+        <name>AGOTE PEDRO</name><description>entre BAVIO, ERNESTO A. y RICCHERI, PABLO, TTE. GRAL.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4525050329956,-34.547308147114,0
+            -58.4527557959787,-34.5484512952084,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.32">
+        <name>RICCHERI, PABLO, TTE. GRAL.</name><description>entre PRINS, ENRIQUE y AGOTE PEDRO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4527557959787,-34.5484512952084,0
+            -58.4532561793309,-34.54837584262,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.33">
+        <name>BETBEDER, ONOFRE, ALTE.</name><description>entre BAVIO, ERNESTO A. y RICCHERI, PABLO, TTE. GRAL.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4519064352328,-34.5473980244826,0
+            -58.4521609352658,-34.5485409628568,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.34">
+        <name>RICCHERI, PABLO, TTE. GRAL.</name><description>entre AGOTE PEDRO y BETBEDER, ONOFRE, ALTE.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4521609352658,-34.5485409628568,0
+            -58.4527557959787,-34.5484512952084,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.35">
+        <name>PLAZA, VICTORINO DE LA, DR.</name><description>entre BAVIO, ERNESTO A. y RICCHERI, PABLO, TTE. GRAL.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4515427519957,-34.5486342169979,0
+            -58.4512920051741,-34.5474902213591,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.36">
+        <name>RICCHERI, PABLO, TTE. GRAL.</name><description>entre PLAZA, VICTORINO DE LA, DR. y BETBEDER, ONOFRE, ALTE.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4515427519957,-34.5486342169979,0
+            -58.4521609352658,-34.5485409628568,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.37">
+        <name>SOLIER, DANIEL DE, ALTE.</name><description>entre BAVIO, ERNESTO A. y RICCHERI, PABLO, TTE. GRAL.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4505600324221,-34.5476000794188,0
+            -58.4508113652795,-34.5487444991442,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.38">
+        <name>RICCHERI, PABLO, TTE. GRAL.</name><description>entre PLAZA, VICTORINO DE LA, DR. y SOLIER, DANIEL DE, ALTE.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4508113652795,-34.5487444991442,0
+            -58.4515427519957,-34.5486342169979,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.39">
+        <name>QUINTEROS, LIDORO J. AV.</name><description>entre BAVIO, ERNESTO A. y RICCHERI, PABLO, TTE. GRAL.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4497176655913,-34.5477264705543,0
+            -58.4499694978814,-34.5488714554366,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.40">
+        <name>RICCHERI, PABLO, TTE. GRAL.</name><description>entre SOLIER, DANIEL DE, ALTE. y QUINTEROS, LIDORO J. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4501070278463,-34.5488507159019,0
+            -58.4508113652795,-34.5487444991442,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.41">
+        <name>GARCIA, MANUEL J., ALTE.</name><description>entre BAVIO, ERNESTO A. y RICCHERI, PABLO, TTE. GRAL.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4490053499708,-34.5478333636565,0
+            -58.4492579387687,-34.548978772619,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.42">
+        <name>RICCHERI, PABLO, TTE. GRAL.</name><description>entre QUINTEROS, LIDORO J. AV. y GARCIA, MANUEL J., ALTE.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4492579387687,-34.548978772619,0
+            -58.4499694978814,-34.5488714554366,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.43">
+        <name>PLAZA, VICTORINO DE LA, DR.</name><description>entre BAVIO, ERNESTO A. y RICCHERI, PABLO, TTE. GRAL.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4482762650853,-34.5479427858116,0
+            -58.4485296952888,-34.5490885484832,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.44">
+        <name>RICCHERI, PABLO, TTE. GRAL.</name><description>entre GARCIA, MANUEL J., ALTE. y PLAZA, VICTORINO DE LA, DR.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4485296952888,-34.5490885484832,0
+            -58.4492579387687,-34.548978772619,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.45">
+        <name>SAENZ VALIENTE, JUAN PABLO</name><description>entre BAVIO, ERNESTO A. y RICCHERI, PABLO, TTE. GRAL.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4475218142786,-34.5480560032445,0
+            -58.4477421533237,-34.5490526047494,0
+            -58.447779405029,-34.549201697564,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.46">
+        <name>RICCHERI, PABLO, TTE. GRAL.</name><description>entre PLAZA, VICTORINO DE LA, DR. y SAENZ VALIENTE, JUAN PABLO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.447779405029,-34.549201697564,0
+            -58.4485296952888,-34.5490885484832,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.47">
+        <name>UDAONDO, GUILLERMO AV.</name><description>entre DEL LIBERTADOR AV. y HERNANDEZ, RAFAEL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4539619048692,-34.5487641563996,0
+            -58.4541222978942,-34.5489855028906,0
+            -58.4541621925343,-34.5491978349092,0
+            -58.4541585951047,-34.549405304388,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.48">
+        <name>PRINS, ENRIQUE</name><description>entre RICCHERI, PABLO, TTE. GRAL. y HERNANDEZ, RAFAEL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4532561793309,-34.54837584262,0
+            -58.4535059343273,-34.5495198339817,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.49">
+        <name>HERNANDEZ, RAFAEL</name><description>entre UDAONDO, GUILLERMO AV. y DEL LIBERTADOR AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4535059343273,-34.5495198339817,0
+            -58.4541585951047,-34.549405304388,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.50">
+        <name>AGOTE PEDRO</name><description>entre RICCHERI, PABLO, TTE. GRAL. y HERNANDEZ, RAFAEL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4527557959787,-34.5484512952084,0
+            -58.4530067359386,-34.5495952876787,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.51">
+        <name>HERNANDEZ, RAFAEL</name><description>entre PRINS, ENRIQUE y AGOTE PEDRO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4530067359386,-34.5495952876787,0
+            -58.4535059343273,-34.5495198339817,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.52">
+        <name>BETBEDER, ONOFRE, ALTE.</name><description>entre RICCHERI, PABLO, TTE. GRAL. y HERNANDEZ, RAFAEL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4521609352658,-34.5485409628568,0
+            -58.4524156123705,-34.5496847455925,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.53">
+        <name>HERNANDEZ, RAFAEL</name><description>entre AGOTE PEDRO y BETBEDER, ONOFRE, ALTE.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4524156123705,-34.5496847455925,0
+            -58.4530067359386,-34.5495952876787,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.54">
+        <name>PLAZA, VICTORINO DE LA, DR.</name><description>entre RICCHERI, PABLO, TTE. GRAL. y HERNANDEZ, RAFAEL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4517936758252,-34.5497787753172,0
+            -58.4515427519957,-34.5486342169979,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.55">
+        <name>HERNANDEZ, RAFAEL</name><description>entre PLAZA, VICTORINO DE LA, DR. y PADRE NEUMANN JUAN B.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4517936758252,-34.5497787753172,0
+            -58.4524156123705,-34.5496847455925,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.56">
+        <name>SOLIER, DANIEL DE, ALTE.</name><description>entre RICCHERI, PABLO, TTE. GRAL. y HERNANDEZ, RAFAEL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4508113652795,-34.5487444991442,0
+            -58.451062875179,-34.5498893407002,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.57">
+        <name>HERNANDEZ, RAFAEL</name><description>entre PLAZA, VICTORINO DE LA, DR. y PADRE NEUMANN JUAN B.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.451062875179,-34.5498893407002,0
+            -58.4517936758252,-34.5497787753172,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.58">
+        <name>QUINTEROS, LIDORO J. AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4499694978814,-34.5488714554366,0
+            -58.4501910810183,-34.5498960425054,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.59">
+        <name>QUINTEROS, LIDORO J. AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4503151864595,-34.5498787817578,0
+            -58.4503915349302,-34.5499046933671,0
+            -58.4504686897066,-34.5499374498652,0
+            -58.4505424785802,-34.5499680217047,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.60">
+        <name>HERNANDEZ, RAFAEL</name><description>entre SOLIER, DANIEL DE, ALTE. y QUINTEROS, LIDORO J. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4505424785802,-34.5499680217047,0
+            -58.451062875179,-34.5498893407002,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.61">
+        <name>QUINTEROS, LIDORO J. AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4501910810183,-34.5498960425054,0
+            -58.4500837040585,-34.5499638920305,0
+            -58.4500191020766,-34.5500463480449,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.62">
+        <name>GARCIA, MANUEL J., ALTE.</name><description>entre RICCHERI, PABLO, TTE. GRAL. y HERNANDEZ, RAFAEL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4492579387687,-34.548978772619,0
+            -58.4495102793159,-34.5501231244525,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.63">
+        <name>HERNANDEZ, RAFAEL</name><description>entre QUINTEROS, LIDORO J. AV. y GARCIA, MANUEL J., ALTE.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4495102793159,-34.5501231244525,0
+            -58.4500191020766,-34.5500463480449,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.64">
+        <name>PLAZA, VICTORINO DE LA, DR.</name><description>entre RICCHERI, PABLO, TTE. GRAL. y HERNANDEZ, RAFAEL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4485296952888,-34.5490885484832,0
+            -58.4487827922103,-34.5502329723139,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.65">
+        <name>HERNANDEZ, RAFAEL</name><description>entre GARCIA, MANUEL J., ALTE. y PLAZA, VICTORINO DE LA, DR.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4487827922103,-34.5502329723139,0
+            -58.4495102793159,-34.5501231244525,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.66">
+        <name>HERNANDEZ, RAFAEL</name><description>entre QUINTEROS, LIDORO J. AV. y SOURIGUES, CARLOS, CNEL.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4500191020766,-34.5500463480449,0
+            -58.4499492018663,-34.5501828929628,0
+            -58.4500002501297,-34.5503090987133,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.67">
+        <name>ROMERO, EDUARDO, SGTO.</name><description>entre RICCHERI, PABLO, TTE. GRAL. y SAENZ VALIENTE, JUAN PABLO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4464789112249,-34.5503145800109,0
+            -58.447779405029,-34.549201697564,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.68">
+        <name>SAENZ VALIENTE, JUAN PABLO</name><description>entre RICCHERI, PABLO, TTE. GRAL. y HERNANDEZ, RAFAEL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.447779405029,-34.549201697564,0
+            -58.4478299247291,-34.5494036102082,0
+            -58.4478943832827,-34.5497139074494,0
+            -58.4480273850214,-34.5503469673778,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.69">
+        <name>HERNANDEZ, RAFAEL</name><description>entre PLAZA, VICTORINO DE LA, DR. y SAENZ VALIENTE, JUAN PABLO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4480273850214,-34.5503469673778,0
+            -58.4487827922103,-34.5502329723139,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.70">
+        <name>HERNANDEZ, RAFAEL</name><description>entre SOURIGUES, CARLOS, CNEL. y QUINTEROS, LIDORO J. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4500002501297,-34.5503090987133,0
+            -58.4501456791575,-34.5503864174177,0
+            -58.4503055529892,-34.5504081527867,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.71">
+        <name>PADRE NEUMANN JUAN B.</name><description>entre PLAZA, VICTORINO DE LA, DR. y HERNANDEZ, RAFAEL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4517936758252,-34.5497787753172,0
+            -58.4530074750926,-34.550504745987,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.72">
+        <name>PLAZA, VICTORINO DE LA, DR.</name><description>entre PICO y DEHEZA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4487827922103,-34.5502329723139,0
+            -58.4488077111615,-34.5503450906112,0
+            -58.4488613964742,-34.550470522481,0
+            -58.448924614292,-34.550598631567,0
+            -58.4489779694397,-34.5506659633749,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.73">
+        <name>BARILARI, ATILIO S., ALTE.</name><description>entre PLAZA, VICTORINO DE LA, DR. y HERNANDEZ, RAFAEL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4506428717712,-34.5502385315396,0
+            -58.4514863583876,-34.5507894741892,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.74">
+        <name>PLAZA, VICTORINO DE LA, DR.</name><description>entre HERNANDEZ, RAFAEL y PADRE NEUMANN JUAN B.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4514863583876,-34.5507894741892,0
+            -58.4515851072321,-34.5506753260724,0
+            -58.4516943355026,-34.5504845573359,0
+            -58.4517610010745,-34.5503313910071,0
+            -58.451785182333,-34.5502670255649,0
+            -58.4518104766369,-34.5501546309119,0
+            -58.4518137337436,-34.5499888526292,0
+            -58.4517936758252,-34.5497787753172,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.75">
+        <name>HERNANDEZ, RAFAEL</name><description>entre MENDEZ, NICANOR y MONROE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4476342059633,-34.5509993977974,0
+            -58.4480273850214,-34.5503469673778,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.76">
+        <name>MENDEZ, NICANOR</name><description>entre HERNANDEZ, RAFAEL y PLAZA, VICTORINO DE LA, DR.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4476342059633,-34.5509993977974,0
+            -58.4489779694397,-34.5506659633749,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.77">
+        <name>PLAZA, VICTORINO DE LA, DR.</name><description>entre MENDEZ, NICANOR y SOURIGUES, CARLOS, CNEL.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4489779694397,-34.5506659633749,0
+            -58.4490289419974,-34.5507301962153,0
+            -58.4492125896411,-34.5509044470142,0
+            -58.4493515655109,-34.5510023526062,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.78">
+        <name>SOURIGUES, CARLOS, CNEL.</name><description>entre HERNANDEZ, RAFAEL y PLAZA, VICTORINO DE LA, DR.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4493515655109,-34.5510023526062,0
+            -58.4500002501297,-34.5503090987133,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.79">
+        <name>PLAZA, VICTORINO DE LA, DR.</name><description>entre BARILARI, ATILIO S., ALTE. y TEGUCIGALPA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4511006611978,-34.5510860629902,0
+            -58.4512446033353,-34.5509961455859,0
+            -58.4513931441826,-34.5508863688348,0
+            -58.4514863583876,-34.5507894741892,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.80">
+        <name>PLAZA, VICTORINO DE LA, DR.</name><description>entre SOURIGUES, CARLOS, CNEL. y PUERTO PRINCIPE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4493515655109,-34.5510023526062,0
+            -58.4494295215778,-34.551056799392,0
+            -58.4495056077997,-34.5510956117446,0
+            -58.449584758632,-34.5511319595469,0
+            -58.4496638251995,-34.5511635184428,0
+            -58.4497399991071,-34.5511877528498,0
+            -58.4498131940356,-34.5512119868801,0
+            -58.4498952413481,-34.5512338274161,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.81">
+        <name>QUINTEROS, LIDORO J. AV.</name><description>entre HERNANDEZ, RAFAEL y PLAZA, VICTORINO DE LA, DR.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4503055529892,-34.5504081527867,0
+            -58.4504963182039,-34.5512671321465,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.82">
+        <name>PLAZA, VICTORINO DE LA, DR.</name><description>entre TEGUCIGALPA y QUINTEROS, LIDORO J. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4506692769233,-34.5512339099405,0
+            -58.4508241065275,-34.5511973052769,0
+            -58.4509790234155,-34.5511450662538,0
+            -58.4511006611978,-34.5510860629902,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.83">
+        <name>PLAZA, VICTORINO DE LA, DR.</name><description>entre QUINTEROS, LIDORO J. AV. y PUERTO PRINCIPE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4498952413481,-34.5512338274161,0
+            -58.4499889494692,-34.5512555987444,0
+            -58.4500944054141,-34.5512653287344,0
+            -58.4501881158981,-34.5512725925258,0
+            -58.4502789332336,-34.5512750670914,0
+            -58.4503697509559,-34.5512750767427,0
+            -58.4504400567069,-34.5512702248984,0
+            -58.4504963182039,-34.5512671321465,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.84">
+        <name>BARILARI, ATILIO S., ALTE.</name><description>entre PLAZA, VICTORINO DE LA, DR. y DEL LIBERTADOR AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4514863583876,-34.5507894741892,0
+            -58.4523097718622,-34.5513183663849,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.85">
+        <name>SOURIGUES, CARLOS, CNEL.</name><description>entre PLAZA, VICTORINO DE LA, DR. y MONROE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4487405833264,-34.5516551135642,0
+            -58.4493515655109,-34.5510023526062,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.86">
+        <name>TEGUCIGALPA</name><description>entre PLAZA, VICTORINO DE LA, DR. y DEL LIBERTADOR AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4511006611978,-34.5510860629902,0
+            -58.4515768113115,-34.5521730366054,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.87">
+        <name>PUERTO PRINCIPE</name><description>entre PLAZA, VICTORINO DE LA, DR. y MONROE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4499120005575,-34.5523493484143,0
+            -58.4498952413481,-34.5512338274161,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.88">
+        <name>QUINTEROS, LIDORO J. AV.</name><description>entre MONROE y PLAZA, VICTORINO DE LA, DR.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4504963182039,-34.5512671321465,0
+            -58.4508570464772,-34.5529094614583,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.89">
+        <name>HERNANDEZ, RAFAEL</name><description>entre BARILARI, ATILIO S., ALTE. y QUINTEROS, LIDORO J. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4504670816868,-34.5503822773354,0
+            -58.4505515455158,-34.5503442494937,0
+            -58.4506159090494,-34.550281366187,0
+            -58.4506428717712,-34.5502385315396,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.90">
+        <name>HERNANDEZ, RAFAEL</name><description>entre GELLY y CASTEX</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4506428717712,-34.5502385315396,0
+            -58.4506816823445,-34.5501725571747,0
+            -58.4506884975077,-34.5500881318047,0
+            -58.4506386230476,-34.5500224619179,0
+            -58.4505424785802,-34.5499680217047,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.91">
+        <name>QUINTEROS, LIDORO J. AV.</name><description>entre FIGUEROA ALCORTA, PRES. AV. y BAVIO, ERNESTO A.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4496315425213,-34.5466605843893,0
+            -58.4498543208882,-34.5477059668226,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.92">
+        <name>QUINTEROS, LIDORO J. AV.</name><description>entre BAVIO, ERNESTO A. y RICCHERI, PABLO, TTE. GRAL.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4498543208882,-34.5477059668226,0
+            -58.4501070278463,-34.5488507159019,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.93">
+        <name>QUINTEROS, LIDORO J. AV.</name><description>entre CASTEX y DEL LIBERTADOR AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4501070278463,-34.5488507159019,0
+            -58.4503151864595,-34.5498787817578,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.94">
+        <name>QUINTEROS, LIDORO J. AV.</name><description>entre PLAZA, VICTORINO DE LA, DR. y HERNANDEZ, RAFAEL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4504670816868,-34.5503822773354,0
+            -58.4506692769233,-34.5512339099405,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.95">
+        <name>QUINTEROS, LIDORO J. AV.</name><description>entre PLAZA, VICTORINO DE LA, DR. y DEL LIBERTADOR AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4506692769233,-34.5512339099405,0
+            -58.4509251977816,-34.5525149551864,0
+            -58.4509533030378,-34.552576652045,0
+            -58.4510307246631,-34.5525957047092,0
+            -58.4510809413646,-34.5526268740607,0
+            -58.4511508189871,-34.5526697671418,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.96">
+        <name>FIGUEROA ALCORTA, PRES. AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.449487952218,-34.5466821941176,0
+            -58.4496315425213,-34.5466605843893,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.97">
+        <name>BAVIO, ERNESTO A.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4497176655913,-34.5477264705543,0
+            -58.4498543208882,-34.5477059668226,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.98">
+        <name>RICCHERI, PABLO, TTE. GRAL.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4499694978814,-34.5488714554366,0
+            -58.4501070278463,-34.5488507159019,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.99">
+        <name>HERNANDEZ, RAFAEL</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4503055529892,-34.5504081527867,0
+            -58.4504670816868,-34.5503822773354,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.100">
+        <name>UDAONDO, GUILLERMO AV.</name><description>entre CANTILO, INT. y COLECTORA CANTILO, INT.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4492725374303,-34.5404862577148,0
+            -58.4489824772218,-34.5405840073151,0
+            -58.4488105816979,-34.5406862149962,0
+            -58.4486386740646,-34.5408550928361,0
+            -58.4485365953882,-34.5410017554239,0
+            -58.4484774687632,-34.5412462063969,0
+            -58.4485042887071,-34.5414506655371,0
+            -58.448638513527,-34.5417706996236,0
+            -58.4488340792352,-34.5420829906872,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.101">
+        <name>LUGONES, LEOPOLDO AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.451707777586,-34.5413201795121,0
+            -58.4512821440713,-34.5416999615431,0
+            -58.451077965691,-34.5418839593491,0
+            -58.4509503422186,-34.5420770146428,0
+            -58.4508773979289,-34.5422972255766,0
+            -58.450857289958,-34.5426818514198,0
+            -58.4508281030697,-34.5428296662133,0
+            -58.4508147163827,-34.5428549366497,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.102">
+        <name>UDAONDO, GUILLERMO AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4507495311002,-34.5445282949249,0
+            -58.4521252343293,-34.546285130327,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.103">
+        <name>UDAONDO, GUILLERMO AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4500441961761,-34.5434630883252,0
+            -58.4503564749619,-34.5438697431426,0
+            -58.4505839447902,-34.5441703278142,0
+            -58.4507495311002,-34.5445282949249,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.104">
+        <name>UDAONDO, GUILLERMO AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4496238790674,-34.5433276960236,0
+            -58.4499051002837,-34.5436589506794,0
+            -58.4501198819338,-34.5439611766652,0
+            -58.4503905173124,-34.5442882954481,0
+            -58.4507495311002,-34.5445282949249,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.105">
+        <name>UDAONDO, GUILLERMO AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4536055690668,-34.5482385773886,0
+            -58.4538197696396,-34.5485680049728,0
+            -58.4539619048692,-34.5487641563996,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.106">
+        <name>UDAONDO, GUILLERMO AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4536055690668,-34.5482385773886,0
+            -58.4538572192951,-34.5484809365707,0
+            -58.4540952924402,-34.5486021852257,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.107">
+        <name>UDAONDO, GUILLERMO AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4540952924402,-34.5486021852257,0
+            -58.4544676777377,-34.5486678792367,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.108">
+        <name>UDAONDO, GUILLERMO AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4540952924402,-34.5486021852257,0
+            -58.4540135571802,-34.5486193711538,0
+            -58.4539832827625,-34.5486462053433,0
+            -58.4539573286188,-34.5487106109495,0
+            -58.4539619048692,-34.5487641563996,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.109">
+        <name>CAMPOS SALLES</name><description>entre DEL LIBERTADOR AV. y RICCHERI, PABLO, TTE. GRAL.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4558331546475,-34.5469610563074,0
+            -58.4561837954152,-34.5473745617826,0
+            -58.4563295329809,-34.5475287201189,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.110">
+        <name>RICCHERI, PABLO, TTE. GRAL.</name><description>entre UDAONDO, GUILLERMO AV. y CAMPOS SALLES</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4536055690668,-34.5482385773886,0
+            -58.4538069549818,-34.5480325019946,0
+            -58.4547496050539,-34.5475352750835,0
+            -58.4548775116731,-34.5474669686246,0
+            -58.4550287503892,-34.5473781160619,0
+            -58.4551580700371,-34.5473037700801,0
+            -58.4553575276296,-34.5472004120841,0
+            -58.4555810945778,-34.5470879876436,0
+            -58.4558331546475,-34.5469610563074,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.111">
+        <name>BAVIO, ERNESTO A.</name><description>entre UDAONDO, GUILLERMO AV. y CAMPOS SALLES</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4528483771252,-34.5472566264401,0
+            -58.4531153873313,-34.5471957118356,0
+            -58.4534573187046,-34.5470143870082,0
+            -58.4551538027569,-34.5461113746053,0
+            -58.4551538027569,-34.5461113746053,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.112">
+        <name>CAMPOS SALLES</name><description>entre LUGONES, LEOPOLDO AV. y BAVIO, ERNESTO A.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4508147163827,-34.5428549366497,0
+            -58.4510936002782,-34.5426304554821,0
+            -58.4514078558514,-34.5423980024213,0
+            -58.451995681464,-34.5420554501337,0
+            -58.4527301718595,-34.5430100535167,0
+            -58.453571628215,-34.5440946142405,0
+            -58.4543298389767,-34.5450268264273,0
+            -58.4551538027569,-34.5461113746053,0
+            -58.4551538027569,-34.5461113746053,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.113">
+        <name>CAMPOS SALLES</name><description>entre RICCHERI, PABLO, TTE. GRAL. y BAVIO, ERNESTO A.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4551538027569,-34.5461113746053,0
+            -58.4553028229139,-34.5462746020624,0
+            -58.4555920957715,-34.5466264452685,0
+            -58.4557980965711,-34.5468549627268,0
+            -58.4558331546475,-34.5469610563074,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_123528.114">
+        <name>LUGONES, LEOPOLDO AV.</name><description>entre UDAONDO, GUILLERMO AV. y CAMPOS SALLES</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4508147163827,-34.5428549366497,0
+            -58.4507569935087,-34.5429639015964,0
+            -58.4506439615644,-34.5430815408076,0
+            -58.4503887549514,-34.5431659813833,0
+            -58.4502210471848,-34.5432232806267,0
+            -58.4501043761195,-34.5432926519207,0
+            -58.4500551498185,-34.5433575054031,0
+            -58.4500441961761,-34.5434630883252,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+    </Document>
+  </Document>
+</kml>

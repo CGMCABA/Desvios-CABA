@@ -1,0 +1,392 @@
+<?xml version='1.0' encoding='utf-8'?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document id="root_doc">
+    <Style id="line-A52714-10106-normal"><LineStyle><color>ff1427a5</color><width>10.106</width></LineStyle></Style><Style id="line-A52714-10106-highlight"><LineStyle><color>ff1427a5</color><width>15.159</width></LineStyle></Style><StyleMap id="line-A52714-10106"><Pair><key>normal</key><styleUrl>#line-A52714-10106-normal</styleUrl></Pair><Pair><key>highlight</key><styleUrl>#line-A52714-10106-highlight</styleUrl></Pair></StyleMap><Document id="tramos_afectados_20261030_122004">
+      <name>tramos_afectados_20261030_122004</name>
+      <Placemark id="tramos_afectados_20261030_122004.1">
+        <name>PALOS</name><description>entre ARZOBISPO ESPINOSA y 20 DE SEPTIEMBRE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3659072077952,-34.6317959184738,0
+            -58.3651785471585,-34.6322766067591,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.2">
+        <name>PALOS</name><description>entre 20 DE SEPTIEMBRE y BLANES, JUAN MANUEL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3651785471585,-34.6322766067591,0
+            -58.3641982611742,-34.6329232148106,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.3">
+        <name>VILLAFAÑE, WENCESLAO</name><description>entre RODRIGUEZ, MARTIN y PALOS</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3623567155867,-34.6326293074432,0
+            -58.3637911186295,-34.6331918295528,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.4">
+        <name>PALOS</name><description>entre BLANES, JUAN MANUEL y VILLAFAÑE, WENCESLAO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3641982611742,-34.6329232148106,0
+            -58.3637911186295,-34.6331918295528,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.5">
+        <name>VILLAFAÑE, WENCESLAO</name><description>entre PALOS y ZOLEZZI, ANTONIO L.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3637911186295,-34.6331918295528,0
+            -58.3645044100774,-34.6334715670025,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.6">
+        <name>VALLE, ARISTOBULO DEL</name><description>entre BROWN, ALTE. AV. y RODRIGUEZ, MARTIN</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3603404922758,-34.6328468495709,0
+            -58.3618731295028,-34.6334712382419,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.7">
+        <name>VILLAFAÑE, WENCESLAO</name><description>entre ZOLEZZI, ANTONIO L. y VALLE IBERLUCEA DEL, DR.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3645044100774,-34.6334715670025,0
+            -58.3652441910443,-34.633761673782,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.8">
+        <name>VALLE, ARISTOBULO DEL</name><description>entre RODRIGUEZ, MARTIN y PALOS</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3618731295028,-34.6334712382419,0
+            -58.3632758388581,-34.6340426837291,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.9">
+        <name>PALOS</name><description>entre VILLAFAÑE, WENCESLAO y VALLE, ARISTOBULO DEL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3637911186295,-34.6331918295528,0
+            -58.3632758388581,-34.6340426837291,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.10">
+        <name>VILLAFAÑE, WENCESLAO</name><description>entre VALLE IBERLUCEA DEL, DR. y ESPORA, TOMAS, CORONEL DE MARINA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3652441910443,-34.633761673782,0
+            -58.3657144974669,-34.6339702245285,0
+            -58.3662473101925,-34.6341782921097,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.11">
+        <name>VALLE, ARISTOBULO DEL</name><description>entre PALOS y ZOLEZZI, ANTONIO L.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3632758388581,-34.6340426837291,0
+            -58.3639797554917,-34.6343294588437,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.12">
+        <name>ZOLEZZI, ANTONIO L.</name><description>entre VILLAFAÑE, WENCESLAO y VALLE, ARISTOBULO DEL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3645044100774,-34.6334715670025,0
+            -58.3639797554917,-34.6343294588437,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.13">
+        <name>VALLE, ARISTOBULO DEL</name><description>entre ZOLEZZI, ANTONIO L. y VALLE IBERLUCEA DEL, DR.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3639797554917,-34.6343294588437,0
+            -58.3646863169258,-34.6346172883728,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.14">
+        <name>VALLE IBERLUCEA DEL, DR.</name><description>entre VILLAFAÑE, WENCESLAO y VALLE, ARISTOBULO DEL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3652441910443,-34.633761673782,0
+            -58.3648288741929,-34.6343860633647,0
+            -58.3646863169258,-34.6346172883728,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.15">
+        <name>PINZON</name><description>entre RODRIGUEZ, MARTIN y PALOS</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3613733826584,-34.6342829419434,0
+            -58.3627785765945,-34.6348514373849,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.16">
+        <name>PALOS</name><description>entre VALLE, ARISTOBULO DEL y PINZON</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3632758388581,-34.6340426837291,0
+            -58.3628955176286,-34.6346716024639,0
+            -58.3627785765945,-34.6348514373849,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.17">
+        <name>PINZON</name><description>entre PALOS y ZOLEZZI, ANTONIO L.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3627785765945,-34.6348514373849,0
+            -58.3634839484296,-34.6351368080631,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.18">
+        <name>ZOLEZZI, ANTONIO L.</name><description>entre VALLE, ARISTOBULO DEL y PINZON</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3639797554917,-34.6343294588437,0
+            -58.3638628889468,-34.6345206330116,0
+            -58.3634839484296,-34.6351368080631,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.19">
+        <name>VALLE, ARISTOBULO DEL</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3661041433487,-34.6351174452164,0
+            -58.3669268998852,-34.6352126764499,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.20">
+        <name>PINZON</name><description>entre ZOLEZZI, ANTONIO L. y VALLE IBERLUCEA DEL, DR.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3634839484296,-34.6351368080631,0
+            -58.3641903470941,-34.635422527603,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.21">
+        <name>VALLE IBERLUCEA DEL, DR.</name><description>entre VALLE, ARISTOBULO DEL y PINZON</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3646863169258,-34.6346172883728,0
+            -58.3645679168244,-34.6348094478929,0
+            -58.3641903470941,-34.635422527603,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.22">
+        <name>BRANDSEN</name><description>entre RODRIGUEZ, MARTIN y PALOS</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3608716592682,-34.6351004869438,0
+            -58.3619478027761,-34.6355405449179,0
+            -58.3622761746737,-34.6356749735068,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.23">
+        <name>PALOS</name><description>entre PINZON y BRANDSEN</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3627785765945,-34.6348514373849,0
+            -58.3626562575661,-34.6350394368397,0
+            -58.3623924505016,-34.6354834482958,0
+            -58.3622761746737,-34.6356749735068,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.24">
+        <name>BRANDSEN</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3622761746737,-34.6356749735068,0
+            -58.3629766934904,-34.6359618219514,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.25">
+        <name>ZOLEZZI, ANTONIO L.</name><description>entre PINZON y BRANDSEN</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3634839484296,-34.6351368080631,0
+            -58.3629766934904,-34.6359618219514,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.26">
+        <name>PINZON</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3656449202651,-34.6359832130923,0
+            -58.3665290089071,-34.636096524429,0
+            -58.3667664359734,-34.6361220649261,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.27">
+        <name>BRANDSEN</name><description>entre ZOLEZZI, ANTONIO L. y VALLE IBERLUCEA DEL, DR.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3629766934904,-34.6359618219514,0
+            -58.3635216298879,-34.636185017479,0
+            -58.3636899133545,-34.6362476908127,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.28">
+        <name>VALLE IBERLUCEA DEL, DR.</name><description>entre PINZON y BRANDSEN</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3641903470941,-34.635422527603,0
+            -58.3640459079961,-34.6356569897569,0
+            -58.3637728196602,-34.6361007853355,0
+            -58.3636899133545,-34.6362476908127,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.29">
+        <name>SUAREZ</name><description>entre RODRIGUEZ, MARTIN y PALOS</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3603700948539,-34.6359192975123,0
+            -58.361780671964,-34.6364921046729,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.30">
+        <name>PALOS</name><description>entre BRANDSEN y SUAREZ</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3622761746737,-34.6356749735068,0
+            -58.3621789363812,-34.6358350352268,0
+            -58.361780671964,-34.6364921046729,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.31">
+        <name>BRANDSEN</name><description>entre VALLE IBERLUCEA DEL, DR. y FILIBERTO, JUAN DE DIOS</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3636899133545,-34.6362476908127,0
+            -58.3639349297581,-34.6363389478377,0
+            -58.3646969486337,-34.6366487239997,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.32">
+        <name>BRANDSEN</name><description>entre FILIBERTO, JUAN DE DIOS y POLIZA, PRACTICO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3646969486337,-34.6366487239997,0
+            -58.3650231680327,-34.6367893437124,0
+            -58.365562920073,-34.6368859020328,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.33">
+        <name>SUAREZ</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.361780671964,-34.6364921046729,0
+            -58.3619325119664,-34.636553780815,0
+            -58.3626050245163,-34.6368248332895,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.34">
+        <name>BRANDSEN</name><description>entre POLIZA, PRACTICO y IRALA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.365562920073,-34.6368859020328,0
+            -58.3664516259812,-34.6369933020762,0
+            -58.3666238816315,-34.6370137206122,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.35">
+        <name>SUAREZ</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3626050245163,-34.6368248332895,0
+            -58.3631997038792,-34.6370646207299,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.36">
+        <name>VALLE IBERLUCEA DEL, DR.</name><description>entre BRANDSEN y SUAREZ</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3636899133545,-34.6362476908127,0
+            -58.363594540756,-34.6364167693376,0
+            -58.3632990771198,-34.6369000528961,0
+            -58.3631997038792,-34.6370646207299,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.37">
+        <name>PALOS</name><description>entre SUAREZ y OLAVARRIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.361780671964,-34.6364921046729,0
+            -58.3616530381649,-34.6367027044782,0
+            -58.361295473096,-34.6373059324367,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.38">
+        <name>SUAREZ</name><description>entre VALLE IBERLUCEA DEL, DR. y FILIBERTO, JUAN DE DIOS</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3631997038792,-34.6370646207299,0
+            -58.3633535904162,-34.6371266488944,0
+            -58.3640793363698,-34.637420906054,0
+            -58.3642362153649,-34.6374753298358,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.39">
+        <name>SUAREZ</name><description>entre FILIBERTO, JUAN DE DIOS y POLIZA, PRACTICO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3642362153649,-34.6374753298358,0
+            -58.3645610460964,-34.6375875446721,0
+            -58.365086218837,-34.6377483436426,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.40">
+        <name>POLIZA, PRACTICO</name><description>entre BRANDSEN y SUAREZ</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.365562920073,-34.6368859020328,0
+            -58.365086218837,-34.6377483436426,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.41">
+        <name>VALLE IBERLUCEA DEL, DR.</name><description>entre SUAREZ y OLAVARRIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3631997038792,-34.6370646207299,0
+            -58.3627069304633,-34.6378800675572,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.42">
+        <name>SUAREZ</name><description>entre POLIZA, PRACTICO y IRALA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.365086218837,-34.6377483436426,0
+            -58.366479259041,-34.6379228392981,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.43">
+        <name>SUAREZ</name><description>entre IRALA y HERNANDARIAS</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.366479259041,-34.6379228392981,0
+            -58.3678997569327,-34.6380831150464,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.44">
+        <name>SUAREZ</name><description>entre HERNANDARIAS y REGIMIENTO DE PATRICIOS AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3678997569327,-34.6380831150464,0
+            -58.3682131804446,-34.6381185009651,0
+            -58.3695352840688,-34.6382704414022,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261030_122004.45">
+        <name>POLIZA, PRACTICO</name><description>entre SUAREZ y OLAVARRIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.365086218837,-34.6377483436426,0
+            -58.3646422109009,-34.6385516542672,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+    </Document>
+  </Document>
+</kml>

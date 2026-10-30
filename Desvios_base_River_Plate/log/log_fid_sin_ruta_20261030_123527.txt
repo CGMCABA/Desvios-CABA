@@ -1,0 +1,471 @@
+==========================================================================================
+LOG DE RUTEO - fid_co sin desvío (detalle por fid_co)
+Generado: 2026-10-30 12:35:27
+Buffer de cortes (ROI) final: 700 m | Ciclos de auto-buffer: 1
+fid_co con diagnóstico (pasaron por 1er proceso sin ruta): 18
+  -> recuperados en la 2da pasada de refinamiento: 0
+  -> recuperados en la 4ta pasada por herencia OD: 0
+  -> recuperados en la 5ta pasada por herencia geométrica ruta-OD: 0
+  -> recuperados en la 6ta pasada por destino sintético longitudinal: 0
+  -> recuperados en la 7ma pasada por ROI adaptativo: 8
+  -> recuperados en la 8va pasada por herencia de corredor: 0
+  -> resueltos en un ciclo previo de AutoBuffer (la pasada final no los reprodujo): 0
+  -> sin ruta definitiva (tras todas las pasadas): 10
+==========================================================================================
+
+------------------------------------------------------------------------------------------
+fid_co: 25  |  Línea: 160  Recorrido: B  Sentido: IDA
+Estado final: SIN RUTA (definitivo)
+Orígenes detectados: 12  |  Destinos detectados: 3  |  Pares OD evaluados (1er proceso): 14
+¿Se encontró algún camino en el grafo (1er proceso)?: No
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: Sí
+Motivo de fallo (1er proceso): conflicto_direccional
+Detalle: No se encontró ningún camino compatible con la dirección de circulación esperada en el origen y/o destino (aristas DOBLE con sentido contrario descartadas).
+Aristas indebidas detectadas durante el 1er proceso: ninguna registrada.
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: no_aplicado
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: no_aplicado
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: sin_ruta_valida_con_radio_2000m
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: ninguna_ruta_donante_valida_con_extremos_sobre_corredor_receptor
+Diagnóstico ROI adaptativo:
+   - radio=1000.0m | O_snap=12 | D_snap=3 | nodos=502 | aristas=925 | comp_source=483 | D_mismo_comp=3/3
+   - radio=1400.0m | O_snap=12 | D_snap=3 | nodos=754 | aristas=1448 | comp_source=734 | D_mismo_comp=3/3
+   - radio=2000.0m | O_snap=12 | D_snap=3 | nodos=1183 | aristas=2347 | comp_source=1165 | D_mismo_comp=3/3
+
+------------------------------------------------------------------------------------------
+fid_co: 92  |  Línea: 160  Recorrido: A  Sentido: IDA
+Estado final: SIN RUTA (definitivo)
+Orígenes detectados: 12  |  Destinos detectados: 3  |  Pares OD evaluados (1er proceso): 14
+¿Se encontró algún camino en el grafo (1er proceso)?: No
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: Sí
+Motivo de fallo (1er proceso): conflicto_direccional
+Detalle: No se encontró ningún camino compatible con la dirección de circulación esperada en el origen y/o destino (aristas DOBLE con sentido contrario descartadas).
+Aristas indebidas detectadas durante el 1er proceso: ninguna registrada.
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: no_aplicado
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: no_aplicado
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: sin_ruta_valida_con_radio_2000m
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: ninguna_ruta_donante_valida_con_extremos_sobre_corredor_receptor
+Diagnóstico ROI adaptativo:
+   - radio=1000.0m | O_snap=12 | D_snap=3 | nodos=502 | aristas=925 | comp_source=483 | D_mismo_comp=3/3
+   - radio=1400.0m | O_snap=12 | D_snap=3 | nodos=754 | aristas=1448 | comp_source=734 | D_mismo_comp=3/3
+   - radio=2000.0m | O_snap=12 | D_snap=3 | nodos=1183 | aristas=2347 | comp_source=1165 | D_mismo_comp=3/3
+
+------------------------------------------------------------------------------------------
+fid_co: 114  |  Línea: 028  Recorrido: D  Sentido: VUELTA
+Estado final: SIN RUTA (definitivo)
+Orígenes detectados: 7  |  Destinos detectados: 13  |  Pares OD evaluados (1er proceso): 18
+¿Se encontró algún camino en el grafo (1er proceso)?: Sí
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: Sí
+Motivo de fallo (1er proceso): giro_prohibido
+Detalle: Se encontraron caminos en el grafo, pero todas las alternativas evaluadas requerían atravesar una o más aristas con giro no permitido (arista indebida), incluso tras penalizarlas y volver a intentar.
+Aristas indebidas detectadas (giro no permitido) durante el 1er proceso: 4
+   - ((366956.33273112716, 6175473.140916297) -> (367051.68649274216, 6175543.374961933)) calle: BLANCO ENCALADA  [penalizada 67 vez/veces en todo el proceso]
+   - ((367104.86635208846, 6175270.657162741) -> (367199.5653438683, 6175340.788011484)) calle: MENDOZA  [penalizada 11 vez/veces en todo el proceso]
+   - ((367860.6560875743, 6175508.014472537) -> (367912.1895205516, 6175545.979943136)) calle: ECHEVERRIA  [penalizada 1 vez/veces en todo el proceso]
+   - ((368178.7141141133, 6175742.333240692) -> (368136.1425300959, 6175896.838132024)) calle: PUENTE DISTRIBUIDOR SCALABRINI ORTIZ  [penalizada 1009 vez/veces en todo el proceso]
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: no_aplicado
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: no_aplicado
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: sin_ruta_valida_con_radio_2000m
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: ninguna_ruta_donante_valida_con_extremos_sobre_corredor_receptor
+Diagnóstico ROI adaptativo:
+   - radio=1000.0m | O_snap=7 | D_snap=13 | nodos=517 | aristas=952 | comp_source=498 | D_mismo_comp=13/13
+   - radio=1400.0m | O_snap=7 | D_snap=13 | nodos=769 | aristas=1475 | comp_source=749 | D_mismo_comp=13/13
+   - radio=2000.0m | O_snap=7 | D_snap=13 | nodos=1198 | aristas=2374 | comp_source=1180 | D_mismo_comp=13/13
+
+------------------------------------------------------------------------------------------
+fid_co: 115  |  Línea: 028  Recorrido: D  Sentido: IDA
+Estado final: RECUPERADO en 7ma pasada por ROI adaptativo
+Orígenes detectados: 15  |  Destinos detectados: 7  |  Pares OD evaluados (1er proceso): 20
+¿Se encontró algún camino en el grafo (1er proceso)?: No
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: Sí
+Motivo de fallo (1er proceso): conflicto_direccional
+Detalle: No se encontró ningún camino compatible con la dirección de circulación esperada en el origen y/o destino (aristas DOBLE con sentido contrario descartadas).
+Aristas indebidas detectadas durante el 1er proceso: ninguna registrada.
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: no_aplicado
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: no_aplicado
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): SE ENCONTRÓ RUTA
+Motivo 7ma pasada: ruta_encontrada_ampliando_solo_red_neta_a_1000m
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: no_aplicado
+Diagnóstico ROI adaptativo:
+   - radio=1000.0m | O_snap=15 | D_snap=7 | nodos=518 | aristas=954 | comp_source=499 | D_mismo_comp=7/7
+
+------------------------------------------------------------------------------------------
+fid_co: 135  |  Línea: 114  Recorrido: C  Sentido: IDA
+Estado final: RECUPERADO en 7ma pasada por ROI adaptativo
+Orígenes detectados: 7  |  Destinos detectados: 9  |  Pares OD evaluados (1er proceso): 15
+¿Se encontró algún camino en el grafo (1er proceso)?: No
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: Sí
+Motivo de fallo (1er proceso): conflicto_direccional
+Detalle: No se encontró ningún camino compatible con la dirección de circulación esperada en el origen y/o destino (aristas DOBLE con sentido contrario descartadas).
+Aristas indebidas detectadas durante el 1er proceso: ninguna registrada.
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: no_aplicado
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: no_aplicado
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): SE ENCONTRÓ RUTA
+Motivo 7ma pasada: ruta_encontrada_ampliando_solo_red_neta_a_1000m
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: no_aplicado
+Diagnóstico ROI adaptativo:
+   - radio=1000.0m | O_snap=7 | D_snap=9 | nodos=530 | aristas=973 | comp_source=511 | D_mismo_comp=9/9
+
+------------------------------------------------------------------------------------------
+fid_co: 248  |  Línea: 034  Recorrido: B  Sentido: IDA
+Estado final: SIN RUTA (definitivo)
+Orígenes detectados: 12  |  Destinos detectados: 3  |  Pares OD evaluados (1er proceso): 14
+¿Se encontró algún camino en el grafo (1er proceso)?: No
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: Sí
+Motivo de fallo (1er proceso): conflicto_direccional
+Detalle: No se encontró ningún camino compatible con la dirección de circulación esperada en el origen y/o destino (aristas DOBLE con sentido contrario descartadas).
+Aristas indebidas detectadas durante el 1er proceso: ninguna registrada.
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: no_aplicado
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: no_aplicado
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: sin_ruta_valida_con_radio_2000m
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: ninguna_ruta_donante_valida_con_extremos_sobre_corredor_receptor
+Diagnóstico ROI adaptativo:
+   - radio=1000.0m | O_snap=12 | D_snap=3 | nodos=530 | aristas=973 | comp_source=511 | D_mismo_comp=3/3
+   - radio=1400.0m | O_snap=12 | D_snap=3 | nodos=769 | aristas=1475 | comp_source=749 | D_mismo_comp=3/3
+   - radio=2000.0m | O_snap=12 | D_snap=3 | nodos=1198 | aristas=2374 | comp_source=1180 | D_mismo_comp=3/3
+
+------------------------------------------------------------------------------------------
+fid_co: 250  |  Línea: 160  Recorrido: L  Sentido: IDA
+Estado final: SIN RUTA (definitivo)
+Orígenes detectados: 12  |  Destinos detectados: 3  |  Pares OD evaluados (1er proceso): 14
+¿Se encontró algún camino en el grafo (1er proceso)?: No
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: Sí
+Motivo de fallo (1er proceso): conflicto_direccional
+Detalle: No se encontró ningún camino compatible con la dirección de circulación esperada en el origen y/o destino (aristas DOBLE con sentido contrario descartadas).
+Aristas indebidas detectadas durante el 1er proceso: ninguna registrada.
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: no_aplicado
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: no_aplicado
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: sin_ruta_valida_con_radio_2000m
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: ninguna_ruta_donante_valida_con_extremos_sobre_corredor_receptor
+Diagnóstico ROI adaptativo:
+   - radio=1000.0m | O_snap=12 | D_snap=3 | nodos=530 | aristas=973 | comp_source=511 | D_mismo_comp=3/3
+   - radio=1400.0m | O_snap=12 | D_snap=3 | nodos=769 | aristas=1475 | comp_source=749 | D_mismo_comp=3/3
+   - radio=2000.0m | O_snap=12 | D_snap=3 | nodos=1198 | aristas=2374 | comp_source=1180 | D_mismo_comp=3/3
+
+------------------------------------------------------------------------------------------
+fid_co: 305  |  Línea: 028  Recorrido: G  Sentido: VUELTA
+Estado final: SIN RUTA (definitivo)
+Orígenes detectados: 7  |  Destinos detectados: 2  |  Pares OD evaluados (1er proceso): 7
+¿Se encontró algún camino en el grafo (1er proceso)?: No
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: Sí
+Motivo de fallo (1er proceso): conflicto_direccional
+Detalle: No se encontró ningún camino compatible con la dirección de circulación esperada en el origen y/o destino (aristas DOBLE con sentido contrario descartadas).
+Aristas indebidas detectadas durante el 1er proceso: ninguna registrada.
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: no_aplicado
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: no_aplicado
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: sin_ruta_valida_con_radio_2000m
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: ninguna_ruta_donante_valida_con_extremos_sobre_corredor_receptor
+Diagnóstico ROI adaptativo:
+   - radio=1000.0m | O_snap=7 | D_snap=2 | nodos=531 | aristas=974 | comp_source=512 | D_mismo_comp=2/2
+   - radio=1400.0m | O_snap=7 | D_snap=2 | nodos=771 | aristas=1478 | comp_source=751 | D_mismo_comp=2/2
+   - radio=2000.0m | O_snap=7 | D_snap=2 | nodos=1200 | aristas=2377 | comp_source=1182 | D_mismo_comp=2/2
+
+------------------------------------------------------------------------------------------
+fid_co: 306  |  Línea: 028  Recorrido: G  Sentido: IDA
+Estado final: RECUPERADO en 7ma pasada por ROI adaptativo
+Orígenes detectados: 1  |  Destinos detectados: 7  |  Pares OD evaluados (1er proceso): 7
+¿Se encontró algún camino en el grafo (1er proceso)?: No
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: Sí
+Motivo de fallo (1er proceso): conflicto_direccional
+Detalle: No se encontró ningún camino compatible con la dirección de circulación esperada en el origen y/o destino (aristas DOBLE con sentido contrario descartadas).
+Aristas indebidas detectadas durante el 1er proceso: ninguna registrada.
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: no_aplicado
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: no_aplicado
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): SE ENCONTRÓ RUTA
+Motivo 7ma pasada: ruta_encontrada_ampliando_solo_red_neta_a_1400m
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: no_aplicado
+Diagnóstico ROI adaptativo:
+   - radio=1000.0m | O_snap=1 | D_snap=7 | nodos=531 | aristas=974 | comp_source=512 | D_mismo_comp=7/7
+   - radio=1400.0m | O_snap=1 | D_snap=7 | nodos=771 | aristas=1478 | comp_source=751 | D_mismo_comp=7/7
+
+------------------------------------------------------------------------------------------
+fid_co: 330  |  Línea: 037  Recorrido: A  Sentido: IDA
+Estado final: SIN RUTA (definitivo)
+Orígenes detectados: 12  |  Destinos detectados: 3  |  Pares OD evaluados (1er proceso): 14
+¿Se encontró algún camino en el grafo (1er proceso)?: No
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: Sí
+Motivo de fallo (1er proceso): conflicto_direccional
+Detalle: No se encontró ningún camino compatible con la dirección de circulación esperada en el origen y/o destino (aristas DOBLE con sentido contrario descartadas).
+Aristas indebidas detectadas durante el 1er proceso: ninguna registrada.
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: no_aplicado
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: no_aplicado
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: sin_ruta_valida_con_radio_2000m
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: ninguna_ruta_donante_valida_con_extremos_sobre_corredor_receptor
+Diagnóstico ROI adaptativo:
+   - radio=1000.0m | O_snap=12 | D_snap=3 | nodos=531 | aristas=974 | comp_source=512 | D_mismo_comp=3/3
+   - radio=1400.0m | O_snap=12 | D_snap=3 | nodos=771 | aristas=1478 | comp_source=751 | D_mismo_comp=3/3
+   - radio=2000.0m | O_snap=12 | D_snap=3 | nodos=1200 | aristas=2377 | comp_source=1182 | D_mismo_comp=3/3
+
+------------------------------------------------------------------------------------------
+fid_co: 594  |  Línea: 160  Recorrido: I  Sentido: IDA
+Estado final: SIN RUTA (definitivo)
+Orígenes detectados: 12  |  Destinos detectados: 3  |  Pares OD evaluados (1er proceso): 14
+¿Se encontró algún camino en el grafo (1er proceso)?: No
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: Sí
+Motivo de fallo (1er proceso): conflicto_direccional
+Detalle: No se encontró ningún camino compatible con la dirección de circulación esperada en el origen y/o destino (aristas DOBLE con sentido contrario descartadas).
+Aristas indebidas detectadas durante el 1er proceso: ninguna registrada.
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: no_aplicado
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: no_aplicado
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: sin_ruta_valida_con_radio_2000m
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: ninguna_ruta_donante_valida_con_extremos_sobre_corredor_receptor
+Diagnóstico ROI adaptativo:
+   - radio=1000.0m | O_snap=12 | D_snap=3 | nodos=531 | aristas=974 | comp_source=512 | D_mismo_comp=3/3
+   - radio=1400.0m | O_snap=12 | D_snap=3 | nodos=771 | aristas=1478 | comp_source=751 | D_mismo_comp=3/3
+   - radio=2000.0m | O_snap=12 | D_snap=3 | nodos=1200 | aristas=2377 | comp_source=1182 | D_mismo_comp=3/3
+
+------------------------------------------------------------------------------------------
+fid_co: 731  |  Línea: 107  Recorrido: A  Sentido: VUELTA
+Estado final: RECUPERADO en 7ma pasada por ROI adaptativo
+Orígenes detectados: 12  |  Destinos detectados: 3  |  Pares OD evaluados (1er proceso): 14
+¿Se encontró algún camino en el grafo (1er proceso)?: No
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: Sí
+Motivo de fallo (1er proceso): conflicto_direccional
+Detalle: No se encontró ningún camino compatible con la dirección de circulación esperada en el origen y/o destino (aristas DOBLE con sentido contrario descartadas).
+Aristas indebidas detectadas durante el 1er proceso: ninguna registrada.
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: no_aplicado
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: no_aplicado
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): SE ENCONTRÓ RUTA
+Motivo 7ma pasada: ruta_encontrada_ampliando_solo_red_neta_a_1000m
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: no_aplicado
+Diagnóstico ROI adaptativo:
+   - radio=1000.0m | O_snap=12 | D_snap=3 | nodos=534 | aristas=977 | comp_source=515 | D_mismo_comp=3/3
+
+------------------------------------------------------------------------------------------
+fid_co: 734  |  Línea: 107  Recorrido: B  Sentido: VUELTA
+Estado final: RECUPERADO en 7ma pasada por ROI adaptativo
+Orígenes detectados: 12  |  Destinos detectados: 3  |  Pares OD evaluados (1er proceso): 14
+¿Se encontró algún camino en el grafo (1er proceso)?: No
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: Sí
+Motivo de fallo (1er proceso): conflicto_direccional
+Detalle: No se encontró ningún camino compatible con la dirección de circulación esperada en el origen y/o destino (aristas DOBLE con sentido contrario descartadas).
+Aristas indebidas detectadas durante el 1er proceso: ninguna registrada.
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: no_aplicado
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: no_aplicado
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): SE ENCONTRÓ RUTA
+Motivo 7ma pasada: ruta_encontrada_ampliando_solo_red_neta_a_1000m
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: no_aplicado
+Diagnóstico ROI adaptativo:
+   - radio=1000.0m | O_snap=12 | D_snap=3 | nodos=534 | aristas=977 | comp_source=515 | D_mismo_comp=3/3
+
+------------------------------------------------------------------------------------------
+fid_co: 918  |  Línea: 042  Recorrido: A  Sentido: IDA
+Estado final: SIN RUTA (definitivo)
+Orígenes detectados: 15  |  Destinos detectados: 2  |  Pares OD evaluados (1er proceso): 16
+¿Se encontró algún camino en el grafo (1er proceso)?: No
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: Sí
+Motivo de fallo (1er proceso): conflicto_direccional
+Detalle: No se encontró ningún camino compatible con la dirección de circulación esperada en el origen y/o destino (aristas DOBLE con sentido contrario descartadas).
+Aristas indebidas detectadas durante el 1er proceso: ninguna registrada.
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: no_aplicado
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: no_aplicado
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: sin_ruta_valida_con_radio_2000m
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: ninguna_ruta_donante_valida_con_extremos_sobre_corredor_receptor
+Diagnóstico ROI adaptativo:
+   - radio=1000.0m | O_snap=15 | D_snap=2 | nodos=546 | aristas=1000 | comp_source=527 | D_mismo_comp=2/2
+   - radio=1400.0m | O_snap=15 | D_snap=2 | nodos=786 | aristas=1507 | comp_source=766 | D_mismo_comp=2/2
+   - radio=2000.0m | O_snap=15 | D_snap=2 | nodos=1215 | aristas=2406 | comp_source=1197 | D_mismo_comp=2/2
+
+------------------------------------------------------------------------------------------
+fid_co: 920  |  Línea: 042  Recorrido: A  Sentido: VUELTA
+Estado final: RECUPERADO en 7ma pasada por ROI adaptativo
+Orígenes detectados: 12  |  Destinos detectados: 16  |  Pares OD evaluados (1er proceso): 20
+¿Se encontró algún camino en el grafo (1er proceso)?: No
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: Sí
+Motivo de fallo (1er proceso): conflicto_direccional
+Detalle: No se encontró ningún camino compatible con la dirección de circulación esperada en el origen y/o destino (aristas DOBLE con sentido contrario descartadas).
+Aristas indebidas detectadas durante el 1er proceso: ninguna registrada.
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: no_aplicado
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: no_aplicado
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): SE ENCONTRÓ RUTA
+Motivo 7ma pasada: ruta_encontrada_ampliando_solo_red_neta_a_1000m
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: no_aplicado
+Diagnóstico ROI adaptativo:
+   - radio=1000.0m | O_snap=12 | D_snap=16 | nodos=552 | aristas=1007 | comp_source=533 | D_mismo_comp=16/16
+
+------------------------------------------------------------------------------------------
+fid_co: 921  |  Línea: 042  Recorrido: B  Sentido: VUELTA
+Estado final: RECUPERADO en 7ma pasada por ROI adaptativo
+Orígenes detectados: 12  |  Destinos detectados: 16  |  Pares OD evaluados (1er proceso): 20
+¿Se encontró algún camino en el grafo (1er proceso)?: No
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: Sí
+Motivo de fallo (1er proceso): conflicto_direccional
+Detalle: No se encontró ningún camino compatible con la dirección de circulación esperada en el origen y/o destino (aristas DOBLE con sentido contrario descartadas).
+Aristas indebidas detectadas durante el 1er proceso: ninguna registrada.
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: no_aplicado
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: no_aplicado
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): SE ENCONTRÓ RUTA
+Motivo 7ma pasada: ruta_encontrada_ampliando_solo_red_neta_a_1000m
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: no_aplicado
+Diagnóstico ROI adaptativo:
+   - radio=1000.0m | O_snap=12 | D_snap=16 | nodos=552 | aristas=1007 | comp_source=533 | D_mismo_comp=16/16
+
+------------------------------------------------------------------------------------------
+fid_co: 922  |  Línea: 042  Recorrido: C  Sentido: IDA
+Estado final: RECUPERADO en 7ma pasada por ROI adaptativo
+Orígenes detectados: 15  |  Destinos detectados: 3  |  Pares OD evaluados (1er proceso): 16
+¿Se encontró algún camino en el grafo (1er proceso)?: No
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: Sí
+Motivo de fallo (1er proceso): conflicto_direccional
+Detalle: No se encontró ningún camino compatible con la dirección de circulación esperada en el origen y/o destino (aristas DOBLE con sentido contrario descartadas).
+Aristas indebidas detectadas durante el 1er proceso: ninguna registrada.
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: no_aplicado
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: no_aplicado
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): SE ENCONTRÓ RUTA
+Motivo 7ma pasada: ruta_encontrada_ampliando_solo_red_neta_a_1000m
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: no_aplicado
+Diagnóstico ROI adaptativo:
+   - radio=1000.0m | O_snap=15 | D_snap=3 | nodos=555 | aristas=1011 | comp_source=536 | D_mismo_comp=3/3
+
+------------------------------------------------------------------------------------------
+fid_co: 924  |  Línea: 042  Recorrido: C  Sentido: VUELTA
+Estado final: SIN RUTA (definitivo)
+Orígenes detectados: 3  |  Destinos detectados: 16  |  Pares OD evaluados (1er proceso): 18
+¿Se encontró algún camino en el grafo (1er proceso)?: No
+¿Hubo conflicto direccional (aristas DOBLE en sentido contrario)?: Sí
+Motivo de fallo (1er proceso): conflicto_direccional
+Detalle: No se encontró ningún camino compatible con la dirección de circulación esperada en el origen y/o destino (aristas DOBLE con sentido contrario descartadas).
+Aristas indebidas detectadas durante el 1er proceso: ninguna registrada.
+Resultado 2da pasada (refinamiento con aristas indebidas + pesos ya conocidos): NO SE ENCONTRÓ RUTA
+Motivo 2da pasada: sin_alternativa_ni_relajando_filtro_direccional_y_penalizando_aristas_indebidas
+Resultado 4ta pasada (herencia de rutas válidas por coincidencia OD): NO SE ADOPTÓ RUTA
+Motivo 4ta pasada: no_aplicado
+Resultado 5ta pasada (herencia geométrica ruta válida ↔ pares OD): NO SE ADOPTÓ RUTA
+Motivo 5ta pasada: no_aplicado
+Resultado 6ta pasada (destino sintético longitudinal): NO SE ENCONTRÓ RUTA
+Motivo 6ta pasada: no_aplicado
+Resultado 7ma pasada (ROI adaptativo sólo para sin-path): NO SE ENCONTRÓ RUTA
+Motivo 7ma pasada: sin_ruta_valida_con_radio_2000m
+Resultado 8va pasada (herencia operacional por corredor): NO SE ADOPTÓ RUTA
+Motivo 8va pasada: ninguna_ruta_donante_valida_con_extremos_sobre_corredor_receptor
+Diagnóstico ROI adaptativo:
+   - radio=1000.0m | O_snap=3 | D_snap=16 | nodos=557 | aristas=1015 | comp_source=538 | D_mismo_comp=16/16
+   - radio=1400.0m | O_snap=3 | D_snap=16 | nodos=801 | aristas=1527 | comp_source=781 | D_mismo_comp=16/16
+   - radio=2000.0m | O_snap=3 | D_snap=16 | nodos=1230 | aristas=2426 | comp_source=1212 | D_mismo_comp=16/16

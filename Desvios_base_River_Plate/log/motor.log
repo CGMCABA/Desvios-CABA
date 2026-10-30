@@ -1,0 +1,301 @@
+[AFECTACIONES] Sin restricciones TENOR TOTAL
+[MOTOR WEB] archivo=C:\Users\Operador\Desktop\Desvios de colectivos\desvios_colectivo_v3_jerarquia.py
+[MOTOR WEB] sha256=2a4d86e9081c83599bf4ac5a70758fd043657b533c2561637ed1ca2932e825da
+[MOTOR WEB] seleccion_ids=['1061', '1086', '1157', '192', '27693', '27694', '27850', '27851', '27852', '27853', '27854', '27855', '27856', '27857', '27859', '28515', '28519', '28522', '28523', '28524', '29905', '29906', '29907', '29909', '32824', '32825', '32875', '32876', '32877', '33027', '414', '421', '426', '433', '444', '451', '460', '466', '482', '487', '494', '495', '505', '506', '509', '514', '518', '519', '529', '530', '532', '535', '536', '544', '545', '556', '557', '576', '583', '596', '597', '608', '609', '618', '619', '633', '634', '644', '645', '656', '657', '673', '674', '690', '691', '711', '726', '727', '738', '739', '750', '751', '762', '763', '775', '776', '778', '787', '788', '794', '808', '809', '820', '821', '829', '833', '836', '837', '838', '853', '874', '893', '894', '913', '914', '915', '916', '923', '943', '952', '953', '954', '956', '996']
+[MOTOR WEB] corte id=192 | calle=UDAONDO, GUILLERMO AV. | entre=CANTILO, INT. / LUGONES, LEOPOLDO AV.
+[MOTOR WEB] corte id=414 | calle=UDAONDO, GUILLERMO AV. | entre=LUGONES, LEOPOLDO AV. / NULL
+[MOTOR WEB] corte id=421 | calle=FIGUEROA ALCORTA, PRES. AV. | entre=UDAONDO, GUILLERMO AV. / BETBEDER, ONOFRE, ALTE.
+[MOTOR WEB] corte id=426 | calle=FIGUEROA ALCORTA, PRES. AV. | entre=BETBEDER, ONOFRE, ALTE. / PLAZA, VICTORINO DE LA, DR.
+[MOTOR WEB] corte id=433 | calle=FIGUEROA ALCORTA, PRES. AV. | entre=PLAZA, VICTORINO DE LA, DR. / SOLIER, DANIEL DE, ALTE.
+[MOTOR WEB] corte id=444 | calle=FIGUEROA ALCORTA, PRES. AV. | entre=SOLIER, DANIEL DE, ALTE. / QUINTEROS, LIDORO J. AV.
+[MOTOR WEB] corte id=451 | calle=FIGUEROA ALCORTA, PRES. AV. | entre=QUINTEROS, LIDORO J. AV. / GARCIA, MANUEL J., ALTE.
+[MOTOR WEB] corte id=460 | calle=FIGUEROA ALCORTA, PRES. AV. | entre=GARCIA, MANUEL J., ALTE. / PLAZA, VICTORINO DE LA, DR.
+[MOTOR WEB] corte id=466 | calle=FIGUEROA ALCORTA, PRES. AV. | entre=PLAZA, VICTORINO DE LA, DR. / SAENZ VALIENTE, JUAN PABLO
+[MOTOR WEB] corte id=482 | calle=UDAONDO, GUILLERMO AV. | entre=FIGUEROA ALCORTA, PRES. AV. / BAVIO, ERNESTO A.
+[MOTOR WEB] corte id=487 | calle=BAVIO, ERNESTO A. | entre=UDAONDO, GUILLERMO AV. / AGOTE PEDRO
+[MOTOR WEB] corte id=494 | calle=BETBEDER, ONOFRE, ALTE. | entre=FIGUEROA ALCORTA, PRES. AV. / BAVIO, ERNESTO A.
+[MOTOR WEB] corte id=495 | calle=BAVIO, ERNESTO A. | entre=AGOTE PEDRO / BETBEDER, ONOFRE, ALTE.
+[MOTOR WEB] corte id=505 | calle=PLAZA, VICTORINO DE LA, DR. | entre=FIGUEROA ALCORTA, PRES. AV. / BAVIO, ERNESTO A.
+[MOTOR WEB] corte id=506 | calle=BAVIO, ERNESTO A. | entre=PLAZA, VICTORINO DE LA, DR. / BETBEDER, ONOFRE, ALTE.
+[MOTOR WEB] corte id=509 | calle=FIGUEROA ALCORTA, PRES. AV. | entre=SAENZ VALIENTE, JUAN PABLO / BASAVILBASO, LEOPOLDO
+[MOTOR WEB] corte id=514 | calle=FIGUEROA ALCORTA, PRES. AV. | entre=RAMSAY / BASAVILBASO, LEOPOLDO
+[MOTOR WEB] corte id=518 | calle=SOLIER, DANIEL DE, ALTE. | entre=FIGUEROA ALCORTA, PRES. AV. / BAVIO, ERNESTO A.
+[MOTOR WEB] corte id=519 | calle=BAVIO, ERNESTO A. | entre=PLAZA, VICTORINO DE LA, DR. / SOLIER, DANIEL DE, ALTE.
+[MOTOR WEB] corte id=529 | calle=QUINTEROS, LIDORO J. AV. | entre=FIGUEROA ALCORTA, PRES. AV. / BAVIO, ERNESTO A.
+[MOTOR WEB] corte id=530 | calle=BAVIO, ERNESTO A. | entre=SOLIER, DANIEL DE, ALTE. / QUINTEROS, LIDORO J. AV.
+[MOTOR WEB] corte id=532 | calle=FIGUEROA ALCORTA, PRES. AV. | entre=MONROE / RAMSAY
+[MOTOR WEB] corte id=535 | calle=GARCIA, MANUEL J., ALTE. | entre=FIGUEROA ALCORTA, PRES. AV. / BAVIO, ERNESTO A.
+[MOTOR WEB] corte id=536 | calle=BAVIO, ERNESTO A. | entre=QUINTEROS, LIDORO J. AV. / GARCIA, MANUEL J., ALTE.
+[MOTOR WEB] corte id=544 | calle=PLAZA, VICTORINO DE LA, DR. | entre=FIGUEROA ALCORTA, PRES. AV. / BAVIO, ERNESTO A.
+[MOTOR WEB] corte id=545 | calle=BAVIO, ERNESTO A. | entre=GARCIA, MANUEL J., ALTE. / PLAZA, VICTORINO DE LA, DR.
+[MOTOR WEB] corte id=556 | calle=SAENZ VALIENTE, JUAN PABLO | entre=FIGUEROA ALCORTA, PRES. AV. / BAVIO, ERNESTO A.
+[MOTOR WEB] corte id=557 | calle=BAVIO, ERNESTO A. | entre=PLAZA, VICTORINO DE LA, DR. / SAENZ VALIENTE, JUAN PABLO
+[MOTOR WEB] corte id=576 | calle=UDAONDO, GUILLERMO AV. | entre=RICCHERI, PABLO, TTE. GRAL. / BAVIO, ERNESTO A.
+[MOTOR WEB] corte id=583 | calle=RICCHERI, PABLO, TTE. GRAL. | entre=UDAONDO, GUILLERMO AV. / PRINS, ENRIQUE
+[MOTOR WEB] corte id=596 | calle=AGOTE PEDRO | entre=BAVIO, ERNESTO A. / RICCHERI, PABLO, TTE. GRAL.
+[MOTOR WEB] corte id=597 | calle=RICCHERI, PABLO, TTE. GRAL. | entre=PRINS, ENRIQUE / AGOTE PEDRO
+[MOTOR WEB] corte id=608 | calle=BETBEDER, ONOFRE, ALTE. | entre=BAVIO, ERNESTO A. / RICCHERI, PABLO, TTE. GRAL.
+[MOTOR WEB] corte id=609 | calle=RICCHERI, PABLO, TTE. GRAL. | entre=AGOTE PEDRO / BETBEDER, ONOFRE, ALTE.
+[MOTOR WEB] corte id=618 | calle=PLAZA, VICTORINO DE LA, DR. | entre=BAVIO, ERNESTO A. / RICCHERI, PABLO, TTE. GRAL.
+[MOTOR WEB] corte id=619 | calle=RICCHERI, PABLO, TTE. GRAL. | entre=PLAZA, VICTORINO DE LA, DR. / BETBEDER, ONOFRE, ALTE.
+[MOTOR WEB] corte id=633 | calle=SOLIER, DANIEL DE, ALTE. | entre=BAVIO, ERNESTO A. / RICCHERI, PABLO, TTE. GRAL.
+[MOTOR WEB] corte id=634 | calle=RICCHERI, PABLO, TTE. GRAL. | entre=PLAZA, VICTORINO DE LA, DR. / SOLIER, DANIEL DE, ALTE.
+[MOTOR WEB] corte id=644 | calle=QUINTEROS, LIDORO J. AV. | entre=BAVIO, ERNESTO A. / RICCHERI, PABLO, TTE. GRAL.
+[MOTOR WEB] corte id=645 | calle=RICCHERI, PABLO, TTE. GRAL. | entre=SOLIER, DANIEL DE, ALTE. / QUINTEROS, LIDORO J. AV.
+[MOTOR WEB] corte id=656 | calle=GARCIA, MANUEL J., ALTE. | entre=BAVIO, ERNESTO A. / RICCHERI, PABLO, TTE. GRAL.
+[MOTOR WEB] corte id=657 | calle=RICCHERI, PABLO, TTE. GRAL. | entre=QUINTEROS, LIDORO J. AV. / GARCIA, MANUEL J., ALTE.
+[MOTOR WEB] corte id=673 | calle=PLAZA, VICTORINO DE LA, DR. | entre=BAVIO, ERNESTO A. / RICCHERI, PABLO, TTE. GRAL.
+[MOTOR WEB] corte id=674 | calle=RICCHERI, PABLO, TTE. GRAL. | entre=GARCIA, MANUEL J., ALTE. / PLAZA, VICTORINO DE LA, DR.
+[MOTOR WEB] corte id=690 | calle=SAENZ VALIENTE, JUAN PABLO | entre=BAVIO, ERNESTO A. / RICCHERI, PABLO, TTE. GRAL.
+[MOTOR WEB] corte id=691 | calle=RICCHERI, PABLO, TTE. GRAL. | entre=PLAZA, VICTORINO DE LA, DR. / SAENZ VALIENTE, JUAN PABLO
+[MOTOR WEB] corte id=711 | calle=UDAONDO, GUILLERMO AV. | entre=DEL LIBERTADOR AV. / HERNANDEZ, RAFAEL
+[MOTOR WEB] corte id=726 | calle=PRINS, ENRIQUE | entre=RICCHERI, PABLO, TTE. GRAL. / HERNANDEZ, RAFAEL
+[MOTOR WEB] corte id=727 | calle=HERNANDEZ, RAFAEL | entre=UDAONDO, GUILLERMO AV. / DEL LIBERTADOR AV.
+[MOTOR WEB] corte id=738 | calle=AGOTE PEDRO | entre=RICCHERI, PABLO, TTE. GRAL. / HERNANDEZ, RAFAEL
+[MOTOR WEB] corte id=739 | calle=HERNANDEZ, RAFAEL | entre=PRINS, ENRIQUE / AGOTE PEDRO
+[MOTOR WEB] corte id=750 | calle=BETBEDER, ONOFRE, ALTE. | entre=RICCHERI, PABLO, TTE. GRAL. / HERNANDEZ, RAFAEL
+[MOTOR WEB] corte id=751 | calle=HERNANDEZ, RAFAEL | entre=AGOTE PEDRO / BETBEDER, ONOFRE, ALTE.
+[MOTOR WEB] corte id=762 | calle=PLAZA, VICTORINO DE LA, DR. | entre=RICCHERI, PABLO, TTE. GRAL. / HERNANDEZ, RAFAEL
+[MOTOR WEB] corte id=763 | calle=HERNANDEZ, RAFAEL | entre=PLAZA, VICTORINO DE LA, DR. / PADRE NEUMANN JUAN B.
+[MOTOR WEB] corte id=775 | calle=SOLIER, DANIEL DE, ALTE. | entre=RICCHERI, PABLO, TTE. GRAL. / HERNANDEZ, RAFAEL
+[MOTOR WEB] corte id=776 | calle=HERNANDEZ, RAFAEL | entre=PLAZA, VICTORINO DE LA, DR. / PADRE NEUMANN JUAN B.
+[MOTOR WEB] corte id=778 | calle=QUINTEROS, LIDORO J. AV. | entre=RICCHERI, PABLO, TTE. GRAL. / NULL
+[MOTOR WEB] corte id=787 | calle=QUINTEROS, LIDORO J. AV. | entre=HERNANDEZ, RAFAEL / NULL
+[MOTOR WEB] corte id=788 | calle=HERNANDEZ, RAFAEL | entre=SOLIER, DANIEL DE, ALTE. / QUINTEROS, LIDORO J. AV.
+[MOTOR WEB] corte id=794 | calle=QUINTEROS, LIDORO J. AV. | entre=HERNANDEZ, RAFAEL / NULL
+[MOTOR WEB] corte id=808 | calle=GARCIA, MANUEL J., ALTE. | entre=RICCHERI, PABLO, TTE. GRAL. / HERNANDEZ, RAFAEL
+[MOTOR WEB] corte id=809 | calle=HERNANDEZ, RAFAEL | entre=QUINTEROS, LIDORO J. AV. / GARCIA, MANUEL J., ALTE.
+[MOTOR WEB] corte id=820 | calle=PLAZA, VICTORINO DE LA, DR. | entre=RICCHERI, PABLO, TTE. GRAL. / HERNANDEZ, RAFAEL
+[MOTOR WEB] corte id=821 | calle=HERNANDEZ, RAFAEL | entre=GARCIA, MANUEL J., ALTE. / PLAZA, VICTORINO DE LA, DR.
+[MOTOR WEB] corte id=829 | calle=HERNANDEZ, RAFAEL | entre=QUINTEROS, LIDORO J. AV. / SOURIGUES, CARLOS, CNEL.
+[MOTOR WEB] corte id=833 | calle=ROMERO, EDUARDO, SGTO. | entre=RICCHERI, PABLO, TTE. GRAL. / SAENZ VALIENTE, JUAN PABLO
+[MOTOR WEB] corte id=836 | calle=SAENZ VALIENTE, JUAN PABLO | entre=RICCHERI, PABLO, TTE. GRAL. / HERNANDEZ, RAFAEL
+[MOTOR WEB] corte id=837 | calle=HERNANDEZ, RAFAEL | entre=PLAZA, VICTORINO DE LA, DR. / SAENZ VALIENTE, JUAN PABLO
+[MOTOR WEB] corte id=838 | calle=HERNANDEZ, RAFAEL | entre=SOURIGUES, CARLOS, CNEL. / QUINTEROS, LIDORO J. AV.
+[MOTOR WEB] corte id=853 | calle=PADRE NEUMANN JUAN B. | entre=PLAZA, VICTORINO DE LA, DR. / HERNANDEZ, RAFAEL
+[MOTOR WEB] corte id=874 | calle=PLAZA, VICTORINO DE LA, DR. | entre=PICO / DEHEZA
+[MOTOR WEB] corte id=893 | calle=BARILARI, ATILIO S., ALTE. | entre=PLAZA, VICTORINO DE LA, DR. / HERNANDEZ, RAFAEL
+[MOTOR WEB] corte id=894 | calle=PLAZA, VICTORINO DE LA, DR. | entre=HERNANDEZ, RAFAEL / PADRE NEUMANN JUAN B.
+[MOTOR WEB] corte id=913 | calle=HERNANDEZ, RAFAEL | entre=MENDEZ, NICANOR / MONROE
+[MOTOR WEB] corte id=914 | calle=MENDEZ, NICANOR | entre=HERNANDEZ, RAFAEL / PLAZA, VICTORINO DE LA, DR.
+[MOTOR WEB] corte id=915 | calle=PLAZA, VICTORINO DE LA, DR. | entre=MENDEZ, NICANOR / SOURIGUES, CARLOS, CNEL.
+[MOTOR WEB] corte id=916 | calle=SOURIGUES, CARLOS, CNEL. | entre=HERNANDEZ, RAFAEL / PLAZA, VICTORINO DE LA, DR.
+[MOTOR WEB] corte id=923 | calle=PLAZA, VICTORINO DE LA, DR. | entre=BARILARI, ATILIO S., ALTE. / TEGUCIGALPA
+[MOTOR WEB] corte id=943 | calle=PLAZA, VICTORINO DE LA, DR. | entre=SOURIGUES, CARLOS, CNEL. / PUERTO PRINCIPE
+[MOTOR WEB] corte id=952 | calle=QUINTEROS, LIDORO J. AV. | entre=HERNANDEZ, RAFAEL / PLAZA, VICTORINO DE LA, DR.
+[MOTOR WEB] corte id=953 | calle=PLAZA, VICTORINO DE LA, DR. | entre=TEGUCIGALPA / QUINTEROS, LIDORO J. AV.
+[MOTOR WEB] corte id=954 | calle=PLAZA, VICTORINO DE LA, DR. | entre=QUINTEROS, LIDORO J. AV. / PUERTO PRINCIPE
+[MOTOR WEB] corte id=956 | calle=BARILARI, ATILIO S., ALTE. | entre=PLAZA, VICTORINO DE LA, DR. / DEL LIBERTADOR AV.
+[MOTOR WEB] corte id=996 | calle=SOURIGUES, CARLOS, CNEL. | entre=PLAZA, VICTORINO DE LA, DR. / MONROE
+[MOTOR WEB] corte id=1061 | calle=TEGUCIGALPA | entre=PLAZA, VICTORINO DE LA, DR. / DEL LIBERTADOR AV.
+[MOTOR WEB] corte id=1086 | calle=PUERTO PRINCIPE | entre=PLAZA, VICTORINO DE LA, DR. / MONROE
+[MOTOR WEB] corte id=1157 | calle=QUINTEROS, LIDORO J. AV. | entre=MONROE / PLAZA, VICTORINO DE LA, DR.
+[MOTOR WEB] corte id=27693 | calle=HERNANDEZ, RAFAEL | entre=BARILARI, ATILIO S., ALTE. / QUINTEROS, LIDORO J. AV.
+[MOTOR WEB] corte id=27694 | calle=HERNANDEZ, RAFAEL | entre=GELLY / CASTEX
+[MOTOR WEB] corte id=27850 | calle=QUINTEROS, LIDORO J. AV. | entre=FIGUEROA ALCORTA, PRES. AV. / BAVIO, ERNESTO A.
+[MOTOR WEB] corte id=27851 | calle=QUINTEROS, LIDORO J. AV. | entre=BAVIO, ERNESTO A. / RICCHERI, PABLO, TTE. GRAL.
+[MOTOR WEB] corte id=27852 | calle=QUINTEROS, LIDORO J. AV. | entre=CASTEX / DEL LIBERTADOR AV.
+[MOTOR WEB] corte id=27853 | calle=QUINTEROS, LIDORO J. AV. | entre=PLAZA, VICTORINO DE LA, DR. / HERNANDEZ, RAFAEL
+[MOTOR WEB] corte id=27854 | calle=QUINTEROS, LIDORO J. AV. | entre=PLAZA, VICTORINO DE LA, DR. / DEL LIBERTADOR AV.
+[MOTOR WEB] corte id=27855 | calle=FIGUEROA ALCORTA, PRES. AV. | entre=QUINTEROS, LIDORO J. AV. / NULL
+[MOTOR WEB] corte id=27856 | calle=BAVIO, ERNESTO A. | entre=QUINTEROS, LIDORO J. AV. / NULL
+[MOTOR WEB] corte id=27857 | calle=RICCHERI, PABLO, TTE. GRAL. | entre=QUINTEROS, LIDORO J. AV. / NULL
+[MOTOR WEB] corte id=27859 | calle=HERNANDEZ, RAFAEL | entre=QUINTEROS, LIDORO J. AV. / NULL
+[MOTOR WEB] corte id=28515 | calle=UDAONDO, GUILLERMO AV. | entre=CANTILO, INT. / COLECTORA CANTILO, INT.
+[MOTOR WEB] corte id=28519 | calle=LUGONES, LEOPOLDO AV. | entre=CAMPOS SALLES / NULL
+[MOTOR WEB] corte id=28522 | calle=UDAONDO, GUILLERMO AV. | entre=FIGUEROA ALCORTA, PRES. AV. / NULL
+[MOTOR WEB] corte id=28523 | calle=UDAONDO, GUILLERMO AV. | entre=LUGONES, LEOPOLDO AV. / NULL
+[MOTOR WEB] corte id=28524 | calle=UDAONDO, GUILLERMO AV. | entre=UDAONDO, GUILLERMO AV. / NULL
+[MOTOR WEB] corte id=29905 | calle=UDAONDO, GUILLERMO AV. | entre=RICCHERI, PABLO, TTE. GRAL. / NULL
+[MOTOR WEB] corte id=29906 | calle=UDAONDO, GUILLERMO AV. | entre=RICCHERI, PABLO, TTE. GRAL. / NULL
+[MOTOR WEB] corte id=29907 | calle=UDAONDO, GUILLERMO AV. | entre=UDAONDO, GUILLERMO AV. / NULL
+[MOTOR WEB] corte id=29909 | calle=UDAONDO, GUILLERMO AV. | entre=UDAONDO, GUILLERMO AV. / NULL
+[MOTOR WEB] corte id=32824 | calle=CAMPOS SALLES | entre=DEL LIBERTADOR AV. / RICCHERI, PABLO, TTE. GRAL.
+[MOTOR WEB] corte id=32825 | calle=RICCHERI, PABLO, TTE. GRAL. | entre=UDAONDO, GUILLERMO AV. / CAMPOS SALLES
+[MOTOR WEB] corte id=32875 | calle=BAVIO, ERNESTO A. | entre=UDAONDO, GUILLERMO AV. / CAMPOS SALLES
+[MOTOR WEB] corte id=32876 | calle=CAMPOS SALLES | entre=LUGONES, LEOPOLDO AV. / BAVIO, ERNESTO A.
+[MOTOR WEB] corte id=32877 | calle=CAMPOS SALLES | entre=RICCHERI, PABLO, TTE. GRAL. / BAVIO, ERNESTO A.
+[MOTOR WEB] corte id=33027 | calle=LUGONES, LEOPOLDO AV. | entre=UDAONDO, GUILLERMO AV. / CAMPOS SALLES
+[BRIDGE] processing.run() — inicio
+SCRIPT BUILD: 2026-02-20 bufferROI + groupTop + XYZbottom
+MOTOR ACTIVO: desvios_colectivo_v3_jerarquia.py
+[COMPAT] QGIS 3.20.3-Odense | tipos de campo=Type | unidad metros=si
+FUENTE CALLEJERO: C:\Users\Operador\Desktop\Desvios de colectivos\callejero_entrecalles.geojson
+FUENTE COLECTIVOS: C:\Users\Operador\AppData\Local\Temp\desvios_calculo_e_2fp82a\.colectivos_combinados.geojson
+FEATURES COLECTIVOS: 979
+Results: {'OUTPUT': 'Selected_features_43d55761_9e14_4ad2_aec8_54845486b2e7'}
+[PERF-PROC] native:saveselectedfeatures | 2.002s | features=114
+Results: {'OUTPUT': 'Reprojected_dcf28427_be99_4956_b196_2d59f519037c'}
+Results: {'OUTPUT': 'Reprojected_0d99993d_2679_42e6_92f3_3bbcb459b5c3'}
+Results: {'OUTPUT': 'Reprojected_7601f818_2bad_477c_a08e_730b6c2ef467'}
+Results: {'OUTPUT': 'Reprojected_dcf28427_be99_4956_b196_2d59f519037c'}
+Results: {'OUTPUT': 'Reprojected_0d99993d_2679_42e6_92f3_3bbcb459b5c3'}
+Results: {'OUTPUT': 'Reprojected_7601f818_2bad_477c_a08e_730b6c2ef467'}
+Results: {'OUTPUT': 'Reprojected_a3044024_b566_43df_ba70_1a5a767ce795'}
+[Semáforos] Exención de giro a la izquierda activa | cruces=3955 | rigen reglas base (giro_izq=0)=3663 | eximen giro (giro_izq=1)=292 | sin semáforo -> también exime | tolerancia=22 m
+[Modo zona] 114 tramos seleccionados. ROI=700 m, AutoBuffer desactivado (1 sola pasada).
+[AutoBuffer] Ciclo #1 | Buffer ROI = 700 m
+[COMPAT] native:buffer: esta version de QGIS no acepta SEPARATE_DISJOINT; se omite
+Results: {'OUTPUT': 'Buffered_cb47cd36_ab2a_4e89_8a10_427cda5aa001'}
+[PERF-PROC] native:buffer | 0.034s | features=1
+Results: {'OUTPUT': 'Extracted__location__aebadec5_9592_4aac_8fa8_14c8a2889c85'}
+[PERF-PROC] native:extractbylocation | 0.017s | features=578
+Results: {'OUTPUT': 'Extracted__location__aebadec5_9592_4aac_8fa8_14c8a2889c85'}
+Results: {'OUTPUT': 'Extracted__location__da7be592_41aa_48c8_9762_c467758bce38'}
+[PERF-PROC] native:extractbylocation | 0.028s | features=134
+Results: {'OUTPUT': 'Extracted__location__da7be592_41aa_48c8_9762_c467758bce38'}
+[COMPAT] native:difference: esta version de QGIS no acepta GRID_SIZE; se omite
+Results: {'OUTPUT': 'Difference_2c186448_3d01_40c9_8ad2_91a5d6078936'}
+[PERF-PROC] native:difference | 0.033s | features=466
+Results: {'OUTPUT': 'Difference_2c186448_3d01_40c9_8ad2_91a5d6078936'}
+Results: {'OUTPUT': 'Centroids_77d2974e_51c8_4f78_9713_52c16947d4fe'}
+[PERF-PROC] native:centroids | 0.004s | features=114
+Results: {'OUTPUT': 'Centroids_77d2974e_51c8_4f78_9713_52c16947d4fe'}
+[COMPAT] native:buffer: esta version de QGIS no acepta SEPARATE_DISJOINT; se omite
+Results: {'OUTPUT': 'Buffered_58d9a89b_5539_4d0e_beae_6d6eca160bea'}
+[PERF-PROC] native:buffer | 0.005s | features=114
+Results: {'OUTPUT': 'Buffered_58d9a89b_5539_4d0e_beae_6d6eca160bea'}
+Results: {'OUTPUT': 'Dissolved_c2bd16a6_cc9a_49ca_9b52_5983aa0736a5'}
+[PERF-PROC] native:dissolve | 0.006s | features=1
+Results: {'OUTPUT': 'Dissolved_c2bd16a6_cc9a_49ca_9b52_5983aa0736a5'}
+[COMPAT] native:buffer: esta version de QGIS no acepta SEPARATE_DISJOINT; se omite
+Results: {'OUTPUT': 'Buffered_6d588685_800c_488d_a8b9_d85c4c45dec8'}
+[PERF-PROC] native:buffer | 0.039s | features=1
+Results: {'OUTPUT': 'Buffered_6d588685_800c_488d_a8b9_d85c4c45dec8'}
+Results: {'OUTPUT': 'Centroids_04337d0b_5172_4f4a_be94_a7a98b4d3ef9'}
+[PERF-PROC] native:centroids | 0.007s | features=466
+Results: {'OUTPUT': 'Centroids_04337d0b_5172_4f4a_be94_a7a98b4d3ef9'}
+[COMPAT] native:buffer: esta version de QGIS no acepta SEPARATE_DISJOINT; se omite
+Results: {'OUTPUT': 'Buffered_b1b6f289_aeb2_449a_8639_beabc7db125a'}
+[PERF-PROC] native:buffer | 0.022s | features=466
+Results: {'OUTPUT': 'Buffered_b1b6f289_aeb2_449a_8639_beabc7db125a'}
+Results: {'OUTPUT': 'Extracted__location__4cb9ab96_b579_48e2_a6ee_3c7602218d12'}
+[PERF-PROC] native:extractbylocation | 0.518s | features=18
+Results: {'OUTPUT': 'Extracted__location__4cb9ab96_b579_48e2_a6ee_3c7602218d12'}
+Results: {'OUTPUT': 'Clipped_f0426188_e795_4d74_8c9d_f2210d21c7db'}
+[PERF-PROC] native:clip | 0.271s | features=18
+Results: {'OUTPUT': 'Clipped_f0426188_e795_4d74_8c9d_f2210d21c7db'}
+Results: {'OUTPUT': 'lineas_base_por_fid_e831dab4_62be_4732_ae31_4c4098ba3feb'}
+[COMPAT] native:difference: esta version de QGIS no acepta GRID_SIZE; se omite
+Results: {'OUTPUT': 'Difference_b370e077_65c0_413b_89d2_6b5986e28464'}
+[PERF-PROC] native:difference | 0.010s | features=18
+Results: {'OUTPUT': 'Difference_b370e077_65c0_413b_89d2_6b5986e28464'}
+Results: {'OUTPUT': 'Single_parts_be2fbda7_8b1b_4e3f_b48a_2196cb0a1a6d'}
+[PERF-PROC] native:multiparttosingleparts | 0.003s | features=116
+Results: {'OUTPUT': 'Single_parts_be2fbda7_8b1b_4e3f_b48a_2196cb0a1a6d'}
+Results: {'OUTPUT': 'lineas_cortadas_con_vertex_0d89eb7b_29bc_46dd_aed2_f246dad35a00'}
+Results: {'JOINED_COUNT': 305, 'OUTPUT': 'Joined_layer_0a193b38_24ce_4f5a_9560_03ef7d3072a5'}
+[PERF-PROC] native:joinattributesbylocation | 0.186s | features=305
+Results: {'OUTPUT': 'Joined_layer_0a193b38_24ce_4f5a_9560_03ef7d3072a5'}
+Results: {'OUTPUT': 'Centroids_64330acb_557a_47b1_ad0c_4017cb38a985'}
+[PERF-PROC] native:centroids | 0.005s | features=305
+Results: {'OUTPUT': 'Centroids_64330acb_557a_47b1_ad0c_4017cb38a985'}
+[COMPAT] native:difference: esta version de QGIS no acepta GRID_SIZE; se omite
+Results: {'OUTPUT': 'Difference_4dfef4d2_6595_461a_a4c4_86b93c85894d'}
+[PERF-PROC] native:difference | 0.011s | features=18
+Results: {'OUTPUT': 'Difference_4dfef4d2_6595_461a_a4c4_86b93c85894d'}
+[PERF-FASE] construccion_OD_desde_centroides | 0.093s | centroides=305 fids=18
+[FAMILIA V3.3 RESUMEN] familias_multi=0 | herencias_aplicadas=0
+[POSTOPT V3.3 RESUMEN] llamadas=0 | mejoras_globales=0 | mejoras_internas=0 | reenganches_D=0 | herencias_familia=0 | sin_cambio=0 | errores=0 | ventanas=0 | D_probados=0 | tiempo=0.000s
+[AutoBuffer] Resultado ciclo #1 | afectadas=18 | excluidas_terminal=0 | objetivo=18 | con_desvio=0 | sin_desvio(criterio)=18 | sin_desvio_con_NXNoPath=18
+[AutoBuffer] Ciclos totales: 1 | Buffer final (ROI): 700 m | modo_zona=True
+[Refinamiento] 2da pasada sobre 18 fid_co sin ruta (penalización por recorrido; aristas indebidas vistas en toda la corrida: 4) ...
+[Refinamiento] Ningún fid_co adicional pudo recuperarse en la 2da pasada.
+[ROI ADAPTATIVO] radio=1000m | fid_co pendientes=[25, 92, 114, 115, 135, 248, 250, 305, 306, 330, 594, 731, 734, 918, 920, 921, 922, 924]
+[COMPAT] native:buffer: esta version de QGIS no acepta SEPARATE_DISJOINT; se omite
+Results: {'OUTPUT': 'Buffered_97325136_5e11_4107_85b3_6e3b58b7b551'}
+[PERF-PROC] native:buffer | 0.018s | features=1
+Results: {'OUTPUT': 'Extracted__location__f125ddad_ccb6_4b09_8600_f625feab4218'}
+[PERF-PROC] native:extractbylocation | 0.019s | features=859
+[COMPAT] native:difference: esta version de QGIS no acepta GRID_SIZE; se omite
+Results: {'OUTPUT': 'Difference_7861516a_49b2_4dfc_9f4e_5bc22091c311'}
+[PERF-PROC] native:difference | 0.033s | features=747
+[CONNECTIVITY DIAG] fid_co=25 | radio=1000m | comp_source=483 nodos | D_mismo_componente=3/3
+[CONNECTIVITY DIAG] fid_co=92 | radio=1000m | comp_source=483 nodos | D_mismo_componente=3/3
+[CONNECTIVITY DIAG] fid_co=114 | radio=1000m | comp_source=498 nodos | D_mismo_componente=13/13
+[CONNECTIVITY DIAG] fid_co=115 | radio=1000m | comp_source=499 nodos | D_mismo_componente=7/7
+[ROI ADAPTATIVO OK] fid_co=115 | radio=1000m | Ruta=GUIRALDES, INT. - SENDERO SIN NOMBRE OFICIAL - PUENTE SOBRE AV. LUGONES - FIGUEROA ALCORTA, PRES. AV. - DARSENA FIGUEROA ALCORTA, PRES. AV. - MONROE - DEL LIBERTADOR AV. - IBERA - ARRIBEÑOS - PEDRAZA, MANUELA - DEL LIBERTADOR AV. - SU RUTA
+[CONNECTIVITY DIAG] fid_co=135 | radio=1000m | comp_source=511 nodos | D_mismo_componente=9/9
+[ROI ADAPTATIVO OK] fid_co=135 | radio=1000m | Ruta=GUIRALDES, INT. - SENDERO SIN NOMBRE OFICIAL - PUENTE SOBRE AV. LUGONES - FIGUEROA ALCORTA, PRES. AV. - JURAMENTO - SU RUTA
+[CONNECTIVITY DIAG] fid_co=248 | radio=1000m | comp_source=511 nodos | D_mismo_componente=3/3
+[CONNECTIVITY DIAG] fid_co=250 | radio=1000m | comp_source=511 nodos | D_mismo_componente=3/3
+[CONNECTIVITY DIAG] fid_co=305 | radio=1000m | comp_source=512 nodos | D_mismo_componente=2/2
+[CONNECTIVITY DIAG] fid_co=306 | radio=1000m | comp_source=512 nodos | D_mismo_componente=7/7
+[CONNECTIVITY DIAG] fid_co=330 | radio=1000m | comp_source=512 nodos | D_mismo_componente=3/3
+[CONNECTIVITY DIAG] fid_co=594 | radio=1000m | comp_source=512 nodos | D_mismo_componente=3/3
+[CONNECTIVITY DIAG] fid_co=731 | radio=1000m | comp_source=515 nodos | D_mismo_componente=3/3
+[ROI ADAPTATIVO OK] fid_co=731 | radio=1000m | Ruta=GUIRALDES, INT. - SENDERO SIN NOMBRE OFICIAL - PUENTE SOBRE AV. LUGONES - FIGUEROA ALCORTA, PRES. AV. - DARSENA FIGUEROA ALCORTA, PRES. AV. - MONROE - SU RUTA
+[CONNECTIVITY DIAG] fid_co=734 | radio=1000m | comp_source=515 nodos | D_mismo_componente=3/3
+[ROI ADAPTATIVO OK] fid_co=734 | radio=1000m | Ruta=GUIRALDES, INT. - SENDERO SIN NOMBRE OFICIAL - PUENTE SOBRE AV. LUGONES - FIGUEROA ALCORTA, PRES. AV. - DARSENA FIGUEROA ALCORTA, PRES. AV. - MONROE - SU RUTA
+[CONNECTIVITY DIAG] fid_co=918 | radio=1000m | comp_source=527 nodos | D_mismo_componente=2/2
+[CONNECTIVITY DIAG] fid_co=920 | radio=1000m | comp_source=533 nodos | D_mismo_componente=16/16
+[ROI ADAPTATIVO OK] fid_co=920 | radio=1000m | Ruta=GUIRALDES, INT. - SENDERO SIN NOMBRE OFICIAL - PUENTE SOBRE AV. LUGONES - FIGUEROA ALCORTA, PRES. AV. - JURAMENTO - SU RUTA
+[CONNECTIVITY DIAG] fid_co=921 | radio=1000m | comp_source=533 nodos | D_mismo_componente=16/16
+[ROI ADAPTATIVO OK] fid_co=921 | radio=1000m | Ruta=GUIRALDES, INT. - SENDERO SIN NOMBRE OFICIAL - PUENTE SOBRE AV. LUGONES - FIGUEROA ALCORTA, PRES. AV. - JURAMENTO - SU RUTA
+[CONNECTIVITY DIAG] fid_co=922 | radio=1000m | comp_source=536 nodos | D_mismo_componente=3/3
+[ROI ADAPTATIVO OK] fid_co=922 | radio=1000m | Ruta=FIGUEROA ALCORTA, PRES. AV. - SENDERO SIN NOMBRE OFICIAL - PUENTE SOBRE AV. LUGONES - GUIRALDES, INT. - COMPLEJO CIUDAD UNIVERSITARIA (SIN NOMBRE OFICIAL) - COLECTORA CANTILO, INT. - SU RUTA
+[CONNECTIVITY DIAG] fid_co=924 | radio=1000m | comp_source=538 nodos | D_mismo_componente=16/16
+[ROI ADAPTATIVO CICLO] radio=1000m | recuperados=[115, 135, 731, 734, 920, 921, 922] | pendientes=[25, 92, 114, 248, 250, 305, 306, 330, 594, 918, 924] | tiempo=3.24s
+[ROI ADAPTATIVO] radio=1400m | fid_co pendientes=[25, 92, 114, 248, 250, 305, 306, 330, 594, 918, 924]
+[COMPAT] native:buffer: esta version de QGIS no acepta SEPARATE_DISJOINT; se omite
+Results: {'OUTPUT': 'Buffered_59ac4538_1653_46db_af83_97908d5b4bda'}
+[PERF-PROC] native:buffer | 0.020s | features=1
+Results: {'OUTPUT': 'Extracted__location__805ed9eb_ca09_479b_9849_0ac4be6e8032'}
+[PERF-PROC] native:extractbylocation | 0.023s | features=1285
+[COMPAT] native:difference: esta version de QGIS no acepta GRID_SIZE; se omite
+Results: {'OUTPUT': 'Difference_3fab7f22_17b5_47fe_aa87_70ffb937f388'}
+[PERF-PROC] native:difference | 0.038s | features=1173
+[CONNECTIVITY DIAG] fid_co=25 | radio=1400m | comp_source=734 nodos | D_mismo_componente=3/3
+[CONNECTIVITY DIAG] fid_co=92 | radio=1400m | comp_source=734 nodos | D_mismo_componente=3/3
+[CONNECTIVITY DIAG] fid_co=114 | radio=1400m | comp_source=749 nodos | D_mismo_componente=13/13
+[CONNECTIVITY DIAG] fid_co=248 | radio=1400m | comp_source=749 nodos | D_mismo_componente=3/3
+[CONNECTIVITY DIAG] fid_co=250 | radio=1400m | comp_source=749 nodos | D_mismo_componente=3/3
+[CONNECTIVITY DIAG] fid_co=305 | radio=1400m | comp_source=751 nodos | D_mismo_componente=2/2
+[CONNECTIVITY DIAG] fid_co=306 | radio=1400m | comp_source=751 nodos | D_mismo_componente=7/7
+[ROI ADAPTATIVO OK] fid_co=306 | radio=1400m | Ruta=COMPLEJO CIUDAD UNIVERSITARIA (SIN NOMBRE OFICIAL) - COLECTORA CANTILO, INT. - COMPLEJO PARQUE DE LOS NIÑOS (SIN NOMBRE OFICIAL) - LA CACHILA - PICO - DEL LIBERTADOR AV. - RIVADAVIA MARTIN, COMODORO - 11 DE SEPTIEMBRE DE 1888 - JARAMILLO - DEL LIBERTADOR AV. - SU RUTA
+[CONNECTIVITY DIAG] fid_co=330 | radio=1400m | comp_source=751 nodos | D_mismo_componente=3/3
+[CONNECTIVITY DIAG] fid_co=594 | radio=1400m | comp_source=751 nodos | D_mismo_componente=3/3
+[CONNECTIVITY DIAG] fid_co=918 | radio=1400m | comp_source=766 nodos | D_mismo_componente=2/2
+[CONNECTIVITY DIAG] fid_co=924 | radio=1400m | comp_source=781 nodos | D_mismo_componente=16/16
+[ROI ADAPTATIVO CICLO] radio=1400m | recuperados=[306] | pendientes=[25, 92, 114, 248, 250, 305, 330, 594, 918, 924] | tiempo=3.46s
+[ROI ADAPTATIVO] radio=2000m | fid_co pendientes=[25, 92, 114, 248, 250, 305, 330, 594, 918, 924]
+[COMPAT] native:buffer: esta version de QGIS no acepta SEPARATE_DISJOINT; se omite
+Results: {'OUTPUT': 'Buffered_568ee656_1b0d_49b5_9910_5eeab2639f49'}
+[PERF-PROC] native:buffer | 0.020s | features=1
+Results: {'OUTPUT': 'Extracted__location__6c8a20e7_62bd_4226_a1ce_3cdc4ffb9cef'}
+[PERF-PROC] native:extractbylocation | 0.033s | features=2049
+[COMPAT] native:difference: esta version de QGIS no acepta GRID_SIZE; se omite
+Results: {'OUTPUT': 'Difference_1dc5bf28_d6bb_4c24_9ed5_8db71aab0fef'}
+[PERF-PROC] native:difference | 0.050s | features=1937
+[CONNECTIVITY DIAG] fid_co=25 | radio=2000m | comp_source=1165 nodos | D_mismo_componente=3/3
+[CONNECTIVITY DIAG] fid_co=92 | radio=2000m | comp_source=1165 nodos | D_mismo_componente=3/3
+[CONNECTIVITY DIAG] fid_co=114 | radio=2000m | comp_source=1180 nodos | D_mismo_componente=13/13
+[CONNECTIVITY DIAG] fid_co=248 | radio=2000m | comp_source=1180 nodos | D_mismo_componente=3/3
+[CONNECTIVITY DIAG] fid_co=250 | radio=2000m | comp_source=1180 nodos | D_mismo_componente=3/3
+[CONNECTIVITY DIAG] fid_co=305 | radio=2000m | comp_source=1182 nodos | D_mismo_componente=2/2
+[CONNECTIVITY DIAG] fid_co=330 | radio=2000m | comp_source=1182 nodos | D_mismo_componente=3/3
+[CONNECTIVITY DIAG] fid_co=594 | radio=2000m | comp_source=1182 nodos | D_mismo_componente=3/3
+[CONNECTIVITY DIAG] fid_co=918 | radio=2000m | comp_source=1197 nodos | D_mismo_componente=2/2
+[CONNECTIVITY DIAG] fid_co=924 | radio=2000m | comp_source=1212 nodos | D_mismo_componente=16/16
+[ROI ADAPTATIVO CICLO] radio=2000m | recuperados=[] | pendientes=[25, 92, 114, 248, 250, 305, 330, 594, 918, 924] | tiempo=5.74s
+[ROI ADAPTATIVO RESUMEN] recuperados=8 [115, 135, 306, 731, 734, 920, 921, 922] | sin_ruta_restantes=[25, 92, 114, 248, 250, 305, 330, 594, 918, 924]
+[HERENCIA CORREDOR] 8va pasada sobre 10 fid_co sin ruta usando 8 rutas donantes.
+[HERENCIA CORREDOR RESUMEN] recuperados=0 [] | pendientes=[25, 92, 114, 248, 250, 305, 330, 594, 918, 924]
+[Log fid_co sin ruta] Guardado en: C:\Users\Operador\AppData\Local\Temp\desvios_calculo_e_2fp82a\log_fid_sin_ruta_20261030_123527.txt (10 sin ruta definitiva de 18 con diagnóstico)
+[Log ruteo completo] Guardado en: C:\Users\Operador\AppData\Local\Temp\desvios_calculo_e_2fp82a\log_ruteo_todos_fid_20261030_123527.txt
+Results: {'OUTPUT': 'Reprojected_07b7f880_ccda_43e0_92b7_05a771305005'}
+Results: {'OUTPUT': 'Reprojected_33d27dc1_fad2_47e1_9ee3_9b1a527aedd1'}
+Results: {'OUTPUT': 'Reprojected_9e0aff9b_7863_4fe3_92b4_07d1a307c6e8'}
+Results: {'OUTPUT': 'Reprojected_58815a89_6e50_42ad_9a81_8da6d58edc9a'}
+Results: {'OUTPUT': 'Reprojected_1b74c126_f701_4d1c_af65_8eff244059c7'}
+Results: {'OUTPUT': 'Reprojected_92eccbc9_a35a_4c23_b08f_d04a1ca5a033'}
+[TERMINAL RESUMEN] excluidas=0 | fids=[]
+Mapa web exportado en Escritorio: C:\Users\Operador\AppData\Local\Temp\desvios_calculo_e_2fp82a\afectacion_20261030_123527.html
+Results: {'OUTPUT': 'C:\\Users\\Operador\\AppData\\Local\\Temp\\desvios_calculo_e_2fp82a\\desvios_por_ruta_1_5_20261030_123528.kml'}
+KML exportado: 1-5 (5 elementos) -> C:\Users\Operador\AppData\Local\Temp\desvios_calculo_e_2fp82a\desvios_por_ruta_1_5_20261030_123528.kml
+KML de desvíos agrupados por Ruta exportado (5 desvíos) en: C:\Users\Operador\AppData\Local\Temp\desvios_calculo_e_2fp82a\desvios_por_ruta_1_5_20261030_123528.kml
+Results: {'OUTPUT': 'C:\\Users\\Operador\\AppData\\Local\\Temp\\desvios_calculo_e_2fp82a\\tramos_afectados_20261030_123528.kml'}
+Estilo My Maps aplicado al KML de tramos (rojo RGB(165,39,20), ancho ~1/3, estilo uniforme).
+KML de tramos afectados exportado en: C:\Users\Operador\AppData\Local\Temp\desvios_calculo_e_2fp82a\tramos_afectados_20261030_123528.kml
+Results: {'OUT_CENTROIDES_OD': 'Reprojected_9e0aff9b_7863_4fe3_92b4_07d1a307c6e8', 'OUT_DEBUG_RUTEOS': None, 'OUT_DEBUG_SUBTRAMOS': None, 'OUT_DESVIOS': 'Reprojected_92eccbc9_a35a_4c23_b08f_d04a1ca5a033', 'OUT_LINEAS_AFECTADAS': 'Reprojected_58815a89_6e50_42ad_9a81_8da6d58edc9a', 'OUT_LINEAS_CORTADAS': 'Reprojected_1b74c126_f701_4d1c_af65_8eff244059c7', 'OUT_RED_NETA': 'Reprojected_33d27dc1_fad2_47e1_9ee3_9b1a527aedd1', 'OUT_TRAMOS': 'Reprojected_07b7f880_ccda_43e0_92b7_05a771305005'}
+[BRIDGE] processing.run() — fin, guardando capas

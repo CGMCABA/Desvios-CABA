@@ -1,0 +1,1462 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>Afectación – 20261030_122004</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <style>
+  :root {
+    --fucsia: #005C59;
+    --rojo: #3949AB;
+    --panel-w: 320px;
+    --report-h: 240px;
+  }
+  html, body { height: 100%; margin: 0; padding: 0; }
+
+  #app {
+    position: absolute; inset: 0;
+    display: flex;
+ height: 100vh;
+ max-height: 100vh;
+ height: -webkit-fill-available;
+    background: #e5e5e5;
+    font-family: system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    font-size: 14px;
+  }
+
+  /* Panel izquierdo (capas) */
+  #leftpanel {
+ position: relative;
+    width: var(--panel-w);
+    background: #fff;
+    border-right: 4px solid var(--fucsia);
+    padding: 10px 12px;
+    overflow-y: auto;
+ overflow-x: visible;
+    box-sizing: border-box;
+    transition: width .25s ease, padding .25s ease, border-right-color .25s ease;
+  }
+  #leftpanel.hidden {
+    width: 0;
+    padding: 0;
+    border-right-color: transparent;
+    overflow: hidden;
+  }
+
+  #main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+ min-height: 0;
+    position: relative;
+  }
+
+  #map {
+    flex: 1;
+    min-height: 200px;
+    background: #e5e5e5;
+  }
+
+  /* Botón único para mostrar/ocultar capas */
+  #btnLayers {
+    position: absolute;
+    z-index: 9999;
+    top: 10px;
+    left: 10px;
+ background-color: #005C59;
+ background: var(--fucsia, #005C59);
+    color: #fff;
+    border: 0;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  
+ opacity: 1;
+}
+
+  /* Drag bar + reporte */
+  #dragbar {
+    height: 10px;
+    cursor: row-resize;
+    background: linear-gradient(90deg, transparent, rgba(57,73,171,.35), transparent);
+    border-top: 1px solid rgba(0,0,0,.08);
+    border-bottom: 1px solid rgba(0,0,0,.08);
+    user-select: none;
+    touch-action: none;
+  }
+
+  #bottompanel {
+    height: var(--report-h);
+    background: #fff;
+    border-top: 4px solid var(--rojo);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    transition: height .25s ease;
+  }
+
+  #bottombar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 8px 10px;
+    border-bottom: 1px solid #ddd;
+    user-select: none;
+  }
+
+  #toggleReport {
+ background-color: #3949AB;
+ background: var(--rojo, #3949AB);
+    color: #fff;
+    border: 0;
+    border-radius: 6px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-weight: 800;
+  
+ opacity: 1;
+}
+
+  #btnCopyReport {
+    background: #111;
+    color: #fff;
+    border: 0;
+    border-radius: 6px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-weight: 800;
+    transition: background .18s ease;
+  }
+  #btnCopyReport.copied {
+    background: #16a34a;
+    animation: btnCopiedPulse .32s ease;
+  }
+  @keyframes btnCopiedPulse { 40% { transform: scale(1.09); } }
+
+  #reporte-html {
+    padding: 10px 12px;
+    overflow-y: auto;
+  }
+
+  #bottompanel.collapsed { height: 38px; }
+  #bottompanel.collapsed #reporte-html { display: none; }
+  #bottompanel.collapsed + #dragbar { display: none; }
+
+  .muted { color: #666; }
+
+  .group {
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 8px;
+    margin: 8px 0;
+  }
+  .group-title {
+    font-weight: 900;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    cursor:pointer;
+    user-select:none;
+  }
+  .group-children { margin-top: 8px; padding-left: 6px; }
+  .group.collapsed .group-children { display: none; }
+
+  /* Flechas como marker rotado */
+  .arrow-end-icon { background: transparent !important; border: 0 !important; }
+  .arrow-end { pointer-events: none; line-height:0; margin:0; padding:0; }
+  .arrow-end svg { display:block; }
+  .base-map-light { filter: saturate(.42) brightness(1.13) contrast(.88); }
+
+  /* Resaltado permanente: paradas asociadas al desvío seleccionado en el panel */
+  .stop-p-icon > span { transition: transform .15s ease; }
+  .stop-p-icon.stop-assoc-hl > span { box-shadow: 0 0 0 2px #ff1f1f, 0 0 0 4px #fff; }
+  .stop-p-icon.stop-shrunk > span { transform: scale(.5); }
+  .group-children label.sel-label { cursor: pointer; }
+  .group-children label.sel-label:hover { text-decoration: underline; }
+  .group-children label.sel-label.is-selected { color: #d61f1f; font-weight: 800; }
+
+  
+/* Barra vertical en degradé al borde del panel de capas (solo cuando está visible) */
+#leftpanel::after {
+ content: '';
+ position: absolute;
+ top: 0;
+ right: -10px;
+ width: 10px;
+ height: 100%;
+ background: linear-gradient(180deg, transparent, rgba(0,92,89,.35), transparent);
+ border-left: 1px solid rgba(0,0,0,.08);
+ border-right: 1px solid rgba(0,0,0,.08);
+ pointer-events: none;
+}
+#leftpanel.hidden::after { display: none; }
+
+/* iOS Safari: usar dynamic viewport height cuando está disponible */
+@supports (height: 100dvh) {
+  #app { height: 100dvh; max-height: 100dvh; }
+}
+</style>
+</head>
+<body>
+  <div id="app">
+    <div id="leftpanel" class="hidden">
+      <h2>Capas y elementos</h2>
+      <div id="checklist"></div>
+      <hr/>
+      <h3>Mapa base</h3>
+      <div id="basemap"></div>
+    </div>
+
+    <div id="main">
+      <button id="btnLayers" type="button">Mostrar capas</button>
+      <div id="map"></div>
+      <div id="dragbar" title="Arrastrá para cambiar la altura del reporte"></div>
+      <div id="bottompanel" class="collapsed">
+        <div id="bottombar">
+          <div><strong>Reporte</strong> <span class="muted">– 30/10 - 12:19</span></div>
+          <div style="display:flex; gap:8px;">
+            <button id="btnCopyReport" type="button">Copiar</button>
+            <button id="toggleReport" type="button">Mostrar reporte</button>
+          </div>
+        </div>
+        <div id="reporte-html"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+  const TRAMOS = {"type": "FeatureCollection", "features": [{"type": "Feature", "geometry": {"coordinates": [[[-58.36590720779524, -34.63179591847381], [-58.365178547158514, -34.632276606759135]]], "type": "MultiLineString"}, "properties": {"id": 17858, "codigo": 17011, "nomoficial": "PALOS", "alt_izqini": 2, "alt_izqfin": 100, "alt_derini": 1, "alt_derfin": 99, "tipo_c": "CALLE", "long": 85.48805482028358, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "ARZOBISPO ESPINOSA", "Calle2": "20 DE SEPTIEMBRE", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36590721 -34.63179592, -58.36517855 -34.63227661))", "escuela": 0, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 1, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 10, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.365178547158514, -34.632276606759135], [-58.364198261174224, -34.63292321481058]]], "type": "MultiLineString"}, "properties": {"id": 18052, "codigo": 17011, "nomoficial": "PALOS", "alt_izqini": 102, "alt_izqfin": 150, "alt_derini": 101, "alt_derfin": 149, "tipo_c": "CALLE", "long": 115.00367741736795, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "20 DE SEPTIEMBRE", "Calle2": "BLANES, JUAN MANUEL", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36517855 -34.63227661, -58.36419826 -34.63292321))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 28, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.36235671558672, -34.63262930744322], [-58.36379111862952, -34.633191829552786]]], "type": "MultiLineString"}, "properties": {"id": 18161, "codigo": 23064, "nomoficial": "VILLAFAÑE, WENCESLAO", "alt_izqini": 502, "alt_izqfin": 600, "alt_derini": 501, "alt_derfin": 599, "tipo_c": "CALLE", "long": 145.58466970517375, "sentido": "CRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "RODRIGUEZ, MARTIN", "Calle2": "PALOS", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36235672 -34.63262931, -58.36379112 -34.63319183))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 28, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.364198261174224, -34.63292321481058], [-58.36379111862952, -34.633191829552786]]], "type": "MultiLineString"}, "properties": {"id": 18162, "codigo": 17011, "nomoficial": "PALOS", "alt_izqini": 152, "alt_izqfin": 200, "alt_derini": 151, "alt_derfin": 199, "tipo_c": "CALLE", "long": 47.76842969115796, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "BLANES, JUAN MANUEL", "Calle2": "VILLAFAÑE, WENCESLAO", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36419826 -34.63292321, -58.36379112 -34.63319183))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 28, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.36379111862952, -34.633191829552786], [-58.36450441007736, -34.63347156700253]]], "type": "MultiLineString"}, "properties": {"id": 18247, "codigo": 23064, "nomoficial": "VILLAFAÑE, WENCESLAO", "alt_izqini": 602, "alt_izqfin": 700, "alt_derini": 601, "alt_derfin": 699, "tipo_c": "CALLE", "long": 72.39564822484485, "sentido": "CRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "PALOS", "Calle2": "ZOLEZZI, ANTONIO L.", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36379112 -34.63319183, -58.36450441 -34.63347157))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 28, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.3603404922758, -34.632846849570925], [-58.36187312950283, -34.63347123824189]]], "type": "MultiLineString"}, "properties": {"id": 18248, "codigo": 4057, "nomoficial": "VALLE, ARISTOBULO DEL", "alt_izqini": 402, "alt_izqfin": 500, "alt_derini": 401, "alt_derfin": 499, "tipo_c": "CALLE", "long": 156.68204095545397, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "BROWN, ALTE. AV.", "Calle2": "RODRIGUEZ, MARTIN", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36034049 -34.63284685, -58.36187313 -34.63347124))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 1, "rtp": 0, "ce": 0, "cant_linea": 6.0, "criticidad": 41, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.36450441007736, -34.63347156700253], [-58.36524419104433, -34.633761673782004]]], "type": "MultiLineString"}, "properties": {"id": 18321, "codigo": 23064, "nomoficial": "VILLAFAÑE, WENCESLAO", "alt_izqini": 702, "alt_izqfin": 750, "alt_derini": 701, "alt_derfin": 749, "tipo_c": "CALLE", "long": 75.08307979127346, "sentido": "CRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "ZOLEZZI, ANTONIO L.", "Calle2": "VALLE IBERLUCEA DEL, DR.", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36450441 -34.63347157, -58.36524419 -34.63376167))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 1, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 26, "ZONA_FUNC": "3", "ZONA_CPU": "UP", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.36187312950283, -34.63347123824189], [-58.36327583885811, -34.63404268372909]]], "type": "MultiLineString"}, "properties": {"id": 18391, "codigo": 4057, "nomoficial": "VALLE, ARISTOBULO DEL", "alt_izqini": 502, "alt_izqfin": 600, "alt_derini": 501, "alt_derfin": 599, "tipo_c": "CALLE", "long": 143.39808910674068, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "RODRIGUEZ, MARTIN", "Calle2": "PALOS", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36187313 -34.63347124, -58.36327584 -34.63404268))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 6.0, "criticidad": 41, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.36379111862952, -34.633191829552786], [-58.36327583885811, -34.63404268372909]]], "type": "MultiLineString"}, "properties": {"id": 18392, "codigo": 17011, "nomoficial": "PALOS", "alt_izqini": 202, "alt_izqfin": 300, "alt_derini": 201, "alt_derfin": 299, "tipo_c": "CALLE", "long": 105.55639874639621, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "VILLAFAÑE, WENCESLAO", "Calle2": "VALLE, ARISTOBULO DEL", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36379112 -34.63319183, -58.36327584 -34.63404268))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 28, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.36524419104433, -34.633761673782004], [-58.36571449746686, -34.633970224528454], [-58.3662473101925, -34.634178292109674]]], "type": "MultiLineString"}, "properties": {"id": 18395, "codigo": 23064, "nomoficial": "VILLAFAÑE, WENCESLAO", "alt_izqini": 752, "alt_izqfin": 800, "alt_derini": 751, "alt_derfin": 799, "tipo_c": "CALLE", "long": 102.97492740867828, "sentido": "CRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "VALLE IBERLUCEA DEL, DR.", "Calle2": "ESPORA, TOMAS, CORONEL DE MARINA", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36524419 -34.63376167, -58.3657145 -34.63397022, -58.36624731 -34.63417829))", "escuela": 0, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 1, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 9, "ZONA_FUNC": "3", "ZONA_CPU": "UP", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.36327583885811, -34.63404268372909], [-58.36397975549173, -34.63432945884368]]], "type": "MultiLineString"}, "properties": {"id": 18486, "codigo": 4057, "nomoficial": "VALLE, ARISTOBULO DEL", "alt_izqini": 602, "alt_izqfin": 700, "alt_derini": 601, "alt_derfin": 699, "tipo_c": "CALLE", "long": 71.96107786639905, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "PALOS", "Calle2": "ZOLEZZI, ANTONIO L.", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36327584 -34.63404268, -58.36397976 -34.63432946))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 28, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.36450441007736, -34.63347156700253], [-58.36397975549173, -34.63432945884368]]], "type": "MultiLineString"}, "properties": {"id": 18487, "codigo": 27022, "nomoficial": "ZOLEZZI, ANTONIO L.", "alt_izqini": 2, "alt_izqfin": 100, "alt_derini": 1, "alt_derfin": 99, "tipo_c": "PASAJE", "long": 106.64009842374114, "sentido": "DOBLE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "VILLAFAÑE, WENCESLAO", "Calle2": "VALLE, ARISTOBULO DEL", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36450441 -34.63347157, -58.36397976 -34.63432946))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 26, "ZONA_FUNC": "3", "ZONA_CPU": "UP", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.36397975549173, -34.63432945884368], [-58.364686316925805, -34.63461728837275]]], "type": "MultiLineString"}, "properties": {"id": 18572, "codigo": 4057, "nomoficial": "VALLE, ARISTOBULO DEL", "alt_izqini": 702, "alt_izqfin": 800, "alt_derini": 701, "alt_derfin": 799, "tipo_c": "CALLE", "long": 72.2301221857157, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "ZOLEZZI, ANTONIO L.", "Calle2": "VALLE IBERLUCEA DEL, DR.", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36397976 -34.63432946, -58.36468632 -34.63461729))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 28, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.36524419104433, -34.633761673782004], [-58.36482887419289, -34.63438606336468], [-58.364686316925805, -34.63461728837275]]], "type": "MultiLineString"}, "properties": {"id": 18573, "codigo": 4059, "nomoficial": "VALLE IBERLUCEA DEL, DR.", "alt_izqini": 602, "alt_izqfin": 700, "alt_derini": 601, "alt_derfin": 699, "tipo_c": "CALLE", "long": 107.83637918886132, "sentido": "CRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "VILLAFAÑE, WENCESLAO", "Calle2": "VALLE, ARISTOBULO DEL", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36524419 -34.63376167, -58.36482887 -34.63438606, -58.36468632 -34.63461729))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 1, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 26, "ZONA_FUNC": "3", "ZONA_CPU": "UP", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.3613733826584, -34.63428294194341], [-58.362778576594515, -34.63485143738493]]], "type": "MultiLineString"}, "properties": {"id": 18644, "codigo": 17088, "nomoficial": "PINZON", "alt_izqini": 502, "alt_izqfin": 600, "alt_derini": 501, "alt_derfin": 599, "tipo_c": "CALLE", "long": 143.45718669022233, "sentido": "CRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "RODRIGUEZ, MARTIN", "Calle2": "PALOS", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36137338 -34.63428294, -58.36277858 -34.63485144))", "escuela": 0, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 10, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.36327583885811, -34.63404268372909], [-58.36289551762861, -34.63467160246392], [-58.362778576594515, -34.63485143738493]]], "type": "MultiLineString"}, "properties": {"id": 18645, "codigo": 17011, "nomoficial": "PALOS", "alt_izqini": 302, "alt_izqfin": 400, "alt_derini": 301, "alt_derfin": 399, "tipo_c": "CALLE", "long": 100.64980191793842, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "VALLE, ARISTOBULO DEL", "Calle2": "PINZON", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36327584 -34.63404268, -58.36289552 -34.6346716, -58.36277858 -34.63485144))", "escuela": 0, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 6.0, "criticidad": 23, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.362778576594515, -34.63485143738493], [-58.363483948429575, -34.63513680806307]]], "type": "MultiLineString"}, "properties": {"id": 18715, "codigo": 17088, "nomoficial": "PINZON", "alt_izqini": 602, "alt_izqfin": 700, "alt_derini": 601, "alt_derfin": 699, "tipo_c": "CALLE", "long": 72.01159955373727, "sentido": "CRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "PALOS", "Calle2": "ZOLEZZI, ANTONIO L.", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36277858 -34.63485144, -58.36348395 -34.63513681))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 28, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.36397975549173, -34.63432945884368], [-58.36386288894676, -34.634520633011554], [-58.363483948429575, -34.63513680806307]]], "type": "MultiLineString"}, "properties": {"id": 18716, "codigo": 27022, "nomoficial": "ZOLEZZI, ANTONIO L.", "alt_izqini": 102, "alt_izqfin": 200, "alt_derini": 101, "alt_derfin": 199, "tipo_c": "PASAJE", "long": 100.44272665281513, "sentido": "DOBLE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "VALLE, ARISTOBULO DEL", "Calle2": "PINZON", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36397976 -34.63432946, -58.36386289 -34.63452063, -58.36348395 -34.63513681))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 28, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.36610414334866, -34.635117445216444], [-58.366926899885186, -34.635212676449896]]], "type": "MultiLineString"}, "properties": {"id": 18740, "codigo": 4057, "nomoficial": "VALLE, ARISTOBULO DEL", "alt_izqini": 902, "alt_izqfin": 1000, "alt_derini": 901, "alt_derfin": 999, "tipo_c": "CALLE", "long": 76.17913145595878, "sentido": "DOBLE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "IRALA", "Calle2": "NULL", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36610414 -34.63511745, -58.3669269 -34.63521268))", "escuela": 0, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 9, "ZONA_FUNC": "3", "ZONA_CPU": "UP", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.363483948429575, -34.63513680806307], [-58.364190347094116, -34.63542252760303]]], "type": "MultiLineString"}, "properties": {"id": 18791, "codigo": 17088, "nomoficial": "PINZON", "alt_izqini": 702, "alt_izqfin": 800, "alt_derini": 701, "alt_derfin": 799, "tipo_c": "CALLE", "long": 72.11298321247544, "sentido": "CRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "ZOLEZZI, ANTONIO L.", "Calle2": "VALLE IBERLUCEA DEL, DR.", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36348395 -34.63513681, -58.36419035 -34.63542253))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 28, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.364686316925805, -34.63461728837275], [-58.3645679168244, -34.634809447892906], [-58.364190347094116, -34.63542252760303]]], "type": "MultiLineString"}, "properties": {"id": 18792, "codigo": 4059, "nomoficial": "VALLE IBERLUCEA DEL, DR.", "alt_izqini": 702, "alt_izqfin": 800, "alt_derini": 701, "alt_derfin": 799, "tipo_c": "CALLE", "long": 100.2407079600651, "sentido": "CRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "VALLE, ARISTOBULO DEL", "Calle2": "PINZON", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36468632 -34.63461729, -58.36456792 -34.63480945, -58.36419035 -34.63542253))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 1, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 30, "ZONA_FUNC": "3", "ZONA_CPU": "E4", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.360871659268206, -34.63510048694384], [-58.36194780277611, -34.63554054491794], [-58.36227617467368, -34.635674973506795]]], "type": "MultiLineString"}, "properties": {"id": 18856, "codigo": 2110, "nomoficial": "BRANDSEN", "alt_izqini": 502, "alt_izqfin": 600, "alt_derini": 501, "alt_derfin": 599, "tipo_c": "CALLE", "long": 143.6937182607706, "sentido": "CRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "RODRIGUEZ, MARTIN", "Calle2": "PALOS", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36087166 -34.63510049, -58.3619478 -34.63554054, -58.36227617 -34.63567497))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 10.0, "criticidad": 44, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.362778576594515, -34.63485143738493], [-58.362656257566115, -34.63503943683973], [-58.36239245050158, -34.63548344829584], [-58.36227617467368, -34.635674973506795]]], "type": "MultiLineString"}, "properties": {"id": 18857, "codigo": 17011, "nomoficial": "PALOS", "alt_izqini": 402, "alt_izqfin": 500, "alt_derini": 401, "alt_derfin": 499, "tipo_c": "CALLE", "long": 102.32920654126785, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "PINZON", "Calle2": "BRANDSEN", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36277858 -34.63485144, -58.36265626 -34.63503944, -58.36239245 -34.63548345, -58.36227617 -34.63567497))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 6.0, "criticidad": 41, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.36227617467368, -34.635674973506795], [-58.36297669349037, -34.63596182195138]]], "type": "MultiLineString"}, "properties": {"id": 18931, "codigo": 2110, "nomoficial": "BRANDSEN", "alt_izqini": 602, "alt_izqfin": 650, "alt_derini": 601, "alt_derfin": 649, "tipo_c": "CALLE", "long": 71.68423264712676, "sentido": "CRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "BLANCO ENCALADA", "Calle2": "NULL", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36227617 -34.63567497, -58.36297669 -34.63596182))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 10.0, "criticidad": 44, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.363483948429575, -34.63513680806307], [-58.36297669349037, -34.63596182195138]]], "type": "MultiLineString"}, "properties": {"id": 18932, "codigo": 27022, "nomoficial": "ZOLEZZI, ANTONIO L.", "alt_izqini": 202, "alt_izqfin": 300, "alt_derini": 201, "alt_derfin": 299, "tipo_c": "PASAJE", "long": 102.66505055998645, "sentido": "DOBLE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "PINZON", "Calle2": "BRANDSEN", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36348395 -34.63513681, -58.36297669 -34.63596182))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 28, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.36564492026506, -34.63598321309228], [-58.36652900890709, -34.636096524429], [-58.366766435973354, -34.63612206492614]]], "type": "MultiLineString"}, "properties": {"id": 18977, "codigo": 17088, "nomoficial": "PINZON", "alt_izqini": 902, "alt_izqfin": 1000, "alt_derini": 901, "alt_derfin": 999, "tipo_c": "CALLE", "long": 103.98918594373497, "sentido": "DOBLE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "IRALA", "Calle2": "NULL", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36564492 -34.63598321, -58.36652901 -34.63609652, -58.36676644 -34.63612206))", "escuela": 0, "hospital": 0, "ct": 0, "pan": 1, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 19, "ZONA_FUNC": "3", "ZONA_CPU": "E3", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.36297669349037, -34.63596182195138], [-58.3635216298879, -34.636185017479015], [-58.36368991335455, -34.63624769081274]]], "type": "MultiLineString"}, "properties": {"id": 19011, "codigo": 2110, "nomoficial": "BRANDSEN", "alt_izqini": 652, "alt_izqfin": 700, "alt_derini": 651, "alt_derfin": 699, "tipo_c": "CALLE", "long": 72.6907176384959, "sentido": "CRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "ZOLEZZI, ANTONIO L.", "Calle2": "VALLE IBERLUCEA DEL, DR.", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36297669 -34.63596182, -58.36352163 -34.63618502, -58.36368991 -34.63624769))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 1, "rtp": 0, "ce": 0, "cant_linea": 10.0, "criticidad": 44, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.364190347094116, -34.63542252760303], [-58.364045907996065, -34.63565698975688], [-58.36377281966025, -34.63610078533545], [-58.36368991335455, -34.63624769081274]]], "type": "MultiLineString"}, "properties": {"id": 19012, "codigo": 4059, "nomoficial": "VALLE IBERLUCEA DEL, DR.", "alt_izqini": 802, "alt_izqfin": 900, "alt_derini": 801, "alt_derfin": 899, "tipo_c": "CALLE", "long": 102.40661843627701, "sentido": "CRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "PINZON", "Calle2": "BRANDSEN", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36419035 -34.63542253, -58.36404591 -34.63565699, -58.36377282 -34.63610079, -58.36368991 -34.63624769))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 1, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 30, "ZONA_FUNC": "3", "ZONA_CPU": "E4", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.36037009485392, -34.63591929751229], [-58.36178067196403, -34.63649210467291]]], "type": "MultiLineString"}, "properties": {"id": 19084, "codigo": 20118, "nomoficial": "SUAREZ", "alt_izqini": 502, "alt_izqfin": 600, "alt_derini": 501, "alt_derfin": 599, "tipo_c": "CALLE", "long": 144.1087119433866, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "RODRIGUEZ, MARTIN", "Calle2": "PALOS", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36037009 -34.6359193, -58.36178067 -34.6364921))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 1.0, "criticidad": 33, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.36227617467368, -34.635674973506795], [-58.36217893638125, -34.63583503522685], [-58.36178067196403, -34.63649210467291]]], "type": "MultiLineString"}, "properties": {"id": 19085, "codigo": 17011, "nomoficial": "PALOS", "alt_izqini": 502, "alt_izqfin": 600, "alt_derini": 501, "alt_derfin": 599, "tipo_c": "CALLE", "long": 101.39870183526415, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "BRANDSEN", "Calle2": "SUAREZ", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36227617 -34.63567497, -58.36217894 -34.63583504, -58.36178067 -34.6364921))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 6.0, "criticidad": 41, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.36368991335455, -34.63624769081274], [-58.363934929758116, -34.63633894783769], [-58.36469694863368, -34.63664872399973]]], "type": "MultiLineString"}, "properties": {"id": 19119, "codigo": 2110, "nomoficial": "BRANDSEN", "alt_izqini": 702, "alt_izqfin": 800, "alt_derini": 701, "alt_derfin": 799, "tipo_c": "CALLE", "long": 102.508479900157, "sentido": "CRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "VALLE IBERLUCEA DEL, DR.", "Calle2": "FILIBERTO, JUAN DE DIOS", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36368991 -34.63624769, -58.36393493 -34.63633895, -58.36469695 -34.63664872))", "escuela": 0, "hospital": 0, "ct": 0, "pan": 1, "mtb": 0, "zona_com": 1, "rtp": 0, "ce": 0, "cant_linea": 10.0, "criticidad": 36, "ZONA_FUNC": "3", "ZONA_CPU": "E4", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.36469694863368, -34.63664872399973], [-58.365023168032735, -34.636789343712366], [-58.365562920073025, -34.63688590203282]]], "type": "MultiLineString"}, "properties": {"id": 19149, "codigo": 2110, "nomoficial": "BRANDSEN", "alt_izqini": 802, "alt_izqfin": 900, "alt_derini": 801, "alt_derfin": 899, "tipo_c": "CALLE", "long": 84.37349300134652, "sentido": "CRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Paso a Nivel", "barrio": "BOCA", "Calle1": "FILIBERTO, JUAN DE DIOS", "Calle2": "POLIZA, PRACTICO", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36469695 -34.63664872, -58.36502317 -34.63678934, -58.36556292 -34.6368859))", "escuela": 0, "hospital": 0, "ct": 0, "pan": 1, "mtb": 0, "zona_com": 1, "rtp": 0, "ce": 0, "cant_linea": 10.0, "criticidad": 35, "ZONA_FUNC": "3", "ZONA_CPU": "E3", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.36178067196403, -34.63649210467291], [-58.361932511966415, -34.636553780815014], [-58.36260502451632, -34.63682483328945]]], "type": "MultiLineString"}, "properties": {"id": 19165, "codigo": 20118, "nomoficial": "SUAREZ", "alt_izqini": 602, "alt_izqfin": 658, "alt_derini": 601, "alt_derfin": 653, "tipo_c": "CALLE", "long": 84.11918285625242, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "PALOS", "Calle2": "NULL", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36178067 -34.6364921, -58.36193251 -34.63655378, -58.36260502 -34.63682483))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 1, "rtp": 0, "ce": 0, "cant_linea": 1.0, "criticidad": 33, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.365562920073025, -34.63688590203282], [-58.36645162598117, -34.63699330207618], [-58.36662388163151, -34.63701372061219]]], "type": "MultiLineString"}, "properties": {"id": 19212, "codigo": 2110, "nomoficial": "BRANDSEN", "alt_izqini": 902, "alt_izqfin": 1000, "alt_derini": 901, "alt_derfin": 999, "tipo_c": "CALLE", "long": 98.31126770072656, "sentido": "CRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "POLIZA, PRACTICO", "Calle2": "IRALA", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36556292 -34.6368859, -58.36645163 -34.6369933, -58.36662388 -34.63701372))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 1, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 10.0, "criticidad": 53, "ZONA_FUNC": "3", "ZONA_CPU": "E3", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.36260502451632, -34.63682483328945], [-58.363199703879175, -34.637064620729944]]], "type": "MultiLineString"}, "properties": {"id": 19232, "codigo": 20118, "nomoficial": "SUAREZ", "alt_izqini": 660, "alt_izqfin": 700, "alt_derini": 679, "alt_derfin": 699, "tipo_c": "CALLE", "long": 60.670837309342495, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "VALLE IBERLUCEA DEL, DR.", "Calle2": "NULL", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36260502 -34.63682483, -58.3631997 -34.63706462))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 1, "rtp": 0, "ce": 0, "cant_linea": 1.0, "criticidad": 33, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.36368991335455, -34.63624769081274], [-58.36359454075601, -34.63641676933761], [-58.36329907711976, -34.636900052896124], [-58.363199703879175, -34.637064620729944]]], "type": "MultiLineString"}, "properties": {"id": 19233, "codigo": 4059, "nomoficial": "VALLE IBERLUCEA DEL, DR.", "alt_izqini": 902, "alt_izqfin": 1000, "alt_derini": 901, "alt_derfin": 999, "tipo_c": "CALLE", "long": 101.16978689288624, "sentido": "CRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "BRANDSEN", "Calle2": "SUAREZ", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36368991 -34.63624769, -58.36359454 -34.63641677, -58.36329908 -34.63690005, -58.3631997 -34.63706462))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 1, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 28, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.36178067196403, -34.63649210467291], [-58.3616530381649, -34.636702704478246], [-58.36129547309602, -34.637305932436746]]], "type": "MultiLineString"}, "properties": {"id": 19311, "codigo": 17011, "nomoficial": "PALOS", "alt_izqini": 602, "alt_izqfin": 700, "alt_derini": 601, "alt_derfin": 699, "tipo_c": "CALLE", "long": 100.65059951565576, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "SUAREZ", "Calle2": "OLAVARRIA", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36178067 -34.6364921, -58.36165304 -34.6367027, -58.36129547 -34.63730593))", "escuela": 1, "hospital": 1, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 1, "rtp": 0, "ce": 0, "cant_linea": 6.0, "criticidad": 66, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.363199703879175, -34.637064620729944], [-58.36335359041616, -34.63712664889444], [-58.36407933636984, -34.63742090605402], [-58.364236215364926, -34.63747532983578]]], "type": "MultiLineString"}, "properties": {"id": 19362, "codigo": 20118, "nomoficial": "SUAREZ", "alt_izqini": 702, "alt_izqfin": 800, "alt_derini": 701, "alt_derfin": 799, "tipo_c": "CALLE", "long": 105.42060385199544, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "VALLE IBERLUCEA DEL, DR.", "Calle2": "FILIBERTO, JUAN DE DIOS", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.3631997 -34.63706462, -58.36335359 -34.63712665, -58.36407934 -34.63742091, -58.36423622 -34.63747533))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 1, "mtb": 0, "zona_com": 1, "rtp": 0, "ce": 0, "cant_linea": 1.0, "criticidad": 41, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.364236215364926, -34.63747532983578], [-58.36456104609641, -34.63758754467209], [-58.365086218836964, -34.63774834364265]]], "type": "MultiLineString"}, "properties": {"id": 19379, "codigo": 20118, "nomoficial": "SUAREZ", "alt_izqini": 802, "alt_izqfin": 900, "alt_derini": 801, "alt_derfin": 899, "tipo_c": "CALLE", "long": 83.63389825134348, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Paso a Nivel", "barrio": "BOCA", "Calle1": "FILIBERTO, JUAN DE DIOS", "Calle2": "POLIZA, PRACTICO", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36423622 -34.63747533, -58.36456105 -34.63758754, -58.36508622 -34.63774834))", "escuela": 0, "hospital": 0, "ct": 0, "pan": 1, "mtb": 0, "zona_com": 1, "rtp": 0, "ce": 0, "cant_linea": 1.0, "criticidad": 23, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.365562920073025, -34.63688590203282], [-58.365086218836964, -34.63774834364265]]], "type": "MultiLineString"}, "properties": {"id": 19429, "codigo": 17119, "nomoficial": "POLIZA, PRACTICO", "alt_izqini": 902, "alt_izqfin": 1000, "alt_derini": 901, "alt_derfin": 999, "tipo_c": "CALLE", "long": 105.1881083732715, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "BRANDSEN", "Calle2": "SUAREZ", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36556292 -34.6368859, -58.36508622 -34.63774834))", "escuela": 0, "hospital": 0, "ct": 0, "pan": 1, "mtb": 0, "zona_com": 1, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 19, "ZONA_FUNC": "3", "ZONA_CPU": "E3", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.363199703879175, -34.637064620729944], [-58.3627069304633, -34.637880067557155]]], "type": "MultiLineString"}, "properties": {"id": 19460, "codigo": 4059, "nomoficial": "VALLE IBERLUCEA DEL, DR.", "alt_izqini": 1002, "alt_izqfin": 1100, "alt_derini": 1001, "alt_derfin": 1099, "tipo_c": "CALLE", "long": 101.11928801843993, "sentido": "CRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "SUAREZ", "Calle2": "OLAVARRIA", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.3631997 -34.63706462, -58.36270693 -34.63788007))", "escuela": 1, "hospital": 1, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 1, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 53, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.365086218836964, -34.63774834364265], [-58.366479259041, -34.63792283929808]]], "type": "MultiLineString"}, "properties": {"id": 19467, "codigo": 20118, "nomoficial": "SUAREZ", "alt_izqini": 902, "alt_izqfin": 1000, "alt_derini": 901, "alt_derfin": 999, "tipo_c": "CALLE", "long": 129.18987451714187, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "POLIZA, PRACTICO", "Calle2": "IRALA", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36508622 -34.63774834, -58.36647926 -34.63792284))", "escuela": 0, "hospital": 0, "ct": 0, "pan": 1, "mtb": 0, "zona_com": 1, "rtp": 0, "ce": 0, "cant_linea": 1.0, "criticidad": 24, "ZONA_FUNC": "3", "ZONA_CPU": "E3", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.366479259041, -34.63792283929808], [-58.36789975693272, -34.63808311504643]]], "type": "MultiLineString"}, "properties": {"id": 19515, "codigo": 20118, "nomoficial": "SUAREZ", "alt_izqini": 1002, "alt_izqfin": 1100, "alt_derini": 1001, "alt_derfin": 1099, "tipo_c": "CALLE", "long": 131.45674655894584, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "IRALA", "Calle2": "HERNANDARIAS", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36647926 -34.63792284, -58.36789976 -34.63808312))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 1.0, "criticidad": 33, "ZONA_FUNC": "3", "ZONA_CPU": "E3", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.36789975693272, -34.63808311504643], [-58.36821318044465, -34.63811850096507], [-58.369535284068775, -34.63827044140222]]], "type": "MultiLineString"}, "properties": {"id": 19562, "codigo": 20118, "nomoficial": "SUAREZ", "alt_izqini": 1102, "alt_izqfin": 1200, "alt_derini": 1101, "alt_derfin": 1199, "tipo_c": "CALLE", "long": 151.39804734654686, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "HERNANDARIAS", "Calle2": "REGIMIENTO DE PATRICIOS AV.", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36789976 -34.63808312, -58.36821318 -34.6381185, -58.36953528 -34.63827044))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 1.0, "criticidad": 33, "ZONA_FUNC": "3", "ZONA_CPU": "R2", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.365086218836964, -34.63774834364265], [-58.3646422109009, -34.638551654267225]]], "type": "MultiLineString"}, "properties": {"id": 19663, "codigo": 17119, "nomoficial": "POLIZA, PRACTICO", "alt_izqini": 1002, "alt_izqfin": 1100, "alt_derini": 1001, "alt_derfin": 1099, "tipo_c": "CALLE", "long": 97.97564766870869, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "BOCA", "Calle1": "SUAREZ", "Calle2": "OLAVARRIA", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.36508622 -34.63774834, -58.36464221 -34.63855165))", "escuela": 0, "hospital": 0, "ct": 0, "pan": 1, "mtb": 0, "zona_com": 1, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 19, "ZONA_FUNC": "3", "ZONA_CPU": "E3", "congestion": 26, "jerarquia": 4, "COMUNA": 4, "cb": 0, "alta_compl": 0}}]};
+  const DESVIOS = {"type": "FeatureCollection", "features": [{"type": "Feature", "geometry": {"coordinates": [[-58.36832460218377, -34.63537440815455], [-58.36762575042382, -34.635293544321684], [-58.366926899885186, -34.635212676449896], [-58.366766435973354, -34.63612206492614], [-58.366726360389215, -34.6363692185397], [-58.36662388163151, -34.63701372061219], [-58.366479259041, -34.63792283929808], [-58.36634373105733, -34.63877513342691], [-58.366049991164, -34.63873708232414], [-58.365638942984845, -34.63868400692681], [-58.36531019000845, -34.63864155976481], [-58.3646422109009, -34.638551654267225], [-58.36413890615632, -34.638483851134936], [-58.36376488496396, -34.638320939412075], [-58.362850001898806, -34.63793828457878], [-58.3627069304633, -34.637880067557155], [-58.361441097604995, -34.637364998327996], [-58.36129547309602, -34.637305932436746], [-58.35987722053244, -34.63673057798923], [-58.35971626967309, -34.63666522954917], [-58.35839501368462, -34.636145292776845], [-58.358642707444666, -34.6357328597339], [-58.35888919460322, -34.63531993470461], [-58.35913272122068, -34.634906408429764], [-58.35937535948229, -34.6344925254059], [-58.35948242752668, -34.634310009258876], [-58.359567463545325, -34.63417988751907], [-58.359674737860004, -34.63401573616719], [-58.359773929908954, -34.63382739394313], [-58.35985750588135, -34.63366870222234], [-58.36026646808927, -34.63297411222022], [-58.3603404922758, -34.632846849570925], [-58.360433812096986, -34.632686292970554], [-58.36081929801193, -34.632022104022056], [-58.36088622155997, -34.631920650290475], [-58.36231783264506, -34.63096566611979]], "type": "LineString"}, "properties": {"fid_co": 13, "length_m": 2009.7686350028525, "linea": "086", "recorrido": "B", "sentido": "IDA", "linea_sentido": "086 - B - IDA", "Ruta": "VALLE, ARISTOBULO DEL - IRALA - OLAVARRIA - BROWN, ALTE. AV. - SU RUTA", "id_desvio": 1, "lineas_agrupadas": "086 - A/B/C/D/G/H - IDA"}}, {"type": "Feature", "geometry": {"coordinates": [[-58.36832460218377, -34.63537440815455], [-58.36762575042382, -34.635293544321684], [-58.366926899885186, -34.635212676449896], [-58.366766435973354, -34.63612206492614], [-58.366726360389215, -34.6363692185397], [-58.36662388163151, -34.63701372061219], [-58.366479259041, -34.63792283929808], [-58.36634373105733, -34.63877513342691], [-58.366049991164, -34.63873708232414], [-58.365638942984845, -34.63868400692681], [-58.36531019000845, -34.63864155976481], [-58.3646422109009, -34.638551654267225], [-58.36413890615632, -34.638483851134936], [-58.36376488496396, -34.638320939412075], [-58.362850001898806, -34.63793828457878], [-58.3627069304633, -34.637880067557155], [-58.361441097604995, -34.637364998327996], [-58.36129547309602, -34.637305932436746], [-58.35987722053244, -34.63673057798923], [-58.35971626967309, -34.63666522954917], [-58.35839501368462, -34.636145292776845], [-58.358642707444666, -34.6357328597339], [-58.35888919460322, -34.63531993470461], [-58.35913272122068, -34.634906408429764], [-58.35937535948229, -34.6344925254059], [-58.35948242752668, -34.634310009258876], [-58.359567463545325, -34.63417988751907], [-58.359674737860004, -34.63401573616719], [-58.359773929908954, -34.63382739394313], [-58.35985750588135, -34.63366870222234], [-58.36026646808927, -34.63297411222022], [-58.3603404922758, -34.632846849570925], [-58.360433812096986, -34.632686292970554], [-58.36081929801193, -34.632022104022056], [-58.36088622155997, -34.631920650290475], [-58.36231783264506, -34.63096566611979]], "type": "LineString"}, "properties": {"fid_co": 79, "length_m": 2009.7686350028525, "linea": "086", "recorrido": "C", "sentido": "IDA", "linea_sentido": "086 - C - IDA", "Ruta": "VALLE, ARISTOBULO DEL - IRALA - OLAVARRIA - BROWN, ALTE. AV. - SU RUTA", "id_desvio": 1, "lineas_agrupadas": "086 - A/B/C/D/G/H - IDA"}}, {"type": "Feature", "geometry": {"coordinates": [[-58.36832460218377, -34.63537440815455], [-58.36762575042382, -34.635293544321684], [-58.366926899885186, -34.635212676449896], [-58.366766435973354, -34.63612206492614], [-58.366726360389215, -34.6363692185397], [-58.36662388163151, -34.63701372061219], [-58.366479259041, -34.63792283929808], [-58.36634373105733, -34.63877513342691], [-58.366049991164, -34.63873708232414], [-58.365638942984845, -34.63868400692681], [-58.36531019000845, -34.63864155976481], [-58.3646422109009, -34.638551654267225], [-58.36413890615632, -34.638483851134936], [-58.36376488496396, -34.638320939412075], [-58.362850001898806, -34.63793828457878], [-58.3627069304633, -34.637880067557155], [-58.361441097604995, -34.637364998327996], [-58.36129547309602, -34.637305932436746], [-58.35987722053244, -34.63673057798923], [-58.35971626967309, -34.63666522954917], [-58.35839501368462, -34.636145292776845], [-58.358642707444666, -34.6357328597339], [-58.35888919460322, -34.63531993470461], [-58.35913272122068, -34.634906408429764], [-58.35937535948229, -34.6344925254059], [-58.35948242752668, -34.634310009258876], [-58.359567463545325, -34.63417988751907], [-58.359674737860004, -34.63401573616719], [-58.359773929908954, -34.63382739394313], [-58.35985750588135, -34.63366870222234], [-58.36026646808927, -34.63297411222022], [-58.3603404922758, -34.632846849570925], [-58.360433812096986, -34.632686292970554], [-58.36081929801193, -34.632022104022056], [-58.36088622155997, -34.631920650290475], [-58.36231783264506, -34.63096566611979]], "type": "LineString"}, "properties": {"fid_co": 90, "length_m": 2009.7686350028525, "linea": "086", "recorrido": "A", "sentido": "IDA", "linea_sentido": "086 - A - IDA", "Ruta": "VALLE, ARISTOBULO DEL - IRALA - OLAVARRIA - BROWN, ALTE. AV. - SU RUTA", "id_desvio": 1, "lineas_agrupadas": "086 - A/B/C/D/G/H - IDA"}}, {"type": "Feature", "geometry": {"coordinates": [[-58.36832460218377, -34.63537440815455], [-58.36762575042382, -34.635293544321684], [-58.366926899885186, -34.635212676449896], [-58.366766435973354, -34.63612206492614], [-58.366726360389215, -34.6363692185397], [-58.36662388163151, -34.63701372061219], [-58.366479259041, -34.63792283929808], [-58.36634373105733, -34.63877513342691], [-58.366049991164, -34.63873708232414], [-58.365638942984845, -34.63868400692681], [-58.36531019000845, -34.63864155976481], [-58.3646422109009, -34.638551654267225], [-58.36413890615632, -34.638483851134936], [-58.36376488496396, -34.638320939412075], [-58.362850001898806, -34.63793828457878], [-58.3627069304633, -34.637880067557155], [-58.361441097604995, -34.637364998327996], [-58.36129547309602, -34.637305932436746], [-58.35987722053244, -34.63673057798923], [-58.35971626967309, -34.63666522954917], [-58.35839501368462, -34.636145292776845], [-58.358642707444666, -34.6357328597339], [-58.35888919460322, -34.63531993470461], [-58.35913272122068, -34.634906408429764], [-58.35937535948229, -34.6344925254059], [-58.35948242752668, -34.634310009258876], [-58.359567463545325, -34.63417988751907], [-58.359674737860004, -34.63401573616719], [-58.359773929908954, -34.63382739394313], [-58.35985750588135, -34.63366870222234], [-58.36026646808927, -34.63297411222022], [-58.3603404922758, -34.632846849570925], [-58.360433812096986, -34.632686292970554], [-58.36081929801193, -34.632022104022056], [-58.36088622155997, -34.631920650290475], [-58.36231783264506, -34.63096566611979]], "type": "LineString"}, "properties": {"fid_co": 103, "length_m": 2009.7686350028525, "linea": "086", "recorrido": "H", "sentido": "IDA", "linea_sentido": "086 - H - IDA", "Ruta": "VALLE, ARISTOBULO DEL - IRALA - OLAVARRIA - BROWN, ALTE. AV. - SU RUTA", "id_desvio": 1, "lineas_agrupadas": "086 - A/B/C/D/G/H - IDA"}}, {"type": "Feature", "geometry": {"coordinates": [[-58.36832460218377, -34.63537440815455], [-58.36762575042382, -34.635293544321684], [-58.366926899885186, -34.635212676449896], [-58.366766435973354, -34.63612206492614], [-58.366726360389215, -34.6363692185397], [-58.36662388163151, -34.63701372061219], [-58.366479259041, -34.63792283929808], [-58.36634373105733, -34.63877513342691], [-58.366049991164, -34.63873708232414], [-58.365638942984845, -34.63868400692681], [-58.36531019000845, -34.63864155976481], [-58.3646422109009, -34.638551654267225], [-58.36413890615632, -34.638483851134936], [-58.36376488496396, -34.638320939412075], [-58.362850001898806, -34.63793828457878], [-58.3627069304633, -34.637880067557155], [-58.361441097604995, -34.637364998327996], [-58.36129547309602, -34.637305932436746], [-58.35987722053244, -34.63673057798923], [-58.35971626967309, -34.63666522954917], [-58.35839501368462, -34.636145292776845], [-58.358642707444666, -34.6357328597339], [-58.35888919460322, -34.63531993470461], [-58.35913272122068, -34.634906408429764], [-58.35937535948229, -34.6344925254059], [-58.35948242752668, -34.634310009258876], [-58.359567463545325, -34.63417988751907], [-58.359674737860004, -34.63401573616719], [-58.359773929908954, -34.63382739394313], [-58.35985750588135, -34.63366870222234], [-58.36026646808927, -34.63297411222022], [-58.3603404922758, -34.632846849570925], [-58.360433812096986, -34.632686292970554], [-58.36081929801193, -34.632022104022056], [-58.36088622155997, -34.631920650290475], [-58.36231783264506, -34.63096566611979]], "type": "LineString"}, "properties": {"fid_co": 145, "length_m": 2009.7686350028525, "linea": "086", "recorrido": "G", "sentido": "IDA", "linea_sentido": "086 - G - IDA", "Ruta": "VALLE, ARISTOBULO DEL - IRALA - OLAVARRIA - BROWN, ALTE. AV. - SU RUTA", "id_desvio": 1, "lineas_agrupadas": "086 - A/B/C/D/G/H - IDA"}}, {"type": "Feature", "geometry": {"coordinates": [[-58.363910203083705, -34.628496316653646], [-58.364291105021074, -34.62824475760076], [-58.36467200464339, -34.62799319740203], [-58.36488711561944, -34.62785055274886], [-58.36510222585425, -34.62770790773025], [-58.36523237439647, -34.627621638290584], [-58.36536252266748, -34.62753536871719], [-58.36567039286545, -34.6273312471784], [-58.36609647591181, -34.627773679721024], [-58.36652256351318, -34.62821611063676], [-58.366568944497686, -34.628264208982], [-58.366615325536095, -34.628312307307986], [-58.36682213834919, -34.628526776607934], [-58.367336893613285, -34.62908101292399], [-58.36747200360327, -34.62923910282446], [-58.3674720045323, -34.62932638806364], [-58.36758191640547, -34.629357924033144], [-58.368355039645934, -34.62952338912271], [-58.368619589445395, -34.62958084886734], [-58.36872039550352, -34.62956275787588], [-58.36839061571248, -34.63060180798793], [-58.36809947608342, -34.631518843733126], [-58.36781021107165, -34.63243003497966], [-58.36751401344743, -34.633363121571165], [-58.36722388042407, -34.63427705696188], [-58.366926899885186, -34.635212676449896], [-58.366766435973354, -34.63612206492614], [-58.366726360389215, -34.6363692185397], [-58.36662388163151, -34.63701372061219], [-58.36733386216715, -34.63709783843391], [-58.36804384399707, -34.637181952086124]], "type": "LineString"}, "properties": {"fid_co": 290, "length_m": 1584.3335078610744, "linea": "025", "recorrido": "A", "sentido": "IDA", "linea_sentido": "025 - A - IDA", "Ruta": "NECOCHEA - PI Y MARGALL - PILCOMAYO - IRALA - BRANDSEN - SU RUTA", "id_desvio": 2, "lineas_agrupadas": "025 - A - IDA"}}, {"type": "Feature", "geometry": {"coordinates": [[-58.37140458434829, -34.63825672324859], [-58.37096687118122, -34.63819931469247], [-58.37052915856456, -34.63814190455001], [-58.36957459286676, -34.63801666657097], [-58.369674322382544, -34.637373216344066], [-58.36974130886999, -34.636940658235034], [-58.36980829473807, -34.63650810007578], [-58.369881514888476, -34.636035552085964], [-58.369954622855495, -34.63556299225518], [-58.37003229307406, -34.635059666722334], [-58.370109962457455, -34.634556341121794], [-58.37018215565492, -34.634088452389356], [-58.37025184318699, -34.6336203138301], [-58.37031145694042, -34.63315439898822], [-58.37036330102441, -34.632687854632685], [-58.37041110226942, -34.63221279173037], [-58.370456373636635, -34.63173756411763], [-58.37049680581485, -34.63127294240002], [-58.37053723763131, -34.63080832064521], [-58.37058432616932, -34.63026793958437], [-58.370635307007774, -34.629727820903575], [-58.37064877095134, -34.62961004824049], [-58.37066223486257, -34.629492275574556], [-58.37046327108755, -34.629293319449616], [-58.36963419883699, -34.62849845206958], [-58.36944859028488, -34.62832168784519], [-58.36875182949332, -34.62767861202579], [-58.36861720721662, -34.62756971469074], [-58.36835608167815, -34.62740626944277], [-58.368213616049374, -34.62740615916956], [-58.368099618150694, -34.62742844616046], [-58.367911459006486, -34.62752015678283], [-58.3677362036158, -34.6275914542836], [-58.36745526764179, -34.62775699974177], [-58.366615325536095, -34.628312307307986], [-58.36608047930344, -34.62866247547062], [-58.36554562854462, -34.62901264137362], [-58.36519302790368, -34.629240526289564], [-58.36484042532008, -34.62946841022297], [-58.36412181671779, -34.629944779600336], [-58.36339606093019, -34.630434093023176], [-58.362446482439324, -34.63107887762746], [-58.361062946244246, -34.63197853860573], [-58.36094112216194, -34.632000321374065], [-58.36081929801193, -34.632022104022056], [-58.360433812096986, -34.632686292970554], [-58.3603404922758, -34.632846849570925], [-58.36026646808927, -34.63297411222022], [-58.35985750588135, -34.63366870222234], [-58.359773929908954, -34.63382739394313], [-58.359674737860004, -34.63401573616719], [-58.359567463545325, -34.63417988751907], [-58.35948242752668, -34.634310009258876], [-58.35937535948229, -34.6344925254059], [-58.36012373057439, -34.63479613287422], [-58.360871659268206, -34.63510048694384], [-58.36037009485392, -34.63591929751229], [-58.35963011794301, -34.63561880910002], [-58.35908582571954, -34.63539777964284], [-58.35888919460322, -34.63531993470461]], "type": "LineString"}, "properties": {"fid_co": 292, "length_m": 3011.3701640299673, "linea": "025", "recorrido": "A", "sentido": "VUELTA", "linea_sentido": "025 - A - VUELTA", "Ruta": "SUAREZ - REGIMIENTO DE PATRICIOS AV. - GARCIA, MARTIN AV. - BROWN, ALTE. AV. - BRANDSEN - RODRIGUEZ, MARTIN - SUAREZ - SU RUTA", "id_desvio": 3, "lineas_agrupadas": "025 - A - VUELTA"}}, {"type": "Feature", "geometry": {"coordinates": [[-58.36832460218377, -34.63537440815455], [-58.36762575042382, -34.635293544321684], [-58.366926899885186, -34.635212676449896], [-58.366766435973354, -34.63612206492614], [-58.366726360389215, -34.6363692185397], [-58.36662388163151, -34.63701372061219], [-58.366479259041, -34.63792283929808], [-58.36634373105733, -34.63877513342691], [-58.366049991164, -34.63873708232414], [-58.365638942984845, -34.63868400692681], [-58.36531019000845, -34.63864155976481], [-58.3646422109009, -34.638551654267225], [-58.36413890615632, -34.638483851134936], [-58.36376488496396, -34.638320939412075], [-58.362850001898806, -34.63793828457878], [-58.3627069304633, -34.637880067557155], [-58.361441097604995, -34.637364998327996], [-58.36129547309602, -34.637305932436746], [-58.35987722053244, -34.63673057798923], [-58.35971626967309, -34.63666522954917], [-58.35839501368462, -34.636145292776845], [-58.358642707444666, -34.6357328597339], [-58.35888919460322, -34.63531993470461], [-58.35913272122068, -34.634906408429764], [-58.35937535948229, -34.6344925254059], [-58.35948242752668, -34.634310009258876], [-58.359567463545325, -34.63417988751907], [-58.359674737860004, -34.63401573616719], [-58.359773929908954, -34.63382739394313], [-58.35985750588135, -34.63366870222234], [-58.36026646808927, -34.63297411222022], [-58.3603404922758, -34.632846849570925], [-58.360433812096986, -34.632686292970554], [-58.36081929801193, -34.632022104022056], [-58.36088622155997, -34.631920650290475], [-58.36231783264506, -34.63096566611979]], "type": "LineString"}, "properties": {"fid_co": 774, "length_m": 2009.7686350028525, "linea": "086", "recorrido": "D", "sentido": "IDA", "linea_sentido": "086 - D - IDA", "Ruta": "VALLE, ARISTOBULO DEL - IRALA - OLAVARRIA - BROWN, ALTE. AV. - SU RUTA", "id_desvio": 1, "lineas_agrupadas": "086 - A/B/C/D/G/H - IDA"}}, {"type": "Feature", "geometry": {"coordinates": [[-58.35736336406231, -34.63774260017574], [-58.357620773599116, -34.6373371366329], [-58.35781778176564, -34.63702681250079], [-58.35791192313296, -34.63695178490232], [-58.35923896436694, -34.6374863798005], [-58.35938705843548, -34.63754559109491], [-58.36081529607184, -34.63811624121496], [-58.362079614837626, -34.638621385962786], [-58.36223418478591, -34.63868362736226], [-58.36317446869125, -34.639062504779744], [-58.36323654206859, -34.639096429254465], [-58.36367816288873, -34.639305665817176], [-58.36516232470578, -34.6395402514005], [-58.365828079012175, -34.63964550450729], [-58.36619704170582, -34.639697700684096], [-58.366484050816545, -34.63973835174259], [-58.36762519709711, -34.639893408541546], [-58.367765238450446, -34.63895914413373], [-58.36784551782712, -34.6384239206592], [-58.36789975693272, -34.63808311504643], [-58.367953136870945, -34.637748153840406], [-58.36804384399707, -34.637181952086124], [-58.368858467618246, -34.63728147391119]], "type": "LineString"}, "properties": {"fid_co": 942, "length_m": 1437.668869498845, "linea": "046", "recorrido": "A", "sentido": "IDA", "linea_sentido": "046 - A - IDA", "Ruta": "BROWN, ALTE. AV. - ARAOZ DE LAMADRID, GREGORIO, GRAL. - HERNANDARIAS - BRANDSEN - SU RUTA", "id_desvio": 4, "lineas_agrupadas": "046 - A/B - IDA"}}, {"type": "Feature", "geometry": {"coordinates": [[-58.35736336406231, -34.63774260017574], [-58.357620773599116, -34.6373371366329], [-58.35781778176564, -34.63702681250079], [-58.35791192313296, -34.63695178490232], [-58.35923896436694, -34.6374863798005], [-58.35938705843548, -34.63754559109491], [-58.36081529607184, -34.63811624121496], [-58.362079614837626, -34.638621385962786], [-58.36223418478591, -34.63868362736226], [-58.36317446869125, -34.639062504779744], [-58.36323654206859, -34.639096429254465], [-58.36367816288873, -34.639305665817176], [-58.36516232470578, -34.6395402514005], [-58.365828079012175, -34.63964550450729], [-58.36619704170582, -34.639697700684096], [-58.366484050816545, -34.63973835174259], [-58.36762519709711, -34.639893408541546], [-58.367765238450446, -34.63895914413373], [-58.36784551782712, -34.6384239206592], [-58.36789975693272, -34.63808311504643], [-58.367953136870945, -34.637748153840406], [-58.36804384399707, -34.637181952086124], [-58.368858467618246, -34.63728147391119]], "type": "LineString"}, "properties": {"fid_co": 944, "length_m": 1437.668869498845, "linea": "046", "recorrido": "B", "sentido": "IDA", "linea_sentido": "046 - B - IDA", "Ruta": "BROWN, ALTE. AV. - ARAOZ DE LAMADRID, GREGORIO, GRAL. - HERNANDARIAS - BRANDSEN - SU RUTA", "id_desvio": 4, "lineas_agrupadas": "046 - A/B - IDA"}}]};
+  const PARADAS = {"type": "FeatureCollection", "features": [{"type": "Feature", "properties": {"id": 9101, "CALLE": "ALMTE. BROWN AV.", "ALT PLANO": "221", "DIRECCION": "221 ALMTE. BROWN AV.", "coord_X": -58.366333, "coord_Y": -34.628573, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "25", "l1_sen": "I", "L1_Ramal": null, "L2": "29", "l2_sen": "V", "L2_Ramal": null, "L3": 53, "l3_sen": "V", "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PARADORES", "MTB / CT": "MTB DEL BAJO II", "NOMBRE PAR": null, "fid_co": 290, "linea": "025", "recorrido": "A", "sentido": "IDA", "linea_sentido": "025 - A - IDA", "id_desvio": 2, "orden_recorrido_m": 1004.33, "dir": "ALMTE. BROWN AV. 221"}, "geometry": {"type": "Point", "coordinates": [-58.366333, -34.628573]}}, {"type": "Feature", "properties": {"id": 9107, "CALLE": "ALMTE. BROWN AV.", "ALT PLANO": "621", "DIRECCION": "621 ALMTE. BROWN AV.", "coord_X": -58.363218, "coord_Y": -34.630646, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "25", "l1_sen": "I", "L1_Ramal": null, "L2": "29", "l2_sen": "V", "L2_Ramal": null, "L3": 53, "l3_sen": "V", "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PARADORES", "MTB / CT": "MTB DEL BAJO II", "NOMBRE PAR": null, "fid_co": 290, "linea": "025", "recorrido": "A", "sentido": "IDA", "linea_sentido": "025 - A - IDA", "id_desvio": 2, "orden_recorrido_m": 1370.52, "dir": "ALMTE. BROWN AV. 621"}, "geometry": {"type": "Point", "coordinates": [-58.363218, -34.630646]}}, {"type": "Feature", "properties": {"id": 6920, "CALLE": "ALMTE. BROWN AV.", "ALT PLANO": "1055", "DIRECCION": "1055 BROWN, ALTE. AV.", "coord_X": -58.3596954, "coord_Y": -34.6340991, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "25", "l1_sen": "I", "L1_Ramal": null, "L2": "152", "l2_sen": "V", "L2_Ramal": null, "L3": 86, "l3_sen": "V", "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 290, "linea": "025", "recorrido": "A", "sentido": "IDA", "linea_sentido": "025 - A - IDA", "id_desvio": 2, "orden_recorrido_m": 1887.7, "dir": "ALMTE. BROWN AV. 1055"}, "geometry": {"type": "Point", "coordinates": [-58.3596954, -34.6340991]}}, {"type": "Feature", "properties": {"id": 709, "CALLE": "BRANDSEN", "ALT PLANO": "593", "DIRECCION": "593 BRANDSEN", "coord_X": -58.3621855, "coord_Y": -34.6355929, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "25", "l1_sen": "I", "L1_Ramal": null, "L2": "46", "l2_sen": "I", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 290, "linea": "025", "recorrido": "A", "sentido": "IDA", "linea_sentido": "025 - A - IDA", "id_desvio": 2, "orden_recorrido_m": 2222.36, "dir": "BRANDSEN 593"}, "geometry": {"type": "Point", "coordinates": [-58.3621855, -34.6355929]}}, {"type": "Feature", "properties": {"id": 9421, "CALLE": "BRANDSEN", "ALT PLANO": "671", "DIRECCION": "671 BRANDSEN", "coord_X": -58.363464, "coord_Y": -34.636114, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "25", "l1_sen": "I", "L1_Ramal": null, "L2": "46", "l2_sen": "I", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 290, "linea": "025", "recorrido": "A", "sentido": "IDA", "linea_sentido": "025 - A - IDA", "id_desvio": 2, "orden_recorrido_m": 2352.89, "dir": "BRANDSEN 671"}, "geometry": {"type": "Point", "coordinates": [-58.363464, -34.636114]}}, {"type": "Feature", "properties": {"id": 829, "CALLE": "BRANDSEN", "ALT PLANO": "987", "DIRECCION": "987 BRANDSEN", "coord_X": -58.366454, "coord_Y": -34.636946, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "25", "l1_sen": "I", "L1_Ramal": null, "L2": "46", "l2_sen": "I", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 290, "linea": "025", "recorrido": "A", "sentido": "IDA", "linea_sentido": "025 - A - IDA", "id_desvio": 2, "orden_recorrido_m": 2646.26, "dir": "BRANDSEN 987"}, "geometry": {"type": "Point", "coordinates": [-58.366454, -34.636946]}}, {"type": "Feature", "properties": {"id": 9322, "CALLE": "SUAREZ", "ALT PLANO": "1104", "DIRECCION": "1104 SUAREZ", "coord_X": -58.368036, "coord_Y": -34.638145, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "25", "l1_sen": "V", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 292, "linea": "025", "recorrido": "A", "sentido": "VUELTA", "linea_sentido": "025 - A - VUELTA", "id_desvio": 3, "orden_recorrido_m": 24756.12, "dir": "SUAREZ 1104"}, "geometry": {"type": "Point", "coordinates": [-58.368036, -34.638145]}}, {"type": "Feature", "properties": {"id": 9321, "CALLE": "SUAREZ", "ALT PLANO": "944", "DIRECCION": "944 SUAREZ", "coord_X": -58.3652895, "coord_Y": -34.6378391, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "25", "l1_sen": "V", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 292, "linea": "025", "recorrido": "A", "sentido": "VUELTA", "linea_sentido": "025 - A - VUELTA", "id_desvio": 3, "orden_recorrido_m": 25009.97, "dir": "SUAREZ 944"}, "geometry": {"type": "Point", "coordinates": [-58.3652895, -34.6378391]}}, {"type": "Feature", "properties": {"id": 9320, "CALLE": "SUAREZ", "ALT PLANO": "610", "DIRECCION": "610 SUAREZ", "coord_X": -58.361869, "coord_Y": -34.636817, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "25", "l1_sen": "V", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 292, "linea": "025", "recorrido": "A", "sentido": "VUELTA", "linea_sentido": "025 - A - VUELTA", "id_desvio": 3, "orden_recorrido_m": 25340.58, "dir": "SUAREZ 610"}, "geometry": {"type": "Point", "coordinates": [-58.361869, -34.636817]}}, {"type": "Feature", "properties": {"id": 854, "CALLE": "ALMTE. BROWN AV.", "ALT PLANO": "1280", "DIRECCION": "1280 BROWN, ALTE. AV.", "coord_X": -58.3584236, "coord_Y": -34.6359085, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "33", "l1_sen": "V", "L1_Ramal": "ABEF", "L2": "46", "l2_sen": "I", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 942, "linea": "046", "recorrido": "A", "sentido": "IDA", "linea_sentido": "046 - A - IDA", "id_desvio": 4, "orden_recorrido_m": 376.5, "dir": "ALMTE. BROWN AV. 1280"}, "geometry": {"type": "Point", "coordinates": [-58.3584236, -34.6359085]}}, {"type": "Feature", "properties": {"id": 709, "CALLE": "BRANDSEN", "ALT PLANO": "593", "DIRECCION": "593 BRANDSEN", "coord_X": -58.3621855, "coord_Y": -34.6355929, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "25", "l1_sen": "I", "L1_Ramal": null, "L2": "46", "l2_sen": "I", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 942, "linea": "046", "recorrido": "A", "sentido": "IDA", "linea_sentido": "046 - A - IDA", "id_desvio": 4, "orden_recorrido_m": 837.19, "dir": "BRANDSEN 593"}, "geometry": {"type": "Point", "coordinates": [-58.3621855, -34.6355929]}}, {"type": "Feature", "properties": {"id": 9421, "CALLE": "BRANDSEN", "ALT PLANO": "671", "DIRECCION": "671 BRANDSEN", "coord_X": -58.363464, "coord_Y": -34.636114, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "25", "l1_sen": "I", "L1_Ramal": null, "L2": "46", "l2_sen": "I", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 942, "linea": "046", "recorrido": "A", "sentido": "IDA", "linea_sentido": "046 - A - IDA", "id_desvio": 4, "orden_recorrido_m": 967.72, "dir": "BRANDSEN 671"}, "geometry": {"type": "Point", "coordinates": [-58.363464, -34.636114]}}, {"type": "Feature", "properties": {"id": 829, "CALLE": "BRANDSEN", "ALT PLANO": "987", "DIRECCION": "987 BRANDSEN", "coord_X": -58.366454, "coord_Y": -34.636946, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "25", "l1_sen": "I", "L1_Ramal": null, "L2": "46", "l2_sen": "I", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 942, "linea": "046", "recorrido": "A", "sentido": "IDA", "linea_sentido": "046 - A - IDA", "id_desvio": 4, "orden_recorrido_m": 1261.09, "dir": "BRANDSEN 987"}, "geometry": {"type": "Point", "coordinates": [-58.366454, -34.636946]}}, {"type": "Feature", "properties": {"id": 854, "CALLE": "ALMTE. BROWN AV.", "ALT PLANO": "1280", "DIRECCION": "1280 BROWN, ALTE. AV.", "coord_X": -58.3584236, "coord_Y": -34.6359085, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "33", "l1_sen": "V", "L1_Ramal": "ABEF", "L2": "46", "l2_sen": "I", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 944, "linea": "046", "recorrido": "B", "sentido": "IDA", "linea_sentido": "046 - B - IDA", "id_desvio": 4, "orden_recorrido_m": 376.5, "dir": "ALMTE. BROWN AV. 1280"}, "geometry": {"type": "Point", "coordinates": [-58.3584236, -34.6359085]}}, {"type": "Feature", "properties": {"id": 709, "CALLE": "BRANDSEN", "ALT PLANO": "593", "DIRECCION": "593 BRANDSEN", "coord_X": -58.3621855, "coord_Y": -34.6355929, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "25", "l1_sen": "I", "L1_Ramal": null, "L2": "46", "l2_sen": "I", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 944, "linea": "046", "recorrido": "B", "sentido": "IDA", "linea_sentido": "046 - B - IDA", "id_desvio": 4, "orden_recorrido_m": 837.19, "dir": "BRANDSEN 593"}, "geometry": {"type": "Point", "coordinates": [-58.3621855, -34.6355929]}}, {"type": "Feature", "properties": {"id": 9421, "CALLE": "BRANDSEN", "ALT PLANO": "671", "DIRECCION": "671 BRANDSEN", "coord_X": -58.363464, "coord_Y": -34.636114, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "25", "l1_sen": "I", "L1_Ramal": null, "L2": "46", "l2_sen": "I", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 944, "linea": "046", "recorrido": "B", "sentido": "IDA", "linea_sentido": "046 - B - IDA", "id_desvio": 4, "orden_recorrido_m": 967.72, "dir": "BRANDSEN 671"}, "geometry": {"type": "Point", "coordinates": [-58.363464, -34.636114]}}, {"type": "Feature", "properties": {"id": 829, "CALLE": "BRANDSEN", "ALT PLANO": "987", "DIRECCION": "987 BRANDSEN", "coord_X": -58.366454, "coord_Y": -34.636946, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "25", "l1_sen": "I", "L1_Ramal": null, "L2": "46", "l2_sen": "I", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 944, "linea": "046", "recorrido": "B", "sentido": "IDA", "linea_sentido": "046 - B - IDA", "id_desvio": 4, "orden_recorrido_m": 1261.09, "dir": "BRANDSEN 987"}, "geometry": {"type": "Point", "coordinates": [-58.366454, -34.636946]}}, {"type": "Feature", "properties": {"id": 839, "CALLE": "PALOS", "ALT PLANO": "510", "DIRECCION": "510 PALOS", "coord_X": -58.3621497, "coord_Y": -34.6357951, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "86", "l1_sen": "I", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 90, "linea": "086", "recorrido": "A", "sentido": "IDA", "linea_sentido": "086 - A - IDA", "id_desvio": 1, "orden_recorrido_m": 1412.03, "dir": "PALOS 510"}, "geometry": {"type": "Point", "coordinates": [-58.3621497, -34.6357951]}}, {"type": "Feature", "properties": {"id": 866, "CALLE": "PALOS", "ALT PLANO": "308", "DIRECCION": "308 PALOS", "coord_X": -58.3631718, "coord_Y": -34.6341335, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "86", "l1_sen": "I", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 90, "linea": "086", "recorrido": "A", "sentido": "IDA", "linea_sentido": "086 - A - IDA", "id_desvio": 1, "orden_recorrido_m": 1618.12, "dir": "PALOS 308"}, "geometry": {"type": "Point", "coordinates": [-58.3631718, -34.6341335]}}, {"type": "Feature", "properties": {"id": 1675, "CALLE": "ARISTOBULO DEL VALLE", "ALT PLANO": "432", "DIRECCION": "432 VALLE, ARISTOBULO DEL", "coord_X": -58.36079, "coord_Y": -34.633069, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "86", "l1_sen": "I", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 90, "linea": "086", "recorrido": "A", "sentido": "IDA", "linea_sentido": "086 - A - IDA", "id_desvio": 1, "orden_recorrido_m": 1885.82, "dir": "ARISTOBULO DEL VALLE 432"}, "geometry": {"type": "Point", "coordinates": [-58.36079, -34.633069]}}, {"type": "Feature", "properties": {"id": 839, "CALLE": "PALOS", "ALT PLANO": "510", "DIRECCION": "510 PALOS", "coord_X": -58.3621497, "coord_Y": -34.6357951, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "86", "l1_sen": "I", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 13, "linea": "086", "recorrido": "B", "sentido": "IDA", "linea_sentido": "086 - B - IDA", "id_desvio": 1, "orden_recorrido_m": 1412.03, "dir": "PALOS 510"}, "geometry": {"type": "Point", "coordinates": [-58.3621497, -34.6357951]}}, {"type": "Feature", "properties": {"id": 866, "CALLE": "PALOS", "ALT PLANO": "308", "DIRECCION": "308 PALOS", "coord_X": -58.3631718, "coord_Y": -34.6341335, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "86", "l1_sen": "I", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 13, "linea": "086", "recorrido": "B", "sentido": "IDA", "linea_sentido": "086 - B - IDA", "id_desvio": 1, "orden_recorrido_m": 1618.12, "dir": "PALOS 308"}, "geometry": {"type": "Point", "coordinates": [-58.3631718, -34.6341335]}}, {"type": "Feature", "properties": {"id": 1675, "CALLE": "ARISTOBULO DEL VALLE", "ALT PLANO": "432", "DIRECCION": "432 VALLE, ARISTOBULO DEL", "coord_X": -58.36079, "coord_Y": -34.633069, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "86", "l1_sen": "I", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 13, "linea": "086", "recorrido": "B", "sentido": "IDA", "linea_sentido": "086 - B - IDA", "id_desvio": 1, "orden_recorrido_m": 1885.82, "dir": "ARISTOBULO DEL VALLE 432"}, "geometry": {"type": "Point", "coordinates": [-58.36079, -34.633069]}}, {"type": "Feature", "properties": {"id": 839, "CALLE": "PALOS", "ALT PLANO": "510", "DIRECCION": "510 PALOS", "coord_X": -58.3621497, "coord_Y": -34.6357951, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "86", "l1_sen": "I", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 79, "linea": "086", "recorrido": "C", "sentido": "IDA", "linea_sentido": "086 - C - IDA", "id_desvio": 1, "orden_recorrido_m": 1412.03, "dir": "PALOS 510"}, "geometry": {"type": "Point", "coordinates": [-58.3621497, -34.6357951]}}, {"type": "Feature", "properties": {"id": 866, "CALLE": "PALOS", "ALT PLANO": "308", "DIRECCION": "308 PALOS", "coord_X": -58.3631718, "coord_Y": -34.6341335, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "86", "l1_sen": "I", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 79, "linea": "086", "recorrido": "C", "sentido": "IDA", "linea_sentido": "086 - C - IDA", "id_desvio": 1, "orden_recorrido_m": 1618.12, "dir": "PALOS 308"}, "geometry": {"type": "Point", "coordinates": [-58.3631718, -34.6341335]}}, {"type": "Feature", "properties": {"id": 1675, "CALLE": "ARISTOBULO DEL VALLE", "ALT PLANO": "432", "DIRECCION": "432 VALLE, ARISTOBULO DEL", "coord_X": -58.36079, "coord_Y": -34.633069, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "86", "l1_sen": "I", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 79, "linea": "086", "recorrido": "C", "sentido": "IDA", "linea_sentido": "086 - C - IDA", "id_desvio": 1, "orden_recorrido_m": 1885.82, "dir": "ARISTOBULO DEL VALLE 432"}, "geometry": {"type": "Point", "coordinates": [-58.36079, -34.633069]}}, {"type": "Feature", "properties": {"id": 839, "CALLE": "PALOS", "ALT PLANO": "510", "DIRECCION": "510 PALOS", "coord_X": -58.3621497, "coord_Y": -34.6357951, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "86", "l1_sen": "I", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 774, "linea": "086", "recorrido": "D", "sentido": "IDA", "linea_sentido": "086 - D - IDA", "id_desvio": 1, "orden_recorrido_m": 1412.03, "dir": "PALOS 510"}, "geometry": {"type": "Point", "coordinates": [-58.3621497, -34.6357951]}}, {"type": "Feature", "properties": {"id": 866, "CALLE": "PALOS", "ALT PLANO": "308", "DIRECCION": "308 PALOS", "coord_X": -58.3631718, "coord_Y": -34.6341335, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "86", "l1_sen": "I", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 774, "linea": "086", "recorrido": "D", "sentido": "IDA", "linea_sentido": "086 - D - IDA", "id_desvio": 1, "orden_recorrido_m": 1618.12, "dir": "PALOS 308"}, "geometry": {"type": "Point", "coordinates": [-58.3631718, -34.6341335]}}, {"type": "Feature", "properties": {"id": 1675, "CALLE": "ARISTOBULO DEL VALLE", "ALT PLANO": "432", "DIRECCION": "432 VALLE, ARISTOBULO DEL", "coord_X": -58.36079, "coord_Y": -34.633069, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "86", "l1_sen": "I", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 774, "linea": "086", "recorrido": "D", "sentido": "IDA", "linea_sentido": "086 - D - IDA", "id_desvio": 1, "orden_recorrido_m": 1885.82, "dir": "ARISTOBULO DEL VALLE 432"}, "geometry": {"type": "Point", "coordinates": [-58.36079, -34.633069]}}, {"type": "Feature", "properties": {"id": 839, "CALLE": "PALOS", "ALT PLANO": "510", "DIRECCION": "510 PALOS", "coord_X": -58.3621497, "coord_Y": -34.6357951, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "86", "l1_sen": "I", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 145, "linea": "086", "recorrido": "G", "sentido": "IDA", "linea_sentido": "086 - G - IDA", "id_desvio": 1, "orden_recorrido_m": 1412.03, "dir": "PALOS 510"}, "geometry": {"type": "Point", "coordinates": [-58.3621497, -34.6357951]}}, {"type": "Feature", "properties": {"id": 866, "CALLE": "PALOS", "ALT PLANO": "308", "DIRECCION": "308 PALOS", "coord_X": -58.3631718, "coord_Y": -34.6341335, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "86", "l1_sen": "I", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 145, "linea": "086", "recorrido": "G", "sentido": "IDA", "linea_sentido": "086 - G - IDA", "id_desvio": 1, "orden_recorrido_m": 1618.12, "dir": "PALOS 308"}, "geometry": {"type": "Point", "coordinates": [-58.3631718, -34.6341335]}}, {"type": "Feature", "properties": {"id": 1675, "CALLE": "ARISTOBULO DEL VALLE", "ALT PLANO": "432", "DIRECCION": "432 VALLE, ARISTOBULO DEL", "coord_X": -58.36079, "coord_Y": -34.633069, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "86", "l1_sen": "I", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 145, "linea": "086", "recorrido": "G", "sentido": "IDA", "linea_sentido": "086 - G - IDA", "id_desvio": 1, "orden_recorrido_m": 1885.82, "dir": "ARISTOBULO DEL VALLE 432"}, "geometry": {"type": "Point", "coordinates": [-58.36079, -34.633069]}}, {"type": "Feature", "properties": {"id": 839, "CALLE": "PALOS", "ALT PLANO": "510", "DIRECCION": "510 PALOS", "coord_X": -58.3621497, "coord_Y": -34.6357951, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "86", "l1_sen": "I", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 103, "linea": "086", "recorrido": "H", "sentido": "IDA", "linea_sentido": "086 - H - IDA", "id_desvio": 1, "orden_recorrido_m": 1412.03, "dir": "PALOS 510"}, "geometry": {"type": "Point", "coordinates": [-58.3621497, -34.6357951]}}, {"type": "Feature", "properties": {"id": 866, "CALLE": "PALOS", "ALT PLANO": "308", "DIRECCION": "308 PALOS", "coord_X": -58.3631718, "coord_Y": -34.6341335, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "86", "l1_sen": "I", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 103, "linea": "086", "recorrido": "H", "sentido": "IDA", "linea_sentido": "086 - H - IDA", "id_desvio": 1, "orden_recorrido_m": 1618.12, "dir": "PALOS 308"}, "geometry": {"type": "Point", "coordinates": [-58.3631718, -34.6341335]}}, {"type": "Feature", "properties": {"id": 1675, "CALLE": "ARISTOBULO DEL VALLE", "ALT PLANO": "432", "DIRECCION": "432 VALLE, ARISTOBULO DEL", "coord_X": -58.36079, "coord_Y": -34.633069, "COMUNA": 4, "BARRIO": "LA BOCA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "86", "l1_sen": "I", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 103, "linea": "086", "recorrido": "H", "sentido": "IDA", "linea_sentido": "086 - H - IDA", "id_desvio": 1, "orden_recorrido_m": 1885.82, "dir": "ARISTOBULO DEL VALLE 432"}, "geometry": {"type": "Point", "coordinates": [-58.36079, -34.633069]}}]};
+  const COLOR_MAP = {"025 - A - IDA": "#006400", "025 - A - VUELTA": "#000096", "046 - A - IDA": "#4B0082", "046 - B - IDA": "#008080", "086 - A - IDA": "#556B2F", "086 - B - IDA": "#8B008B", "086 - C - IDA": "#00008B", "086 - D - IDA": "#006400", "086 - G - IDA": "#000096", "086 - H - IDA": "#4B0082"};
+
+  // Agrupación de desvíos IGUAL que la app: por id_desvio (el grupo de "Ruta"),
+  // no por linea_sentido. Dos líneas con el mismo recorrido caen en un único
+  // ítem, con la etiqueta lineas_agrupadas y un solo color.
+  const LS_TO_GID = {};    // linea_sentido -> id_desvio (string)
+  const GID_LABEL = {};    // id_desvio -> lineas_agrupadas
+  const GID_MEMBERS = {};  // id_desvio -> [linea_sentido...]
+  (DESVIOS.features || []).forEach(ft => {
+    const p = ft.properties || {};
+    const ls = p.linea_sentido || 'Desvíos de colectivo';
+    let gid;
+    if (p.id_desvio !== undefined && p.id_desvio !== null && String(p.id_desvio) !== '') {
+      gid = String(p.id_desvio);
+    } else {
+      // Sin id_desvio (caso anómalo): se conserva el criterio previo, agrupar
+      // por linea+sentido fusionando ramales.
+      const pr = String(ls).split(' - ').map(x => x.trim()).filter(Boolean);
+      gid = pr.length >= 2 ? (pr[0] + '||' + pr[pr.length - 1]) : ls;
+    }
+    LS_TO_GID[ls] = gid;
+    if (p.lineas_agrupadas) GID_LABEL[gid] = String(p.lineas_agrupadas);
+    (GID_MEMBERS[gid] = GID_MEMBERS[gid] || []);
+    if (GID_MEMBERS[gid].indexOf(ls) < 0) GID_MEMBERS[gid].push(ls);
+  });
+  const GID_COLOR = {};
+  Object.keys(GID_MEMBERS).forEach(gid => {
+    const first = GID_MEMBERS[gid].slice().sort(lsSort)[0];
+    GID_COLOR[gid] = (first && COLOR_MAP[first]) ? COLOR_MAP[first] : '#3949AB';
+  });
+
+  function colorFor(ls) {
+    const gid = LS_TO_GID[ls];
+    if (gid && GID_COLOR[gid]) return GID_COLOR[gid];
+    return (ls && COLOR_MAP[ls]) ? COLOR_MAP[ls] : "#3949AB";
+  }
+
+  const WIDTH_TRAMOS = 12.0;
+  const WIDTH_DESVIOS = 3.0;
+
+  // Grosor y guion de los desvíos calculados por zoom con la misma curva que
+  // la app (deviationZoomStyle) pero a la mitad del grosor: de z17 en adelante
+  // usa WIDTH_DESVIOS completo y se va afinando al alejar. Opacidad 0.8.
+  function dvZoomStyle() {
+    const factor = Math.min(1, Math.pow(2, (map.getZoom() - 17) * 0.45));
+    const weight = Math.max(WIDTH_DESVIOS * 0.225, WIDTH_DESVIOS * factor);
+    const dash = Math.max(4, weight * 2.2);
+    const gap  = Math.max(3, weight * 1.5);
+    return { weight: weight, opacity: 0.8, dashArray: dash + ',' + gap, lineCap: 'round', lineJoin: 'round' };
+  }
+  // Grosor extra (+25%) del desvío resaltado en rojo, salvo en zoom out
+  // lejano, donde se mantiene el grosor normal.
+  const SEL_WEIGHT_MULT = 1.25, SEL_WEIGHT_MIN_ZOOM = 14;
+  function selWeight(w) {
+    return map.getZoom() >= SEL_WEIGHT_MIN_ZOOM ? w * SEL_WEIGHT_MULT : w;
+  }
+
+  // Banda de tramos afectados: mismo criterio que los desvíos. De z17 en
+  // adelante usa WIDTH_TRAMOS completo (no crece más); al alejar se afina para
+  // mantener la proporción con la vista. Piso al 20% para que no desaparezca.
+  function tramosZoomStyle() {
+    const factor = Math.min(1, Math.pow(2, (map.getZoom() - 17) * 0.45));
+    const weight = Math.max(WIDTH_TRAMOS * 0.20, WIDTH_TRAMOS * factor);
+    return { color: '#8E2A1B', weight: weight, opacity: 0.65, lineCap: 'butt', lineJoin: 'round' };
+  }
+
+  // Map
+  const map = L.map('map', { zoomControl: false });
+  map.setView([-34.6037, -58.3816], 12);
+ // Zoom arriba a la derecha (evita solape con botón Capas)
+ L.control.zoom({ position: 'topright' }).addTo(map);
+// ✅ Botón debajo del zoom: Zoom a desvíos (lupa con flechas)
+const ZoomDesviosControl = L.Control.extend({
+  options: { position: 'topright' },
+  onAdd: function () {
+    const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+    const btn = L.DomUtil.create('a', '', container);
+    btn.href = '#';
+    btn.title = 'Zoom a desvíos de colectivos';
+    btn.setAttribute('aria-label','Zoom a desvíos de colectivos');
+    btn.innerHTML = "<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='10' cy='10' r='6'/><line x1='14.5' y1='14.5' x2='20' y2='20'/><line x1='10' y1='2' x2='10' y2='5'/><polyline points='8,4 10,2 12,4'/><line x1='10' y1='15' x2='10' y2='22'/><polyline points='8,20 10,22 12,20'/><line x1='2' y1='10' x2='5' y2='10'/><polyline points='4,8 2,10 4,12'/><line x1='15' y1='10' x2='22' y2='10'/><polyline points='20,8 22,10 20,12'/></svg>";
+    btn.style.display = 'flex';
+    btn.style.alignItems = 'center';
+    btn.style.justifyContent = 'center';
+    btn.style.width = '30px';
+    btn.style.height = '30px';
+    btn.style.textDecoration = 'none';
+
+    L.DomEvent.disableClickPropagation(container);
+    L.DomEvent.on(btn, 'click', function (e) {
+      L.DomEvent.preventDefault(e);
+      try {
+        const layers = (typeof grpDesviosAll.getLayers === 'function') ? grpDesviosAll.getLayers() : [];
+        if (!layers || !layers.length) return;
+        const b = L.featureGroup(layers).getBounds();
+        if (b && b.isValid()) map.fitBounds(b.pad(0.15));
+      } catch(err) {}
+    });
+
+    return container;
+  }
+});
+map.addControl(new ZoomDesviosControl());
+
+
+  // Base maps (Google siempre abajo)
+  const baseGoogle = L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', { maxZoom: 20, attribution: '© Google' });
+  const baseOSM = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' });
+  const baseOSMLight = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap', className: 'base-map-light' });
+  // Google por defecto: los tiles de tile.openstreetmap.org exigen Referer y
+  // el HTML abierto desde el disco (file://) no lo manda -> "Access blocked".
+  baseGoogle.addTo(map);
+
+  // Overlays (grupo arriba)
+  const grpTramos = L.layerGroup().addTo(map);
+  const grpDesviosAll = L.layerGroup();
+  const grpFlechasAll = L.layerGroup();
+  const grpParadasAll = L.layerGroup().addTo(map);
+
+  const boundLayers = [];
+
+  function popupTramos(p) {
+    const n = (p && p.nomoficial) ? p.nomoficial : 'Tramo afectado';
+    return '<div><b>' + n + '</b></div>';
+  }
+
+  function popupDesvio(p) {
+    const ls = (p && p.linea_sentido) ? p.linea_sentido : 'Desvíos de colectivo';
+    const ruta = (p && p.Ruta) ? p.Ruta : '';
+    return '<div><b>' + ls + '</b></div><div class="muted">' + ruta + '</div>';
+  }
+
+  // Tramos: extremos planos (no engrosa las puntas), opacidad 0.65 y grosor
+  // que se afina al alejar el zoom (ver tramosZoomStyle).
+  const lyrTramos = L.geoJSON(TRAMOS, {
+    style: () => tramosZoomStyle(),
+    onEachFeature: (f, l) => l.bindPopup(popupTramos((f && f.properties) ? f.properties : {}))
+  });
+  grpTramos.addLayer(lyrTramos);
+  boundLayers.push(lyrTramos);
+
+  // Flechas: ángulo en pantalla
+  function angleDegEnd(a, b) {
+    const zref = map.getZoom();
+    const p1 = map.project(a, zref);
+    const p2 = map.project(b, zref);
+    return (Math.atan2((p2.y - p1.y), (p2.x - p1.x)) * 180 / Math.PI);
+  }
+
+  function metersToPixels(meters, latlng) {
+    const z = map.getZoom();
+    const p1 = map.project(latlng, z);
+    const latlng2 = L.latLng(latlng.lat, latlng.lng + 0.00001);
+    const p2 = map.project(latlng2, z);
+    const metersPerPixel = map.distance(latlng, latlng2) / Math.max(1e-9, Math.abs(p2.x - p1.x));
+    return meters / metersPerPixel;
+  }
+
+  const ARROW_LENGTH_M = 25;
+  // Base +50% (12 -> 18): la relación base/largo (18/25 ≈ 0.72) queda igual a
+  // la de la app (26/36 ≈ 0.72). El largo se mantiene.
+  const ARROW_WIDTH_M  = 18;
+
+  function makeArrowIcon(color, latlng, angleDeg) {
+    // Una única escala preserva la proporción en todas las geometrías.
+    // La punta (tipX) coincide exactamente con el último vértice.
+    const w = Math.max(3, Math.min(22, metersToPixels(ARROW_LENGTH_M, latlng)));
+    const h = w * (ARROW_WIDTH_M / ARROW_LENGTH_M);
+    const tipX = w;
+    const tipY = h / 2;
+    const html = '<div class="arrow-end" style="width:' + w + 'px;height:' + h + 'px;transform: rotate(' + angleDeg + 'deg);transform-origin:' + tipX + 'px ' + tipY + 'px;">'
+      + '<svg width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + ' ' + h + '" xmlns="http://www.w3.org/2000/svg">'
+      + '<polygon points="0,0 0,' + h + ' ' + w + ',' + (h/2) + '" fill="' + color + '" stroke="' + color + '" stroke-width="2" />'
+      + '</svg></div>';
+    return L.divIcon({ className: 'arrow-end-icon', html: html, iconSize: [w, h], iconAnchor: [tipX, tipY] });
+  }
+
+  // Desvíos por linea_sentido
+  const desviosByLS = {};
+  (DESVIOS.features || []).forEach(ft => {
+    const ls = ((ft.properties||{}).linea_sentido || 'Desvíos de colectivo');
+    (desviosByLS[ls] = desviosByLS[ls] || []).push(ft);
+  });
+
+  const layerByLS = {};
+  const arrowsCacheByLS = {};
+  const enabledLS = {};
+
+ function parseLineNumber(ls){
+   const first = (ls||'').split(' - ')[0].trim();
+   const m = first.match(/^(\d+)/);
+   return m ? parseInt(m[1],10) : 1e9;
+ }
+ function sentidoOrderFromLS(ls){
+   const parts = (ls||'').split(' - ').map(x=>x.trim()).filter(Boolean);
+   const s = parts.length ? parts[parts.length-1].toUpperCase() : '';
+   if (s==='IDA') return 0;
+   if (s==='VUELTA') return 1;
+   return 9;
+ }
+ function recPart(ls){
+   const parts = (ls||'').split(' - ').map(x=>x.trim()).filter(Boolean);
+   return (parts.length===3) ? parts[1] : '';
+ }
+ function lsSort(a,b){
+   const na=parseLineNumber(a), nb=parseLineNumber(b);
+   if(na!==nb) return na-nb;
+   const sa=sentidoOrderFromLS(a), sb=sentidoOrderFromLS(b);
+   if(sa!==sb) return sa-sb;
+   return recPart(a).localeCompare(recPart(b),'es');
+ }
+
+
+  Object.keys(desviosByLS).sort(lsSort).forEach(ls => {
+    enabledLS[ls] = true;
+    arrowsCacheByLS[ls] = [];
+    const fc = { type: 'FeatureCollection', features: desviosByLS[ls] };
+    const lyr = L.geoJSON(fc, {
+      style: () => Object.assign({ color: colorFor(ls) }, dvZoomStyle()),
+      bubblingMouseEvents: false,
+      onEachFeature: (f, l) => {
+        l.bindPopup(popupDesvio((f && f.properties) ? f.properties : {}));
+        l.on('click', () => selectDesvioGroup(_groupKeyForLs(ls)));
+        try {
+          let latlngs = l.getLatLngs();
+          if (Array.isArray(latlngs) && latlngs.length && Array.isArray(latlngs[0])) latlngs = latlngs[latlngs.length - 1];
+          if (latlngs && latlngs.length >= 2) {
+            const b = latlngs[latlngs.length - 1];
+            // Puede haber varios vértices finales duplicados. Buscar hacia
+            // atrás el último segmento de longitud real evita ángulos cero
+            // y flechas que parecen separadas o giradas respecto de la línea.
+            let a = null;
+            for (let i = latlngs.length - 2; i >= 0; i--) {
+              if (map.distance(latlngs[i], b) > 0.05) { a = latlngs[i]; break; }
+            }
+            if (a) arrowsCacheByLS[ls].push({ latlng: b, angleDeg: angleDegEnd(a, b) });
+          }
+        } catch(e) {}
+      }
+    });
+    layerByLS[ls] = lyr;
+    grpDesviosAll.addLayer(lyr);
+    boundLayers.push(lyr);
+  });
+
+  // ---- Claves de "línea afectada" (linea|recorrido|sentido) para sincronizar
+  //      desvíos <-> paradas <-> reporte y para el resaltado permanente. ----
+  function _normAff(v) {
+    const t = String(v == null ? '' : v).trim().toUpperCase();
+    return /^[0-9]+$/.test(t) ? String(parseInt(t, 10)) : t;
+  }
+  function _affKey(linea, recorrido, sentido) {
+    return _normAff(linea) + '|' + _normAff(recorrido) + '|' + _normAff(sentido);
+  }
+  function _lsAffKeys(ls) {
+    const parts = String(ls || '').split(' - ').map(x => x.trim()).filter(Boolean);
+    if (parts.length >= 3) return [_affKey(parts[0], parts.slice(1, -1).join(' - '), parts[parts.length - 1])];
+    if (parts.length === 2) return [_affKey(parts[0], '', parts[1])];
+    return parts.length ? [_affKey(parts[0], '', '')] : [];
+  }
+  // Paradas físicas distintas: varias líneas en el mismo punto cuentan 1 sola vez.
+  function _distinctStopPoints(fc) {
+    const seen = {};
+    ((fc && fc.features) || []).forEach((f, i) => {
+      const p = f.properties || {};
+      const d = String(p.dir || '').trim().toLowerCase();
+      if (d && d !== 'sin dirección' && d !== 'sin direccion') { seen['d:' + d] = 1; return; }
+      const c = (f.geometry || {}).coordinates || [];
+      seen[c.length >= 2 ? ('c:' + (+c[1]).toFixed(5) + ',' + (+c[0]).toFixed(5)) : ('x:' + (p.id != null ? p.id : i))] = 1;
+    });
+    return Object.keys(seen).length;
+  }
+
+  // Paradas anuladas: agrupamos por línea/sentido y fusionamos ramales que
+  // comparten exactamente la misma secuencia de direcciones (igual criterio
+  // que el reporte de paradas anuladas).
+  function stopIcon(color) {
+    return L.divIcon({
+      className: 'stop-p-icon', iconSize: [20, 20], iconAnchor: [10, 10], popupAnchor: [0, -10],
+      html: '<span style="display:flex;width:20px;height:20px;align-items:center;justify-content:center;border-radius:50%;background:' + color + ';color:#fff;font:bold 12px/1 Arial,sans-serif">P</span>'
+    });
+  }
+  function popupParada(p) {
+    const ls = (p && p.linea_sentido) ? p.linea_sentido : 'Parada anulada';
+    const dir = (p && p.dir) ? p.dir : 'Sin dirección';
+    return '<div><b>Parada anulada</b></div><div>' + ls + '</div><div class="muted">' + dir + '</div>';
+  }
+  const paradasByKey = {};
+  const enabledPa = {};
+  (function() {
+    const rawGroups = {};
+    (PARADAS.features || []).forEach(f => {
+      const key = String((f.properties || {}).linea_sentido || 'Línea sin identificar');
+      (rawGroups[key] = rawGroups[key] || []).push(f);
+    });
+    const merged = {};
+    Object.keys(rawGroups).sort().forEach(label => {
+      const items = rawGroups[label];
+      const addresses = items.map(f => String((f.properties || {}).dir || 'Sin dirección')).join('§');
+      const p0 = items[0].properties || {};
+      const linea = p0.linea, sentido = p0.sentido, recorrido = p0.recorrido;
+      const hasLineaSentido = linea !== undefined && linea !== null && linea !== '' && sentido !== undefined && sentido !== null && sentido !== '';
+      const mergeKey = hasLineaSentido ? (linea + '||' + sentido + '||' + addresses) : ('__raw__||' + label);
+      if (!merged[mergeKey]) merged[mergeKey] = { recorridos: [], rawLabels: [], features: [], linea, sentido, label };
+      const entry = merged[mergeKey];
+      if (recorrido !== undefined && recorrido !== null && recorrido !== '' && entry.recorridos.indexOf(String(recorrido)) < 0) entry.recorridos.push(String(recorrido));
+      entry.rawLabels.push(label);
+      entry.features.push.apply(entry.features, items);
+    });
+    Object.keys(merged).sort((a, b) => {
+      const ea = merged[a], eb = merged[b];
+      const ka = (ea.linea || '') + '|' + (ea.sentido || '') + '|' + ea.recorridos.join('/');
+      const kb = (eb.linea || '') + '|' + (eb.sentido || '') + '|' + eb.recorridos.join('/');
+      return ka.localeCompare(kb, 'es', { numeric: true });
+    }).forEach(mergeKey => {
+      const entry = merged[mergeKey];
+      const displayLabel = entry.recorridos.length
+        ? (entry.linea + ' - ' + entry.recorridos.slice().sort((a, b) => a.localeCompare(b, 'es', { numeric: true })).join('/') + ' - ' + entry.sentido)
+        : entry.label;
+      const holder = L.geoJSON({ type: 'FeatureCollection', features: entry.features }, {
+        pointToLayer: (f, latlng) => L.marker(latlng, { icon: stopIcon('#dc2626') }),
+        onEachFeature: (f, l) => l.bindPopup(popupParada((f && f.properties) ? f.properties : {}))
+      });
+      grpParadasAll.addLayer(holder);
+      enabledPa[mergeKey] = true;
+      const _ak = {};
+      entry.features.forEach(f => {
+        const p = f.properties || {};
+        _ak[_affKey(p.linea, p.recorrido, p.sentido)] = true;
+      });
+      paradasByKey[mergeKey] = { holder, displayLabel, rawLabels: entry.rawLabels, count: _distinctStopPoints({ features: entry.features }), affKeys: Object.keys(_ak) };
+    });
+  })();
+
+  // Puente entre el panel de capas (scope de su IIFE) y la sincronización /
+  // resaltado que se arma más abajo.
+  const _syncBridge = { dvGroupCbs: {}, paGroupCbs: {}, dvGroups: {}, dvMaster: null, paMaster: null, refresh: function() {} };
+
+  // ---- Resaltado permanente: click en el TEXTO de un desvío del panel ----
+  let _selDvKey = null;
+  // Encuadre activo tras clickear un desvío (o "Todos"): se reaplica al
+  // maximizar/minimizar el reporte para que la geometría siga llenando la
+  // ventana visible del mapa.
+  let _focusBounds = null;
+  // Parada puntual resaltada (una sola por vez, como el desvío): clickear
+  // otra parada asociada al mismo desvío la reemplaza (se despinta la
+  // anterior); clickear la misma deselecciona todo.
+  let _selStopKey = null;
+  function _clearStopAssocHL() {
+    document.querySelectorAll('.stop-p-icon.stop-assoc-hl, .stop-p-icon.stop-shrunk').forEach(el => {
+      el.classList.remove('stop-assoc-hl');
+      el.classList.remove('stop-shrunk');
+    });
+    Object.keys(paradasByKey).forEach(mk => {
+      (paradasByKey[mk].holder.getLayers() || []).forEach(ly => { if (ly.setZIndexOffset) ly.setZIndexOffset(0); });
+    });
+  }
+  // Identidad de parada física: dos features de líneas distintas en la misma
+  // parada comparten dirección (o coordenada si no hay dirección).
+  function _stopIdentity(props, latlng) {
+    const d = String((props && props.dir) || '').trim().toLowerCase();
+    if (d && d !== 'sin dirección' && d !== 'sin direccion') return 'd:' + d;
+    if (latlng) return 'c:' + latlng.lat.toFixed(5) + ',' + latlng.lng.toFixed(5);
+    return 'x:' + ((props && props.id) || '');
+  }
+  function _dvGroupAffKeys(key) {
+    const g = _syncBridge.dvGroups[key];
+    if (!g) return [];
+    const set = {};
+    g.members.forEach(ls => _lsAffKeys(ls).forEach(k => set[k] = true));
+    return Object.keys(set);
+  }
+  function _restyleDvGroup(key, selected) {
+    const g = _syncBridge.dvGroups[key];
+    if (!g) return;
+    g.members.forEach(ls => {
+      const lyr = layerByLS[ls];
+      if (!lyr) return;
+      if (selected) {
+        // Rojo + 25% de grosor (adaptado al zoom; sin extra en zoom out lejano).
+        const _zs = dvZoomStyle();
+        lyr.setStyle(Object.assign({}, _zs, { color: '#ff0000', weight: selWeight(_zs.weight) }));
+        if (lyr.bringToFront) lyr.bringToFront();
+      } else {
+        lyr.setStyle(Object.assign({ color: colorFor(ls) }, dvZoomStyle()));
+      }
+    });
+    rebuildArrows();
+  }
+  function _isSelectedLs(ls) {
+    if (_selDvKey == null) return false;
+    const g = _syncBridge.dvGroups[_selDvKey];
+    return !!(g && g.members.indexOf(ls) >= 0);
+  }
+  // Clave de grupo (linea||sentido) que contiene un linea_sentido crudo: permite
+  // que el click en la geometría del mapa dispare el mismo resaltado que el panel.
+  function _groupKeyForLs(ls) {
+    const groups = _syncBridge.dvGroups;
+    for (const gk in groups) {
+      if ((groups[gk].members || []).indexOf(ls) >= 0) return gk;
+    }
+    return null;
+  }
+  function clearDesvioSelection() {
+    if (_selDvKey == null) return;
+    const prev = _selDvKey;
+    _selDvKey = null;
+    _selStopKey = null;
+    _focusBounds = null;
+    _restyleDvGroup(prev, false);
+    _clearStopAssocHL();
+    document.querySelectorAll('#checklist label.sel-label.is-selected').forEach(el => el.classList.remove('is-selected'));
+  }
+  // Resalta en el mapa (borde rojo / reducidas) las paradas asociadas al
+  // desvío `key`. El título del panel se marca en rojo según `cascadeStops`:
+  // true (clic en el propio desvío) -> TODAS las paradas asociadas a sus
+  // líneas; false (clic en una parada puntual) -> solo el título de
+  // _selStopKey (la parada clickeada a mano). Reutilizable sin pasar por el
+  // toggle de selectDesvioGroup, para que clickear una segunda parada del
+  // mismo desvío no lo deseleccione.
+  function _applyStopHighlightForDvGroup(key, cascadeStops) {
+    const want = {};
+    _dvGroupAffKeys(key).forEach(k => want[k] = true);
+    // Paso 1: identidades de las paradas asociadas al desvío seleccionado.
+    const assocIds = {};
+    Object.keys(paradasByKey).forEach(mk => {
+      const entry = paradasByKey[mk];
+      if (!(entry.affKeys || []).some(k => want[k])) return;
+      (entry.holder.getLayers() || []).forEach(ly => {
+        assocIds[_stopIdentity((ly.feature && ly.feature.properties) || {}, ly.getLatLng && ly.getLatLng())] = true;
+      });
+    });
+    // Paso 2: asociada (por línea o por parada física compartida) -> borde rojo;
+    // el resto -> 50%. El título del panel solo se pinta si fue clickeado.
+    Object.keys(paradasByKey).forEach(mk => {
+      const entry = paradasByKey[mk];
+      const direct = (entry.affKeys || []).some(k => want[k]);
+      if (entry.labelEl) entry.labelEl.classList.toggle('is-selected', mk === _selStopKey || (cascadeStops && direct));
+      (entry.holder.getLayers() || []).forEach(ly => {
+        if (!ly._icon) return;
+        const shared = !!assocIds[_stopIdentity((ly.feature && ly.feature.properties) || {}, ly.getLatLng && ly.getLatLng())];
+        const assoc = direct || shared;
+        ly._icon.classList.add(assoc ? 'stop-assoc-hl' : 'stop-shrunk');
+        if (ly.setZIndexOffset) ly.setZIndexOffset(assoc ? 0 : -100000);
+      });
+    });
+  }
+  function selectDesvioGroup(key) {
+    if (key == null) { clearDesvioSelection(); return; }
+    if (_selDvKey === key) { clearDesvioSelection(); return; }
+    clearDesvioSelection();
+    _selDvKey = key;
+    _restyleDvGroup(key, true);
+    _applyStopHighlightForDvGroup(key, true);
+    const g = _syncBridge.dvGroups[key];
+    const cb = _syncBridge.dvGroupCbs[key];
+    if (g && cb) {
+      const row = cb.closest('div');
+      const lab = row && row.querySelector('label.sel-label');
+      if (lab) lab.classList.add('is-selected');
+    }
+    try {
+      const lyrs = ((g && g.members) || []).map(ls => layerByLS[ls]).filter(Boolean);
+      if (lyrs.length) {
+        const b = L.featureGroup(lyrs).getBounds();
+        if (b && b.isValid()) _fitFocus(b);
+      }
+    } catch(e) {}
+  }
+  map.on('click', () => clearDesvioSelection());
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape' && event.key !== 'Esc') return;
+    if (['INPUT', 'TEXTAREA', 'SELECT'].indexOf((document.activeElement || {}).tagName) >= 0) return;
+    clearDesvioSelection();
+  });
+  grpDesviosAll.on('layerremove', (e) => {
+    if (_selDvKey == null) return;
+    const g = _syncBridge.dvGroups[_selDvKey];
+    if (g && g.members.some(ls => layerByLS[ls] === e.layer)) clearDesvioSelection();
+  });
+
+  // Reaplica el grosor/guion adaptado al zoom a todas las capas de desvío,
+  // respetando cuál está seleccionada (roja).
+  function restyleAllDesvios() {
+    const _zs = dvZoomStyle();
+    Object.keys(layerByLS).forEach(ls => {
+      const lyr = layerByLS[ls];
+      if (!lyr) return;
+      const _sel = _isSelectedLs(ls);
+      lyr.setStyle(Object.assign({}, _zs, {
+        color: _sel ? '#ff0000' : colorFor(ls),
+        weight: _sel ? selWeight(_zs.weight) : _zs.weight
+      }));
+    });
+  }
+
+  function rebuildArrows() {
+    grpFlechasAll.clearLayers();
+    if (!map.hasLayer(grpDesviosAll)) return;
+    // El ls seleccionado se dibuja último y con zIndexOffset alto para que su
+    // flecha roja quede siempre por encima de las flechas de las demás capas.
+    const keys = Object.keys(layerByLS);
+    const ordered = keys.filter(ls => !_isSelectedLs(ls)).concat(keys.filter(ls => _isSelectedLs(ls)));
+    ordered.forEach(ls => {
+      if (!enabledLS[ls]) return;
+      if (!grpDesviosAll.hasLayer(layerByLS[ls])) return;
+      const sel = _isSelectedLs(ls);
+      (arrowsCacheByLS[ls] || []).forEach(a => {
+        const icon = makeArrowIcon(sel ? '#ff0000' : colorFor(ls), a.latlng, a.angleDeg);
+        L.marker(a.latlng, { icon: icon, interactive: false, keyboard: false, zIndexOffset: sel ? 10000 : 0 }).addTo(grpFlechasAll);
+      });
+    });
+  }
+
+  // Inicial: mostramos desvíos + flechas
+  grpDesviosAll.addTo(map);
+  grpFlechasAll.addTo(map);
+  rebuildArrows();
+  map.on('zoomend', () => { lyrTramos.setStyle(tramosZoomStyle()); restyleAllDesvios(); rebuildArrows(); });
+
+  // Fit bounds
+  const all = [];
+  boundLayers.forEach(l => {
+    if (typeof l.getLayers === 'function') all.push(...l.getLayers());
+    else all.push(l);
+  });
+  if (all.length) {
+    const fg = L.featureGroup(all);
+    const b = fg.getBounds();
+    if (b && b.isValid()) map.fitBounds(b.pad(0.1));
+  }
+
+  // Reencuadra el mapa a las capas activas (desvíos / paradas / tramos visibles).
+  function fitActiveArea() {
+    try {
+      const active = [];
+      [grpTramos, grpDesviosAll, grpParadasAll].forEach(g => {
+        if (!map.hasLayer(g)) return;
+        const inner = (typeof g.getLayers === 'function') ? g.getLayers() : [g];
+        inner.forEach(l => {
+          if (typeof l.getLayers === 'function') active.push.apply(active, l.getLayers());
+          else active.push(l);
+        });
+      });
+      if (!active.length) return;
+      const bb = L.featureGroup(active).getBounds();
+      if (!bb || !bb.isValid()) return;
+      // Descontar del encuadre la parte del mapa tapada por el reporte (si lo
+      // solapa; cuando el reporte es un panel aparte el solape es 0).
+      const mc = map.getContainer().getBoundingClientRect();
+      const bp = document.getElementById('bottompanel');
+      let bottom = 28;
+      if (bp) {
+        const rr = bp.getBoundingClientRect();
+        bottom = Math.max(28, Math.min(mc.bottom - rr.top + 12, mc.height * 0.72));
+      }
+      map.fitBounds(bb, { paddingTopLeft: [28, 28], paddingBottomRight: [28, bottom] });
+    } catch(e) {}
+  }
+
+  // Encuadra `b` de modo que la geometría llene la ventana visible del mapa
+  // (descontando lo que tapa el reporte) y recuerda el encuadre para poder
+  // reaplicarlo cuando el reporte se maximiza / minimiza.
+  function _fitFocus(b) {
+    if (!b || !b.isValid()) return;
+    let bb = L.latLngBounds(b.getSouthWest(), b.getNorthEast());
+    try {
+      if (lyrTramos && lyrTramos.getBounds) {
+        const tb = lyrTramos.getBounds();
+        if (tb && tb.isValid()) bb.extend(tb);
+      }
+    } catch(e) {}
+    _focusBounds = bb;
+    try {
+      const mc = map.getContainer().getBoundingClientRect();
+      const bp = document.getElementById('bottompanel');
+      let bottom = 16;
+      if (bp && !bp.classList.contains('collapsed')) {
+        const rr = bp.getBoundingClientRect();
+        bottom = Math.max(16, Math.min(mc.bottom - rr.top + 12, mc.height * 0.72));
+      }
+      map.fitBounds(bb.pad(0.08), { paddingTopLeft: [44, 16], paddingBottomRight: [16, bottom] });
+    } catch(e) {
+      map.fitBounds(bb.pad(0.1));
+    }
+  }
+
+  // Bounds del grupo de desvío con mayor extensión (para el botón "Todos").
+  function _largestDvBounds() {
+    let best = null, bestArea = -1;
+    const groups = _syncBridge.dvGroups || {};
+    Object.keys(groups).forEach(k => {
+      const g = groups[k];
+      const lyrs = ((g && g.members) || []).map(ls => layerByLS[ls]).filter(Boolean);
+      if (!lyrs.length) return;
+      let b;
+      try { b = L.featureGroup(lyrs).getBounds(); } catch(e) { return; }
+      if (!b || !b.isValid()) return;
+      const dx = b.getEast() - b.getWest(), dy = b.getNorth() - b.getSouth();
+      const area = Math.abs(dx * dy);
+      if (area > bestArea) { bestArea = area; best = b; }
+    });
+    return best;
+  }
+
+  // UI helpers
+  function addToggleRow(container, label, initial, onChange) {
+    const id = 'id_' + label.replace(/\W+/g,'_') + '_' + Math.random().toString(16).slice(2);
+    const row = document.createElement('div');
+    row.style.display = 'flex';
+    row.style.alignItems = 'center';
+    row.style.gap = '8px';
+    row.style.margin = '6px 0';
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.id = id;
+    cb.checked = initial;
+    const lab = document.createElement('label');
+    lab.htmlFor = id;
+    lab.textContent = label;
+    lab.style.cursor = 'pointer';
+    cb.onchange = () => onChange(cb.checked);
+    row.appendChild(cb);
+    row.appendChild(lab);
+    container.appendChild(row);
+    return cb;
+  }
+
+  // Base map selector (al final)
+  (function() {
+    const base = document.getElementById('basemap');
+    function addRadio(label, layer, checked) {
+      const id = 'rb_' + label.replace(/\W+/g,'_');
+      const row = document.createElement('div');
+      row.style.display='flex'; row.style.alignItems='center'; row.style.gap='8px'; row.style.margin='6px 0';
+      const rb = document.createElement('input');
+      rb.type='radio'; rb.name='basemap'; rb.id=id; rb.checked=checked;
+      const lab = document.createElement('label'); lab.htmlFor=id; lab.textContent=label; lab.style.cursor='pointer';
+      rb.onchange = () => {
+        if (!rb.checked) return;
+        if (map.hasLayer(baseGoogle)) map.removeLayer(baseGoogle);
+        if (map.hasLayer(baseOSM)) map.removeLayer(baseOSM);
+        if (map.hasLayer(baseOSMLight)) map.removeLayer(baseOSMLight);
+        layer.addTo(map);
+      };
+      row.appendChild(rb); row.appendChild(lab); base.appendChild(row);
+    }
+    addRadio('OSM claro (sentidos y nombres)', baseOSMLight, false);
+    addRadio('Google Maps', baseGoogle, true);
+    addRadio('OpenStreetMap', baseOSM, false);
+  })();
+
+  // Panel de capas: jerárquico
+  (function() {
+    const checklist = document.getElementById('checklist');
+    if (!checklist) return;
+
+    // Grupo Tramos
+    const gTr = document.createElement('div');
+    gTr.className='group';
+    gTr.innerHTML = '<div class="group-title">Tramos afectados</div><div class="group-children"></div>';
+    const trChildren = gTr.querySelector('.group-children');
+    checklist.appendChild(gTr);
+    addToggleRow(trChildren, 'Tramos afectados', true, (on) => {
+      if (on) map.addLayer(grpTramos); else map.removeLayer(grpTramos);
+    });
+    gTr.querySelector('.group-title').onclick = () => gTr.classList.toggle('collapsed');
+
+    // Grupo Desvíos
+    const gDv = document.createElement('div');
+    gDv.className='group';
+    gDv.innerHTML = '<div class="group-title">Desvíos de colectivo</div><div class="group-children"></div>';
+    const dvChildren = gDv.querySelector('.group-children');
+    checklist.appendChild(gDv);
+
+    const childCbs = _syncBridge.dvGroupCbs;
+
+    // Master real: prende/apaga todos los hijos
+    const cbAll = addToggleRow(dvChildren, 'Todos', true, (on) => {
+      cbAll.indeterminate = false;
+      Object.keys(layerByLS).forEach(ls => {
+        enabledLS[ls] = on;
+        if (on) grpDesviosAll.addLayer(layerByLS[ls]);
+        else grpDesviosAll.removeLayer(layerByLS[ls]);
+      });
+      Object.keys(childCbs).forEach(key => { childCbs[key].checked = on; });
+      if (on) {
+        if (!map.hasLayer(grpDesviosAll)) map.addLayer(grpDesviosAll);
+        if (!map.hasLayer(grpFlechasAll)) map.addLayer(grpFlechasAll);
+      } else {
+        if (map.hasLayer(grpDesviosAll)) map.removeLayer(grpDesviosAll);
+        if (map.hasLayer(grpFlechasAll)) map.removeLayer(grpFlechasAll);
+      }
+      rebuildArrows();
+      _syncBridge.refresh('desvios');
+      if (on) { clearDesvioSelection(); _fitFocus(_largestDvBounds()); }
+      else { _focusBounds = null; }
+    });
+    _syncBridge.dvMaster = cbAll;
+
+    // Hijos: un ítem por id_desvio (grupo de "Ruta"), IGUAL que la app. La
+    // etiqueta es lineas_agrupadas (p. ej. "084 - A - VUELTA ; 088 - A/C - VUELTA").
+    const desvioGroups = _syncBridge.dvGroups;
+    Object.keys(layerByLS).forEach(ls => {
+      const gid = LS_TO_GID[ls] || ls;
+      if (!desvioGroups[gid]) desvioGroups[gid] = { gid, label: GID_LABEL[gid] || ls, members: [] };
+      if (desvioGroups[gid].members.indexOf(ls) < 0) desvioGroups[gid].members.push(ls);
+    });
+
+    // Pueden prenderse individualmente aunque el master esté apagado.
+    Object.keys(desvioGroups)
+      .sort((a, b) => {
+        const na = parseInt(a, 10), nb = parseInt(b, 10);
+        if (!isNaN(na) && !isNaN(nb) && na !== nb) return na - nb;
+        const ma = desvioGroups[a].members.slice().sort(lsSort)[0] || '';
+        const mb = desvioGroups[b].members.slice().sort(lsSort)[0] || '';
+        return lsSort(ma, mb);
+      })
+      .forEach(key => {
+        const group = desvioGroups[key];
+        const displayLabel = group.label;
+        childCbs[key] = addToggleRow(dvChildren, displayLabel, true, (on) => {
+          group.members.forEach(ls => {
+            enabledLS[ls] = on;
+            if (on) grpDesviosAll.addLayer(layerByLS[ls]);
+            else grpDesviosAll.removeLayer(layerByLS[ls]);
+          });
+
+          const anyOn = Object.values(enabledLS).some(v => v);
+          if (anyOn) {
+            if (!map.hasLayer(grpDesviosAll)) map.addLayer(grpDesviosAll);
+            if (!map.hasLayer(grpFlechasAll)) map.addLayer(grpFlechasAll);
+          } else {
+            if (map.hasLayer(grpDesviosAll)) map.removeLayer(grpDesviosAll);
+            if (map.hasLayer(grpFlechasAll)) map.removeLayer(grpFlechasAll);
+          }
+          // mantener el master sincronizado visualmente (checked si todos están activos)
+          const allOn = Object.values(enabledLS).every(v => v);
+          const anyOnNow = Object.values(enabledLS).some(v => v);
+          cbAll.checked = allOn;
+          cbAll.indeterminate = anyOnNow && !allOn;
+          rebuildArrows();
+          _syncBridge.refresh('desvios');
+        });
+        // Click en el TEXTO (no en el checkbox): resaltado permanente en rojo
+        // del desvío + borde rojo en las paradas asociadas, hasta clickear otro
+        // ítem o un área vacía del mapa.
+        const _row = childCbs[key].closest('div');
+        const _lab = _row && _row.querySelector('label');
+        if (_lab) {
+          _lab.removeAttribute('for');
+          _lab.className = 'sel-label';
+          _lab.title = 'Resaltar este desvío y sus paradas asociadas';
+          _lab.onclick = (e) => { e.preventDefault(); selectDesvioGroup(key); };
+        }
+      });
+
+    gDv.querySelector('.group-title').onclick = () => gDv.classList.toggle('collapsed');
+
+    // Grupo Paradas anuladas
+    const gPa = document.createElement('div');
+    gPa.className = 'group';
+    gPa.innerHTML = '<div class="group-title">Paradas anuladas (' + _distinctStopPoints(PARADAS) + ')</div><div class="group-children"></div>';
+    const paChildren = gPa.querySelector('.group-children');
+    checklist.appendChild(gPa);
+
+    const paChildCbs = _syncBridge.paGroupCbs;
+
+    function syncPaMaster() {
+      const values = Object.values(enabledPa);
+      const allOn = values.length > 0 && values.every(v => v);
+      const anyOn = values.some(v => v);
+      cbPaAll.checked = allOn;
+      cbPaAll.indeterminate = anyOn && !allOn;
+    }
+
+    const cbPaAll = addToggleRow(paChildren, 'Todos', true, (on) => {
+      cbPaAll.indeterminate = false;
+      Object.keys(paradasByKey).forEach(key => {
+        enabledPa[key] = on;
+        if (paChildCbs[key]) paChildCbs[key].checked = on;
+        if (on) grpParadasAll.addLayer(paradasByKey[key].holder);
+        else grpParadasAll.removeLayer(paradasByKey[key].holder);
+      });
+      if (on) { if (!map.hasLayer(grpParadasAll)) map.addLayer(grpParadasAll); }
+      else if (map.hasLayer(grpParadasAll)) map.removeLayer(grpParadasAll);
+      _syncBridge.refresh('paradas');
+    });
+    _syncBridge.paMaster = cbPaAll;
+
+    Object.keys(paradasByKey).forEach(key => {
+      const entry = paradasByKey[key];
+      paChildCbs[key] = addToggleRow(paChildren, entry.displayLabel + ' (' + entry.count + ')', true, (on) => {
+        enabledPa[key] = on;
+        if (on) grpParadasAll.addLayer(entry.holder);
+        else grpParadasAll.removeLayer(entry.holder);
+        const anyOn = Object.values(enabledPa).some(v => v);
+        if (anyOn) { if (!map.hasLayer(grpParadasAll)) map.addLayer(grpParadasAll); }
+        else if (map.hasLayer(grpParadasAll)) map.removeLayer(grpParadasAll);
+        syncPaMaster();
+        _syncBridge.refresh('paradas');
+      });
+      // Click en el TEXTO (no en el checkbox): enciende esta parada si estaba
+      // apagada y resalta en rojo su desvío asociado + reduce las paradas no
+      // asociadas, igual que clickear el desvío desde su propio panel.
+      const _paRow = paChildCbs[key].closest('div');
+      const _paLab = _paRow && _paRow.querySelector('label');
+      if (_paLab) {
+        _paLab.removeAttribute('for');
+        _paLab.className = 'sel-label';
+        _paLab.title = 'Encender y resaltar el desvío asociado a esta parada';
+        entry.labelEl = _paLab;
+        _paLab.onclick = (e) => {
+          e.preventDefault();
+          const targetLs = (entry.rawLabels || []).find(ls => _groupKeyForLs(ls) != null);
+          const dvKey = targetLs ? _groupKeyForLs(targetLs) : null;
+          if (dvKey == null) return;
+          // Clic en la misma parada ya resaltada: deselecciona todo, igual
+          // que clickear dos veces el mismo desvío.
+          if (_selStopKey === key) { clearDesvioSelection(); return; }
+          if (!paChildCbs[key].checked) {
+            paChildCbs[key].checked = true;
+            enabledPa[key] = true;
+            grpParadasAll.addLayer(entry.holder);
+            if (!map.hasLayer(grpParadasAll)) map.addLayer(grpParadasAll);
+            syncPaMaster();
+            _syncBridge.refresh('paradas');
+          }
+          // Si ya es el desvío seleccionado, no volver a llamar a
+          // selectDesvioGroup: alternaría a "deseleccionar" (mismo id). Otra
+          // parada asociada al mismo desvío debe dejarlo tal cual (en rojo),
+          // solo se reemplaza cuál parada puntual queda marcada.
+          if (dvKey !== _selDvKey) selectDesvioGroup(dvKey);
+          _selStopKey = key;
+          _applyStopHighlightForDvGroup(dvKey, false);
+        };
+      }
+    });
+
+    gPa.querySelector('.group-title').onclick = () => gPa.classList.toggle('collapsed');
+  })();
+
+  // Botón único Mostrar/Ocultar capas
+  (function() {
+    const leftpanel = document.getElementById('leftpanel');
+    const btn = document.getElementById('btnLayers');
+    function applyText() {
+      btn.textContent = leftpanel.classList.contains('hidden') ? 'Mostrar capas' : 'Ocultar capas';
+    }
+    applyText();
+    btn.onclick = () => {
+      leftpanel.classList.toggle('hidden');
+      applyText();
+      setTimeout(() => map.invalidateSize(), 250);
+    };
+  })();
+
+  // Reporte (contenido + copiar)
+  (function() {
+    const reporteDiv = document.getElementById('reporte-html');
+    reporteDiv.innerHTML = "<h3>Tramos afectados</h3><ul><li>PALOS entre ARZOBISPO ESPINOSA y OLAVARRIA</li><li>VILLAFAÑE, WENCESLAO entre RODRIGUEZ, MARTIN y ESPORA, TOMAS, CORONEL DE MARINA</li><li>VALLE, ARISTOBULO DEL entre BROWN, ALTE. AV. y VALLE IBERLUCEA DEL, DR.</li><li>ZOLEZZI, ANTONIO L. entre VILLAFAÑE, WENCESLAO y BRANDSEN</li><li>VALLE IBERLUCEA DEL, DR. entre VILLAFAÑE, WENCESLAO y OLAVARRIA</li><li>PINZON entre RODRIGUEZ, MARTIN y VALLE IBERLUCEA DEL, DR.</li><li>BRANDSEN entre RODRIGUEZ, MARTIN y IRALA</li><li>SUAREZ entre RODRIGUEZ, MARTIN y REGIMIENTO DE PATRICIOS AV.</li><li>POLIZA, PRACTICO entre BRANDSEN y OLAVARRIA</li></ul><h3><input type='checkbox' id='cbReportAll' checked/>Líneas afectadas (Total 5)</h3><h3>Líneas con desvío (Total 4 - 80,0%)</h3><h3>Detalle de las líneas con desvío</h3><ul><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"086 - A - IDA\", \"086 - B - IDA\", \"086 - C - IDA\", \"086 - D - IDA\", \"086 - G - IDA\", \"086 - H - IDA\"]'/><b>086 - A/B/C/D/G/H - IDA</b>: VALLE, ARISTOBULO DEL - IRALA - OLAVARRIA - BROWN, ALTE. AV. - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"025 - A - IDA\"]'/><b>025 - A - IDA</b>: NECOCHEA - PI Y MARGALL - PILCOMAYO - IRALA - BRANDSEN - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"025 - A - VUELTA\"]'/><b>025 - A - VUELTA</b>: SUAREZ - REGIMIENTO DE PATRICIOS AV. - GARCIA, MARTIN AV. - BROWN, ALTE. AV. - BRANDSEN - RODRIGUEZ, MARTIN - SUAREZ - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"046 - A - IDA\", \"046 - B - IDA\"]'/><b>046 - A/B - IDA</b>: BROWN, ALTE. AV. - ARAOZ DE LAMADRID, GREGORIO, GRAL. - HERNANDARIAS - BRANDSEN - SU RUTA</li></ul><h3>Líneas excluidas por terminal/cabecera afectada (Total 1 - 20,0%)</h3><p class='muted'>Estas líneas se excluyen del cálculo de desvíos (no se rutean).</p><h3>Detalle de líneas excluidas por terminal/cabecera afectada</h3><ul><li><b>086 - A/B/C/D/G/H - VUELTA</b></li></ul><h3><input type='checkbox' id='cbReportStopsAll' checked/>Paradas anuladas (Total 13)</h3><ul><li><input type='checkbox' class='parada-toggle' checked data-parada-key='025 - A - IDA'/><b>025 - A - IDA</b>: ALMTE. BROWN AV. 221 - ALMTE. BROWN AV. 621 - ALMTE. BROWN AV. 1055 - BRANDSEN 593 - BRANDSEN 671 - BRANDSEN 987</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='025 - A - VUELTA'/><b>025 - A - VUELTA</b>: SUAREZ 1104 - SUAREZ 944 - SUAREZ 610</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='046 - A - IDA||046 - B - IDA'/><b>046 - A/B - IDA</b>: ALMTE. BROWN AV. 1280 - BRANDSEN 593 - BRANDSEN 671 - BRANDSEN 987</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='086 - A - IDA||086 - B - IDA||086 - C - IDA||086 - D - IDA||086 - G - IDA||086 - H - IDA'/><b>086 - A/B/C/D/G/H - IDA</b>: PALOS 510 - PALOS 308 - ARISTOBULO DEL VALLE 432</li></ul>";
+
+ // ✅ Toggles por Ruta (reporte) con retrofuncionalidad:
+ // - Si TODO está prendido, al tocar una Ruta se apagan todas y quedan solo las seleccionadas.
+ function setLS(ls, on){
+   enabledLS[ls] = !!on;
+   if (!layerByLS[ls]) return;
+   if (on) grpDesviosAll.addLayer(layerByLS[ls]);
+   else grpDesviosAll.removeLayer(layerByLS[ls]);
+ }
+ function ensureGroups(){
+   const anyOn = Object.values(enabledLS).some(v => v);
+   if (anyOn){
+     if (!map.hasLayer(grpDesviosAll)) map.addLayer(grpDesviosAll);
+     if (!map.hasLayer(grpFlechasAll)) map.addLayer(grpFlechasAll);
+   } else {
+     if (map.hasLayer(grpDesviosAll)) map.removeLayer(grpDesviosAll);
+     if (map.hasLayer(grpFlechasAll)) map.removeLayer(grpFlechasAll);
+   }
+ }
+ function applySelectionFromReport(){
+   // unión de keys de todas las rutas tildadas
+   const toggles = Array.from(document.querySelectorAll('.ruta-toggle'));
+   const selected = new Set();
+   toggles.forEach(cb => {
+     if (!cb.checked) return;
+     let keys = [];
+     try { keys = JSON.parse(cb.getAttribute('data-keys') || '[]'); } catch(e) { keys = []; }
+     keys.forEach(k => selected.add(k));
+   });
+   // apagar todas, prender solo seleccionadas
+   Object.keys(layerByLS).forEach(ls => setLS(ls, selected.has(ls)));
+   ensureGroups();
+   rebuildArrows();
+ }
+ (function(){
+   const toggles = Array.from(document.querySelectorAll('.ruta-toggle'));
+   if (!toggles.length) return;
+
+   // ✅ Master checkbox en el Reporte (a la izquierda de "Líneas Afectadas"): activa/desactiva todos los items
+   const cbAllReport = document.getElementById('cbReportAll');
+   function syncCbAllReport(){
+     if (!cbAllReport) return;
+     cbAllReport.checked = toggles.every(x => x.checked);
+   }
+   if (cbAllReport){
+     cbAllReport.addEventListener('change', () => {
+       const on = !!cbAllReport.checked;
+       toggles.forEach(x => x.checked = on);
+       // prender/apagar todas las capas en el mapa
+       Object.keys(layerByLS).forEach(ls => setLS(ls, on));
+       ensureGroups();
+       rebuildArrows();
+     });
+   }
+
+   toggles.forEach(cb => {
+     cb.addEventListener('change', (ev) => {
+       // Estado previo: todo prendido + todas las rutas tildadas
+       const allLayersOn = Object.values(enabledLS).every(v => v);
+       const allRoutesChecked = toggles.every(x => x.checked);
+
+       // Si estaba TODO prendido y el usuario tocó una ruta (normalmente la destilda), usamos modo "solo selección":
+       if (allLayersOn && allRoutesChecked) {
+         // dejar SOLO esta ruta prendida
+         toggles.forEach(x => x.checked = false);
+         cb.checked = true;
+       }
+
+       applySelectionFromReport();
+       syncCbAllReport();
+     });
+   });
+   syncCbAllReport();
+ })();
+
+ // Paradas anuladas del reporte: mismo criterio de fusión que usó
+ // paradas_anuladas.report_html() al armar 'data-parada-key' (labels crudos
+ // de linea_sentido unidos con '||'), por lo que el set ordenado de labels
+ // identifica sin ambigüedad la misma agrupación que arma paradasByKey arriba.
+ function setParadaGroup(key, on){
+   enabledPa[key] = !!on;
+   if (!paradasByKey[key]) return;
+   if (on) grpParadasAll.addLayer(paradasByKey[key].holder);
+   else grpParadasAll.removeLayer(paradasByKey[key].holder);
+ }
+ function ensureParadasGroup(){
+   const anyOn = Object.values(enabledPa).some(v => v);
+   if (anyOn) { if (!map.hasLayer(grpParadasAll)) map.addLayer(grpParadasAll); }
+   else if (map.hasLayer(grpParadasAll)) map.removeLayer(grpParadasAll);
+ }
+ const paradaKeyByLabelSet = {};
+ Object.keys(paradasByKey).forEach(key => {
+   const norm = paradasByKey[key].rawLabels.slice().sort().join('||');
+   paradaKeyByLabelSet[norm] = key;
+ });
+ function paradaKeyFromToggle(cb){
+   const raw = (cb.getAttribute('data-parada-key') || '').split('||').map(x => x.trim()).filter(Boolean);
+   return paradaKeyByLabelSet[raw.slice().sort().join('||')];
+ }
+ function applyParadaSelectionFromReport(){
+   const toggles = Array.from(document.querySelectorAll('.parada-toggle'));
+   const selected = new Set();
+   toggles.forEach(cb => {
+     if (!cb.checked) return;
+     const key = paradaKeyFromToggle(cb);
+     if (key) selected.add(key);
+   });
+   Object.keys(paradasByKey).forEach(key => setParadaGroup(key, selected.has(key)));
+   ensureParadasGroup();
+ }
+ (function(){
+   const toggles = Array.from(document.querySelectorAll('.parada-toggle'));
+   if (!toggles.length) return;
+
+   const cbAllReportStops = document.getElementById('cbReportStopsAll');
+   function syncCbAllReportStops(){
+     if (!cbAllReportStops) return;
+     cbAllReportStops.checked = toggles.every(x => x.checked);
+   }
+   if (cbAllReportStops){
+     cbAllReportStops.addEventListener('change', () => {
+       const on = !!cbAllReportStops.checked;
+       toggles.forEach(x => x.checked = on);
+       Object.keys(paradasByKey).forEach(key => setParadaGroup(key, on));
+       ensureParadasGroup();
+     });
+   }
+
+   toggles.forEach(cb => {
+     cb.addEventListener('change', () => {
+       const allOnBefore = Object.values(enabledPa).every(v => v);
+       const allCheckedBefore = toggles.every(x => x.checked);
+       if (allOnBefore && allCheckedBefore) {
+         toggles.forEach(x => x.checked = false);
+         cb.checked = true;
+       }
+       applyParadaSelectionFromReport();
+       syncCbAllReportStops();
+     });
+   });
+   syncCbAllReportStops();
+ })();
+
+
+    function reportToPlainText(root){
+      if(!root) return '';
+      var lines=[];
+      root.querySelectorAll('h3,h4,li,p').forEach(function(el){
+        var text=(el.textContent||'').replace(/\s+/g,' ').trim();
+        if(!text) return;
+        if(el.tagName==='H3'||el.tagName==='H4'){ lines.push(''); lines.push('*'+text+'*'); }
+        else lines.push(text);
+      });
+      return lines.join('\n').replace(/\n{3,}/g,'\n\n').replace(/^\n+/,'').trim();
+    }
+    function flashBtnCopied(){
+      var b=document.getElementById('btnCopyReport');
+      if(!b) return;
+      clearTimeout(b._copiedTimer);
+      b.classList.add('copied');
+      b.textContent='✓ Copiado';
+      b._copiedTimer=setTimeout(function(){ b.classList.remove('copied'); b.textContent='Copiar'; },1500);
+    }
+    document.getElementById('btnCopyReport').onclick = async () => {
+      const txt = reportToPlainText(document.getElementById('reporte-html'));
+      try {
+        await navigator.clipboard.writeText(txt);
+      } catch(e) {
+        try {
+          const ta=document.createElement('textarea');
+          ta.value=txt; ta.style.position='fixed'; ta.style.opacity='0';
+          document.body.appendChild(ta); ta.select();
+          document.execCommand('copy'); ta.remove();
+        } catch(_) { alert('No se pudo copiar el reporte'); }
+      }
+      flashBtnCopied();
+    };
+  })();
+
+  // ---- Sincronización desvíos <-> paradas <-> reporte (paridad con la app) ----
+  // Estado compartido por "clave afectada" (linea|recorrido|sentido). Cada
+  // superficie (panel de desvíos, panel de paradas, checkboxes del reporte)
+  // vuelca su estado a keyState y luego se re-aplica a las otras tres.
+  (function() {
+    const bridge = _syncBridge;
+    const keyState = {};
+
+    function lsAll() { return Object.keys(layerByLS); }
+    function isActive(keys) { return keys.length > 0 && keys.some(k => keyState[k] !== false); }
+
+    function setLSLocal(ls, on) {
+      enabledLS[ls] = !!on;
+      if (!layerByLS[ls]) return;
+      if (on) grpDesviosAll.addLayer(layerByLS[ls]);
+      else grpDesviosAll.removeLayer(layerByLS[ls]);
+    }
+    function ensureDesviosGroups() {
+      const anyOn = Object.values(enabledLS).some(v => v);
+      if (anyOn) {
+        if (!map.hasLayer(grpDesviosAll)) map.addLayer(grpDesviosAll);
+        if (!map.hasLayer(grpFlechasAll)) map.addLayer(grpFlechasAll);
+      } else {
+        if (map.hasLayer(grpDesviosAll)) map.removeLayer(grpDesviosAll);
+        if (map.hasLayer(grpFlechasAll)) map.removeLayer(grpFlechasAll);
+      }
+    }
+    function setParadaLocal(mk, on) {
+      enabledPa[mk] = !!on;
+      if (!paradasByKey[mk]) return;
+      if (on) grpParadasAll.addLayer(paradasByKey[mk].holder);
+      else grpParadasAll.removeLayer(paradasByKey[mk].holder);
+    }
+    function ensureParadasGroup() {
+      const anyOn = Object.values(enabledPa).some(v => v);
+      if (anyOn) { if (!map.hasLayer(grpParadasAll)) map.addLayer(grpParadasAll); }
+      else if (map.hasLayer(grpParadasAll)) map.removeLayer(grpParadasAll);
+    }
+
+    const paradaKeyByLabelSet = {};
+    Object.keys(paradasByKey).forEach(mk => {
+      paradaKeyByLabelSet[(paradasByKey[mk].rawLabels || []).slice().sort().join('||')] = mk;
+    });
+    function toggleToMergeKey(cb) {
+      const raw = String(cb.getAttribute('data-parada-key') || '').split('||').map(x => x.trim()).filter(Boolean);
+      return paradaKeyByLabelSet[raw.slice().sort().join('||')];
+    }
+    function rutaToggleKeys(cb) {
+      let ks = [];
+      try { ks = JSON.parse(cb.getAttribute('data-keys') || '[]'); } catch(e) { ks = []; }
+      const out = [];
+      ks.forEach(ls => _lsAffKeys(ls).forEach(k => out.push(k)));
+      return out;
+    }
+
+    // PULL: superficie -> keyState
+    function pullDesvios() { lsAll().forEach(ls => _lsAffKeys(ls).forEach(k => keyState[k] = !!enabledLS[ls])); }
+    function pullParadas() { Object.keys(paradasByKey).forEach(mk => (paradasByKey[mk].affKeys || []).forEach(k => keyState[k] = !!enabledPa[mk])); }
+    function pullReportRoutes() {
+      document.querySelectorAll('#reporte-html .ruta-toggle').forEach(cb => {
+        rutaToggleKeys(cb).forEach(k => keyState[k] = !!cb.checked);
+      });
+    }
+    function pullReportStops() {
+      document.querySelectorAll('#reporte-html .parada-toggle').forEach(cb => {
+        const mk = toggleToMergeKey(cb);
+        if (mk && paradasByKey[mk]) (paradasByKey[mk].affKeys || []).forEach(k => keyState[k] = !!cb.checked);
+      });
+    }
+
+    // APPLY: keyState -> superficie
+    function applyDesvios() {
+      lsAll().forEach(ls => {
+        const desired = isActive(_lsAffKeys(ls));
+        if (!!enabledLS[ls] !== desired) setLSLocal(ls, desired);
+      });
+      ensureDesviosGroups();
+      Object.keys(bridge.dvGroups).forEach(gk => {
+        const g = bridge.dvGroups[gk], cb = bridge.dvGroupCbs[gk];
+        if (!cb) return;
+        const states = g.members.map(ls => !!enabledLS[ls]);
+        const allOn = states.length > 0 && states.every(Boolean), anyOn = states.some(Boolean);
+        cb.checked = allOn;
+        cb.indeterminate = anyOn && !allOn;
+      });
+      if (bridge.dvMaster) {
+        const vals = Object.values(enabledLS);
+        const allOn = vals.length > 0 && vals.every(Boolean), anyOn = vals.some(Boolean);
+        bridge.dvMaster.checked = allOn;
+        bridge.dvMaster.indeterminate = anyOn && !allOn;
+      }
+      rebuildArrows();
+    }
+    function applyParadas() {
+      Object.keys(paradasByKey).forEach(mk => {
+        const desired = isActive(paradasByKey[mk].affKeys || []);
+        if (!!enabledPa[mk] !== desired) setParadaLocal(mk, desired);
+        const cb = bridge.paGroupCbs[mk];
+        if (cb) cb.checked = !!enabledPa[mk];
+      });
+      ensureParadasGroup();
+      if (bridge.paMaster) {
+        const vals = Object.values(enabledPa);
+        const allOn = vals.length > 0 && vals.every(Boolean), anyOn = vals.some(Boolean);
+        bridge.paMaster.checked = allOn;
+        bridge.paMaster.indeterminate = anyOn && !allOn;
+      }
+    }
+    function applyReport() {
+      const rutas = Array.prototype.slice.call(document.querySelectorAll('#reporte-html .ruta-toggle'));
+      rutas.forEach(cb => {
+        const keys = rutaToggleKeys(cb);
+        if (keys.length) cb.checked = isActive(keys);
+      });
+      const cbAllR = document.getElementById('cbReportAll');
+      if (cbAllR) cbAllR.checked = rutas.length > 0 && rutas.every(x => x.checked);
+      const paradas = Array.prototype.slice.call(document.querySelectorAll('#reporte-html .parada-toggle'));
+      paradas.forEach(cb => {
+        const mk = toggleToMergeKey(cb);
+        const keys = (mk && paradasByKey[mk] && paradasByKey[mk].affKeys) || [];
+        if (keys.length) cb.checked = isActive(keys);
+      });
+      const cbAllS = document.getElementById('cbReportStopsAll');
+      if (cbAllS) cbAllS.checked = paradas.length > 0 && paradas.every(x => x.checked);
+    }
+
+    let busy = false;
+    function refresh(source) {
+      if (busy) return;
+      busy = true;
+      try {
+        if (source === 'desvios') pullDesvios();
+        else if (source === 'paradas') pullParadas();
+        else if (source === 'report-routes') pullReportRoutes();
+        else if (source === 'report-stops') pullReportStops();
+        else pullDesvios();
+        applyDesvios();
+        applyParadas();
+        applyReport();
+      } finally {
+        busy = false;
+      }
+    }
+    bridge.refresh = refresh;
+
+    const rep = document.getElementById('reporte-html');
+    if (rep && !rep._syncBound) {
+      rep._syncBound = true;
+      rep.addEventListener('change', (ev) => {
+        if (ev.target.matches('.ruta-toggle, #cbReportAll')) refresh('report-routes');
+        else if (ev.target.matches('.parada-toggle, #cbReportStopsAll')) refresh('report-stops');
+      });
+    }
+
+    // Estado inicial coherente entre las tres superficies.
+    pullDesvios();
+    applyParadas();
+    applyReport();
+  })();
+
+  // Ocultar/mostrar reporte
+  const bottomPanel = document.getElementById('bottompanel');
+  const btnToggle = document.getElementById('toggleReport');
+  const dragbar = document.getElementById('dragbar');
+  btnToggle.onclick = () => {
+    const collapsed = bottomPanel.classList.toggle('collapsed');
+    btnToggle.textContent = collapsed ? 'Mostrar reporte' : 'Ocultar reporte';
+    dragbar.style.display = collapsed ? 'none' : 'block';
+    // Esperar a que termine la transición de altura del panel antes de
+    // recalcular el tamaño del mapa y reencuadrar al área activa.
+    setTimeout(() => {
+      map.invalidateSize();
+      requestAnimationFrame(() => {
+        map.invalidateSize();
+        if (_focusBounds && _focusBounds.isValid()) _fitFocus(_focusBounds);
+        else fitActiveArea();
+      });
+    }, 320);
+  };
+
+  map.whenReady(() => setTimeout(() => map.invalidateSize(true), 350));
+  window.addEventListener('resize', () => setTimeout(() => map.invalidateSize(), 250));
+ window.addEventListener('orientationchange', () => setTimeout(() => map.invalidateSize(true), 400));
+  </script>
+</body>
+</html>
