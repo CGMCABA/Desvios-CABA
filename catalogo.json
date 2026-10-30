@@ -8,6 +8,20 @@
       "carpeta": "Santo_Padre_con_Maria_Moreno",
       "manifest": "Santo_Padre_con_Maria_Moreno/geodata/manifest.json",
       "activa": true
+    },
+    {
+      "id": "river_plate_base",
+      "nombre": "River Plate — Desvíos base (Monumental)",
+      "carpeta": "Desvios_base_River_Plate",
+      "manifest": "Desvios_base_River_Plate/geodata/manifest.json",
+      "activa": true
+    },
+    {
+      "id": "boca_jrs_base",
+      "nombre": "Boca Juniors — Desvíos base (Bombonera)",
+      "carpeta": "Desvios_base_BOCA_JRS",
+      "manifest": "Desvios_base_BOCA_JRS/geodata/manifest.json",
+      "activa": true
     }
   ]
 }
