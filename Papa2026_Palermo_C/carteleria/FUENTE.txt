@@ -1,0 +1,2 @@
+Conversión de puntos de cartelería desde el KMZ original, sin modificar coordenadas ni contenido de atributos. Las líneas de tramos del KMZ se omiten para evitar duplicar los tramos afectados ya cargados desde QGIS.
+Fuente: OPERATIVO PAPA 2026 (2.11.26)/1_POLIGONOS AFECTADOS/2_PALERMO (C)/Cartelería_ Palermo (C)/carteleria_Luis_M._Campos_-_Las_Heras_inahibilitadas.kmz

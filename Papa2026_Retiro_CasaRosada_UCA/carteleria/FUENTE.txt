@@ -1,0 +1,2 @@
+Conversión de puntos de cartelería desde el KMZ original, sin modificar coordenadas ni contenido de atributos. Las líneas de tramos del KMZ se omiten para evitar duplicar los tramos afectados ya cargados desde QGIS.
+Fuente: OPERATIVO PAPA 2026 (2.11.26)/1_POLIGONOS AFECTADOS/4_RETIRO_CASA ROSADA_UCA/carteleria/carteleria_desvios_nunciatura_retiro_casa_rosada_puerto_madero.kmz
