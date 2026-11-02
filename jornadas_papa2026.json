@@ -1,31 +1,368 @@
 {
-  "version": 1,
-  "descripcion": "Asignaciones manuales por jornada; no representan vigencia hasta su validación operativa.",
+  "version": 2,
+  "descripcion": "Cronograma extraído de Visita León XIV - CGM.html. Las carpetas no se asignan hasta confirmar equivalencia exacta entre escenarios del informe y paquetes QGIS.",
+  "fuente": "Visita León XIV - CGM.html",
+  "estado": "MATRIZ_PRELIMINAR_NO_APTA_PARA_CONFIRMAR_CORTES",
   "jornadas": [
+    {
+      "fecha": "2026-11-06",
+      "etiqueta": "Viernes 6/11/2026",
+      "casos": [
+        {
+          "nombre": "General",
+          "descripcion": "Nunciatura",
+          "total_lineas": 4,
+          "total_paradas_anuladas": 8,
+          "locaciones": [
+            "Nunciatura"
+          ],
+          "id": "general",
+          "locaciones_detalle": [
+            {
+              "nombre": "Nunciatura",
+              "candidatos": [
+                "Papa2026_Nunciatura_Original",
+                "Papa2026_Nunciatura_Recortada"
+              ],
+              "estado": "pendiente_de_validacion",
+              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+            }
+          ],
+          "estado": "pendiente_de_validacion"
+        }
+      ]
+    },
     {
       "fecha": "2026-11-07",
       "etiqueta": "Sábado 7/11/2026",
-      "carpetas": []
+      "casos": [
+        {
+          "nombre": "General",
+          "descripcion": "Nunciatura + Monumento a los Españoles (LMC habilitada)",
+          "total_lineas": 23,
+          "total_paradas_anuladas": 141,
+          "locaciones": [
+            "Nunciatura",
+            "Monumento a los Españoles — LMC habilitada"
+          ],
+          "id": "general",
+          "locaciones_detalle": [
+            {
+              "nombre": "Nunciatura",
+              "candidatos": [
+                "Papa2026_Nunciatura_Original",
+                "Papa2026_Nunciatura_Recortada"
+              ],
+              "estado": "pendiente_de_validacion",
+              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+            },
+            {
+              "nombre": "Monumento a los Españoles — LMC habilitada",
+              "candidatos": [
+                "Papa2026_Palermo_A"
+              ],
+              "estado": "pendiente_de_validacion",
+              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+            }
+          ],
+          "estado": "pendiente_de_validacion"
+        }
+      ]
     },
     {
       "fecha": "2026-11-08",
       "etiqueta": "Domingo 8/11/2026",
-      "carpetas": []
+      "casos": [
+        {
+          "nombre": "General",
+          "descripcion": "Nunciatura + Monumento (LMC habilitada) + Plaza San Martín + Catedral + CCK",
+          "total_lineas": 65,
+          "total_paradas_anuladas": 312,
+          "locaciones": [
+            "Nunciatura",
+            "Monumento a los Españoles — LMC habilitada",
+            "Plaza San Martín",
+            "Catedral Metropolitana",
+            "CCK"
+          ],
+          "id": "general",
+          "locaciones_detalle": [
+            {
+              "nombre": "Nunciatura",
+              "candidatos": [
+                "Papa2026_Nunciatura_Original",
+                "Papa2026_Nunciatura_Recortada"
+              ],
+              "estado": "pendiente_de_validacion",
+              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+            },
+            {
+              "nombre": "Monumento a los Españoles — LMC habilitada",
+              "candidatos": [
+                "Papa2026_Palermo_A"
+              ],
+              "estado": "pendiente_de_validacion",
+              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+            },
+            {
+              "nombre": "Plaza San Martín",
+              "candidatos": [
+                "Papa2026_Retiro_CasaRosada_CCK"
+              ],
+              "estado": "pendiente_de_validacion",
+              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+            },
+            {
+              "nombre": "Catedral Metropolitana",
+              "candidatos": [
+                "Papa2026_Retiro_CasaRosada_CCK"
+              ],
+              "estado": "pendiente_de_validacion",
+              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+            },
+            {
+              "nombre": "CCK",
+              "candidatos": [
+                "Papa2026_Retiro_CasaRosada_CCK"
+              ],
+              "estado": "pendiente_de_validacion",
+              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+            }
+          ],
+          "estado": "pendiente_de_validacion"
+        }
+      ]
     },
     {
       "fecha": "2026-11-09",
       "etiqueta": "Lunes 9/11/2026",
-      "carpetas": []
+      "casos": [
+        {
+          "nombre": "Caso A",
+          "descripcion": "Nunciatura + Monumento (LMC habilitada) + Plaza San Martín + Catedral + UCA",
+          "total_lineas": 66,
+          "total_paradas_anuladas": 315,
+          "locaciones": [
+            "Nunciatura",
+            "Monumento a los Españoles — LMC habilitada",
+            "Plaza San Martín",
+            "Catedral Metropolitana",
+            "UCA"
+          ],
+          "id": "caso-a",
+          "locaciones_detalle": [
+            {
+              "nombre": "Nunciatura",
+              "candidatos": [
+                "Papa2026_Nunciatura_Original",
+                "Papa2026_Nunciatura_Recortada"
+              ],
+              "estado": "pendiente_de_validacion",
+              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+            },
+            {
+              "nombre": "Monumento a los Españoles — LMC habilitada",
+              "candidatos": [
+                "Papa2026_Palermo_A"
+              ],
+              "estado": "pendiente_de_validacion",
+              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+            },
+            {
+              "nombre": "Plaza San Martín",
+              "candidatos": [
+                "Papa2026_Retiro_CasaRosada_UCA"
+              ],
+              "estado": "pendiente_de_validacion",
+              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+            },
+            {
+              "nombre": "Catedral Metropolitana",
+              "candidatos": [
+                "Papa2026_Retiro_CasaRosada_UCA"
+              ],
+              "estado": "pendiente_de_validacion",
+              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+            },
+            {
+              "nombre": "UCA",
+              "candidatos": [
+                "Papa2026_Retiro_CasaRosada_UCA"
+              ],
+              "estado": "pendiente_de_validacion",
+              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+            }
+          ],
+          "estado": "pendiente_de_validacion"
+        },
+        {
+          "nombre": "Caso B",
+          "descripcion": "Nunciatura + Monumento (LMC inhabilitada) + Plaza San Martín + Catedral + UCA",
+          "total_lineas": 70,
+          "total_paradas_anuladas": 370,
+          "locaciones": [
+            "Nunciatura",
+            "Monumento a los Españoles — LMC inhabilitada",
+            "Plaza San Martín",
+            "Catedral Metropolitana",
+            "UCA"
+          ],
+          "id": "caso-b",
+          "locaciones_detalle": [
+            {
+              "nombre": "Nunciatura",
+              "candidatos": [
+                "Papa2026_Nunciatura_Original",
+                "Papa2026_Nunciatura_Recortada"
+              ],
+              "estado": "pendiente_de_validacion",
+              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+            },
+            {
+              "nombre": "Monumento a los Españoles — LMC inhabilitada",
+              "candidatos": [
+                "Papa2026_Palermo_B",
+                "Papa2026_Palermo_C"
+              ],
+              "estado": "pendiente_de_validacion",
+              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+            },
+            {
+              "nombre": "Plaza San Martín",
+              "candidatos": [
+                "Papa2026_Retiro_CasaRosada_UCA"
+              ],
+              "estado": "pendiente_de_validacion",
+              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+            },
+            {
+              "nombre": "Catedral Metropolitana",
+              "candidatos": [
+                "Papa2026_Retiro_CasaRosada_UCA"
+              ],
+              "estado": "pendiente_de_validacion",
+              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+            },
+            {
+              "nombre": "UCA",
+              "candidatos": [
+                "Papa2026_Retiro_CasaRosada_UCA"
+              ],
+              "estado": "pendiente_de_validacion",
+              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+            }
+          ],
+          "estado": "pendiente_de_validacion"
+        }
+      ]
     },
     {
       "fecha": "2026-11-10",
       "etiqueta": "Martes 10/11/2026",
-      "carpetas": []
+      "casos": [
+        {
+          "nombre": "Caso A",
+          "descripcion": "Nunciatura + Monumento (LMC habilitada)",
+          "total_lineas": 23,
+          "total_paradas_anuladas": 141,
+          "locaciones": [
+            "Nunciatura",
+            "Monumento a los Españoles — LMC habilitada"
+          ],
+          "id": "caso-a",
+          "locaciones_detalle": [
+            {
+              "nombre": "Nunciatura",
+              "candidatos": [
+                "Papa2026_Nunciatura_Original",
+                "Papa2026_Nunciatura_Recortada"
+              ],
+              "estado": "pendiente_de_validacion",
+              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+            },
+            {
+              "nombre": "Monumento a los Españoles — LMC habilitada",
+              "candidatos": [
+                "Papa2026_Palermo_A"
+              ],
+              "estado": "pendiente_de_validacion",
+              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+            }
+          ],
+          "estado": "pendiente_de_validacion"
+        },
+        {
+          "nombre": "Caso B",
+          "descripcion": "Nunciatura + Monumento (LMC inhabilitada)",
+          "total_lineas": 29,
+          "total_paradas_anuladas": 196,
+          "locaciones": [
+            "Nunciatura",
+            "Monumento a los Españoles — LMC inhabilitada"
+          ],
+          "id": "caso-b",
+          "locaciones_detalle": [
+            {
+              "nombre": "Nunciatura",
+              "candidatos": [
+                "Papa2026_Nunciatura_Original",
+                "Papa2026_Nunciatura_Recortada"
+              ],
+              "estado": "pendiente_de_validacion",
+              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+            },
+            {
+              "nombre": "Monumento a los Españoles — LMC inhabilitada",
+              "candidatos": [
+                "Papa2026_Palermo_B",
+                "Papa2026_Palermo_C"
+              ],
+              "estado": "pendiente_de_validacion",
+              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+            }
+          ],
+          "estado": "pendiente_de_validacion"
+        }
+      ]
     },
     {
       "fecha": "2026-11-11",
       "etiqueta": "Miércoles 11/11/2026",
-      "carpetas": []
+      "casos": [
+        {
+          "nombre": "General",
+          "descripcion": "Nunciatura + Cárcel de Devoto",
+          "total_lineas": 8,
+          "total_paradas_anuladas": 14,
+          "locaciones": [
+            "Nunciatura",
+            "Cárcel de Devoto"
+          ],
+          "id": "general",
+          "locaciones_detalle": [
+            {
+              "nombre": "Nunciatura",
+              "candidatos": [
+                "Papa2026_Nunciatura_Original",
+                "Papa2026_Nunciatura_Recortada"
+              ],
+              "estado": "pendiente_de_validacion",
+              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+            },
+            {
+              "nombre": "Cárcel de Devoto",
+              "candidatos": [
+                "Papa2026_Carcel_Devoto"
+              ],
+              "estado": "pendiente_de_validacion",
+              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+            }
+          ],
+          "estado": "pendiente_de_validacion"
+        }
+      ]
     }
-  ]
+  ],
+  "advertencia": "Candidatos inferidos por nombres de carpetas y escenarios. Único vínculo explícito de fecha en manifiesto: Palermo A / sábado 7. Deben validarse coincidencias por ramales y por turnos con responsables de operativo. No dibujar escenarios de locaciones distintas como simultáneos sin verificación.",
+  "manual": "El selector solo abre un paquete por vez. No fusiona GeoJSON, no establece si hay cortes vigentes ni valida que los totales de reporte se correspondan con cantidad de geometrías."
 }
