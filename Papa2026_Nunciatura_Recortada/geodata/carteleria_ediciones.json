@@ -1,0 +1,421 @@
+{
+ "eliminados": [
+  "0|0|ARROYO|-58.382832,-34.591563",
+  "0|0|CERRITO|-58.382205,-34.589149",
+  "0|0|MONTEVIDEO|-58.383889,-34.587720",
+  "0|0|POSADAS|-58.381476,-34.590322",
+  "0|0|RODRIGUEZ PEÑA|-58.385070,-34.587077",
+  "0|0|9 DE JULIO AV.|-58.382191,-34.589152",
+  "0|0|ALVEAR|-58.388067,-34.588391",
+  "0|0|LIBERTAD|-58.384435,-34.592683",
+  "0|0|PARERA|-58.385967,-34.591453",
+  "0|0|ALVEAR AV.|-58.383034,-34.591589",
+  "0|0|CERRITO|-58.382889,-34.591733",
+  "0|0|LIBERTAD|-58.384189,-34.590849",
+  "0|0|ALVEAR AV.|-58.384162,-34.590931",
+  "1|1|ALVEAR AV.|-58.388547,-34.588077",
+  "1|1|DEL LIBERTADOR AV.|-58.384396,-34.586991",
+  "1|1|LIBERTAD|-58.384467,-34.593189",
+  "1|1|PARERA|-58.386394,-34.591815",
+  "4|4+5|CALLAO AV.|-58.388490,-34.588689",
+  "4|4+5|DEL LIBERTADOR AV.|-58.384304,-34.587430",
+  "4|4+5|DEL LIBERTADOR AV.|-58.383391,-34.587926",
+  "4|4+5|DEL LIBERTADOR AV.|-58.385485,-34.586787",
+  "4|4+5|DEL LIBERTADOR AV.|-58.384573,-34.587283",
+  "4|4+5|PELLEGRINI, CARLOS|-58.381550,-34.590802",
+  "4|4+5|QUINTANA, MANUEL, PRES.|-58.385618,-34.591804",
+  "6|6|DEL LIBERTADOR AV.|-58.384117,-34.587531",
+  "2|2|LIBERTAD|-58.384448,-34.593641",
+  "3|3|LIBERTAD|-58.384413,-34.594567",
+  "7|7|PELLEGRINI, CARLOS|-58.381587,-34.592159",
+  "7|7|DEL LIBERTADOR AV.|-58.385672,-34.586685",
+  "7|7|DEL LIBERTADOR AV.|-58.383205,-34.588028",
+  "7|7|DEL LIBERTADOR AV.|-58.381835,-34.588773"
+ ],
+ "agregados": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.3822046,
+     -34.5891485
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "CERRITO",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvycr6qw4p3u"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.3838891,
+     -34.5877199
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "MONTEVIDEO",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvycr6qw0vfm"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.3814757,
+     -34.5903219
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "POSADAS",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvycr6qwdyvn"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.3850702,
+     -34.5870769
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "RODRIGUEZ PEÑA",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvycr6qw0wnf"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.3821912,
+     -34.5891519
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "9 DE JULIO AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvycr9k83d19"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.3880674,
+     -34.5883909
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "ALVEAR",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvycre74y4zk"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.3844348,
+     -34.592683
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "LIBERTAD",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvycre74j7de"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.385967,
+     -34.5914525
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "PARERA",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvycre74kfyx"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.3830405,
+     -34.5928329
+    ]
+   },
+   "properties": {
+    "ref": 6,
+    "etiqueta": "6",
+    "descripcion": "A 100 m: calle transversal cerrada",
+    "_desc_obra": "A 100 m: calle transversal cerrada",
+    "carteles": [
+     {
+      "codigo": "A11_100m",
+      "archivo": "A11_100m.png",
+      "texto": "A 100m CALLE TRANSVERSAL CERRADA",
+      "_obra": "A11_100m"
+     }
+    ],
+    "calle": "JUNCAL",
+    "altura": 1114,
+    "distancia_m": 0,
+    "_manual": "mmvycy9co13h2"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.3844225,
+     -34.5942555
+    ]
+   },
+   "properties": {
+    "ref": 2,
+    "etiqueta": "2",
+    "descripcion": "A 100 m: evento",
+    "carteles": [
+     {
+      "codigo": "A13",
+      "archivo": "A13.png",
+      "texto": "A 100m EVENTO",
+      "_obra": "A8"
+     }
+    ],
+    "calle": "LIBERTAD",
+    "distancia_m": 100,
+    "_desc_obra": "A 100 m: desvío",
+    "_manual": "mmvycylmofn3e",
+    "altura": 1213
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.3843561,
+     -34.595094
+    ]
+   },
+   "properties": {
+    "ref": 3,
+    "etiqueta": "3",
+    "descripcion": "A 200 m: evento",
+    "carteles": [
+     {
+      "codigo": "A14",
+      "archivo": "A14.png",
+      "texto": "A 200m EVENTO",
+      "_obra": "A8_200m"
+     }
+    ],
+    "calle": "LIBERTAD",
+    "distancia_m": 202,
+    "_desc_obra": "A 200 m: desvío",
+    "_manual": "mmvyczably0r6",
+    "altura": 1144
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.3816066,
+     -34.5925702
+    ]
+   },
+   "properties": {
+    "ref": 7,
+    "etiqueta": "7",
+    "descripcion": "A 200 m: calle transversal cerrada",
+    "carteles": [
+     {
+      "codigo": "A11",
+      "archivo": "A11.png",
+      "texto": "A 200m CALLE TRANSVERSAL CERRADA",
+      "_obra": "A11"
+     }
+    ],
+    "calle": "PELLEGRINI, CARLOS",
+    "distancia_m": 200,
+    "_desc_obra": "A 200 m: calle transversal cerrada",
+    "_manual": "mmvyd09dfx7ya",
+    "altura": 1323
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.3807653,
+     -34.5928468
+    ]
+   },
+   "properties": {
+    "ref": 7,
+    "etiqueta": "7",
+    "descripcion": "A 200 m: calle transversal cerrada",
+    "_desc_obra": "A 200 m: calle transversal cerrada",
+    "carteles": [
+     {
+      "codigo": "A11",
+      "archivo": "A11.png",
+      "texto": "A 200m CALLE TRANSVERSAL CERRADA",
+      "_obra": "A11"
+     }
+    ],
+    "calle": "JUNCAL",
+    "altura": 945,
+    "distancia_m": 0,
+    "_manual": "mmvyd0hy3qyyk"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.383892,
+     -34.5877233
+    ]
+   },
+   "properties": {
+    "ref": 7,
+    "etiqueta": "7",
+    "descripcion": "A 200 m: calle transversal cerrada",
+    "carteles": [
+     {
+      "codigo": "A11",
+      "archivo": "A11.png",
+      "texto": "A 200m CALLE TRANSVERSAL CERRADA",
+      "_obra": "A11"
+     }
+    ],
+    "calle": "MONTEVIDEO",
+    "distancia_m": 200,
+    "_desc_obra": "A 200 m: calle transversal cerrada",
+    "_manual": "mmvyd10n8qud1",
+    "altura": 1995
+   }
+  }
+ ]
+}

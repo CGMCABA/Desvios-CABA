@@ -1,0 +1,1771 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>Desvios_Nunciatura recortada</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <style>
+  :root {
+    --fucsia: #005C59;
+    --rojo: #3949AB;
+    --panel-w: 320px;
+    --report-h: 240px;
+  }
+  html, body { height: 100%; margin: 0; padding: 0; }
+
+  #app {
+    position: absolute; inset: 0;
+    display: flex;
+ height: 100vh;
+ max-height: 100vh;
+ height: -webkit-fill-available;
+    background: #e5e5e5;
+    font-family: system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    font-size: 14px;
+  }
+
+  /* Panel izquierdo (capas) */
+  #leftpanel {
+ position: relative;
+    width: var(--panel-w);
+    background: #fff;
+    border-right: 4px solid var(--fucsia);
+    padding: 10px 12px;
+    overflow-y: auto;
+ overflow-x: visible;
+    box-sizing: border-box;
+    transition: width .25s ease, padding .25s ease, border-right-color .25s ease;
+  }
+  #leftpanel.hidden {
+    width: 0;
+    padding: 0;
+    border-right-color: transparent;
+    overflow: hidden;
+  }
+
+  #main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+ min-height: 0;
+    position: relative;
+  }
+
+  #map {
+    flex: 1;
+    min-height: 200px;
+    background: #e5e5e5;
+  }
+
+  /* Botón único para mostrar/ocultar capas */
+  #btnLayers {
+    position: absolute;
+    z-index: 9999;
+    top: 10px;
+    left: 10px;
+ background-color: #005C59;
+ background: var(--fucsia, #005C59);
+    color: #fff;
+    border: 0;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  
+ opacity: 1;
+}
+
+  /* Drag bar + reporte */
+  #dragbar {
+    height: 10px;
+    cursor: row-resize;
+    background: linear-gradient(90deg, transparent, rgba(57,73,171,.35), transparent);
+    border-top: 1px solid rgba(0,0,0,.08);
+    border-bottom: 1px solid rgba(0,0,0,.08);
+    user-select: none;
+    touch-action: none;
+  }
+
+  #bottompanel {
+    height: var(--report-h);
+    background: #fff;
+    border-top: 4px solid var(--rojo);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    transition: height .25s ease;
+  }
+
+  #bottombar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 8px 10px;
+    border-bottom: 1px solid #ddd;
+    user-select: none;
+  }
+
+  #toggleReport {
+ background-color: #3949AB;
+ background: var(--rojo, #3949AB);
+    color: #fff;
+    border: 0;
+    border-radius: 6px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-weight: 800;
+  
+ opacity: 1;
+}
+
+  #btnCopyReport {
+    background: #111;
+    color: #fff;
+    border: 0;
+    border-radius: 6px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-weight: 800;
+    transition: background .18s ease;
+  }
+  #btnCopyReport.copied {
+    background: #16a34a;
+    animation: btnCopiedPulse .32s ease;
+  }
+  @keyframes btnCopiedPulse { 40% { transform: scale(1.09); } }
+
+  #reporte-html {
+    padding: 10px 12px;
+    overflow-y: auto;
+  }
+
+  #bottompanel.collapsed { height: 38px; }
+  #bottompanel.collapsed #reporte-html { display: none; }
+  #bottompanel.collapsed + #dragbar { display: none; }
+
+  .muted { color: #666; }
+
+  .group {
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 8px;
+    margin: 8px 0;
+  }
+  .group-title {
+    font-weight: 900;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    cursor:pointer;
+    user-select:none;
+  }
+  .group-children { margin-top: 8px; padding-left: 6px; }
+  .group.collapsed .group-children { display: none; }
+
+  /* Flechas como marker rotado */
+  .arrow-end-icon { background: transparent !important; border: 0 !important; }
+  .arrow-end { pointer-events: none; line-height:0; margin:0; padding:0; }
+  .arrow-end svg { display:block; }
+  .base-map-light { filter: saturate(.42) brightness(1.13) contrast(.88); }
+
+  /* Resaltado permanente: paradas asociadas al desvío seleccionado en el panel */
+  .stop-p-icon > span { transition: transform .15s ease; }
+  .stop-p-icon.stop-assoc-hl > span { box-shadow: 0 0 0 2px #ff1f1f, 0 0 0 4px #fff; }
+  .stop-p-icon.stop-shrunk > span { transform: scale(.5); }
+  .group-children label.sel-label { cursor: pointer; }
+  .group-children label.sel-label:hover { text-decoration: underline; }
+  .group-children label.sel-label.is-selected { color: #d61f1f; font-weight: 800; }
+
+  /* Filtro por número de línea del panel de capas */
+  #lineFilter { width: 100%; box-sizing: border-box; margin: 2px 0 4px; padding: 7px 10px; border: 1px solid #c9d2dc; border-radius: 7px; font: inherit; outline: 0; }
+  #lineFilter:focus { border-color: var(--fucsia); }
+  .group-children div.filtro-oculto, .group-children div.modo-oculto { display: none !important; }
+
+  /* Modo de listado: por desvío (agrupado) o por línea */
+  .modo-fila { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; color: #555; font-size: 13px; }
+  .modo-listado { display: inline-flex; border: 1px solid #c9d2dc; border-radius: 7px; overflow: hidden; flex: none; }
+  .modo-listado button { border: 0; background: #fff; color: #334155; padding: 5px 9px; cursor: pointer; font: inherit; font-size: 12px; font-weight: 700; }
+  .modo-listado button.activo { background: var(--fucsia); color: #fff; }
+  .group-children .sin-coincidencias { color: #666; font-size: 12px; margin: 6px 0; }
+
+  
+/* Barra vertical en degradé al borde del panel de capas (solo cuando está visible) */
+#leftpanel::after {
+ content: '';
+ position: absolute;
+ top: 0;
+ right: -10px;
+ width: 10px;
+ height: 100%;
+ background: linear-gradient(180deg, transparent, rgba(0,92,89,.35), transparent);
+ border-left: 1px solid rgba(0,0,0,.08);
+ border-right: 1px solid rgba(0,0,0,.08);
+ pointer-events: none;
+}
+#leftpanel.hidden::after { display: none; }
+
+/* iOS Safari: usar dynamic viewport height cuando está disponible */
+@supports (height: 100dvh) {
+  #app { height: 100dvh; max-height: 100dvh; }
+}
+</style>
+</head>
+<body>
+  <div id="app">
+    <div id="leftpanel" class="hidden">
+      <h2>Capas y elementos</h2>
+      <div class="modo-fila">Listado <span class="modo-listado"></span></div>
+      <input id="lineFilter" type="search" autocomplete="off" placeholder="Filtrar por número de línea…"/>
+      <div id="checklist"></div>
+      <hr/>
+      <h3>Mapa base</h3>
+      <div id="basemap"></div>
+    </div>
+
+    <div id="main">
+      <button id="btnLayers" type="button">Mostrar capas</button>
+      <div id="map"></div>
+      <div id="dragbar" title="Arrastrá para cambiar la altura del reporte"></div>
+      <div id="bottompanel" class="collapsed">
+        <div id="bottombar">
+          <div><strong>Reporte</strong> <span class="muted">– 01/11 - 18:38</span></div>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="modo-listado"></span>
+            <button id="btnCopyReport" type="button">Copiar</button>
+            <button id="toggleReport" type="button">Mostrar reporte</button>
+          </div>
+        </div>
+        <div id="reporte-html"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+  const TRAMOS = {"type": "FeatureCollection", "name": "tramos_afectados", "crs": {"type": "name", "properties": {"name": "urn:ogc:def:crs:OGC:1.3:CRS84"}}, "features": [{"type": "Feature", "properties": {"id": 6435, "codigo": 19071, "nomoficial": "RODRIGUEZ PEÑA", "alt_izqini": 2002, "alt_izqfin": 2100, "alt_derini": 2001, "alt_derfin": 2099, "tipo_c": "CALLE", "long": 155.3188703091423, "sentido": "DECRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA COMPLEMENTARIA", "tipo_ffcc": "Sin Iteracción", "barrio": "RECOLETA", "Calle1": "DEL LIBERTADOR AV.", "Calle2": "POSADAS", "Calle3": null, "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.38609737 -34.58812076, -58.38502878 -34.58703485))", "escuela": 0, "hospital": 1, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 1.0, "criticidad": 42, "ZONA_FUNC": "2", "ZONA_CPU": "R2", "congestion": 17, "jerarquia": 3, "COMUNA": 2, "cb": 0, "alta_compl": 0}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.38609736529377, -34.5881207616384], [-58.385028782426694, -34.58703485096941]]]}}, {"type": "Feature", "properties": {"id": 6436, "codigo": 17114, "nomoficial": "POSADAS", "alt_izqini": 1402, "alt_izqfin": 1500, "alt_derini": 1401, "alt_derfin": 1499, "tipo_c": "CALLE", "long": 111.01295066666998, "sentido": "CRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA COMPLEMENTARIA", "tipo_ffcc": "Sin Iteracción", "barrio": "RECOLETA", "Calle1": "CALLAO AV.", "Calle2": "RODRIGUEZ PEÑA", "Calle3": null, "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.38609737 -34.58812076, -58.38621188 -34.58805034, -58.38708745 -34.5875456))", "escuela": 0, "hospital": 1, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 37, "ZONA_FUNC": "2", "ZONA_CPU": "R2", "congestion": 17, "jerarquia": 3, "COMUNA": 2, "cb": 0, "alta_compl": 0}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.38609736529377, -34.5881207616384], [-58.386211875347485, -34.58805033985416], [-58.38708744813737, -34.587545599374444]]]}}, {"type": "Feature", "properties": {"id": 6598, "codigo": 13118, "nomoficial": "MONTEVIDEO", "alt_izqini": 1902, "alt_izqfin": 2000, "alt_derini": 1901, "alt_derfin": 1999, "tipo_c": "CALLE", "long": 159.8215381888749, "sentido": "DECRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA COMPLEMENTARIA", "tipo_ffcc": "Sin Iteracción", "barrio": "RECOLETA", "Calle1": "DEL LIBERTADOR AV.", "Calle2": "POSADAS", "Calle3": null, "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.38495271 -34.58879152, -58.38384746 -34.58767797))", "escuela": 0, "hospital": 1, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 1, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 37, "ZONA_FUNC": "2", "ZONA_CPU": "R2", "congestion": 17, "jerarquia": 3, "COMUNA": 2, "cb": 0, "alta_compl": 0}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.38495271129904, -34.588791522530784], [-58.383847460509166, -34.58767797198763]]]}}, {"type": "Feature", "properties": {"id": 6599, "codigo": 17114, "nomoficial": "POSADAS", "alt_izqini": 1302, "alt_izqfin": 1400, "alt_derini": 1301, "alt_derfin": 1399, "tipo_c": "CALLE", "long": 128.71296634069165, "sentido": "CRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA COMPLEMENTARIA", "tipo_ffcc": "Sin Iteracción", "barrio": "RECOLETA", "Calle1": "RODRIGUEZ PEÑA", "Calle2": "MONTEVIDEO", "Calle3": null, "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.38495271 -34.58879152, -58.38506765 -34.58872462, -58.38597365 -34.58819695, -58.38609737 -34.58812076))", "escuela": 0, "hospital": 1, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 37, "ZONA_FUNC": "2", "ZONA_CPU": "R2", "congestion": 17, "jerarquia": 3, "COMUNA": 2, "cb": 0, "alta_compl": 0}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.38495271129904, -34.588791522530784], [-58.38506764570296, -34.5887246232886], [-58.38597365322035, -34.58819695223111], [-58.38609736529377, -34.5881207616384]]]}}, {"type": "Feature", "properties": {"id": 6658, "codigo": 19071, "nomoficial": "RODRIGUEZ PEÑA", "alt_izqini": 1902, "alt_izqfin": 2000, "alt_derini": 1901, "alt_derfin": 1999, "tipo_c": "CALLE", "long": 135.7856377201534, "sentido": "DECRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA COMPLEMENTARIA", "tipo_ffcc": "Sin Iteracción", "barrio": "RECOLETA", "Calle1": "POSADAS", "Calle2": "ALVEAR", "Calle3": null, "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.38703471 -34.58906799, -58.38618703 -34.58821188, -58.38609737 -34.58812076))", "escuela": 0, "hospital": 1, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 1.0, "criticidad": 42, "ZONA_FUNC": "2", "ZONA_CPU": "R2", "congestion": 17, "jerarquia": 3, "COMUNA": 2, "cb": 0, "alta_compl": 0}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.38703471057599, -34.58906798692359], [-58.38618703190214, -34.58821187623085], [-58.38609736529377, -34.5881207616384]]]}}, {"type": "Feature", "properties": {"id": 6659, "codigo": 1060, "nomoficial": "ALVEAR", "alt_izqini": 1702, "alt_izqfin": 1800, "alt_derini": 1701, "alt_derfin": 1799, "tipo_c": "CALLE", "long": 126.92009976626028, "sentido": "DECRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA COMPLEMENTARIA", "tipo_ffcc": "Sin Iteracción", "barrio": "RECOLETA", "Calle1": "CALLAO AV.", "Calle2": "ALVEAR AV.", "Calle3": "RODRIGUEZ PEÑA", "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.38703471 -34.58906799, -58.38811876 -34.58835724))", "escuela": 0, "hospital": 1, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 39, "ZONA_FUNC": "2", "ZONA_CPU": "APH", "congestion": 17, "jerarquia": 3, "COMUNA": 2, "cb": 0, "alta_compl": 0}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.38703471057599, -34.58906798692359], [-58.38811875885823, -34.58835723894171]]]}}, {"type": "Feature", "properties": {"id": 6783, "codigo": 12106, "nomoficial": "LIBERTAD", "alt_izqini": 1602, "alt_izqfin": 1700, "alt_derini": 1601, "alt_derfin": 1699, "tipo_c": "CALLE", "long": 166.4763060319943, "sentido": "CRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA COMPLEMENTARIA", "tipo_ffcc": "Sin Iteracción", "barrio": "RETIRO", "Calle1": "DEL LIBERTADOR AV.", "Calle2": "POSADAS", "Calle3": null, "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.38354997 -34.58960746, -58.3828395 -34.58822662))", "escuela": 0, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 1, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 10, "ZONA_FUNC": "1", "ZONA_CPU": "R2", "congestion": 11, "jerarquia": 3, "COMUNA": 1, "cb": 0, "alta_compl": 0}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.38354996900594, -34.589607458789104], [-58.38283949729489, -34.58822661682256]]]}}, {"type": "Feature", "properties": {"id": 6784, "codigo": 17114, "nomoficial": "POSADAS", "alt_izqini": 1202, "alt_izqfin": 1300, "alt_derini": 1201, "alt_derfin": 1299, "tipo_c": "CALLE", "long": 157.34008010614318, "sentido": "CRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA COMPLEMENTARIA", "tipo_ffcc": "Sin Iteracción", "barrio": "RETIRO", "Calle1": "MONTEVIDEO", "Calle2": "LIBERTAD", "Calle3": null, "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.38354997 -34.58960746, -58.38367871 -34.58953318, -58.38495271 -34.58879152))", "escuela": 0, "hospital": 1, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 1, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 36, "ZONA_FUNC": "2", "ZONA_CPU": "R2", "congestion": 11, "jerarquia": 3, "COMUNA": 1, "cb": 0, "alta_compl": 0}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.38354996900594, -34.589607458789104], [-58.38367870764779, -34.58953317539434], [-58.38495271129904, -34.588791522530784]]]}}, {"type": "Feature", "properties": {"id": 6828, "codigo": 13118, "nomoficial": "MONTEVIDEO", "alt_izqini": 1802, "alt_izqfin": 1900, "alt_derini": 1801, "alt_derfin": 1899, "tipo_c": "CALLE", "long": 142.71526409151, "sentido": "DECRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA COMPLEMENTARIA", "tipo_ffcc": "Sin Iteracción", "barrio": "RECOLETA", "Calle1": "POSADAS", "Calle2": "ALVEAR", "Calle3": null, "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.38593965 -34.5897859, -58.38495271 -34.58879152))", "escuela": 0, "hospital": 1, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 37, "ZONA_FUNC": "2", "ZONA_CPU": "R2", "congestion": 17, "jerarquia": 3, "COMUNA": 2, "cb": 0, "alta_compl": 0}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.38593965229178, -34.58978590142119], [-58.38495271129904, -34.588791522530784]]]}}, {"type": "Feature", "properties": {"id": 6829, "codigo": 1060, "nomoficial": "ALVEAR", "alt_izqini": 1602, "alt_izqfin": 1700, "alt_derini": 1601, "alt_derfin": 1699, "tipo_c": "CALLE", "long": 128.2048912264846, "sentido": "DECRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA COMPLEMENTARIA", "tipo_ffcc": "Sin Iteracción", "barrio": "RECOLETA", "Calle1": "RODRIGUEZ PEÑA", "Calle2": "MONTEVIDEO", "Calle3": null, "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.38593965 -34.5897859, -58.38703471 -34.58906799))", "escuela": 0, "hospital": 1, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 39, "ZONA_FUNC": "2", "ZONA_CPU": "APH", "congestion": 17, "jerarquia": 3, "COMUNA": 2, "cb": 0, "alta_compl": 0}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.38593965229178, -34.58978590142119], [-58.38703471057599, -34.58906798692359]]]}}, {"type": "Feature", "properties": {"id": 6856, "codigo": 19071, "nomoficial": "RODRIGUEZ PEÑA", "alt_izqini": 1802, "alt_izqfin": 1900, "alt_derini": 1801, "alt_derfin": 1899, "tipo_c": "CALLE", "long": 129.7753589760618, "sentido": "DECRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA COMPLEMENTARIA", "tipo_ffcc": "Sin Iteracción", "barrio": "RECOLETA", "Calle1": "ALVEAR", "Calle2": "QUINTANA, MANUEL, PRES.", "Calle3": null, "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.3879309 -34.58997307, -58.38703471 -34.58906799))", "escuela": 0, "hospital": 1, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 1.0, "criticidad": 42, "ZONA_FUNC": "2", "ZONA_CPU": "R2", "congestion": 17, "jerarquia": 3, "COMUNA": 2, "cb": 0, "alta_compl": 0}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.387930900409145, -34.58997306607844], [-58.38703471057599, -34.58906798692359]]]}}, {"type": "Feature", "properties": {"id": 6902, "codigo": 3118, "nomoficial": "CERRITO", "alt_izqini": 1502, "alt_izqfin": 1580, "alt_derini": 1501, "alt_derfin": 1579, "tipo_c": "CALLE", "long": 120.57513388499842, "sentido": "DECRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA PRINCIPAL", "tipo_ffcc": "Sin Iteracción", "barrio": "RETIRO", "Calle1": "GUAYRA", "Calle2": "IBERA", "Calle3": null, "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.38269523 -34.59009803, -58.38217884 -34.58909856))", "escuela": 0, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 3.0, "criticidad": 24, "ZONA_FUNC": "1", "ZONA_CPU": "R2", "congestion": 11, "jerarquia": 2, "COMUNA": 1, "cb": 0, "alta_compl": 0}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.38269522974953, -34.59009803228114], [-58.382178840541236, -34.58909855573618]]]}}, {"type": "Feature", "properties": {"id": 6903, "codigo": 17114, "nomoficial": "POSADAS", "alt_izqini": 1102, "alt_izqfin": 1200, "alt_derini": 1101, "alt_derfin": 1199, "tipo_c": "CALLE", "long": 95.45254182464022, "sentido": "CRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA COMPLEMENTARIA", "tipo_ffcc": "Sin Iteracción", "barrio": "RETIRO", "Calle1": "LIBERTAD", "Calle2": "CERRITO", "Calle3": null, "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.38269523 -34.59009803, -58.38354997 -34.58960746))", "escuela": 0, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 1, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 10, "ZONA_FUNC": "1", "ZONA_CPU": "R2", "congestion": 11, "jerarquia": 3, "COMUNA": 1, "cb": 0, "alta_compl": 0}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.38269522974953, -34.59009803228114], [-58.38354996900594, -34.589607458789104]]]}}, {"type": "Feature", "properties": {"id": 6977, "codigo": 17114, "nomoficial": "POSADAS", "alt_izqini": 1002, "alt_izqfin": 1050, "alt_derini": 1001, "alt_derfin": 1049, "tipo_c": "CALLE", "long": 87.24592063546713, "sentido": "CRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA COMPLEMENTARIA", "tipo_ffcc": "Sin Iteracción", "barrio": "RETIRO", "Calle1": "PELLEGRINI, CARLOS", "Calle2": "9 DE JULIO AV.", "Calle3": null, "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.38144047 -34.59036769, -58.38155378 -34.59022051, -58.38159512 -34.59018019, -58.38164599 -34.59014818, -58.38170409 -34.59012604, -58.38176652 -34.59011481, -58.3822507 -34.59010673))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 2.0, "criticidad": 33, "ZONA_FUNC": "1", "ZONA_CPU": "RU", "congestion": 11, "jerarquia": 3, "COMUNA": 1, "cb": 0, "alta_compl": 0}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.381440468335015, -34.59036769456805], [-58.38155378325461, -34.590220514531545], [-58.38159512274958, -34.59018018942507], [-58.38164599138402, -34.5901481806794], [-58.38170408847534, -34.590126036066344], [-58.38176651775295, -34.59011480999651], [-58.38225069801611, -34.59010672985282]]]}}, {"type": "Feature", "properties": {"id": 6984, "codigo": 1060, "nomoficial": "ALVEAR", "alt_izqini": 1502, "alt_izqfin": 1600, "alt_derini": 1501, "alt_derfin": 1599, "tipo_c": "CALLE", "long": 119.33534812527733, "sentido": "DECRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA COMPLEMENTARIA", "tipo_ffcc": "Sin Iteracción", "barrio": "RETIRO", "Calle1": "MONTEVIDEO", "Calle2": "PARERA", "Calle3": null, "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.38491684 -34.59045047, -58.38584558 -34.58984753, -58.38593965 -34.5897859))", "escuela": 0, "hospital": 1, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 37, "ZONA_FUNC": "2", "ZONA_CPU": "APH", "congestion": 11, "jerarquia": 3, "COMUNA": 1, "cb": 0, "alta_compl": 0}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.3849168366821, -34.59045047123904], [-58.38584558481711, -34.589847532938556], [-58.38593965229178, -34.58978590142119]]]}}, {"type": "Feature", "properties": {"id": 7049, "codigo": 13118, "nomoficial": "MONTEVIDEO", "alt_izqini": 1702, "alt_izqfin": 1800, "alt_derini": 1701, "alt_derfin": 1799, "tipo_c": "CALLE", "long": 141.90998350303755, "sentido": "DECRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA COMPLEMENTARIA", "tipo_ffcc": "Sin Iteracción", "barrio": "RECOLETA", "Calle1": "ALVEAR", "Calle2": "QUINTANA, MANUEL, PRES.", "Calle3": null, "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.38692109 -34.59077463, -58.38593965 -34.5897859))", "escuela": 0, "hospital": 1, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 37, "ZONA_FUNC": "2", "ZONA_CPU": "R2", "congestion": 17, "jerarquia": 3, "COMUNA": 2, "cb": 0, "alta_compl": 0}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.386921086859736, -34.59077463484015], [-58.38593965229178, -34.58978590142119]]]}}, {"type": "Feature", "properties": {"id": 7073, "codigo": 1060, "nomoficial": "ALVEAR", "alt_izqini": 1402, "alt_izqfin": 1500, "alt_derini": 1401, "alt_derfin": 1499, "tipo_c": "CALLE", "long": 74.07030097303125, "sentido": "DECRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA COMPLEMENTARIA", "tipo_ffcc": "Sin Iteracción", "barrio": "RETIRO", "Calle1": "PARERA", "Calle2": "LIBERTAD", "Calle3": null, "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.38427975 -34.59086049, -58.38433419 -34.59082876, -58.38491684 -34.59045047))", "escuela": 0, "hospital": 1, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 37, "ZONA_FUNC": "1", "ZONA_CPU": "APH", "congestion": 11, "jerarquia": 3, "COMUNA": 1, "cb": 0, "alta_compl": 0}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.384279745168726, -34.5908604897869], [-58.384334189445106, -34.59082876393391], [-58.3849168366821, -34.59045047123904]]]}}, {"type": "Feature", "properties": {"id": 7089, "codigo": 12106, "nomoficial": "LIBERTAD", "alt_izqini": 1502, "alt_izqfin": 1600, "alt_derini": 1501, "alt_derfin": 1599, "tipo_c": "CALLE", "long": 155.66402622156696, "sentido": "CRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA COMPLEMENTARIA", "tipo_ffcc": "Sin Iteracción", "barrio": "RETIRO", "Calle1": "POSADAS", "Calle2": "ALVEAR", "Calle3": "ALVEAR AV.", "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.38421431 -34.59089862, -58.38354997 -34.58960746))", "escuela": 0, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 10, "ZONA_FUNC": "1", "ZONA_CPU": "R2", "congestion": 11, "jerarquia": 3, "COMUNA": 1, "cb": 0, "alta_compl": 0}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.384214309742674, -34.59089861705081], [-58.38354996900594, -34.589607458789104]]]}}, {"type": "Feature", "properties": {"id": 7205, "codigo": 17021, "nomoficial": "PARERA", "alt_izqini": 102, "alt_izqfin": 200, "alt_derini": 101, "alt_derfin": 199, "tipo_c": "CALLE", "long": 153.12588823148093, "sentido": "CRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA COMPLEMENTARIA", "tipo_ffcc": "Sin Iteracción", "barrio": "RETIRO", "Calle1": "ALVEAR", "Calle2": "QUINTANA, MANUEL, PRES.", "Calle3": null, "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.38601224 -34.59149175, -58.38592069 -34.59141233, -58.38491684 -34.59045047))", "escuela": 0, "hospital": 1, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 36, "ZONA_FUNC": "1", "ZONA_CPU": "R2", "congestion": 11, "jerarquia": 3, "COMUNA": 1, "cb": 0, "alta_compl": 0}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.386012242054335, -34.591491750667615], [-58.38592068785375, -34.59141232513217], [-58.3849168366821, -34.59045047123904]]]}}, {"type": "Feature", "properties": {"id": 7216, "codigo": 12106, "nomoficial": "LIBERTAD", "alt_izqini": 1378, "alt_izqfin": 1400, "alt_derini": 1377, "alt_derfin": 1399, "tipo_c": "CALLE", "long": 73.20746259284704, "sentido": "CRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA COMPLEMENTARIA", "tipo_ffcc": "Sin Iteracción", "barrio": "RETIRO", "Calle1": "ALVEAR", "Calle2": "ARROYO", "Calle3": null, "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.38433567 -34.59151878, -58.38427975 -34.59086049))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 28, "ZONA_FUNC": "1", "ZONA_CPU": "R2", "congestion": 11, "jerarquia": 3, "COMUNA": 1, "cb": 0, "alta_compl": 0}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.38433566551266, -34.59151877638925], [-58.384279745168726, -34.5908604897869]]]}}, {"type": "Feature", "properties": {"id": 7225, "codigo": 3118, "nomoficial": "CERRITO", "alt_izqini": 1402, "alt_izqfin": 1500, "alt_derini": 1401, "alt_derfin": 1499, "tipo_c": "CALLE", "long": 167.62788617525834, "sentido": "DECRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA PRINCIPAL", "tipo_ffcc": "Sin Iteracción", "barrio": "RETIRO", "Calle1": "POSADAS", "Calle2": "ALVEAR AV.", "Calle3": "ARROYO", "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.38315213 -34.59155357, -58.38306016 -34.59102456, -58.38295993 -34.59067779, -58.38280487 -34.59031015, -58.38269523 -34.59009803))", "escuela": 0, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 3.0, "criticidad": 24, "ZONA_FUNC": "1", "ZONA_CPU": "R2", "congestion": 11, "jerarquia": 2, "COMUNA": 1, "cb": 0, "alta_compl": 0}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.3831521338962, -34.59155356879882], [-58.38306016301808, -34.59102455589908], [-58.38295992815053, -34.59067779401878], [-58.38280487456278, -34.59031015047046], [-58.38269522974953, -34.59009803228114]]]}}, {"type": "Feature", "properties": {"id": 7226, "codigo": 1060, "nomoficial": "ALVEAR AV.", "alt_izqini": 1302, "alt_izqfin": 1400, "alt_derini": 1301, "alt_derfin": 1399, "tipo_c": "AVENIDA", "long": 121.55337567835788, "sentido": "DECRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA COMPLEMENTARIA", "tipo_ffcc": "Sin Iteracción", "barrio": "RETIRO", "Calle1": "LIBERTAD", "Calle2": "CERRITO", "Calle3": "ARROYO", "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.38315213 -34.59155357, -58.38421431 -34.59089862))", "escuela": 0, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 100, "ZONA_FUNC": "1", "ZONA_CPU": "APH", "congestion": 11, "jerarquia": 3, "COMUNA": 1, "cb": 0, "alta_compl": 1}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.3831521338962, -34.59155356879882], [-58.384214309742674, -34.59089861705081]]]}}, {"type": "Feature", "properties": {"id": 7227, "codigo": 1124, "nomoficial": "ARROYO", "alt_izqini": 1102, "alt_izqfin": 1200, "alt_derini": 1101, "alt_derfin": 1199, "tipo_c": "CALLE", "long": 108.64978010092095, "sentido": "CRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA COMPLEMENTARIA", "tipo_ffcc": "Sin Iteracción", "barrio": "RETIRO", "Calle1": "LIBERTAD", "Calle2": "CERRITO", "Calle3": "ALVEAR AV.", "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.38315213 -34.59155357, -58.38433567 -34.59151878))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 28, "ZONA_FUNC": "1", "ZONA_CPU": "R2", "congestion": 11, "jerarquia": 3, "COMUNA": 1, "cb": 0, "alta_compl": 0}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.3831521338962, -34.59155356879882], [-58.38433566551266, -34.59151877638925]]]}}, {"type": "Feature", "properties": {"id": 7237, "codigo": 1124, "nomoficial": "ARROYO", "alt_izqini": 1002, "alt_izqfin": 1100, "alt_derini": 1001, "alt_derfin": 1099, "tipo_c": "CALLE", "long": 76.24577123433272, "sentido": "DECRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA COMPLEMENTARIA", "tipo_ffcc": "Sin Iteracción", "barrio": "RETIRO", "Calle1": "9 DE JULIO AV.", "Calle2": "AUTOPISTA ARTURO ILLIA", "Calle3": null, "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.38206636 -34.59158553, -58.38273613 -34.59156583, -58.38289691 -34.59156108))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 3.0, "criticidad": 37, "ZONA_FUNC": "1", "ZONA_CPU": "R2", "congestion": 11, "jerarquia": 3, "COMUNA": 1, "cb": 0, "alta_compl": 0}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.38206636324107, -34.59158552747219], [-58.38273613478864, -34.59156583029596], [-58.382896914000945, -34.5915610770965]]]}}, {"type": "Feature", "properties": {"id": 7265, "codigo": 1060, "nomoficial": "ALVEAR AV.", "alt_izqini": 0, "alt_izqfin": 0, "alt_derini": 0, "alt_derfin": 0, "tipo_c": "AVENIDA", "long": 22.501661446966725, "sentido": "CRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA COMPLEMENTARIA", "tipo_ffcc": "Sin Iteracción", "barrio": "RETIRO", "Calle1": "ARROYO", "Calle2": "CERRITO", "Calle3": null, "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.38308622 -34.5915555, -58.38289169 -34.59167903))", "escuela": 0, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 3.0, "criticidad": 100, "ZONA_FUNC": "1", "ZONA_CPU": "APH", "congestion": 11, "jerarquia": 3, "COMUNA": 1, "cb": 0, "alta_compl": 1}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.38308622126504, -34.59155549735572], [-58.382891690997425, -34.591679033357536]]]}}, {"type": "Feature", "properties": {"id": 7448, "codigo": 12106, "nomoficial": "LIBERTAD", "alt_izqini": 1302, "alt_izqfin": 1376, "alt_derini": 1301, "alt_derfin": 1375, "tipo_c": "CALLE", "long": 135.49853333627198, "sentido": "CRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA COMPLEMENTARIA", "tipo_ffcc": "Sin Iteracción", "barrio": "RETIRO", "Calle1": "ARROYO", "Calle2": "QUINTANA, MANUEL, PRES.", "Calle3": null, "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.38443943 -34.59273717, -58.38433567 -34.59151878))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 28, "ZONA_FUNC": "1", "ZONA_CPU": "R2", "congestion": 11, "jerarquia": 3, "COMUNA": 1, "cb": 0, "alta_compl": 0}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.38443942647745, -34.59273717345945], [-58.38433566551266, -34.59151877638925]]]}}, {"type": "Feature", "properties": {"id": 7493, "codigo": 3118, "nomoficial": "CERRITO", "alt_izqini": 1302, "alt_izqfin": 1400, "alt_derini": 1301, "alt_derfin": 1399, "tipo_c": "CALLE", "long": 128.14570739193965, "sentido": "DECRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA PRINCIPAL", "tipo_ffcc": "Sin Iteracción", "barrio": "RETIRO", "Calle1": "JUNCAL", "Calle2": "9 DE JULIO AV.", "Calle3": null, "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.38284025 -34.59283338, -58.38289169 -34.59167903))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 32, "ZONA_FUNC": "1", "ZONA_CPU": "R2", "congestion": 11, "jerarquia": 2, "COMUNA": 1, "cb": 0, "alta_compl": 0}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.38284025085344, -34.592833384668864], [-58.382891690997425, -34.591679033357536]]]}}, {"type": "Feature", "properties": {"id": 28191, "codigo": 14029, "nomoficial": "9 DE JULIO AV.", "alt_izqini": 0, "alt_izqfin": 0, "alt_derini": 0, "alt_derfin": 0, "tipo_c": "AVENIDA", "long": 174.2333581483501, "sentido": "DECRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA PRINCIPAL", "tipo_ffcc": "Sin Iteracción", "barrio": "RETIRO", "Calle1": "ARROYO", "Calle2": "POSADAS", "Calle3": "AUTOPISTA ARTURO ILLIA", "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.38206636 -34.59158553, -58.38218526 -34.59153806, -58.38230098 -34.59111633, -58.38215888 -34.59062213, -58.3822507 -34.59010673))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 100, "ZONA_FUNC": "1", "ZONA_CPU": "R2", "congestion": 11, "jerarquia": 2, "COMUNA": 1, "cb": 0, "alta_compl": 1}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.38206636324107, -34.59158552747219], [-58.38218525768945, -34.591538062365174], [-58.382300980486846, -34.59111632755475], [-58.38215888450205, -34.59062213092644], [-58.38225069801611, -34.59010672985282]]]}}, {"type": "Feature", "properties": {"id": 28192, "codigo": 17114, "nomoficial": "POSADAS", "alt_izqini": 1052, "alt_izqfin": 1100, "alt_derini": 1051, "alt_derfin": 1099, "tipo_c": "CALLE", "long": 40.79496115541627, "sentido": "CRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA COMPLEMENTARIA", "tipo_ffcc": "Sin Iteracción", "barrio": "RETIRO", "Calle1": "CERRITO", "Calle2": "9 DE JULIO AV.", "Calle3": null, "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.3822507 -34.59010673, -58.38269523 -34.59009803))", "escuela": 0, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 1, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 10, "ZONA_FUNC": "1", "ZONA_CPU": "R2", "congestion": 11, "jerarquia": 3, "COMUNA": 1, "cb": 0, "alta_compl": 0}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.38225069801611, -34.59010672985282], [-58.38269522974953, -34.59009803228114]]]}}, {"type": "Feature", "properties": {"id": 28937, "codigo": 14029, "nomoficial": "9 DE JULIO AV.", "alt_izqini": 0, "alt_izqfin": 0, "alt_derini": 0, "alt_derfin": 0, "tipo_c": "AVENIDA", "long": 113.73270165536812, "sentido": "DECRECIENTE", "bicisenda": null, "red_jerarq": "VÍA DISTRIBUIDORA PRINCIPAL", "tipo_ffcc": "Sin Iteracción", "barrio": "RETIRO", "Calle1": "POSADAS", "Calle2": "CERRITO", "Calle3": null, "Calle4": null, "Calle5": null, "Calle6": null, "Calle7": null, "tipo_entre": 0, "wkt": "MultiLineString ((-58.3822507 -34.59010673, -58.38227405 -34.58996736, -58.38232678 -34.58973738, -58.38217884 -34.58909856))", "escuela": 0, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 100, "ZONA_FUNC": "1", "ZONA_CPU": "R2", "congestion": 11, "jerarquia": 2, "COMUNA": 1, "cb": 0, "alta_compl": 1}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.38225069801611, -34.59010672985282], [-58.38227405075872, -34.58996735718641], [-58.3823267760105, -34.589737378634105], [-58.382178840541236, -34.58909855573618]]]}}]};
+  const DESVIOS = {"type": "FeatureCollection", "name": "desvios", "crs": {"type": "name", "properties": {"name": "urn:ogc:def:crs:OGC:1.3:CRS84"}}, "features": [{"type": "Feature", "properties": {"fid_co": 226, "length_m": 1080.6444109298602, "linea": "124", "recorrido": "A", "sentido": "IDA", "linea_sentido": "124 - A - IDA", "Ruta": "DEL LIBERTADOR AV. - ALVEAR AV. - AYACUCHO - GUIDO - RODRIGUEZ PEÑA - SU RUTA", "id_desvio": 1, "lineas_agrupadas": "124 - A - IDA"}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.391722234250445, -34.58475614044979], [-58.39136418875732, -34.58487140366716], [-58.39100567961151, -34.58498668732688], [-58.390722872433734, -34.58518585952367], [-58.390676074445594, -34.58521507197155], [-58.39063109298323, -34.5852470791478], [-58.39058904809374, -34.585281036143634], [-58.390549424780104, -34.58531728181179], [-58.39051301306391, -34.58535500866699], [-58.39047917566392, -34.58539510176568], [-58.390448243360794, -34.58543712299071], [-58.39042093461958, -34.58547997136415], [-58.39039658727149, -34.58552484634185], [-58.39037579315285, -34.58557094748557], [-58.39035880258796, -34.58561694988098], [-58.39034503607654, -34.58566500515117], [-58.3903350646199, -34.58571300922672], [-58.390328823478946, -34.58576201259441], [-58.39036110209773, -34.58607299271556], [-58.3904288452696, -34.58624804119735], [-58.3904979124021, -34.58644601403666], [-58.3905354210565, -34.58660693784404], [-58.39056727703009, -34.586755887865266], [-58.390074036854365, -34.58707803884509], [-58.38977320776262, -34.58727421898632], [-58.389320986954466, -34.58756898632551], [-58.389202915790584, -34.58764605841414], [-58.38996984260399, -34.5883211218606], [-58.39060606932291, -34.58888594632841], [-58.39095798296682, -34.589200985625], [-58.38995880177458, -34.59001515190806], [-58.3889401721287, -34.59084486074375], [-58.38902613019167, -34.59091789862194], [-58.38943406011842, -34.59127795318694], [-58.389829744251585, -34.59162719914586], [-58.389925030782884, -34.591715025234706]]]}}, {"type": "Feature", "properties": {"fid_co": 367, "linea": "067", "recorrido": "A", "sentido": "VUELTA", "linea_sentido": "067 - A - VUELTA", "Ruta": "DEL LIBERTADOR AV. - ALVEAR AV. - AYACUCHO - LAS HERAS, GENERAL - MONTEVIDEO - SANTA FE AV. - 9 DE JULIO AV. - SU RUTA", "id_desvio": "manual_367_1793569071654_0", "lineas_agrupadas": "067 - A - VUELTA"}, "geometry": {"type": "MultiLineString", "coordinates": [[[-58.39388246283959, -34.584062397830934], [-58.39106395693247, -34.584967907897976], [-58.390463834816686, -34.58541591651894], [-58.39033912670014, -34.585861276351565], [-58.39055131655306, -34.586680953270765], [-58.38924721002912, -34.5876173647906], [-58.39100498629761, -34.5891627050022], [-58.392883043671475, -34.59090696584357], [-58.39008884240357, -34.59318012037066], [-58.38995476984149, -34.59577788672766], [-58.382108636844926, -34.59541394608332], [-58.381959699008405, -34.596737755619614]]]}}]};
+  const PARADAS = {"type": "FeatureCollection", "features": [{"type": "Feature", "properties": {"id": 4581, "CALLE": "DEL LIBERTADOR AV.", "ALT PLANO": "1208", "DIRECCION": "1208 DEL LIBERTADOR AV.", "coord_X": -58.3892543, "coord_Y": -34.5852271, "COMUNA": 2, "BARRIO": "RECOLETA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "67", "l1_sen": "V", "L1_Ramal": null, "L2": "124", "l2_sen": "I", "L2_Ramal": null, "L3": 130, "l3_sen": "V", "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 367, "linea": "067", "recorrido": "A", "sentido": "VUELTA", "linea_sentido": "067 - A - VUELTA", "id_desvio": "manual_367_1793569071654_0", "orden_recorrido_m": 18584.14, "dir": "DEL LIBERTADOR AV. 1208"}, "geometry": {"type": "Point", "coordinates": [-58.3892543, -34.5852271]}}, {"type": "Feature", "properties": {"id": 4577, "CALLE": "DEL LIBERTADOR AV.", "ALT PLANO": "918", "DIRECCION": "918 DEL LIBERTADOR AV.", "coord_X": -58.3852896, "coord_Y": -34.5870663, "COMUNA": 2, "BARRIO": "RECOLETA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "67", "l1_sen": "V", "L1_Ramal": null, "L2": "124", "l2_sen": "I", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 367, "linea": "067", "recorrido": "A", "sentido": "VUELTA", "linea_sentido": "067 - A - VUELTA", "id_desvio": "manual_367_1793569071654_0", "orden_recorrido_m": 19003.18, "dir": "DEL LIBERTADOR AV. 918"}, "geometry": {"type": "Point", "coordinates": [-58.3852896, -34.5870663]}}, {"type": "Feature", "properties": {"id": 660, "CALLE": "DEL LIBERTADOR AV.", "ALT PLANO": "728", "DIRECCION": "728 DEL LIBERTADOR AV.", "coord_X": -58.383129, "coord_Y": -34.588251, "COMUNA": 1, "BARRIO": "RETIRO", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "67", "l1_sen": "V", "L1_Ramal": null, "L2": "92", "l2_sen": "V", "L2_Ramal": null, "L3": 93, "l3_sen": "I", "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 367, "linea": "067", "recorrido": "A", "sentido": "VUELTA", "linea_sentido": "067 - A - VUELTA", "id_desvio": "manual_367_1793569071654_0", "orden_recorrido_m": 19241.34, "dir": "DEL LIBERTADOR AV. 728"}, "geometry": {"type": "Point", "coordinates": [-58.383129, -34.588251]}}, {"type": "Feature", "properties": {"id": 4581, "CALLE": "DEL LIBERTADOR AV.", "ALT PLANO": "1208", "DIRECCION": "1208 DEL LIBERTADOR AV.", "coord_X": -58.3892543, "coord_Y": -34.5852271, "COMUNA": 2, "BARRIO": "RECOLETA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "67", "l1_sen": "V", "L1_Ramal": null, "L2": "124", "l2_sen": "I", "L2_Ramal": null, "L3": 130, "l3_sen": "V", "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 226, "linea": "124", "recorrido": "A", "sentido": "IDA", "linea_sentido": "124 - A - IDA", "id_desvio": 1, "orden_recorrido_m": 472.48, "dir": "DEL LIBERTADOR AV. 1208"}, "geometry": {"type": "Point", "coordinates": [-58.3892543, -34.5852271]}}, {"type": "Feature", "properties": {"id": 4577, "CALLE": "DEL LIBERTADOR AV.", "ALT PLANO": "918", "DIRECCION": "918 DEL LIBERTADOR AV.", "coord_X": -58.3852896, "coord_Y": -34.5870663, "COMUNA": 2, "BARRIO": "RECOLETA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "67", "l1_sen": "V", "L1_Ramal": null, "L2": "124", "l2_sen": "I", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 226, "linea": "124", "recorrido": "A", "sentido": "IDA", "linea_sentido": "124 - A - IDA", "id_desvio": 1, "orden_recorrido_m": 891.58, "dir": "DEL LIBERTADOR AV. 918"}, "geometry": {"type": "Point", "coordinates": [-58.3852896, -34.5870663]}}, {"type": "Feature", "properties": {"id": 4610, "CALLE": "RODRIGUEZ PEÑA", "ALT PLANO": "1814", "DIRECCION": "1814 RODRIGUEZ PEÑA", "coord_X": -58.3878419, "coord_Y": -34.5898235, "COMUNA": 2, "BARRIO": "RECOLETA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "124", "l1_sen": "I", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 226, "linea": "124", "recorrido": "A", "sentido": "IDA", "linea_sentido": "124 - A - IDA", "id_desvio": 1, "orden_recorrido_m": 1307.63, "dir": "RODRIGUEZ PEÑA 1814"}, "geometry": {"type": "Point", "coordinates": [-58.3878419, -34.5898235]}}]};
+  const PARADAS_OPERATIVAS = {"type": "FeatureCollection", "features": [{"type": "Feature", "properties": {"id": 4565, "CALLE": "DEL LIBERTADOR AV.", "ALT PLANO": "1436", "DIRECCION": "1436 DEL LIBERTADOR AV.", "coord_X": -58.39268191, "coord_Y": -34.58451281, "COMUNA": 2, "BARRIO": "RECOLETA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "67", "l1_sen": "V", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 367, "linea": "067", "recorrido": "A", "sentido": "VUELTA", "linea_sentido": "067 - A - VUELTA", "id_desvio": "manual_367_1793569071654_0", "orden_recorrido_m": 18253.25, "dir": "DEL LIBERTADOR AV. 1436", "reemplaza": "DEL LIBERTADOR AV. 1208 ; DEL LIBERTADOR AV. 918 ; DEL LIBERTADOR AV. 728", "cual": "anterior"}, "geometry": {"type": "Point", "coordinates": [-58.39268191, -34.58451281]}}, {"type": "Feature", "properties": {"id": 4559, "CALLE": "PRES. FIGUEROA ALCORTA AV.", "ALT PLANO": "2061", "DIRECCION": "2035 FIGUEROA ALCORTA, PRES. AV.", "coord_X": -58.389605, "coord_Y": -34.584331, "COMUNA": 2, "BARRIO": "RECOLETA", "BV_buffer_": null, "HITO": "CT CEC", "CATEGORIA": "OFICIAL", "L1": "124", "l1_sen": "I", "L1_Ramal": "A", "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 226, "linea": "124", "recorrido": "A", "sentido": "IDA", "linea_sentido": "124 - A - IDA", "id_desvio": 1, "orden_recorrido_m": 6.84, "dir": "PRES. FIGUEROA ALCORTA AV. 2061", "reemplaza": "DEL LIBERTADOR AV. 1208", "cual": "anterior"}, "geometry": {"type": "Point", "coordinates": [-58.389605, -34.584331]}}, {"type": "Feature", "properties": {"id": 3401, "CALLE": "RODRIGUEZ PEÑA", "ALT PLANO": "1604", "DIRECCION": "1604 RODRIGUEZ PEÑA", "coord_X": -58.3897579, "coord_Y": -34.5915032, "COMUNA": 2, "BARRIO": "RECOLETA", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "124", "l1_sen": "I", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 226, "linea": "124", "recorrido": "A", "sentido": "IDA", "linea_sentido": "124 - A - IDA", "id_desvio": 1, "orden_recorrido_m": 1563.43, "dir": "RODRIGUEZ PEÑA 1604", "reemplaza": "DEL LIBERTADOR AV. 918 ; RODRIGUEZ PEÑA 1814", "cual": "siguiente"}, "geometry": {"type": "Point", "coordinates": [-58.3897579, -34.5915032]}}]};
+  const COLOR_MAP = {"124 - A - IDA": "#006400", "067 - A - VUELTA": "#000096"};
+
+  // Agrupación de desvíos IGUAL que la app: por id_desvio (el grupo de "Ruta"),
+  // no por linea_sentido. Dos líneas con el mismo recorrido caen en un único
+  // ítem, con la etiqueta lineas_agrupadas y un solo color.
+  // Los desvíos dibujados a mano sobre líneas "sin desvío" podían venir sin
+  // linea_sentido: se arma con linea, recorrido y sentido. Si no, caían todos
+  // juntos como "Desvíos de colectivo" (una sola capa y tarjeta sin líneas).
+  (DESVIOS.features || []).forEach(ft => {
+    const p = ft.properties = ft.properties || {};
+    if (!p.linea_sentido) {
+      const partes = [p.linea, p.recorrido, p.sentido].filter(v => v !== undefined && v !== null && String(v).trim() !== '');
+      if (partes.length) p.linea_sentido = partes.map(v => String(v).trim()).join(' - ');
+    }
+  });
+  const LS_TO_GID = {};    // linea_sentido -> id_desvio (string)
+  const GID_LABEL = {};    // id_desvio -> lineas_agrupadas
+  const GID_MEMBERS = {};  // id_desvio -> [linea_sentido...]
+  (DESVIOS.features || []).forEach(ft => {
+    const p = ft.properties || {};
+    const ls = p.linea_sentido || 'Desvíos de colectivo';
+    let gid;
+    if (p.id_desvio !== undefined && p.id_desvio !== null && String(p.id_desvio) !== '') {
+      gid = String(p.id_desvio);
+    } else {
+      // Sin id_desvio (caso anómalo): se conserva el criterio previo, agrupar
+      // por linea+sentido fusionando ramales.
+      const pr = String(ls).split(' - ').map(x => x.trim()).filter(Boolean);
+      gid = pr.length >= 2 ? (pr[0] + '||' + pr[pr.length - 1]) : ls;
+    }
+    LS_TO_GID[ls] = gid;
+    if (p.lineas_agrupadas) GID_LABEL[gid] = String(p.lineas_agrupadas);
+    (GID_MEMBERS[gid] = GID_MEMBERS[gid] || []);
+    if (GID_MEMBERS[gid].indexOf(ls) < 0) GID_MEMBERS[gid].push(ls);
+  });
+  const GID_COLOR = {};
+  Object.keys(GID_MEMBERS).forEach(gid => {
+    const first = GID_MEMBERS[gid].slice().sort(lsSort)[0];
+    GID_COLOR[gid] = (first && COLOR_MAP[first]) ? COLOR_MAP[first] : '#3949AB';
+  });
+
+  function colorFor(ls) {
+    const gid = LS_TO_GID[ls];
+    if (gid && GID_COLOR[gid]) return GID_COLOR[gid];
+    return (ls && COLOR_MAP[ls]) ? COLOR_MAP[ls] : "#3949AB";
+  }
+
+  const WIDTH_TRAMOS = 12.0;
+  const WIDTH_DESVIOS = 3.0;
+
+  // Grosor y guion de los desvíos calculados por zoom con la misma curva que
+  // la app (deviationZoomStyle) pero a la mitad del grosor: de z17 en adelante
+  // usa WIDTH_DESVIOS completo y se va afinando al alejar. Opacidad 0.8.
+  function dvZoomStyle() {
+    const factor = Math.min(1, Math.pow(2, (map.getZoom() - 17) * 0.45));
+    const weight = Math.max(WIDTH_DESVIOS * 0.225, WIDTH_DESVIOS * factor);
+    const dash = Math.max(4, weight * 2.2);
+    const gap  = Math.max(3, weight * 1.5);
+    return { weight: weight, opacity: 0.8, dashArray: dash + ',' + gap, lineCap: 'round', lineJoin: 'round' };
+  }
+  // Grosor extra (+25%) del desvío resaltado en rojo, salvo en zoom out
+  // lejano, donde se mantiene el grosor normal.
+  const SEL_WEIGHT_MULT = 1.25, SEL_WEIGHT_MIN_ZOOM = 14;
+  function selWeight(w) {
+    return map.getZoom() >= SEL_WEIGHT_MIN_ZOOM ? w * SEL_WEIGHT_MULT : w;
+  }
+
+  // Banda de tramos afectados: mismo criterio que los desvíos. De z17 en
+  // adelante usa WIDTH_TRAMOS completo (no crece más); al alejar se afina para
+  // mantener la proporción con la vista. Piso al 20% para que no desaparezca.
+  function tramosZoomStyle() {
+    const factor = Math.min(1, Math.pow(2, (map.getZoom() - 17) * 0.45));
+    const weight = Math.max(WIDTH_TRAMOS * 0.20, WIDTH_TRAMOS * factor);
+    return { color: '#8E2A1B', weight: weight, opacity: 0.65, lineCap: 'butt', lineJoin: 'round' };
+  }
+
+  // Map
+  const map = L.map('map', { zoomControl: false });
+  map.setView([-34.6037, -58.3816], 12);
+ // Zoom arriba a la derecha (evita solape con botón Capas)
+ L.control.zoom({ position: 'topright' }).addTo(map);
+// ✅ Botón debajo del zoom: Zoom a desvíos (lupa con flechas)
+const ZoomDesviosControl = L.Control.extend({
+  options: { position: 'topright' },
+  onAdd: function () {
+    const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+    const btn = L.DomUtil.create('a', '', container);
+    btn.href = '#';
+    btn.title = 'Zoom a desvíos de colectivos';
+    btn.setAttribute('aria-label','Zoom a desvíos de colectivos');
+    btn.innerHTML = "<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='10' cy='10' r='6'/><line x1='14.5' y1='14.5' x2='20' y2='20'/><line x1='10' y1='2' x2='10' y2='5'/><polyline points='8,4 10,2 12,4'/><line x1='10' y1='15' x2='10' y2='22'/><polyline points='8,20 10,22 12,20'/><line x1='2' y1='10' x2='5' y2='10'/><polyline points='4,8 2,10 4,12'/><line x1='15' y1='10' x2='22' y2='10'/><polyline points='20,8 22,10 20,12'/></svg>";
+    btn.style.display = 'flex';
+    btn.style.alignItems = 'center';
+    btn.style.justifyContent = 'center';
+    btn.style.width = '30px';
+    btn.style.height = '30px';
+    btn.style.textDecoration = 'none';
+
+    L.DomEvent.disableClickPropagation(container);
+    L.DomEvent.on(btn, 'click', function (e) {
+      L.DomEvent.preventDefault(e);
+      try {
+        const layers = (typeof grpDesviosAll.getLayers === 'function') ? grpDesviosAll.getLayers() : [];
+        if (!layers || !layers.length) return;
+        const b = L.featureGroup(layers).getBounds();
+        if (b && b.isValid()) map.fitBounds(b.pad(0.15));
+      } catch(err) {}
+    });
+
+    return container;
+  }
+});
+map.addControl(new ZoomDesviosControl());
+
+
+  // Base maps (Google siempre abajo)
+  const baseGoogle = L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', { maxZoom: 20, attribution: '© Google' });
+  const baseOSM = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' });
+  const baseOSMLight = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap', className: 'base-map-light' });
+  // Google por defecto: los tiles de tile.openstreetmap.org exigen Referer y
+  // el HTML abierto desde el disco (file://) no lo manda -> "Access blocked".
+  baseGoogle.addTo(map);
+
+  // Overlays (grupo arriba)
+  const grpTramos = L.layerGroup().addTo(map);
+  const grpDesviosAll = L.layerGroup();
+  const grpFlechasAll = L.layerGroup();
+  const grpParadasAll = L.layerGroup().addTo(map);
+
+  const boundLayers = [];
+
+  function popupTramos(p) {
+    const n = (p && p.nomoficial) ? p.nomoficial : 'Tramo afectado';
+    return '<div><b>' + n + '</b></div>';
+  }
+
+  // Tarjeta del desvío: todas las líneas del grupo (una por renglón) y su Ruta.
+  // La abre el clic en el mapa y también el clic en el panel (selectDesvioGroup).
+  function popupDesvio(p) {
+    const gid = p ? LS_TO_GID[p.linea_sentido || 'Desvíos de colectivo'] : null;
+    const lineas = String((gid != null && GID_LABEL[gid]) || (p && (p.lineas_agrupadas || p.linea_sentido)) || 'Desvíos de colectivo')
+      .split(';').map(x => x.trim()).filter(Boolean);
+    const ruta = (p && p.Ruta) ? p.Ruta : '';
+    return '<div><b>' + lineas.join('<br>') + '</b></div><div class="muted" style="margin-top:4px">' + ruta + '</div>';
+  }
+
+  // Tramos: extremos planos (no engrosa las puntas), opacidad 0.65 y grosor
+  // que se afina al alejar el zoom (ver tramosZoomStyle).
+  const lyrTramos = L.geoJSON(TRAMOS, {
+    style: () => tramosZoomStyle(),
+    onEachFeature: (f, l) => l.bindPopup(popupTramos((f && f.properties) ? f.properties : {}))
+  });
+  grpTramos.addLayer(lyrTramos);
+  boundLayers.push(lyrTramos);
+
+  // Flechas: ángulo en pantalla
+  function angleDegEnd(a, b) {
+    const zref = map.getZoom();
+    const p1 = map.project(a, zref);
+    const p2 = map.project(b, zref);
+    return (Math.atan2((p2.y - p1.y), (p2.x - p1.x)) * 180 / Math.PI);
+  }
+
+  function metersToPixels(meters, latlng) {
+    const z = map.getZoom();
+    const p1 = map.project(latlng, z);
+    const latlng2 = L.latLng(latlng.lat, latlng.lng + 0.00001);
+    const p2 = map.project(latlng2, z);
+    const metersPerPixel = map.distance(latlng, latlng2) / Math.max(1e-9, Math.abs(p2.x - p1.x));
+    return meters / metersPerPixel;
+  }
+
+  const ARROW_LENGTH_M = 25;
+  // Base +50% (12 -> 18): la relación base/largo (18/25 ≈ 0.72) queda igual a
+  // la de la app (26/36 ≈ 0.72). El largo se mantiene.
+  const ARROW_WIDTH_M  = 18;
+
+  function makeArrowIcon(color, latlng, angleDeg) {
+    // Una única escala preserva la proporción en todas las geometrías.
+    // La punta (tipX) coincide exactamente con el último vértice.
+    const w = Math.max(3, Math.min(22, metersToPixels(ARROW_LENGTH_M, latlng)));
+    const h = w * (ARROW_WIDTH_M / ARROW_LENGTH_M);
+    const tipX = w;
+    const tipY = h / 2;
+    const html = '<div class="arrow-end" style="width:' + w + 'px;height:' + h + 'px;transform: rotate(' + angleDeg + 'deg);transform-origin:' + tipX + 'px ' + tipY + 'px;">'
+      + '<svg width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + ' ' + h + '" xmlns="http://www.w3.org/2000/svg">'
+      + '<polygon points="0,0 0,' + h + ' ' + w + ',' + (h/2) + '" fill="' + color + '" stroke="' + color + '" stroke-width="2" />'
+      + '</svg></div>';
+    return L.divIcon({ className: 'arrow-end-icon', html: html, iconSize: [w, h], iconAnchor: [tipX, tipY] });
+  }
+
+  // Desvíos por linea_sentido
+  const desviosByLS = {};
+  (DESVIOS.features || []).forEach(ft => {
+    const ls = ((ft.properties||{}).linea_sentido || 'Desvíos de colectivo');
+    (desviosByLS[ls] = desviosByLS[ls] || []).push(ft);
+  });
+
+  const layerByLS = {};
+  const arrowsCacheByLS = {};
+  const enabledLS = {};
+
+ function parseLineNumber(ls){
+   const first = (ls||'').split(' - ')[0].trim();
+   const m = first.match(/^(\d+)/);
+   return m ? parseInt(m[1],10) : 1e9;
+ }
+ function sentidoOrderFromLS(ls){
+   const parts = (ls||'').split(' - ').map(x=>x.trim()).filter(Boolean);
+   const s = parts.length ? parts[parts.length-1].toUpperCase() : '';
+   if (s==='IDA') return 0;
+   if (s==='VUELTA') return 1;
+   return 9;
+ }
+ function recPart(ls){
+   const parts = (ls||'').split(' - ').map(x=>x.trim()).filter(Boolean);
+   return (parts.length===3) ? parts[1] : '';
+ }
+ function lsSort(a,b){
+   const na=parseLineNumber(a), nb=parseLineNumber(b);
+   if(na!==nb) return na-nb;
+   const sa=sentidoOrderFromLS(a), sb=sentidoOrderFromLS(b);
+   if(sa!==sb) return sa-sb;
+   return recPart(a).localeCompare(recPart(b),'es');
+ }
+
+
+  Object.keys(desviosByLS).sort(lsSort).forEach(ls => {
+    enabledLS[ls] = true;
+    arrowsCacheByLS[ls] = [];
+    const fc = { type: 'FeatureCollection', features: desviosByLS[ls] };
+    const lyr = L.geoJSON(fc, {
+      style: () => Object.assign({ color: colorFor(ls) }, dvZoomStyle()),
+      bubblingMouseEvents: false,
+      onEachFeature: (f, l) => {
+        l.bindPopup(popupDesvio((f && f.properties) ? f.properties : {}));
+        l.on('click', () => selectDesvioGroup(_groupKeyForLs(ls), false));
+        try {
+          let latlngs = l.getLatLngs();
+          if (Array.isArray(latlngs) && latlngs.length && Array.isArray(latlngs[0])) latlngs = latlngs[latlngs.length - 1];
+          if (latlngs && latlngs.length >= 2) {
+            const b = latlngs[latlngs.length - 1];
+            // Puede haber varios vértices finales duplicados. Buscar hacia
+            // atrás el último segmento de longitud real evita ángulos cero
+            // y flechas que parecen separadas o giradas respecto de la línea.
+            let a = null;
+            for (let i = latlngs.length - 2; i >= 0; i--) {
+              if (map.distance(latlngs[i], b) > 0.05) { a = latlngs[i]; break; }
+            }
+            if (a) arrowsCacheByLS[ls].push({ latlng: b, angleDeg: angleDegEnd(a, b) });
+          }
+        } catch(e) {}
+      }
+    });
+    layerByLS[ls] = lyr;
+    grpDesviosAll.addLayer(lyr);
+    boundLayers.push(lyr);
+  });
+
+  // ---- Claves de "línea afectada" (linea|recorrido|sentido) para sincronizar
+  //      desvíos <-> paradas <-> reporte y para el resaltado permanente. ----
+  function _normAff(v) {
+    const t = String(v == null ? '' : v).trim().toUpperCase();
+    return /^[0-9]+$/.test(t) ? String(parseInt(t, 10)) : t;
+  }
+  function _affKey(linea, recorrido, sentido) {
+    return _normAff(linea) + '|' + _normAff(recorrido) + '|' + _normAff(sentido);
+  }
+  function _lsAffKeys(ls) {
+    const parts = String(ls || '').split(' - ').map(x => x.trim()).filter(Boolean);
+    if (parts.length >= 3) return [_affKey(parts[0], parts.slice(1, -1).join(' - '), parts[parts.length - 1])];
+    if (parts.length === 2) return [_affKey(parts[0], '', parts[1])];
+    return parts.length ? [_affKey(parts[0], '', '')] : [];
+  }
+  // Como _lsAffKeys, pero abre los ramales compactados: "064 - A/B - VUELTA"
+  // da las claves de A y de B (las etiquetas del reporte editado o combinado).
+  function _partAffKeys(label) {
+    const p = String(label || '').split(' - ').map(x => x.trim()).filter(Boolean);
+    if (p.length < 3) return _lsAffKeys(label);
+    return p.slice(1, -1).join(' - ').split('/').map(r => _affKey(p[0], r, p[p.length - 1]));
+  }
+  // Paradas físicas distintas: varias líneas en el mismo punto cuentan 1 sola vez.
+  function _distinctStopPoints(fc) {
+    const seen = {};
+    ((fc && fc.features) || []).forEach((f, i) => {
+      const p = f.properties || {};
+      const d = String(p.dir || '').trim().toLowerCase();
+      if (d && d !== 'sin dirección' && d !== 'sin direccion') { seen['d:' + d] = 1; return; }
+      const c = (f.geometry || {}).coordinates || [];
+      seen[c.length >= 2 ? ('c:' + (+c[1]).toFixed(5) + ',' + (+c[0]).toFixed(5)) : ('x:' + (p.id != null ? p.id : i))] = 1;
+    });
+    return Object.keys(seen).length;
+  }
+
+  // Paradas anuladas: agrupamos por línea/sentido y fusionamos ramales que
+  // comparten exactamente la misma secuencia de direcciones (igual criterio
+  // que el reporte de paradas anuladas).
+  function stopIcon(color) {
+    return L.divIcon({
+      className: 'stop-p-icon', iconSize: [20, 20], iconAnchor: [10, 10], popupAnchor: [0, -10],
+      html: '<span style="display:flex;width:20px;height:20px;align-items:center;justify-content:center;border-radius:50%;background:' + color + ';color:#fff;font:bold 12px/1 Arial,sans-serif">P</span>'
+    });
+  }
+  function popupParada(p) {
+    const ls = (p && p.linea_sentido) ? p.linea_sentido : 'Parada anulada';
+    const dir = (p && p.dir) ? p.dir : 'Sin dirección';
+    return '<div><b>Parada anulada</b></div><div>' + ls + '</div><div class="muted">' + dir + '</div>';
+  }
+  const paradasByKey = {};
+  const enabledPa = {};
+  (function() {
+    const rawGroups = {};
+    (PARADAS.features || []).forEach(f => {
+      const key = String((f.properties || {}).linea_sentido || 'Línea sin identificar');
+      (rawGroups[key] = rawGroups[key] || []).push(f);
+    });
+    const merged = {};
+    Object.keys(rawGroups).sort().forEach(label => {
+      const items = rawGroups[label];
+      const addresses = items.map(f => String((f.properties || {}).dir || 'Sin dirección')).join('§');
+      const p0 = items[0].properties || {};
+      const linea = p0.linea, sentido = p0.sentido, recorrido = p0.recorrido;
+      const hasLineaSentido = linea !== undefined && linea !== null && linea !== '' && sentido !== undefined && sentido !== null && sentido !== '';
+      const mergeKey = hasLineaSentido ? (linea + '||' + sentido + '||' + addresses) : ('__raw__||' + label);
+      if (!merged[mergeKey]) merged[mergeKey] = { recorridos: [], rawLabels: [], features: [], linea, sentido, label };
+      const entry = merged[mergeKey];
+      if (recorrido !== undefined && recorrido !== null && recorrido !== '' && entry.recorridos.indexOf(String(recorrido)) < 0) entry.recorridos.push(String(recorrido));
+      entry.rawLabels.push(label);
+      entry.features.push.apply(entry.features, items);
+    });
+    Object.keys(merged).sort((a, b) => {
+      const ea = merged[a], eb = merged[b];
+      const ka = (ea.linea || '') + '|' + (ea.sentido || '') + '|' + ea.recorridos.join('/');
+      const kb = (eb.linea || '') + '|' + (eb.sentido || '') + '|' + eb.recorridos.join('/');
+      return ka.localeCompare(kb, 'es', { numeric: true });
+    }).forEach(mergeKey => {
+      const entry = merged[mergeKey];
+      const displayLabel = entry.recorridos.length
+        ? (entry.linea + ' - ' + entry.recorridos.slice().sort((a, b) => a.localeCompare(b, 'es', { numeric: true })).join('/') + ' - ' + entry.sentido)
+        : entry.label;
+      const holder = L.geoJSON({ type: 'FeatureCollection', features: entry.features }, {
+        pointToLayer: (f, latlng) => L.marker(latlng, { icon: stopIcon('#dc2626') }),
+        onEachFeature: (f, l) => l.bindPopup(popupParada((f && f.properties) ? f.properties : {}))
+      });
+      grpParadasAll.addLayer(holder);
+      enabledPa[mergeKey] = true;
+      const _ak = {};
+      entry.features.forEach(f => {
+        const p = f.properties || {};
+        _ak[_affKey(p.linea, p.recorrido, p.sentido)] = true;
+      });
+      paradasByKey[mergeKey] = { holder, displayLabel, rawLabels: entry.rawLabels, count: _distinctStopPoints({ features: entry.features }), affKeys: Object.keys(_ak) };
+    });
+  })();
+
+  // Puente entre el panel de capas (scope de su IIFE) y la sincronización /
+  // resaltado que se arma más abajo.
+  const _syncBridge = { dvGroupCbs: {}, paGroupCbs: {}, dvGroups: {}, dvMaster: null, paMaster: null, refresh: function() {} };
+
+  // ---- Resaltado permanente: click en el TEXTO de un desvío del panel ----
+  let _selDvKey = null;
+  // Encuadre activo tras clickear un desvío (o "Todos"): se reaplica al
+  // maximizar/minimizar el reporte para que la geometría siga llenando la
+  // ventana visible del mapa.
+  let _focusBounds = null;
+  // Parada puntual resaltada (una sola por vez, como el desvío): clickear
+  // otra parada asociada al mismo desvío la reemplaza (se despinta la
+  // anterior); clickear la misma deselecciona todo.
+  let _selStopKey = null;
+  function _clearStopAssocHL() {
+    document.querySelectorAll('.stop-p-icon.stop-assoc-hl, .stop-p-icon.stop-shrunk').forEach(el => {
+      el.classList.remove('stop-assoc-hl');
+      el.classList.remove('stop-shrunk');
+    });
+    Object.keys(paradasByKey).forEach(mk => {
+      (paradasByKey[mk].holder.getLayers() || []).forEach(ly => { if (ly.setZIndexOffset) ly.setZIndexOffset(0); });
+    });
+  }
+  // Identidad de parada física: dos features de líneas distintas en la misma
+  // parada comparten dirección (o coordenada si no hay dirección).
+  function _stopIdentity(props, latlng) {
+    const d = String((props && props.dir) || '').trim().toLowerCase();
+    if (d && d !== 'sin dirección' && d !== 'sin direccion') return 'd:' + d;
+    if (latlng) return 'c:' + latlng.lat.toFixed(5) + ',' + latlng.lng.toFixed(5);
+    return 'x:' + ((props && props.id) || '');
+  }
+  function _dvGroupAffKeys(key) {
+    const g = _syncBridge.dvGroups[key];
+    if (!g) return [];
+    const set = {};
+    g.members.forEach(ls => _lsAffKeys(ls).forEach(k => set[k] = true));
+    return Object.keys(set);
+  }
+  function _restyleDvGroup(key, selected) {
+    const g = _syncBridge.dvGroups[key];
+    if (!g) return;
+    g.members.forEach(ls => {
+      const lyr = layerByLS[ls];
+      if (!lyr) return;
+      if (selected) {
+        // Rojo + 25% de grosor (adaptado al zoom; sin extra en zoom out lejano).
+        const _zs = dvZoomStyle();
+        lyr.setStyle(Object.assign({}, _zs, { color: '#ff0000', weight: selWeight(_zs.weight) }));
+        if (lyr.bringToFront) lyr.bringToFront();
+      } else {
+        lyr.setStyle(Object.assign({ color: colorFor(ls) }, dvZoomStyle()));
+      }
+    });
+    rebuildArrows();
+  }
+  function _isSelectedLs(ls) {
+    if (_selDvKey == null) return false;
+    const g = _syncBridge.dvGroups[_selDvKey];
+    return !!(g && g.members.indexOf(ls) >= 0);
+  }
+  // Clave de grupo (linea||sentido) que contiene un linea_sentido crudo: permite
+  // que el click en la geometría del mapa dispare el mismo resaltado que el panel.
+  function _groupKeyForLs(ls) {
+    const groups = _syncBridge.dvGroups;
+    for (const gk in groups) {
+      if ((groups[gk].members || []).indexOf(ls) >= 0) return gk;
+    }
+    return null;
+  }
+  function clearDesvioSelection() {
+    if (_selDvKey == null) return;
+    const prev = _selDvKey;
+    _selDvKey = null;
+    _selStopKey = null;
+    _focusBounds = null;
+    _restyleDvGroup(prev, false);
+    _clearStopAssocHL();
+    document.querySelectorAll('#checklist label.sel-label.is-selected').forEach(el => el.classList.remove('is-selected'));
+  }
+  // Resalta en el mapa (borde rojo / reducidas) las paradas asociadas al
+  // desvío `key`. El título del panel se marca en rojo según `cascadeStops`:
+  // true (clic en el propio desvío) -> TODAS las paradas asociadas a sus
+  // líneas; false (clic en una parada puntual) -> solo el título de
+  // _selStopKey (la parada clickeada a mano). Reutilizable sin pasar por el
+  // toggle de selectDesvioGroup, para que clickear una segunda parada del
+  // mismo desvío no lo deseleccione.
+  function _applyStopHighlightForDvGroup(key, cascadeStops) {
+    const want = {};
+    _dvGroupAffKeys(key).forEach(k => want[k] = true);
+    // Paso 1: identidades de las paradas asociadas al desvío seleccionado.
+    const assocIds = {};
+    Object.keys(paradasByKey).forEach(mk => {
+      const entry = paradasByKey[mk];
+      if (!(entry.affKeys || []).some(k => want[k])) return;
+      (entry.holder.getLayers() || []).forEach(ly => {
+        assocIds[_stopIdentity((ly.feature && ly.feature.properties) || {}, ly.getLatLng && ly.getLatLng())] = true;
+      });
+    });
+    // Paso 2: asociada (por línea o por parada física compartida) -> borde rojo;
+    // el resto -> 50%. El título del panel solo se pinta si fue clickeado.
+    Object.keys(paradasByKey).forEach(mk => {
+      const entry = paradasByKey[mk];
+      const direct = (entry.affKeys || []).some(k => want[k]);
+      if (entry.labelEl) entry.labelEl.classList.toggle('is-selected', mk === _selStopKey || (cascadeStops && direct));
+      (entry.holder.getLayers() || []).forEach(ly => {
+        if (!ly._icon) return;
+        const shared = !!assocIds[_stopIdentity((ly.feature && ly.feature.properties) || {}, ly.getLatLng && ly.getLatLng())];
+        const assoc = direct || shared;
+        ly._icon.classList.add(assoc ? 'stop-assoc-hl' : 'stop-shrunk');
+        if (ly.setZIndexOffset) ly.setZIndexOffset(assoc ? 0 : -100000);
+      });
+    });
+  }
+  // abrirTarjeta: desde el panel se abre la tarjeta del desvío en el medio de
+  // su recorrido; el clic en el mapa no la pide porque ya abre la suya ahí.
+  function selectDesvioGroup(key, abrirTarjeta) {
+    const tarjeta = abrirTarjeta !== false;
+    if (key == null) { clearDesvioSelection(); return; }
+    if (_selDvKey === key) { clearDesvioSelection(); if (tarjeta) map.closePopup(); return; }
+    clearDesvioSelection();
+    _selDvKey = key;
+    _restyleDvGroup(key, true);
+    _applyStopHighlightForDvGroup(key, true);
+    const g = _syncBridge.dvGroups[key];
+    const cb = _syncBridge.dvGroupCbs[key];
+    if (g && cb) {
+      const row = cb.closest('div');
+      const lab = row && row.querySelector('label.sel-label');
+      if (lab) lab.classList.add('is-selected');
+    }
+    try {
+      const lyrs = ((g && g.members) || []).map(ls => layerByLS[ls]).filter(Boolean);
+      if (lyrs.length) {
+        const b = L.featureGroup(lyrs).getBounds();
+        if (b && b.isValid()) _fitFocus(b);
+      }
+      if (tarjeta) {
+        // El tramo con más vértices del grupo; la tarjeta va en su vértice del medio.
+        let mejor = null, puntos = [];
+        lyrs.forEach(lyr => lyr.eachLayer(sub => {
+          const pts = L.LineUtil.isFlat(sub.getLatLngs()) ? sub.getLatLngs() : [].concat.apply([], sub.getLatLngs());
+          if (pts.length > puntos.length) { mejor = sub; puntos = pts; }
+        }));
+        if (mejor && puntos.length) {
+          L.popup().setLatLng(puntos[Math.floor(puntos.length / 2)])
+            .setContent(popupDesvio((mejor.feature && mejor.feature.properties) || {})).openOn(map);
+        }
+      }
+    } catch(e) {}
+  }
+  map.on('click', () => clearDesvioSelection());
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape' && event.key !== 'Esc') return;
+    if (['INPUT', 'TEXTAREA', 'SELECT'].indexOf((document.activeElement || {}).tagName) >= 0) return;
+    clearDesvioSelection();
+  });
+  grpDesviosAll.on('layerremove', (e) => {
+    if (_selDvKey == null) return;
+    const g = _syncBridge.dvGroups[_selDvKey];
+    if (g && g.members.some(ls => layerByLS[ls] === e.layer)) clearDesvioSelection();
+  });
+
+  // Reaplica el grosor/guion adaptado al zoom a todas las capas de desvío,
+  // respetando cuál está seleccionada (roja).
+  function restyleAllDesvios() {
+    const _zs = dvZoomStyle();
+    Object.keys(layerByLS).forEach(ls => {
+      const lyr = layerByLS[ls];
+      if (!lyr) return;
+      const _sel = _isSelectedLs(ls);
+      lyr.setStyle(Object.assign({}, _zs, {
+        color: _sel ? '#ff0000' : colorFor(ls),
+        weight: _sel ? selWeight(_zs.weight) : _zs.weight
+      }));
+    });
+  }
+
+  function rebuildArrows() {
+    grpFlechasAll.clearLayers();
+    if (!map.hasLayer(grpDesviosAll)) return;
+    // El ls seleccionado se dibuja último y con zIndexOffset alto para que su
+    // flecha roja quede siempre por encima de las flechas de las demás capas.
+    const keys = Object.keys(layerByLS);
+    const ordered = keys.filter(ls => !_isSelectedLs(ls)).concat(keys.filter(ls => _isSelectedLs(ls)));
+    ordered.forEach(ls => {
+      if (!enabledLS[ls]) return;
+      if (!grpDesviosAll.hasLayer(layerByLS[ls])) return;
+      const sel = _isSelectedLs(ls);
+      (arrowsCacheByLS[ls] || []).forEach(a => {
+        const icon = makeArrowIcon(sel ? '#ff0000' : colorFor(ls), a.latlng, a.angleDeg);
+        L.marker(a.latlng, { icon: icon, interactive: false, keyboard: false, zIndexOffset: sel ? 10000 : 0 }).addTo(grpFlechasAll);
+      });
+    });
+  }
+
+  // Inicial: mostramos desvíos + flechas
+  grpDesviosAll.addTo(map);
+  grpFlechasAll.addTo(map);
+  rebuildArrows();
+  map.on('zoomend', () => { lyrTramos.setStyle(tramosZoomStyle()); restyleAllDesvios(); rebuildArrows(); });
+
+  // Fit bounds
+  const all = [];
+  boundLayers.forEach(l => {
+    if (typeof l.getLayers === 'function') all.push(...l.getLayers());
+    else all.push(l);
+  });
+  if (all.length) {
+    const fg = L.featureGroup(all);
+    const b = fg.getBounds();
+    if (b && b.isValid()) map.fitBounds(b.pad(0.1));
+  }
+
+  // Reencuadra el mapa a las capas activas (desvíos / paradas / tramos visibles).
+  function fitActiveArea() {
+    try {
+      const active = [];
+      [grpTramos, grpDesviosAll, grpParadasAll].forEach(g => {
+        if (!map.hasLayer(g)) return;
+        const inner = (typeof g.getLayers === 'function') ? g.getLayers() : [g];
+        inner.forEach(l => {
+          if (typeof l.getLayers === 'function') active.push.apply(active, l.getLayers());
+          else active.push(l);
+        });
+      });
+      if (!active.length) return;
+      const bb = L.featureGroup(active).getBounds();
+      if (!bb || !bb.isValid()) return;
+      // Descontar del encuadre la parte del mapa tapada por el reporte (si lo
+      // solapa; cuando el reporte es un panel aparte el solape es 0).
+      const mc = map.getContainer().getBoundingClientRect();
+      const bp = document.getElementById('bottompanel');
+      let bottom = 28;
+      if (bp) {
+        const rr = bp.getBoundingClientRect();
+        bottom = Math.max(28, Math.min(mc.bottom - rr.top + 12, mc.height * 0.72));
+      }
+      map.fitBounds(bb, { paddingTopLeft: [28, 28], paddingBottomRight: [28, bottom] });
+    } catch(e) {}
+  }
+
+  // Encuadra `b` de modo que la geometría llene la ventana visible del mapa
+  // (descontando lo que tapa el reporte) y recuerda el encuadre para poder
+  // reaplicarlo cuando el reporte se maximiza / minimiza.
+  function _fitFocus(b) {
+    if (!b || !b.isValid()) return;
+    let bb = L.latLngBounds(b.getSouthWest(), b.getNorthEast());
+    try {
+      if (lyrTramos && lyrTramos.getBounds) {
+        const tb = lyrTramos.getBounds();
+        if (tb && tb.isValid()) bb.extend(tb);
+      }
+    } catch(e) {}
+    _focusBounds = bb;
+    try {
+      const mc = map.getContainer().getBoundingClientRect();
+      const bp = document.getElementById('bottompanel');
+      let bottom = 16;
+      if (bp && !bp.classList.contains('collapsed')) {
+        const rr = bp.getBoundingClientRect();
+        bottom = Math.max(16, Math.min(mc.bottom - rr.top + 12, mc.height * 0.72));
+      }
+      map.fitBounds(bb.pad(0.08), { paddingTopLeft: [44, 16], paddingBottomRight: [16, bottom] });
+    } catch(e) {
+      map.fitBounds(bb.pad(0.1));
+    }
+  }
+
+  // Bounds del grupo de desvío con mayor extensión (para el botón "Todos").
+  function _largestDvBounds() {
+    let best = null, bestArea = -1;
+    const groups = _syncBridge.dvGroups || {};
+    Object.keys(groups).forEach(k => {
+      const g = groups[k];
+      const lyrs = ((g && g.members) || []).map(ls => layerByLS[ls]).filter(Boolean);
+      if (!lyrs.length) return;
+      let b;
+      try { b = L.featureGroup(lyrs).getBounds(); } catch(e) { return; }
+      if (!b || !b.isValid()) return;
+      const dx = b.getEast() - b.getWest(), dy = b.getNorth() - b.getSouth();
+      const area = Math.abs(dx * dy);
+      if (area > bestArea) { bestArea = area; best = b; }
+    });
+    return best;
+  }
+
+  // UI helpers
+  function addToggleRow(container, label, initial, onChange) {
+    const id = 'id_' + label.replace(/\W+/g,'_') + '_' + Math.random().toString(16).slice(2);
+    const row = document.createElement('div');
+    row.style.display = 'flex';
+    row.style.alignItems = 'center';
+    row.style.gap = '8px';
+    row.style.margin = '6px 0';
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.id = id;
+    cb.checked = initial;
+    const lab = document.createElement('label');
+    lab.htmlFor = id;
+    lab.textContent = label;
+    lab.style.cursor = 'pointer';
+    cb.onchange = () => onChange(cb.checked);
+    row.appendChild(cb);
+    row.appendChild(lab);
+    container.appendChild(row);
+    return cb;
+  }
+
+  // Base map selector (al final)
+  (function() {
+    const base = document.getElementById('basemap');
+    function addRadio(label, layer, checked) {
+      const id = 'rb_' + label.replace(/\W+/g,'_');
+      const row = document.createElement('div');
+      row.style.display='flex'; row.style.alignItems='center'; row.style.gap='8px'; row.style.margin='6px 0';
+      const rb = document.createElement('input');
+      rb.type='radio'; rb.name='basemap'; rb.id=id; rb.checked=checked;
+      const lab = document.createElement('label'); lab.htmlFor=id; lab.textContent=label; lab.style.cursor='pointer';
+      rb.onchange = () => {
+        if (!rb.checked) return;
+        if (map.hasLayer(baseGoogle)) map.removeLayer(baseGoogle);
+        if (map.hasLayer(baseOSM)) map.removeLayer(baseOSM);
+        if (map.hasLayer(baseOSMLight)) map.removeLayer(baseOSMLight);
+        layer.addTo(map);
+      };
+      row.appendChild(rb); row.appendChild(lab); base.appendChild(row);
+    }
+    addRadio('OSM claro (sentidos y nombres)', baseOSMLight, false);
+    addRadio('Google Maps', baseGoogle, true);
+    addRadio('OpenStreetMap', baseOSM, false);
+  })();
+
+  // Panel de capas: jerárquico
+  (function() {
+    const checklist = document.getElementById('checklist');
+    if (!checklist) return;
+
+    // Grupo Tramos
+    const gTr = document.createElement('div');
+    gTr.className='group';
+    gTr.innerHTML = '<div class="group-title">Tramos afectados</div><div class="group-children"></div>';
+    const trChildren = gTr.querySelector('.group-children');
+    checklist.appendChild(gTr);
+    addToggleRow(trChildren, 'Tramos afectados', true, (on) => {
+      if (on) map.addLayer(grpTramos); else map.removeLayer(grpTramos);
+    });
+    gTr.querySelector('.group-title').onclick = () => gTr.classList.toggle('collapsed');
+
+    // Grupo Desvíos
+    const gDv = document.createElement('div');
+    gDv.className='group';
+    gDv.innerHTML = '<div class="group-title">Desvíos de colectivo</div><div class="group-children"></div>';
+    const dvChildren = gDv.querySelector('.group-children');
+    checklist.appendChild(gDv);
+
+    const childCbs = _syncBridge.dvGroupCbs;
+
+    // Master real: prende/apaga todos los hijos
+    const cbAll = addToggleRow(dvChildren, 'Todos', true, (on) => {
+      cbAll.indeterminate = false;
+      Object.keys(layerByLS).forEach(ls => {
+        enabledLS[ls] = on;
+        if (on) grpDesviosAll.addLayer(layerByLS[ls]);
+        else grpDesviosAll.removeLayer(layerByLS[ls]);
+      });
+      Object.keys(childCbs).forEach(key => { childCbs[key].checked = on; });
+      if (on) {
+        if (!map.hasLayer(grpDesviosAll)) map.addLayer(grpDesviosAll);
+        if (!map.hasLayer(grpFlechasAll)) map.addLayer(grpFlechasAll);
+      } else {
+        if (map.hasLayer(grpDesviosAll)) map.removeLayer(grpDesviosAll);
+        if (map.hasLayer(grpFlechasAll)) map.removeLayer(grpFlechasAll);
+      }
+      rebuildArrows();
+      _syncBridge.refresh('desvios');
+      if (on) { clearDesvioSelection(); _fitFocus(_largestDvBounds()); }
+      else { _focusBounds = null; }
+    });
+    _syncBridge.dvMaster = cbAll;
+
+    // Hijos: un ítem por id_desvio (grupo de "Ruta"), IGUAL que la app. La
+    // etiqueta es lineas_agrupadas (p. ej. "084 - A - VUELTA ; 088 - A/C - VUELTA").
+    const desvioGroups = _syncBridge.dvGroups;
+    Object.keys(layerByLS).forEach(ls => {
+      const gid = LS_TO_GID[ls] || ls;
+      if (!desvioGroups[gid]) desvioGroups[gid] = { gid, label: GID_LABEL[gid] || ls, members: [] };
+      if (desvioGroups[gid].members.indexOf(ls) < 0) desvioGroups[gid].members.push(ls);
+    });
+
+    // Pueden prenderse individualmente aunque el master esté apagado.
+    // Orden por el primer número de la etiqueta ("008 - B/C - VUELTA ; 064 …" va
+    // como 8), igual que el reporte y el panel de la app.
+    const primerNumero = s => { const m = String(s || '').match(/\d+/); return m ? +m[0] : Infinity; };
+    Object.keys(desvioGroups)
+      .sort((a, b) => {
+        const la = desvioGroups[a].label, lb = desvioGroups[b].label;
+        const na = primerNumero(la), nb = primerNumero(lb);
+        if (na !== nb) return na - nb;
+        return String(la).localeCompare(String(lb), 'es', { numeric: true });
+      })
+      .forEach(key => {
+        const group = desvioGroups[key];
+        const displayLabel = group.label;
+        childCbs[key] = addToggleRow(dvChildren, displayLabel, true, (on) => {
+          group.members.forEach(ls => {
+            enabledLS[ls] = on;
+            if (on) grpDesviosAll.addLayer(layerByLS[ls]);
+            else grpDesviosAll.removeLayer(layerByLS[ls]);
+          });
+
+          const anyOn = Object.values(enabledLS).some(v => v);
+          if (anyOn) {
+            if (!map.hasLayer(grpDesviosAll)) map.addLayer(grpDesviosAll);
+            if (!map.hasLayer(grpFlechasAll)) map.addLayer(grpFlechasAll);
+          } else {
+            if (map.hasLayer(grpDesviosAll)) map.removeLayer(grpDesviosAll);
+            if (map.hasLayer(grpFlechasAll)) map.removeLayer(grpFlechasAll);
+          }
+          // mantener el master sincronizado visualmente (checked si todos están activos)
+          const allOn = Object.values(enabledLS).every(v => v);
+          const anyOnNow = Object.values(enabledLS).some(v => v);
+          cbAll.checked = allOn;
+          cbAll.indeterminate = anyOnNow && !allOn;
+          rebuildArrows();
+          _syncBridge.refresh('desvios');
+        });
+        // Click en el TEXTO (no en el checkbox): resaltado permanente en rojo
+        // del desvío + borde rojo en las paradas asociadas, hasta clickear otro
+        // ítem o un área vacía del mapa.
+        const _row = childCbs[key].closest('div');
+        const _lab = _row && _row.querySelector('label');
+        if (_lab) {
+          _lab.removeAttribute('for');
+          _lab.className = 'sel-label';
+          _lab.title = 'Resaltar este desvío y sus paradas asociadas';
+          _lab.onclick = (e) => { e.preventDefault(); selectDesvioGroup(key); };
+        }
+      });
+
+    gDv.querySelector('.group-title').onclick = () => gDv.classList.toggle('collapsed');
+
+    // Grupo Paradas anuladas
+    const gPa = document.createElement('div');
+    gPa.className = 'group';
+    gPa.innerHTML = '<div class="group-title">Paradas anuladas (' + _distinctStopPoints(PARADAS) + ')</div><div class="group-children"></div>';
+    const paChildren = gPa.querySelector('.group-children');
+    checklist.appendChild(gPa);
+
+    const paChildCbs = _syncBridge.paGroupCbs;
+
+    function syncPaMaster() {
+      const values = Object.values(enabledPa);
+      const allOn = values.length > 0 && values.every(v => v);
+      const anyOn = values.some(v => v);
+      cbPaAll.checked = allOn;
+      cbPaAll.indeterminate = anyOn && !allOn;
+    }
+
+    const cbPaAll = addToggleRow(paChildren, 'Todos', true, (on) => {
+      cbPaAll.indeterminate = false;
+      Object.keys(paradasByKey).forEach(key => {
+        enabledPa[key] = on;
+        if (paChildCbs[key]) paChildCbs[key].checked = on;
+        if (on) grpParadasAll.addLayer(paradasByKey[key].holder);
+        else grpParadasAll.removeLayer(paradasByKey[key].holder);
+      });
+      if (on) { if (!map.hasLayer(grpParadasAll)) map.addLayer(grpParadasAll); }
+      else if (map.hasLayer(grpParadasAll)) map.removeLayer(grpParadasAll);
+      _syncBridge.refresh('paradas');
+    });
+    _syncBridge.paMaster = cbPaAll;
+
+    Object.keys(paradasByKey).forEach(key => {
+      const entry = paradasByKey[key];
+      paChildCbs[key] = addToggleRow(paChildren, entry.displayLabel + ' (' + entry.count + ')', true, (on) => {
+        enabledPa[key] = on;
+        if (on) grpParadasAll.addLayer(entry.holder);
+        else grpParadasAll.removeLayer(entry.holder);
+        const anyOn = Object.values(enabledPa).some(v => v);
+        if (anyOn) { if (!map.hasLayer(grpParadasAll)) map.addLayer(grpParadasAll); }
+        else if (map.hasLayer(grpParadasAll)) map.removeLayer(grpParadasAll);
+        syncPaMaster();
+        _syncBridge.refresh('paradas');
+      });
+      // Click en el TEXTO (no en el checkbox): enciende esta parada si estaba
+      // apagada y resalta en rojo su desvío asociado + reduce las paradas no
+      // asociadas, igual que clickear el desvío desde su propio panel.
+      const _paRow = paChildCbs[key].closest('div');
+      const _paLab = _paRow && _paRow.querySelector('label');
+      if (_paLab) {
+        _paLab.removeAttribute('for');
+        _paLab.className = 'sel-label';
+        _paLab.title = 'Encender y resaltar el desvío asociado a esta parada';
+        entry.labelEl = _paLab;
+        _paLab.onclick = (e) => {
+          e.preventDefault();
+          const targetLs = (entry.rawLabels || []).find(ls => _groupKeyForLs(ls) != null);
+          const dvKey = targetLs ? _groupKeyForLs(targetLs) : null;
+          if (dvKey == null) return;
+          // Clic en la misma parada ya resaltada: deselecciona todo, igual
+          // que clickear dos veces el mismo desvío.
+          if (_selStopKey === key) { clearDesvioSelection(); return; }
+          if (!paChildCbs[key].checked) {
+            paChildCbs[key].checked = true;
+            enabledPa[key] = true;
+            grpParadasAll.addLayer(entry.holder);
+            if (!map.hasLayer(grpParadasAll)) map.addLayer(grpParadasAll);
+            syncPaMaster();
+            _syncBridge.refresh('paradas');
+          }
+          // Si ya es el desvío seleccionado, no volver a llamar a
+          // selectDesvioGroup: alternaría a "deseleccionar" (mismo id). Otra
+          // parada asociada al mismo desvío debe dejarlo tal cual (en rojo),
+          // solo se reemplaza cuál parada puntual queda marcada.
+          if (dvKey !== _selDvKey) selectDesvioGroup(dvKey);
+          _selStopKey = key;
+          _applyStopHighlightForDvGroup(dvKey, false);
+        };
+      }
+    });
+
+    gPa.querySelector('.group-title').onclick = () => gPa.classList.toggle('collapsed');
+  })();
+
+  // Paradas operativas: la parada activa (anterior o siguiente del mismo
+  // recorrido) a la que se manda a los pasajeros de cada parada anulada, la
+  // misma del cartel PA de la cartelería. P verde, agrupadas por línea como
+  // las anuladas; el grupo arranca plegado.
+  (function() {
+    const checklist = document.getElementById('checklist');
+    const feats = (PARADAS_OPERATIVAS && PARADAS_OPERATIVAS.features) || [];
+    if (!checklist || !feats.length) return;
+    const grpOperativas = L.layerGroup().addTo(map);
+    const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
+    const raw = {};
+    feats.forEach((f) => { const k = String((f.properties || {}).linea_sentido || 'Línea sin identificar'); (raw[k] = raw[k] || []).push(f); });
+    const merged = {};
+    Object.keys(raw).sort().forEach((label) => {
+      const items = raw[label], p = items[0].properties || {};
+      const key = (p.linea != null && p.sentido != null) ? (p.linea + '||' + p.sentido + '||' + items.map((f) => String((f.properties || {}).dir || '')).join('§')) : ('__raw__||' + label);
+      const e = merged[key] = merged[key] || {linea: p.linea, sentido: p.sentido, recorridos: [], features: [], label};
+      if (p.recorrido != null && p.recorrido !== '' && e.recorridos.indexOf(String(p.recorrido)) < 0) e.recorridos.push(String(p.recorrido));
+      e.features.push.apply(e.features, items);
+    });
+    const g = document.createElement('div');
+    g.className = 'group collapsed';
+    g.innerHTML = '<div class="group-title">Paradas operativas (' + _distinctStopPoints(PARADAS_OPERATIVAS) + ')</div><div class="group-children"></div>';
+    const children = g.querySelector('.group-children');
+    checklist.appendChild(g);
+    g.querySelector('.group-title').onclick = () => g.classList.toggle('collapsed');
+    const filas = [];
+    // Entran en la sincronización por línea-ramal-sentido con desvíos, anuladas y reporte.
+    const poner = (f, on) => { f.cb.checked = on; if (on) grpOperativas.addLayer(f.holder); else grpOperativas.removeLayer(f.holder); };
+    const syncMaster = () => {
+      const n = filas.filter((x) => x.cb.checked).length;
+      cbAll.checked = filas.length > 0 && n === filas.length; cbAll.indeterminate = n > 0 && n < filas.length;
+    };
+    const cbAll = addToggleRow(children, 'Todos', true, (on) => {
+      filas.forEach((f) => poner(f, on));
+      _syncBridge.refresh('operativas');
+    });
+    _syncBridge.opRows = filas;
+    _syncBridge.opPoner = poner;
+    _syncBridge.opSync = syncMaster;
+    Object.keys(merged).sort((a, b) => {
+      const ea = merged[a], eb = merged[b];
+      return ((ea.linea || '') + '|' + (ea.sentido || '') + '|' + ea.recorridos.join('/')).localeCompare((eb.linea || '') + '|' + (eb.sentido || '') + '|' + eb.recorridos.join('/'), 'es', {numeric: true});
+    }).forEach((key) => {
+      const e = merged[key];
+      const label = e.recorridos.length ? (e.linea + ' - ' + e.recorridos.slice().sort((a, b) => a.localeCompare(b, 'es', {numeric: true})).join('/') + ' - ' + e.sentido) : e.label;
+      const holder = L.geoJSON({type: 'FeatureCollection', features: e.features}, {
+        pointToLayer: (f, ll) => L.marker(ll, {icon: stopIcon('#16a34a')}),
+        onEachFeature: (f, l) => {
+          const p = f.properties || {};
+          l.bindPopup('<div><b>Parada operativa</b></div><div>' + esc(p.linea_sentido) + '</div><div class="muted">' + esc(p.dir || 'Sin dirección') + '</div>'
+            + (p.reemplaza ? '<div class="muted">Reemplaza a ' + esc(p.reemplaza) + ' (parada ' + esc(p.cual) + ')</div>' : ''));
+        },
+      });
+      grpOperativas.addLayer(holder);
+      const cb = addToggleRow(children, label + ' (' + _distinctStopPoints({features: e.features}) + ')', true, (on) => {
+        if (on) grpOperativas.addLayer(holder); else grpOperativas.removeLayer(holder);
+        syncMaster();
+        _syncBridge.refresh('operativas');
+      });
+      const lab = cb.parentNode.querySelector('label');
+      lab.removeAttribute('for');
+      lab.className = 'sel-label';
+      lab.title = 'Acercar a estas paradas operativas';
+      lab.onclick = (ev) => {
+        ev.preventDefault();
+        if (!cb.checked) { cb.checked = true; cb.onchange(); }  // también sincroniza
+        const b = holder.getBounds();
+        if (b.isValid()) map.fitBounds(b.pad(0.4), {maxZoom: 17});
+      };
+      filas.push({cb, holder, affKeys: _partAffKeys(label)});
+    });
+  })();
+
+  // Filtro por número de línea del panel de capas (igual que en la app): deja
+  // las filas con alguna línea cuyo número contenga lo escrito, sin contar los
+  // ceros a la izquierda ("1" encuentra 001, 010, 112…). Con letras busca en el
+  // texto. Sólo oculta filas del panel; "Todos" y Tramos afectados quedan siempre.
+  (function() {
+    const input = document.getElementById('lineFilter');
+    if (!input) return;
+    function lineNumbers(text) {
+      const out = [], re = /(?:^|;)\s*(\d+)/g;
+      let m;
+      while ((m = re.exec(String(text || ''))) !== null) out.push(m[1]);
+      return out;
+    }
+    function matches(text, q) {
+      if (!/^\d+$/.test(q)) return String(text || '').toLowerCase().indexOf(q.toLowerCase()) >= 0;
+      const qs = q.replace(/^0+/, '') || '0';
+      return lineNumbers(text).some(n => (n.replace(/^0+/, '') || '0').indexOf(qs) >= 0);
+    }
+    input.addEventListener('input', () => {
+      const q = input.value.trim();
+      document.querySelectorAll('#checklist .group').forEach(g => {
+        const children = g.querySelector('.group-children');
+        let shown = 0, filtrables = 0;
+        children.querySelectorAll('label.sel-label').forEach(lab => {
+          const row = lab.parentNode;
+          if (row.classList.contains('modo-oculto')) return;
+          filtrables++;
+          const ok = !q || matches(lab.textContent, q);
+          row.classList.toggle('filtro-oculto', !ok);
+          if (ok) shown++;
+        });
+        let note = children.querySelector('.sin-coincidencias');
+        if (q && filtrables && !shown) {
+          if (!note) { note = document.createElement('div'); note.className = 'sin-coincidencias'; children.appendChild(note); }
+          note.textContent = 'Sin líneas que coincidan con "' + q + '"';
+        } else if (note) note.remove();
+        if (q && shown) g.classList.remove('collapsed');
+      });
+    });
+  })();
+
+  // Botón único Mostrar/Ocultar capas
+  (function() {
+    const leftpanel = document.getElementById('leftpanel');
+    const btn = document.getElementById('btnLayers');
+    function applyText() {
+      btn.textContent = leftpanel.classList.contains('hidden') ? 'Mostrar capas' : 'Ocultar capas';
+    }
+    applyText();
+    btn.onclick = () => {
+      leftpanel.classList.toggle('hidden');
+      applyText();
+      setTimeout(() => map.invalidateSize(), 250);
+    };
+  })();
+
+  // Reporte (contenido + copiar)
+  (function() {
+    const reporteDiv = document.getElementById('reporte-html');
+    reporteDiv.innerHTML = "<h3>Tramos afectados</h3><ul><li>RODRIGUEZ PEÑA entre DEL LIBERTADOR AV. y QUINTANA, MANUEL, PRES.</li><li>POSADAS entre CALLAO AV. y 9 DE JULIO AV.</li><li>MONTEVIDEO entre DEL LIBERTADOR AV. y QUINTANA, MANUEL, PRES.</li><li>ALVEAR entre CALLAO AV. y LIBERTAD</li><li>LIBERTAD entre DEL LIBERTADOR AV. y QUINTANA, MANUEL, PRES.</li><li>CERRITO entre GUAYRA y 9 DE JULIO AV.</li><li>PARERA entre ALVEAR y QUINTANA, MANUEL, PRES.</li><li>ALVEAR AV. entre LIBERTAD y CERRITO</li><li>ARROYO entre LIBERTAD y AUTOPISTA ARTURO ILLIA</li><li>9 DE JULIO AV. entre ARROYO y CERRITO</li></ul><h3><input type='checkbox' id='cbReportAll' checked/>Líneas afectadas (Total 2)</h3><h3>Líneas con desvío (Total 2 - 100,0%)</h3><h3>Detalle de las líneas con desvío</h3><ul><li><input type='checkbox' class='ruta-toggle' checked data-keys='[&quot;067 - A - VUELTA&quot;]'/><b>067 - A - VUELTA</b>: DEL LIBERTADOR AV. - ALVEAR AV. - AYACUCHO - LAS HERAS, GENERAL - MONTEVIDEO - SANTA FE AV. - 9 DE JULIO AV. - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[&quot;124 - A - IDA&quot;]'/><b>124 - A - IDA</b>: DEL LIBERTADOR AV. - ALVEAR AV. - AYACUCHO - GUIDO - RODRIGUEZ PEÑA - SU RUTA</li></ul><h3><input type='checkbox' id='cbReportStopsAll' checked/>Paradas anuladas (Total 4)</h3><ul><li><input type='checkbox' class='parada-toggle' checked data-parada-key='067 - A - VUELTA'/><b>067 - A - VUELTA</b>: DEL LIBERTADOR AV. 1208 - DEL LIBERTADOR AV. 918 - DEL LIBERTADOR AV. 728</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='124 - A - IDA'/><b>124 - A - IDA</b>: DEL LIBERTADOR AV. 1208 - DEL LIBERTADOR AV. 918 - RODRIGUEZ PEÑA 1814</li></ul>";
+
+ // ✅ Toggles por Ruta (reporte) con retrofuncionalidad:
+ // - Si TODO está prendido, al tocar una Ruta se apagan todas y quedan solo las seleccionadas.
+ function setLS(ls, on){
+   enabledLS[ls] = !!on;
+   if (!layerByLS[ls]) return;
+   if (on) grpDesviosAll.addLayer(layerByLS[ls]);
+   else grpDesviosAll.removeLayer(layerByLS[ls]);
+ }
+ function ensureGroups(){
+   const anyOn = Object.values(enabledLS).some(v => v);
+   if (anyOn){
+     if (!map.hasLayer(grpDesviosAll)) map.addLayer(grpDesviosAll);
+     if (!map.hasLayer(grpFlechasAll)) map.addLayer(grpFlechasAll);
+   } else {
+     if (map.hasLayer(grpDesviosAll)) map.removeLayer(grpDesviosAll);
+     if (map.hasLayer(grpFlechasAll)) map.removeLayer(grpFlechasAll);
+   }
+ }
+ function applySelectionFromReport(){
+   // unión de keys de todas las rutas tildadas
+   const toggles = Array.from(document.querySelectorAll('.ruta-toggle'));
+   const selected = new Set();
+   toggles.forEach(cb => {
+     if (!cb.checked) return;
+     let keys = [];
+     try { keys = JSON.parse(cb.getAttribute('data-keys') || '[]'); } catch(e) { keys = []; }
+     keys.forEach(k => selected.add(k));
+   });
+   // apagar todas, prender solo seleccionadas
+   Object.keys(layerByLS).forEach(ls => setLS(ls, selected.has(ls)));
+   ensureGroups();
+   rebuildArrows();
+ }
+ (function(){
+   const rep = document.getElementById('reporte-html');
+   if (!rep || !rep.querySelector('.ruta-toggle')) return;
+   // Se buscan en cada evento: el modo "por línea" reemplaza las filas del detalle.
+   const togglesNow = () => Array.from(rep.querySelectorAll('.ruta-toggle'));
+
+   // ✅ Master checkbox en el Reporte (a la izquierda de "Líneas Afectadas"): activa/desactiva todos los items
+   const cbAllReport = document.getElementById('cbReportAll');
+   function syncCbAllReport(){
+     if (!cbAllReport) return;
+     cbAllReport.checked = togglesNow().every(x => x.checked);
+   }
+   if (cbAllReport){
+     cbAllReport.addEventListener('change', () => {
+       const on = !!cbAllReport.checked;
+       togglesNow().forEach(x => x.checked = on);
+       // prender/apagar todas las capas en el mapa
+       Object.keys(layerByLS).forEach(ls => setLS(ls, on));
+       ensureGroups();
+       rebuildArrows();
+     });
+   }
+
+   rep.addEventListener('change', (ev) => {
+       const cb = ev.target;
+       if (!cb.matches('.ruta-toggle')) return;
+       const toggles = togglesNow();
+       // Estado previo: todo prendido + todas las rutas tildadas
+       const allLayersOn = Object.values(enabledLS).every(v => v);
+       const allRoutesChecked = toggles.every(x => x.checked);
+
+       // Si estaba TODO prendido y el usuario tocó una ruta (normalmente la destilda), usamos modo "solo selección":
+       if (allLayersOn && allRoutesChecked) {
+         // dejar SOLO esta ruta prendida
+         toggles.forEach(x => x.checked = false);
+         cb.checked = true;
+       }
+
+       applySelectionFromReport();
+       syncCbAllReport();
+   });
+   syncCbAllReport();
+ })();
+
+ // Paradas anuladas del reporte: mismo criterio de fusión que usó
+ // paradas_anuladas.report_html() al armar 'data-parada-key' (labels crudos
+ // de linea_sentido unidos con '||'), por lo que el set ordenado de labels
+ // identifica sin ambigüedad la misma agrupación que arma paradasByKey arriba.
+ function setParadaGroup(key, on){
+   enabledPa[key] = !!on;
+   if (!paradasByKey[key]) return;
+   if (on) grpParadasAll.addLayer(paradasByKey[key].holder);
+   else grpParadasAll.removeLayer(paradasByKey[key].holder);
+ }
+ function ensureParadasGroup(){
+   const anyOn = Object.values(enabledPa).some(v => v);
+   if (anyOn) { if (!map.hasLayer(grpParadasAll)) map.addLayer(grpParadasAll); }
+   else if (map.hasLayer(grpParadasAll)) map.removeLayer(grpParadasAll);
+ }
+ const paradaKeyByLabelSet = {};
+ Object.keys(paradasByKey).forEach(key => {
+   const norm = paradasByKey[key].rawLabels.slice().sort().join('||');
+   paradaKeyByLabelSet[norm] = key;
+ });
+ function paradaKeyFromToggle(cb){
+   const raw = (cb.getAttribute('data-parada-key') || '').split('||').map(x => x.trim()).filter(Boolean);
+   return paradaKeyByLabelSet[raw.slice().sort().join('||')];
+ }
+ function applyParadaSelectionFromReport(){
+   const toggles = Array.from(document.querySelectorAll('.parada-toggle'));
+   const selected = new Set();
+   toggles.forEach(cb => {
+     if (!cb.checked) return;
+     const key = paradaKeyFromToggle(cb);
+     if (key) selected.add(key);
+   });
+   Object.keys(paradasByKey).forEach(key => setParadaGroup(key, selected.has(key)));
+   ensureParadasGroup();
+ }
+ (function(){
+   const toggles = Array.from(document.querySelectorAll('.parada-toggle'));
+   if (!toggles.length) return;
+
+   const cbAllReportStops = document.getElementById('cbReportStopsAll');
+   function syncCbAllReportStops(){
+     if (!cbAllReportStops) return;
+     cbAllReportStops.checked = toggles.every(x => x.checked);
+   }
+   if (cbAllReportStops){
+     cbAllReportStops.addEventListener('change', () => {
+       const on = !!cbAllReportStops.checked;
+       toggles.forEach(x => x.checked = on);
+       Object.keys(paradasByKey).forEach(key => setParadaGroup(key, on));
+       ensureParadasGroup();
+     });
+   }
+
+   toggles.forEach(cb => {
+     cb.addEventListener('change', () => {
+       const allOnBefore = Object.values(enabledPa).every(v => v);
+       const allCheckedBefore = toggles.every(x => x.checked);
+       if (allOnBefore && allCheckedBefore) {
+         toggles.forEach(x => x.checked = false);
+         cb.checked = true;
+       }
+       applyParadaSelectionFromReport();
+       syncCbAllReportStops();
+     });
+   });
+   syncCbAllReportStops();
+ })();
+
+
+    function reportToPlainText(root){
+      if(!root) return '';
+      var lines=[];
+      root.querySelectorAll('h3,h4,li,p').forEach(function(el){
+        var text=(el.textContent||'').replace(/\s+/g,' ').trim();
+        if(!text) return;
+        if(el.tagName==='H3'||el.tagName==='H4'){ lines.push(''); lines.push('*'+text+'*'); }
+        else lines.push(text);
+      });
+      return lines.join('\n').replace(/\n{3,}/g,'\n\n').replace(/^\n+/,'').trim();
+    }
+    function flashBtnCopied(){
+      var b=document.getElementById('btnCopyReport');
+      if(!b) return;
+      clearTimeout(b._copiedTimer);
+      b.classList.add('copied');
+      b.textContent='✓ Copiado';
+      b._copiedTimer=setTimeout(function(){ b.classList.remove('copied'); b.textContent='Copiar'; },1500);
+    }
+    document.getElementById('btnCopyReport').onclick = async () => {
+      const txt = reportToPlainText(document.getElementById('reporte-html'));
+      try {
+        await navigator.clipboard.writeText(txt);
+      } catch(e) {
+        try {
+          const ta=document.createElement('textarea');
+          ta.value=txt; ta.style.position='fixed'; ta.style.opacity='0';
+          document.body.appendChild(ta); ta.select();
+          document.execCommand('copy'); ta.remove();
+        } catch(_) { alert('No se pudo copiar el reporte'); }
+      }
+      flashBtnCopied();
+    };
+  })();
+
+  // ---- Sincronización desvíos <-> paradas <-> reporte (paridad con la app) ----
+  // Estado compartido por "clave afectada" (linea|recorrido|sentido). Cada
+  // superficie (panel de desvíos, panel de paradas, checkboxes del reporte)
+  // vuelca su estado a keyState y luego se re-aplica a las otras tres.
+  (function() {
+    const bridge = _syncBridge;
+    const keyState = {};
+
+    function lsAll() { return Object.keys(layerByLS); }
+    function isActive(keys) { return keys.length > 0 && keys.some(k => keyState[k] !== false); }
+
+    function setLSLocal(ls, on) {
+      enabledLS[ls] = !!on;
+      if (!layerByLS[ls]) return;
+      if (on) grpDesviosAll.addLayer(layerByLS[ls]);
+      else grpDesviosAll.removeLayer(layerByLS[ls]);
+    }
+    function ensureDesviosGroups() {
+      const anyOn = Object.values(enabledLS).some(v => v);
+      if (anyOn) {
+        if (!map.hasLayer(grpDesviosAll)) map.addLayer(grpDesviosAll);
+        if (!map.hasLayer(grpFlechasAll)) map.addLayer(grpFlechasAll);
+      } else {
+        if (map.hasLayer(grpDesviosAll)) map.removeLayer(grpDesviosAll);
+        if (map.hasLayer(grpFlechasAll)) map.removeLayer(grpFlechasAll);
+      }
+    }
+    function setParadaLocal(mk, on) {
+      enabledPa[mk] = !!on;
+      if (!paradasByKey[mk]) return;
+      if (on) grpParadasAll.addLayer(paradasByKey[mk].holder);
+      else grpParadasAll.removeLayer(paradasByKey[mk].holder);
+    }
+    function ensureParadasGroup() {
+      const anyOn = Object.values(enabledPa).some(v => v);
+      if (anyOn) { if (!map.hasLayer(grpParadasAll)) map.addLayer(grpParadasAll); }
+      else if (map.hasLayer(grpParadasAll)) map.removeLayer(grpParadasAll);
+    }
+
+    const paradaKeyByLabelSet = {};
+    Object.keys(paradasByKey).forEach(mk => {
+      paradaKeyByLabelSet[(paradasByKey[mk].rawLabels || []).slice().sort().join('||')] = mk;
+    });
+    function toggleToMergeKey(cb) {
+      const raw = String(cb.getAttribute('data-parada-key') || '').split('||').map(x => x.trim()).filter(Boolean);
+      return paradaKeyByLabelSet[raw.slice().sort().join('||')];
+    }
+    function rutaToggleKeys(cb) {
+      let ks = [];
+      try { ks = JSON.parse(cb.getAttribute('data-keys') || '[]'); } catch(e) { ks = []; }
+      const out = [];
+      ks.forEach(ls => _partAffKeys(ls).forEach(k => out.push(k)));
+      return out;
+    }
+
+    // PULL: superficie -> keyState
+    function pullDesvios() { lsAll().forEach(ls => _lsAffKeys(ls).forEach(k => keyState[k] = !!enabledLS[ls])); }
+    function pullParadas() { Object.keys(paradasByKey).forEach(mk => (paradasByKey[mk].affKeys || []).forEach(k => keyState[k] = !!enabledPa[mk])); }
+    function pullReportRoutes() {
+      document.querySelectorAll('#reporte-html .ruta-toggle').forEach(cb => {
+        rutaToggleKeys(cb).forEach(k => keyState[k] = !!cb.checked);
+      });
+    }
+    function pullOperativas() { (bridge.opRows || []).forEach(r => r.affKeys.forEach(k => keyState[k] = !!r.cb.checked)); }
+    function applyOperativas() {
+      (bridge.opRows || []).forEach(r => {
+        if (!r.affKeys.length) return;
+        const desired = isActive(r.affKeys);
+        if (!!r.cb.checked !== desired) bridge.opPoner(r, desired);
+      });
+      if (bridge.opSync) bridge.opSync();
+    }
+    function pullReportStops() {
+      document.querySelectorAll('#reporte-html .parada-toggle').forEach(cb => {
+        const mk = toggleToMergeKey(cb);
+        if (mk && paradasByKey[mk]) (paradasByKey[mk].affKeys || []).forEach(k => keyState[k] = !!cb.checked);
+      });
+    }
+
+    // APPLY: keyState -> superficie
+    function applyDesvios() {
+      lsAll().forEach(ls => {
+        const desired = isActive(_lsAffKeys(ls));
+        if (!!enabledLS[ls] !== desired) setLSLocal(ls, desired);
+      });
+      ensureDesviosGroups();
+      Object.keys(bridge.dvGroups).forEach(gk => {
+        const g = bridge.dvGroups[gk], cb = bridge.dvGroupCbs[gk];
+        if (!cb) return;
+        const states = g.members.map(ls => !!enabledLS[ls]);
+        const allOn = states.length > 0 && states.every(Boolean), anyOn = states.some(Boolean);
+        cb.checked = allOn;
+        cb.indeterminate = anyOn && !allOn;
+      });
+      if (bridge.dvMaster) {
+        const vals = Object.values(enabledLS);
+        const allOn = vals.length > 0 && vals.every(Boolean), anyOn = vals.some(Boolean);
+        bridge.dvMaster.checked = allOn;
+        bridge.dvMaster.indeterminate = anyOn && !allOn;
+      }
+      rebuildArrows();
+    }
+    function applyParadas() {
+      Object.keys(paradasByKey).forEach(mk => {
+        const desired = isActive(paradasByKey[mk].affKeys || []);
+        if (!!enabledPa[mk] !== desired) setParadaLocal(mk, desired);
+        const cb = bridge.paGroupCbs[mk];
+        if (cb) cb.checked = !!enabledPa[mk];
+      });
+      ensureParadasGroup();
+      if (bridge.paMaster) {
+        const vals = Object.values(enabledPa);
+        const allOn = vals.length > 0 && vals.every(Boolean), anyOn = vals.some(Boolean);
+        bridge.paMaster.checked = allOn;
+        bridge.paMaster.indeterminate = anyOn && !allOn;
+      }
+    }
+    function applyReport() {
+      const rutas = Array.prototype.slice.call(document.querySelectorAll('#reporte-html .ruta-toggle'));
+      rutas.forEach(cb => {
+        const keys = rutaToggleKeys(cb);
+        if (keys.length) cb.checked = isActive(keys);
+      });
+      const cbAllR = document.getElementById('cbReportAll');
+      if (cbAllR) cbAllR.checked = rutas.length > 0 && rutas.every(x => x.checked);
+      const paradas = Array.prototype.slice.call(document.querySelectorAll('#reporte-html .parada-toggle'));
+      paradas.forEach(cb => {
+        const mk = toggleToMergeKey(cb);
+        const keys = (mk && paradasByKey[mk] && paradasByKey[mk].affKeys) || [];
+        if (keys.length) cb.checked = isActive(keys);
+      });
+      const cbAllS = document.getElementById('cbReportStopsAll');
+      if (cbAllS) cbAllS.checked = paradas.length > 0 && paradas.every(x => x.checked);
+    }
+
+    let busy = false;
+    function refresh(source) {
+      if (busy) return;
+      busy = true;
+      try {
+        if (source === 'desvios') pullDesvios();
+        else if (source === 'paradas') pullParadas();
+        else if (source === 'report-routes') pullReportRoutes();
+        else if (source === 'report-stops') pullReportStops();
+        else if (source === 'operativas') pullOperativas();
+        else pullDesvios();
+        applyDesvios();
+        applyParadas();
+        applyReport();
+        applyOperativas();
+      } finally {
+        busy = false;
+      }
+    }
+    bridge.refresh = refresh;
+
+    const rep = document.getElementById('reporte-html');
+    if (rep && !rep._syncBound) {
+      rep._syncBound = true;
+      rep.addEventListener('change', (ev) => {
+        if (ev.target.matches('.ruta-toggle, #cbReportAll')) refresh('report-routes');
+        else if (ev.target.matches('.parada-toggle, #cbReportStopsAll')) refresh('report-stops');
+      });
+    }
+
+    // Estado inicial coherente entre las tres superficies.
+    pullDesvios();
+    applyParadas();
+    applyReport();
+    applyOperativas();
+  })();
+
+  // ---- Modo de listado, en el panel y en el detalle del reporte (igual que
+  //      la app): "Por desvío" agrupa por recorrido de desvío en común (el de
+  //      siempre); "Por línea" muestra una fila por línea - ramales - sentido
+  //      ("008 - B/C - VUELTA"), ordenadas por número de línea. Acá cada fila
+  //      prende o apaga las capas de esa línea (las hay por ramal). ----
+  (function() {
+    const KEY = 'desvios.modoListado';
+    let modo = 'ruta';
+    try { if (localStorage.getItem(KEY) === 'linea') modo = 'linea'; } catch(e) {}
+    const partes = s => String(s || '').split(';').map(x => x.trim()).filter(Boolean);
+    const primerNumero = s => { const m = String(s || '').match(/\d+/); return m ? +m[0] : Infinity; };
+    const orden = (a, b) => (primerNumero(a) - primerNumero(b)) || String(a).localeCompare(String(b), 'es', { numeric: true });
+    const claves = _partAffKeys;
+    const comparten = (a, b) => { const s = {}; a.forEach(k => s[k] = true); return b.some(k => s[k]); };
+
+    // Panel: filas por línea dentro del grupo "Desvíos de colectivo".
+    const dvChildren = _syncBridge.dvMaster && _syncBridge.dvMaster.closest('.group-children');
+    const filas = [];
+    let vista = null;
+    if (dvChildren) {
+      vista = document.createElement('div');
+      vista.className = 'vista-lineas';
+      Object.keys(_syncBridge.dvGroups).forEach(gid => {
+        const g = _syncBridge.dvGroups[gid];
+        partes(g.label).forEach(parte => {
+          const ks = claves(parte), members = g.members.filter(ls => comparten(_lsAffKeys(ls), ks));
+          filas.push({ gid, parte, members: members.length ? members : g.members.slice() });
+        });
+      });
+      filas.sort((a, b) => orden(a.parte, b.parte));
+      filas.forEach(f => {
+        f.cb = addToggleRow(vista, f.parte, true, (on) => {
+          // Igual que la casilla de un grupo, sólo con las capas de esta línea.
+          f.members.forEach(ls => {
+            enabledLS[ls] = on;
+            if (on) grpDesviosAll.addLayer(layerByLS[ls]);
+            else grpDesviosAll.removeLayer(layerByLS[ls]);
+          });
+          const anyOn = Object.values(enabledLS).some(v => v);
+          [grpDesviosAll, grpFlechasAll].forEach(g => {
+            if (anyOn && !map.hasLayer(g)) map.addLayer(g);
+            else if (!anyOn && map.hasLayer(g)) map.removeLayer(g);
+          });
+          rebuildArrows();
+          _syncBridge.refresh('desvios');
+        });
+        f.lab = f.cb.parentNode.querySelector('label');
+        f.lab.removeAttribute('for');
+        f.lab.className = 'sel-label';
+        f.lab.title = 'Resaltar el desvío de esta línea y sus paradas asociadas';
+        f.lab.onclick = (e) => { e.preventDefault(); selectDesvioGroup(f.gid); };
+      });
+    }
+    function syncFilas() {
+      filas.forEach(f => {
+        const on = f.members.filter(ls => enabledLS[ls]).length;
+        f.cb.checked = on === f.members.length;
+        f.cb.indeterminate = on > 0 && on < f.members.length;
+      });
+    }
+    function marcarSeleccion() {
+      filas.forEach(f => f.lab.classList.toggle('is-selected', _selDvKey != null && f.gid === _selDvKey));
+    }
+    const selectDesvioGroupBase = selectDesvioGroup;
+    selectDesvioGroup = function(key, abrirTarjeta) { selectDesvioGroupBase(key, abrirTarjeta); marcarSeleccion(); };
+    // Último en escuchar: cualquier cambio de capas (panel, reporte, paradas) ya se aplicó.
+    document.addEventListener('change', syncFilas);
+
+    // Reporte: la lista del detalle (las filas con .ruta-toggle) se abre en una fila por línea.
+    function aplicarAlReporte() {
+      document.querySelectorAll('#reporte-html ul').forEach(ul => {
+        if (!ul._originales) {
+          if (!ul.querySelector(':scope > li > input.ruta-toggle')) return;
+          ul._originales = Array.from(ul.children);
+        }
+        if (modo === 'linea' && !ul._porLinea) {
+          const nuevas = [];
+          ul._originales.forEach(li => {
+            const cb = li.querySelector(':scope > input.ruta-toggle'), b = li.querySelector(':scope > b');
+            if (!cb || !b) { nuevas.push({ li, parte: '' }); return; }
+            let keys = [];
+            try { keys = JSON.parse(cb.getAttribute('data-keys') || '[]'); } catch(e) { keys = []; }
+            partes(b.textContent).forEach(parte => {
+              const ks = claves(parte), propias = keys.filter(k => comparten(claves(k), ks)), copia = li.cloneNode(true);
+              copia.querySelector(':scope > b').textContent = parte;
+              copia.querySelector(':scope > input.ruta-toggle').setAttribute('data-keys', JSON.stringify(propias.length ? propias : keys));
+              nuevas.push({ li: copia, parte });
+            });
+          });
+          nuevas.sort((a, b) => orden(a.parte, b.parte));
+          ul._porLinea = nuevas.map(x => x.li);
+        }
+        while (ul.firstChild) ul.removeChild(ul.firstChild);
+        (modo === 'linea' ? ul._porLinea : ul._originales).forEach(li => ul.appendChild(li));
+      });
+    }
+
+    const controles = Array.from(document.querySelectorAll('.modo-listado'));
+    controles.forEach(el => {
+      el.innerHTML = '<button type="button" data-modo="ruta" title="Agrupado por recorrido de desvío en común">Por desvío</button>'
+        + '<button type="button" data-modo="linea" title="Una fila por línea, ramales y sentido">Por línea</button>';
+      el.querySelectorAll('button').forEach(b => b.onclick = (e) => { e.stopPropagation(); aplicar(b.getAttribute('data-modo')); });
+    });
+    function aplicar(nuevo) {
+      modo = nuevo === 'linea' ? 'linea' : 'ruta';
+      try { localStorage.setItem(KEY, modo); } catch(e) {}
+      controles.forEach(el => el.querySelectorAll('button').forEach(b => b.classList.toggle('activo', b.getAttribute('data-modo') === modo)));
+      if (dvChildren) {
+        Object.keys(_syncBridge.dvGroupCbs).forEach(gk => {
+          const row = _syncBridge.dvGroupCbs[gk].closest('div');
+          if (row) row.classList.toggle('modo-oculto', modo === 'linea');
+        });
+        if (modo === 'linea') dvChildren.appendChild(vista); else if (vista.parentNode) vista.remove();
+      }
+      aplicarAlReporte();
+      // Las filas nuevas toman el estado de las capas.
+      _syncBridge.refresh('desvios');
+      syncFilas();
+      marcarSeleccion();
+      const filtro = document.getElementById('lineFilter');
+      if (filtro) filtro.dispatchEvent(new Event('input'));
+    }
+    aplicar(modo);
+  })();
+
+  // Ocultar/mostrar reporte
+  const bottomPanel = document.getElementById('bottompanel');
+  const btnToggle = document.getElementById('toggleReport');
+  const dragbar = document.getElementById('dragbar');
+  btnToggle.onclick = () => {
+    const collapsed = bottomPanel.classList.toggle('collapsed');
+    btnToggle.textContent = collapsed ? 'Mostrar reporte' : 'Ocultar reporte';
+    dragbar.style.display = collapsed ? 'none' : 'block';
+    // Esperar a que termine la transición de altura del panel antes de
+    // recalcular el tamaño del mapa y reencuadrar al área activa.
+    setTimeout(() => {
+      map.invalidateSize();
+      requestAnimationFrame(() => {
+        map.invalidateSize();
+        if (_focusBounds && _focusBounds.isValid()) _fitFocus(_focusBounds);
+        else fitActiveArea();
+      });
+    }, 320);
+  };
+
+  map.whenReady(() => setTimeout(() => map.invalidateSize(true), 350));
+  window.addEventListener('resize', () => setTimeout(() => map.invalidateSize(), 250));
+ window.addEventListener('orientationchange', () => setTimeout(() => map.invalidateSize(true), 400));
+  </script>
+</body>
+</html>
