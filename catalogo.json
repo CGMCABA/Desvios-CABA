@@ -3,24 +3,69 @@
   "version": 1,
   "afectaciones": [
     {
-      "id": "santo_padre_con_maria_moreno",
-      "nombre": "Santo Padre con María Moreno",
-      "carpeta": "Santo_Padre_con_Maria_Moreno",
-      "manifest": "Santo_Padre_con_Maria_Moreno/geodata/manifest.json",
-      "activa": true
-    },
-    {
       "id": "river_plate_base",
-      "nombre": "River Plate — Desvíos base (Monumental)",
+      "nombre": "River Plate — Desvíos base",
       "carpeta": "Desvios_base_River_Plate",
-      "manifest": "Desvios_base_River_Plate/geodata/manifest.json",
       "activa": true
     },
     {
       "id": "boca_jrs_base",
-      "nombre": "Boca Juniors — Desvíos base (Bombonera)",
+      "nombre": "Boca Juniors — Desvíos base",
       "carpeta": "Desvios_base_BOCA_JRS",
-      "manifest": "Desvios_base_BOCA_JRS/geodata/manifest.json",
+      "activa": true
+    },
+    {
+      "id": "papa2026_carcel_devoto",
+      "nombre": "Operativo Papa 2026 · Cárcel de Devoto",
+      "carpeta": "Papa2026_Carcel_Devoto",
+      "activa": true
+    },
+    {
+      "id": "papa2026_nunciatura_original",
+      "nombre": "Operativo Papa 2026 · Nunciatura (original)",
+      "carpeta": "Papa2026_Nunciatura_Original",
+      "activa": true
+    },
+    {
+      "id": "papa2026_nunciatura_recortada",
+      "nombre": "Operativo Papa 2026 · Nunciatura (recortada)",
+      "carpeta": "Papa2026_Nunciatura_Recortada",
+      "activa": true
+    },
+    {
+      "id": "papa2026_palermo_a",
+      "nombre": "Operativo Papa 2026 · Palermo A",
+      "carpeta": "Papa2026_Palermo_A",
+      "activa": true
+    },
+    {
+      "id": "papa2026_palermo_b",
+      "nombre": "Operativo Papa 2026 · Palermo B",
+      "carpeta": "Papa2026_Palermo_B",
+      "activa": true
+    },
+    {
+      "id": "papa2026_palermo_c",
+      "nombre": "Operativo Papa 2026 · Palermo C",
+      "carpeta": "Papa2026_Palermo_C",
+      "activa": true
+    },
+    {
+      "id": "papa2026_palermo_d_enproceso",
+      "nombre": "Operativo Papa 2026 · Palermo D (EN PROCESO)",
+      "carpeta": "Papa2026_Palermo_D_EnProceso",
+      "activa": false
+    },
+    {
+      "id": "papa2026_retiro_casarosada_cck",
+      "nombre": "Operativo Papa 2026 · Retiro / Casa Rosada / CCK",
+      "carpeta": "Papa2026_Retiro_CasaRosada_CCK",
+      "activa": true
+    },
+    {
+      "id": "papa2026_retiro_casarosada_uca",
+      "nombre": "Operativo Papa 2026 · Retiro / Casa Rosada / UCA",
+      "carpeta": "Papa2026_Retiro_CasaRosada_UCA",
       "activa": true
     }
   ]
