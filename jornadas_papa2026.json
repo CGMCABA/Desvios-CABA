@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "descripcion": "Asignaciones manuales por jornada; no representan vigencia hasta su validación operativa.",
+  "jornadas": [
+    {
+      "fecha": "2026-11-07",
+      "etiqueta": "Sábado 7/11/2026",
+      "carpetas": []
+    },
+    {
+      "fecha": "2026-11-08",
+      "etiqueta": "Domingo 8/11/2026",
+      "carpetas": []
+    },
+    {
+      "fecha": "2026-11-09",
+      "etiqueta": "Lunes 9/11/2026",
+      "carpetas": []
+    },
+    {
+      "fecha": "2026-11-10",
+      "etiqueta": "Martes 10/11/2026",
+      "carpetas": []
+    },
+    {
+      "fecha": "2026-11-11",
+      "etiqueta": "Miércoles 11/11/2026",
+      "carpetas": []
+    }
+  ]
+}
