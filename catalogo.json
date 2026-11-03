@@ -271,6 +271,206 @@
                                            }
                                        ],
                              "Count":  25
+                         },
+                         {
+                             "id":  "p26v2_cck",
+                             "nombre":  "Operativo Papa 2026 · cck",
+                             "carpeta":  "P26V2_cck",
+                             "activa":  true,
+                             "origen":  "PAPA2026_NOV_2026",
+                             "estado":  "PLANIFICADO_NO_CONFIRMADO"
+                         },
+                         {
+                             "id":  "p26v2_devoto",
+                             "nombre":  "Operativo Papa 2026 · devoto",
+                             "carpeta":  "P26V2_devoto",
+                             "activa":  true,
+                             "origen":  "PAPA2026_NOV_2026",
+                             "estado":  "PLANIFICADO_NO_CONFIRMADO"
+                         },
+                         {
+                             "id":  "p26v2_dom8a",
+                             "nombre":  "Operativo Papa 2026 · dom8A",
+                             "carpeta":  "P26V2_dom8A",
+                             "activa":  true,
+                             "origen":  "PAPA2026_NOV_2026",
+                             "estado":  "PLANIFICADO_NO_CONFIRMADO"
+                         },
+                         {
+                             "id":  "p26v2_dom8b",
+                             "nombre":  "Operativo Papa 2026 · dom8B",
+                             "carpeta":  "P26V2_dom8B",
+                             "activa":  true,
+                             "origen":  "PAPA2026_NOV_2026",
+                             "estado":  "PLANIFICADO_NO_CONFIRMADO"
+                         },
+                         {
+                             "id":  "p26v2_dom8c",
+                             "nombre":  "Operativo Papa 2026 · dom8C",
+                             "carpeta":  "P26V2_dom8C",
+                             "activa":  true,
+                             "origen":  "PAPA2026_NOV_2026",
+                             "estado":  "PLANIFICADO_NO_CONFIRMADO"
+                         },
+                         {
+                             "id":  "p26v2_dom8d",
+                             "nombre":  "Operativo Papa 2026 · dom8D · EN PROCESO",
+                             "carpeta":  "P26V2_dom8D",
+                             "activa":  true,
+                             "origen":  "PAPA2026_NOV_2026",
+                             "estado":  "EN_PROCESO"
+                         },
+                         {
+                             "id":  "p26v2_jue5",
+                             "nombre":  "Operativo Papa 2026 · jue5",
+                             "carpeta":  "P26V2_jue5",
+                             "activa":  true,
+                             "origen":  "PAPA2026_NOV_2026",
+                             "estado":  "PLANIFICADO_NO_CONFIRMADO"
+                         },
+                         {
+                             "id":  "p26v2_lun9a",
+                             "nombre":  "Operativo Papa 2026 · lun9A",
+                             "carpeta":  "P26V2_lun9A",
+                             "activa":  true,
+                             "origen":  "PAPA2026_NOV_2026",
+                             "estado":  "PLANIFICADO_NO_CONFIRMADO"
+                         },
+                         {
+                             "id":  "p26v2_lun9b",
+                             "nombre":  "Operativo Papa 2026 · lun9B",
+                             "carpeta":  "P26V2_lun9B",
+                             "activa":  true,
+                             "origen":  "PAPA2026_NOV_2026",
+                             "estado":  "PLANIFICADO_NO_CONFIRMADO"
+                         },
+                         {
+                             "id":  "p26v2_lun9c",
+                             "nombre":  "Operativo Papa 2026 · lun9C",
+                             "carpeta":  "P26V2_lun9C",
+                             "activa":  true,
+                             "origen":  "PAPA2026_NOV_2026",
+                             "estado":  "PLANIFICADO_NO_CONFIRMADO"
+                         },
+                         {
+                             "id":  "p26v2_lun9d",
+                             "nombre":  "Operativo Papa 2026 · lun9D · EN PROCESO",
+                             "carpeta":  "P26V2_lun9D",
+                             "activa":  true,
+                             "origen":  "PAPA2026_NOV_2026",
+                             "estado":  "EN_PROCESO"
+                         },
+                         {
+                             "id":  "p26v2_mar10a",
+                             "nombre":  "Operativo Papa 2026 · mar10A",
+                             "carpeta":  "P26V2_mar10A",
+                             "activa":  true,
+                             "origen":  "PAPA2026_NOV_2026",
+                             "estado":  "PLANIFICADO_NO_CONFIRMADO"
+                         },
+                         {
+                             "id":  "p26v2_mar10b",
+                             "nombre":  "Operativo Papa 2026 · mar10B",
+                             "carpeta":  "P26V2_mar10B",
+                             "activa":  true,
+                             "origen":  "PAPA2026_NOV_2026",
+                             "estado":  "PLANIFICADO_NO_CONFIRMADO"
+                         },
+                         {
+                             "id":  "p26v2_mar10c",
+                             "nombre":  "Operativo Papa 2026 · mar10C",
+                             "carpeta":  "P26V2_mar10C",
+                             "activa":  true,
+                             "origen":  "PAPA2026_NOV_2026",
+                             "estado":  "PLANIFICADO_NO_CONFIRMADO"
+                         },
+                         {
+                             "id":  "p26v2_mar10d",
+                             "nombre":  "Operativo Papa 2026 · mar10D · EN PROCESO",
+                             "carpeta":  "P26V2_mar10D",
+                             "activa":  true,
+                             "origen":  "PAPA2026_NOV_2026",
+                             "estado":  "EN_PROCESO"
+                         },
+                         {
+                             "id":  "p26v2_mie11",
+                             "nombre":  "Operativo Papa 2026 · mie11",
+                             "carpeta":  "P26V2_mie11",
+                             "activa":  true,
+                             "origen":  "PAPA2026_NOV_2026",
+                             "estado":  "PLANIFICADO_NO_CONFIRMADO"
+                         },
+                         {
+                             "id":  "p26v2_mie4",
+                             "nombre":  "Operativo Papa 2026 · mie4",
+                             "carpeta":  "P26V2_mie4",
+                             "activa":  true,
+                             "origen":  "PAPA2026_NOV_2026",
+                             "estado":  "PLANIFICADO_NO_CONFIRMADO"
+                         },
+                         {
+                             "id":  "p26v2_nunc",
+                             "nombre":  "Operativo Papa 2026 · nunc",
+                             "carpeta":  "P26V2_nunc",
+                             "activa":  true,
+                             "origen":  "PAPA2026_NOV_2026",
+                             "estado":  "PLANIFICADO_NO_CONFIRMADO"
+                         },
+                         {
+                             "id":  "p26v2_nuncoriginal",
+                             "nombre":  "Operativo Papa 2026 · nuncOriginal",
+                             "carpeta":  "P26V2_nuncOriginal",
+                             "activa":  true,
+                             "origen":  "PAPA2026_NOV_2026",
+                             "estado":  "PLANIFICADO_NO_CONFIRMADO"
+                         },
+                         {
+                             "id":  "p26v2_pala",
+                             "nombre":  "Operativo Papa 2026 · palA",
+                             "carpeta":  "P26V2_palA",
+                             "activa":  true,
+                             "origen":  "PAPA2026_NOV_2026",
+                             "estado":  "PLANIFICADO_NO_CONFIRMADO"
+                         },
+                         {
+                             "id":  "p26v2_palb",
+                             "nombre":  "Operativo Papa 2026 · palB",
+                             "carpeta":  "P26V2_palB",
+                             "activa":  true,
+                             "origen":  "PAPA2026_NOV_2026",
+                             "estado":  "PLANIFICADO_NO_CONFIRMADO"
+                         },
+                         {
+                             "id":  "p26v2_palc",
+                             "nombre":  "Operativo Papa 2026 · palC",
+                             "carpeta":  "P26V2_palC",
+                             "activa":  true,
+                             "origen":  "PAPA2026_NOV_2026",
+                             "estado":  "PLANIFICADO_NO_CONFIRMADO"
+                         },
+                         {
+                             "id":  "p26v2_pald",
+                             "nombre":  "Operativo Papa 2026 · palD · EN PROCESO",
+                             "carpeta":  "P26V2_palD",
+                             "activa":  true,
+                             "origen":  "PAPA2026_NOV_2026",
+                             "estado":  "EN_PROCESO"
+                         },
+                         {
+                             "id":  "p26v2_uca",
+                             "nombre":  "Operativo Papa 2026 · uca",
+                             "carpeta":  "P26V2_uca",
+                             "activa":  true,
+                             "origen":  "PAPA2026_NOV_2026",
+                             "estado":  "PLANIFICADO_NO_CONFIRMADO"
+                         },
+                         {
+                             "id":  "p26v2_viesab",
+                             "nombre":  "Operativo Papa 2026 · viesab",
+                             "carpeta":  "P26V2_viesab",
+                             "activa":  true,
+                             "origen":  "PAPA2026_NOV_2026",
+                             "estado":  "PLANIFICADO_NO_CONFIRMADO"
                          }
                      ]
 }
