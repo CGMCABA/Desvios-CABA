@@ -1,0 +1,429 @@
+{
+ "eliminados": [
+  "0|0|GODOY CRUZ|-58.423491,-34.576752",
+  "0|0|GOROSTIAGA|-58.436239,-34.565136",
+  "0|0|MATIENZO, BENJAMIN, TENIENTE|-58.432988,-34.567035",
+  "0|0|SAN BENITO DE PALERMO|-58.432316,-34.567429",
+  "0|0|SINCLAIR|-58.424229,-34.576311",
+  "0|0|BULLRICH, INT. AV.|-58.426546,-34.578115",
+  "0|0|COLOMBIA AV.|-58.417315,-34.577310",
+  "0|0|DEL LIBERTADOR AV.|-58.436356,-34.563727",
+  "0|0|DEL LIBERTADOR AV.|-58.415122,-34.574569",
+  "0|0|DORREGO AV.|-58.428638,-34.573463",
+  "0|0|IRAOLA AV.|-58.415076,-34.574519",
+  "0|0|ISABEL, INFANTA AV.|-58.413734,-34.572043",
+  "1|1|DEL LIBERTADOR AV.|-58.436919,-34.563393",
+  "1|1|DEL LIBERTADOR AV.|-58.414541,-34.574935",
+  "1|1|DORREGO AV.|-58.429166,-34.573715",
+  "1|1|GODOY CRUZ|-58.423864,-34.577154",
+  "1|1|GOROSTIAGA|-58.436591,-34.565550",
+  "1|1|MATIENZO, BENJAMIN, TENIENTE|-58.433341,-34.567448",
+  "1|1|SAN BENITO DE PALERMO|-58.432811,-34.567727",
+  "1|1|SARMIENTO AV.|-58.414562,-34.574381",
+  "4|4+5|BAEZ|-58.429141,-34.573230",
+  "4|4+5|FIGUEROA ALCORTA, PRES. AV.|-58.419632,-34.565644",
+  "4|4+5|FIGUEROA ALCORTA, PRES. AV.|-58.420573,-34.565190",
+  "4|4+5|IRAOLA AV.|-58.414240,-34.572257",
+  "4|4+5|JUNCAL|-58.424699,-34.576095",
+  "4|4+5|JUNCAL|-58.423815,-34.576625",
+  "4|4+5|JUNCAL|-58.423974,-34.576530",
+  "4|4+5|JUNCAL|-58.423090,-34.577059",
+  "4|4+5|JUSTO, JUAN B. AV.|-58.426844,-34.578540",
+  "4|4+5|MIGUELETES|-58.432816,-34.567202",
+  "4|4+5|MIGUELETES|-58.431922,-34.567721",
+  "4|4+5|MIGUELETES|-58.436720,-34.564916",
+  "4|4+5|MIGUELETES|-58.433472,-34.566820",
+  "4|4+5|OLLEROS AV.|-58.436833,-34.563964",
+  "4|4+5|SANTA FE AV.|-58.427049,-34.578022",
+  "4|4+5|SANTA FE AV.|-58.426010,-34.578296",
+  "4|4+5|SARMIENTO AV.|-58.416936,-34.576992",
+  "4|4+5|SARMIENTO AV.|-58.417611,-34.577703",
+  "2|2|DORREGO AV.|-58.429663,-34.573900",
+  "2|2|GODOY CRUZ|-58.424196,-34.577512",
+  "3|3|DEL LIBERTADOR AV.|-58.414764,-34.575290",
+  "2|2|DEL LIBERTADOR AV.|-58.414290,-34.575177",
+  "3|3|DORREGO AV.|-58.430681,-34.574227"
+ ],
+ "agregados": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4234915,
+     -34.576752
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "GODOY CRUZ",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzadtqixqiz"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4362395,
+     -34.5651361
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "GOROSTIAGA",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzadtqiirp2"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4329876,
+     -34.5670352
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "MATIENZO, BENJAMIN, TENIENTE",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzadtqi1krt"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4323161,
+     -34.5674293
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "SAN BENITO DE PALERMO",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzadtqiprwh"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4242292,
+     -34.5763109
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "SINCLAIR",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzadtqimba1"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4265457,
+     -34.5781146
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "BULLRICH, INT. AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzadytnbkng"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4173154,
+     -34.57731
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "COLOMBIA AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzadytn2gv0"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4363564,
+     -34.5637272
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "DEL LIBERTADOR AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzae3erj18l"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4151216,
+     -34.5745694
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "DEL LIBERTADOR AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzae3exv37e"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4286384,
+     -34.5734632
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "DORREGO AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzae3exne64"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4150757,
+     -34.5745191
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "IRAOLA AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzae3exl97e"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4137337,
+     -34.5720429
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "ISABEL, INFANTA AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzae7mhhiw2"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4311454,
+     -34.5743727
+    ]
+   },
+   "properties": {
+    "ref": 2,
+    "etiqueta": "2",
+    "descripcion": "A 100 m: evento",
+    "carteles": [
+     {
+      "codigo": "A13",
+      "archivo": "A13.png",
+      "texto": "A 100m EVENTO",
+      "_obra": "A8"
+     }
+    ],
+    "calle": "DORREGO AV.",
+    "distancia_m": 100,
+    "_desc_obra": "A 100 m: desvío",
+    "_manual": "mmvzahl4tf97j",
+    "altura": 2828
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.434031,
+     -34.574241
+    ]
+   },
+   "properties": {
+    "ref": 3,
+    "etiqueta": "3",
+    "descripcion": "A 200 m: evento",
+    "carteles": [
+     {
+      "codigo": "A14",
+      "archivo": "A14.png",
+      "texto": "A 200m EVENTO",
+      "_obra": "A8_200m"
+     }
+    ],
+    "calle": "DORREGO AV.",
+    "distancia_m": 200,
+    "_desc_obra": "A 200 m: desvío",
+    "_manual": "mmvzaif0lnkbi",
+    "altura": 2639
+   }
+  }
+ ]
+}

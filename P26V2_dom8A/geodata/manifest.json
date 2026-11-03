@@ -1,0 +1,47 @@
+{
+  "ok": true,
+  "folder": "P26V2_dom8A",
+  "name": "dom8A",
+  "temporary": false,
+  "imported": false,
+  "combinado": true,
+  "combinado_de": [
+    "P26V2_cck",
+    "P26V2_palA"
+  ],
+  "origen": "VISTA DERIVADA de paquetes QGIS; NO reemplaza la combinacion del motor",
+  "layers": {
+    "desvios": "geodata/desvios.geojson",
+    "tramos_afectados": "geodata/tramos_afectados.geojson",
+    "paradas_anuladas": "geodata/paradas_anuladas.geojson",
+    "lineas_sin_desvio": "geodata/lineas_sin_desvio.geojson",
+    "lineas_afectadas": "geodata/lineas_afectadas.geojson",
+    "lineas_cortadas": "geodata/lineas_cortadas.geojson",
+    "paradas_asociadas": "geodata/paradas_asociadas.geojson",
+    "desvios_agrupados": "geodata/desvios_agrupados.geojson"
+  },
+  "resumen": {
+    "total": null,
+    "con_desvio": null,
+    "sin_desvio": null
+  },
+  "report_html": "Vista compuesta para consulta. Geometrías originales sin reproyección. Los totales del informe no se calculan a partir de la suma de fuentes.",
+  "kml": [],
+  "kml_tramos": null,
+  "kml_paradas": null,
+  "log": null,
+  "routing_log": null,
+  "package": null,
+  "kml_combinado": null,
+  "conteos_geojson": {
+    "desvios": 340,
+    "tramos_afectados": 634,
+    "paradas_anuladas": 973,
+    "lineas_sin_desvio": 0,
+    "lineas_afectadas": 458,
+    "lineas_cortadas": 458,
+    "paradas_asociadas": 10843,
+    "desvios_agrupados": 129
+  },
+  "requiere_validacion": true
+}

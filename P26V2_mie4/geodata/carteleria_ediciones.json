@@ -1,0 +1,306 @@
+{
+ "eliminados": [
+  "0|0|BUSCHIAZZO, JUAN A.|-58.420787,-34.573776",
+  "0|0|GODOY CRUZ|-58.421232,-34.573580",
+  "0|0|DEL LIBERTADOR AV.|-58.423188,-34.571192",
+  "0|0|FREYRE, MARCELINO E., CNEL. AV.|-58.421800,-34.568623",
+  "0|0|COLOMBIA AV.|-58.418463,-34.574672",
+  "0|0|DEL LIBERTADOR AV.|-58.415122,-34.574569",
+  "0|0|IRAOLA AV.|-58.415558,-34.573845",
+  "0|0|IRAOLA AV.|-58.415546,-34.573946",
+  "1|1|COLOMBIA AV.|-58.418480,-34.575178",
+  "1|1|DEL LIBERTADOR AV.|-58.414541,-34.574935",
+  "1|1|DEL LIBERTADOR AV.|-58.423737,-34.570969",
+  "1|1|GODOY CRUZ|-58.421489,-34.574039",
+  "1|1|IRAOLA AV.|-58.415263,-34.574287",
+  "1|1|SARMIENTO AV.|-58.414562,-34.574381",
+  "1|1|SEGUI, JUAN FRANCISCO|-58.418988,-34.574632",
+  "4|4+5|BULLRICH, INT. AV.|-58.423462,-34.571584",
+  "4|4+5|DORREGO AV.|-58.421613,-34.568190",
+  "4|4+5|DORREGO AV.|-58.422143,-34.568977",
+  "4|4+5|SEGUI, JUAN FRANCISCO|-58.421404,-34.573565",
+  "4|4+5|SEGUI, JUAN FRANCISCO|-58.421741,-34.573417",
+  "3|3|GODOY CRUZ|-58.422174,-34.575272",
+  "3|3|SEGUI, JUAN FRANCISCO|-58.420433,-34.573994",
+  "3|3|COLOMBIA AV.|-58.418085,-34.576484",
+  "3|3|DEL LIBERTADOR AV.|-58.414764,-34.575290",
+  "3|3|SARMIENTO AV.|-58.413528,-34.573338",
+  "6|6|BULLRICH, INT. AV.|-58.423677,-34.572000",
+  "6|6|SEGUI, JUAN FRANCISCO|-58.421781,-34.573399",
+  "7|7|SEGUI, JUAN FRANCISCO|-58.422744,-34.572973"
+ ],
+ "agregados": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4207874,
+     -34.573776
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "BUSCHIAZZO, JUAN A.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvz77df1yncw"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4212316,
+     -34.5735799
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "GODOY CRUZ",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvz77df82r7s"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4231881,
+     -34.5711921
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "DEL LIBERTADOR AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvz77i9dmdco"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4217998,
+     -34.568623
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "FREYRE, MARCELINO E., CNEL. AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvz77i9dgzjg"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4184634,
+     -34.5746716
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "COLOMBIA AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvz77oakas8s"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4151216,
+     -34.5745694
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "DEL LIBERTADOR AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvz77oakczxi"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4155582,
+     -34.5738449
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "IRAOLA AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvz77oakegm6"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4155458,
+     -34.5739465
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "IRAOLA AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvz77oak0rhm"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.421151,
+     -34.5736767
+    ]
+   },
+   "properties": {
+    "ref": 4,
+    "etiqueta": "4",
+    "descripcion": "A 50 m: calle transversal cerrada",
+    "carteles": [
+     {
+      "codigo": "A11_50m",
+      "archivo": "A11_50m.png",
+      "texto": "A 50m CALLE TRANSVERSAL CERRADA",
+      "_obra": "A11_50m"
+     }
+    ],
+    "calle": "SEGUI, JUAN FRANCISCO",
+    "distancia_m": 100,
+    "_desc_obra": "A 50 m: calle transversal cerrada",
+    "_manual": "mmvz79j6fao8l",
+    "altura": 4595
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4198619,
+     -34.5742459
+    ]
+   },
+   "properties": {
+    "ref": 6,
+    "etiqueta": "6",
+    "descripcion": "A 100 m: calle transversal cerrada",
+    "_desc_obra": "A 100 m: calle transversal cerrada",
+    "carteles": [
+     {
+      "codigo": "A11_100m",
+      "archivo": "A11_100m.png",
+      "texto": "A 100m CALLE TRANSVERSAL CERRADA",
+      "_obra": "A11_100m"
+     }
+    ],
+    "calle": "SEGUI, JUAN FRANCISCO",
+    "altura": 4485,
+    "distancia_m": 0,
+    "_manual": "mmvz7a1r03gj7"
+   }
+  }
+ ]
+}

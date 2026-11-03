@@ -1,0 +1,1075 @@
+{
+ "eliminados": [
+  "0|0|CHONINO|-58.402824,-34.574231",
+  "0|0|GELLY|-58.405115,-34.576722",
+  "0|0|GODOY CRUZ|-58.426157,-34.579685",
+  "0|0|HERNANDEZ, JOSE|-58.441688,-34.558878",
+  "0|0|LA PAMPA|-58.446196,-34.560106",
+  "0|0|MONTAÑESES|-58.447207,-34.559348",
+  "0|0|REPUBLICA ARABE SIRIA|-58.416698,-34.584582",
+  "0|0|SALGUERO, JERONIMO|-58.405989,-34.577764",
+  "0|0|SEGUI, JUAN FRANCISCO|-58.407765,-34.579535",
+  "0|0|URIARTE|-58.423712,-34.581458",
+  "0|0|ZABALA|-58.443594,-34.564203",
+  "0|0|CERVIÑO AV.|-58.408492,-34.580365",
+  "0|0|DEL LIBERTADOR AV.|-58.446010,-34.558638",
+  "0|0|DORREGO AV.|-58.432776,-34.574269",
+  "0|0|FIGUEROA ALCORTA, PRES. AV.|-58.404922,-34.576512",
+  "0|0|JUSTO, JUAN B. AV.|-58.428028,-34.579939",
+  "0|0|LACROZE, FEDERICO AV.|-58.441477,-34.566455",
+  "0|0|SARMIENTO AV.|-58.411608,-34.571597",
+  "0|0|SARMIENTO AV.|-58.412136,-34.571689",
+  "0|0|BERUTI|-58.414329,-34.584038",
+  "0|0|CHARCAS|-58.430928,-34.577828",
+  "0|0|DEL LIBERTADOR AV.|-58.443532,-34.561305",
+  "0|0|GOROSTIAGA|-58.439565,-34.567936",
+  "0|0|HERNANDEZ, JOSE|-58.445240,-34.560993",
+  "0|0|HUMBOLDT|-58.429961,-34.580138",
+  "0|0|LA PAMPA|-58.443119,-34.558283",
+  "0|0|RAVIGNANI, EMILIO, DR.|-58.432813,-34.575983",
+  "0|0|CAMPOS, LUIS M. AV.|-58.444578,-34.562052",
+  "0|0|CASARES AV.|-58.409103,-34.569529",
+  "0|0|DEL LIBERTADOR AV.|-58.444127,-34.561775",
+  "0|0|LAS HERAS GENERAL AV.|-58.420054,-34.581375",
+  "0|0|LAS HERAS GENERAL AV.|-58.411164,-34.581972",
+  "0|0|OLLEROS AV.|-58.434907,-34.562128",
+  "0|0|SANTA FE AV.|-58.421651,-34.580812",
+  "0|0|SARMIENTO AV.|-58.420546,-34.580752",
+  "0|0|BAEZ|-58.431115,-34.572075",
+  "1|1|ALSINA, VALENTIN AV.|-58.441297,-34.559049",
+  "1|1|BAEZ|-58.431615,-34.571783",
+  "1|1|BERUTI|-58.413854,-34.584357",
+  "1|1|CAMPOS, LUIS M. AV.|-58.444978,-34.561669",
+  "1|1|CASARES AV.|-58.408779,-34.569108",
+  "1|1|CASARES AV.|-58.409588,-34.568926",
+  "1|1|CERVIÑO AV.|-58.407932,-34.580568",
+  "1|1|CHARCAS|-58.431380,-34.577488",
+  "1|1|DEL LIBERTADOR AV.|-58.446365,-34.558226",
+  "1|1|DORREGO AV.|-58.433384,-34.574222",
+  "1|1|FIGUEROA ALCORTA, PRES. AV.|-58.404474,-34.576856",
+  "1|1|GODOY CRUZ|-58.426516,-34.580095",
+  "1|1|GOROSTIAGA|-58.440000,-34.568283",
+  "1|1|HUMBOLDT|-58.430382,-34.580505",
+  "1|1|JUSTO, JUAN B. AV.|-58.428394,-34.580344",
+  "1|1|LA PAMPA|-58.446827,-34.560479",
+  "1|1|LA PAMPA|-58.442621,-34.557990",
+  "1|1|LACROZE, FEDERICO AV.|-58.441861,-34.566849",
+  "1|1|LAS HERAS GENERAL AV.|-58.410583,-34.582125",
+  "1|1|MARCHI, MARIA CATALINA|-58.433286,-34.574002",
+  "1|1|MONTAÑESES|-58.447565,-34.558937",
+  "1|1|SALGUERO, JERONIMO|-58.406359,-34.578167",
+  "1|1|SARMIENTO AV.|-58.411370,-34.571130",
+  "1|1|SARMIENTO AV.|-58.411751,-34.571274",
+  "1|1|URIARTE|-58.424153,-34.581809",
+  "1|1|VERTIZ VIRREY AV.|-58.444666,-34.561537",
+  "1|1|ZABALA|-58.444092,-34.564497",
+  "4|4+5|ARENALES|-58.415635,-34.584131",
+  "4|4+5|BONPLAND|-58.431352,-34.578120",
+  "4|4+5|CALZADA CIRCULAR PLAZA ITALIA|-58.421124,-34.580671",
+  "4|4+5|CALZADA CIRCULAR PLAZA ITALIA|-58.420385,-34.581752",
+  "4|4+5|CALZADA CIRCULAR PLAZA ITALIA|-58.420220,-34.581127",
+  "4|4+5|FIGUEROA ALCORTA, PRES. AV.|-58.419632,-34.565644",
+  "4|4+5|FIGUEROA ALCORTA, PRES. AV.|-58.420573,-34.565190",
+  "4|4+5|GUEMES|-58.424170,-34.581198",
+  "4|4+5|MIÑONES|-58.442122,-34.558644",
+  "4|4+5|MIÑONES|-58.443384,-34.557884",
+  "4|4+5|PARAGUAY|-58.429609,-34.580487",
+  "4|4+5|PINO, VIRREY DEL|-58.445067,-34.562272",
+  "4|4+5|PINO, VIRREY DEL|-58.444755,-34.562089",
+  "4|4+5|SALGUERO, JERONIMO|-58.408820,-34.580698",
+  "4|4+5|SALGUERO, JERONIMO|-58.405203,-34.576907",
+  "4|4+5|SALGUERO, JERONIMO|-58.402438,-34.573929",
+  "4|4+5|SALGUERO, JERONIMO|-58.403118,-34.574636",
+  "4|4+5|SALGUERO, JERONIMO|-58.408027,-34.579925",
+  "4|4+5|SANTA FE AV.|-58.432360,-34.576241",
+  "4|4+5|SANTA FE AV.|-58.417241,-34.584280",
+  "4|4+5|SANTA FE AV.|-58.416314,-34.584913",
+  "4|4+5|SARMIENTO AV.|-58.414805,-34.575209",
+  "4|4+5|SCALABRINI ORTIZ, RAUL|-58.413849,-34.583794",
+  "4|4+5|SUCRE, ANTONIO JOSE DE, MCAL.|-58.445605,-34.558331",
+  "4|4+5|SUCRE, ANTONIO JOSE DE, MCAL.|-58.446802,-34.559041",
+  "4|4+5|VERTIZ VIRREY AV.|-58.444589,-34.561330",
+  "4|4+5|VILLANUEVA|-58.439228,-34.568260",
+  "4|4+5|VILLANUEVA|-58.441914,-34.566186",
+  "4|4+5|VILLANUEVA|-58.441118,-34.566805",
+  "7|7|FIGUEROA ALCORTA, PRES. AV.|-58.422018,-34.564554",
+  "7|7|PINO, VIRREY DEL|-58.446401,-34.563057",
+  "3|3|CASARES AV.|-58.410784,-34.568465",
+  "3|3|SARMIENTO AV.|-58.410420,-34.570031",
+  "3|3|VERTIZ VIRREY AV.|-58.446160,-34.560740"
+ ],
+ "agregados": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4028237,
+     -34.5742313
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "CHONINO",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjh6kprwfm"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4051149,
+     -34.5767219
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "GELLY",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjh6kqsb4f"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4261573,
+     -34.5796855
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "GODOY CRUZ",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjh6kqc0lz"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4416879,
+     -34.5588783
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "HERNANDEZ, JOSE",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjh6kqm6to"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4461959,
+     -34.5601062
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "LA PAMPA",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjh6kq1bj9"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4472072,
+     -34.5593476
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "MONTAÑESES",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjh6kqu6cn"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.416698,
+     -34.5845816
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "REPUBLICA ARABE SIRIA",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjh6kqow19"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4059888,
+     -34.5777642
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "SALGUERO, JERONIMO",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjh6kqvak5"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4077651,
+     -34.5795355
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "SEGUI, JUAN FRANCISCO",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjh6kqf018"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4237116,
+     -34.5814583
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "URIARTE",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjh6kq5b6w"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4435944,
+     -34.5642028
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "ZABALA",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjh6kq9hms"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4084918,
+     -34.5803647
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "CERVIÑO AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjh9i1ar47"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4460103,
+     -34.5586384
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "DEL LIBERTADOR AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjh9i1dxux"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4327761,
+     -34.5742695
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "DORREGO AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjh9i1iuyn"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4049219,
+     -34.5765121
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "FIGUEROA ALCORTA, PRES. AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjh9i17kdo"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4280277,
+     -34.5799387
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "JUSTO, JUAN B. AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjh9i1qs74"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4414768,
+     -34.5664547
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "LACROZE, FEDERICO AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjh9i1u8ar"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.411608,
+     -34.5715968
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "SARMIENTO AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjh9i1cevi"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4121356,
+     -34.5716894
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "SARMIENTO AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjh9i1p13m"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4143294,
+     -34.5840383
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "BERUTI",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjhcqpvzeh"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4309279,
+     -34.5778283
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "CHARCAS",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjhcqp9ro8"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4435318,
+     -34.561305
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "DEL LIBERTADOR AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjhcqphjim"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4395654,
+     -34.5679359
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "GOROSTIAGA",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjhcqpgcpg"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4452399,
+     -34.560993
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "HERNANDEZ, JOSE",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjhcqpzbh0"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4299608,
+     -34.5801376
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "HUMBOLDT",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjhcqp77ff"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4431191,
+     -34.558283
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "LA PAMPA",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjhcqppvpf"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.432813,
+     -34.5759835
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "RAVIGNANI, EMILIO, DR.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjhcqpzqt8"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4445785,
+     -34.5620521
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "CAMPOS, LUIS M. AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjhfgynaa6"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4091027,
+     -34.5695294
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "CASARES AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjhfgye3mz"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.444127,
+     -34.5617747
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "DEL LIBERTADOR AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjhfgywgya"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4200541,
+     -34.5813746
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "LAS HERAS GENERAL AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjhfgylfg2"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4111639,
+     -34.5819725
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "LAS HERAS GENERAL AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjhfgybwpv"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4349069,
+     -34.5621277
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "OLLEROS AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjhfgyive9"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4216506,
+     -34.580812
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "SANTA FE AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjhfgyjaoc"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4205457,
+     -34.5807516
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "SARMIENTO AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjhfgykwlq"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4311155,
+     -34.5720752
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "BAEZ",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvzjhi0pkafw"
+   }
+  }
+ ]
+}

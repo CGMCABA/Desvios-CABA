@@ -1,0 +1,614 @@
+{
+ "eliminados": [
+  "8|8|BAIGORRIA 4985|-58.512833,-34.616543",
+  "8|8|BERMUDEZ 2805|-58.516595,-34.613982",
+  "8|8|BERMUDEZ 2971|-58.517924,-34.612974",
+  "8|8|BERMUDEZ 2991|-58.517924,-34.612974",
+  "8|8|NOGOYA 4710|-58.510550,-34.614016",
+  "8|8|NOGOYA 5004|-58.514034,-34.616108",
+  "7|7|CERVANTES|-58.518630,-34.614615",
+  "7|7|CERVANTES|-58.517239,-34.615674",
+  "7|7|CERVANTES|-58.516938,-34.615904",
+  "7|7|BAIGORRIA|-58.509445,-34.614579",
+  "7|7|BAIGORRIA|-58.510295,-34.615089",
+  "7|7|BAIGORRIA|-58.511116,-34.615587",
+  "7|7|SIMBRON|-58.513440,-34.609666",
+  "7|7|SIMBRON|-58.515886,-34.611236",
+  "7|7|JUAREZ, BENITO|-58.510032,-34.614219",
+  "7|7|JUAREZ, BENITO|-58.510279,-34.613977",
+  "6|6|SIMBRON|-58.514303,-34.610219",
+  "6|6|SIMBRON|-58.516749,-34.611790",
+  "6|6|CERVANTES|-58.517708,-34.615316",
+  "6|6|CERVANTES|-58.516435,-34.616286",
+  "6|6|CERVANTES|-58.516147,-34.616505",
+  "6|6|BAIGORRIA|-58.510295,-34.615089",
+  "6|6|BAIGORRIA|-58.511116,-34.615587",
+  "6|6|BAIGORRIA|-58.512003,-34.616113",
+  "6|6|JUAREZ, BENITO|-58.510720,-34.613518",
+  "6|6|JUAREZ, BENITO|-58.510930,-34.613286",
+  "6|6|JUAREZ, BENITO|-58.510279,-34.613977",
+  "0|0|ALLENDE|-58.515127,-34.610817",
+  "0|0|CHUMBICHA|-58.514502,-34.610416",
+  "0|0|LAURELES ARGENTINOS|-58.515587,-34.616856",
+  "0|0|MELINCUE|-58.511081,-34.613208",
+  "0|0|NAZARRE|-58.516774,-34.615955",
+  "0|0|NAZARRE|-58.511772,-34.612441",
+  "0|0|NOGOYA|-58.515185,-34.617162",
+  "0|0|QUEVEDO|-58.517570,-34.612385",
+  "0|0|SOLA, MANUEL|-58.511426,-34.612825",
+  "0|0|TINOGASTA|-58.518467,-34.614665",
+  "0|0|BERMUDEZ|-58.513093,-34.616694",
+  "0|0|EZEIZA, GABINO|-58.510470,-34.615129",
+  "0|0|MAGDALENA|-58.512177,-34.616150",
+  "0|0|POSADAS, ALEJANDRO, DR.|-58.511295,-34.615628",
+  "4|4+5|BAIGORRIA|-58.512439,-34.616372",
+  "4|4+5|BAIGORRIA|-58.509884,-34.614839",
+  "4|4+5|BAIGORRIA|-58.511543,-34.615840",
+  "4|4+5|BAIGORRIA|-58.510707,-34.615341",
+  "4|4+5|CERVANTES|-58.515751,-34.616806",
+  "4|4+5|CERVANTES|-58.516147,-34.616505",
+  "4|4+5|CERVANTES|-58.517219,-34.615690",
+  "4|4+5|CERVANTES|-58.518913,-34.614402",
+  "4|4+5|JUAREZ, BENITO|-58.510701,-34.613539",
+  "4|4+5|JUAREZ, BENITO|-58.510930,-34.613286",
+  "4|4+5|JUAREZ, BENITO|-58.511275,-34.612902",
+  "4|4+5|SIMBRON|-58.514734,-34.610497",
+  "4|4+5|SIMBRON|-58.514109,-34.610095",
+  "4|4+5|SIMBRON|-58.517180,-34.612066",
+  "6|6|BAIGORRIA|-58.509445,-34.614579",
+  "6|6|CERVANTES|-58.519318,-34.614099",
+  "6|6|SIMBRON|-58.513678,-34.609818",
+  "7|7|BAIGORRIA|-58.508589,-34.614082",
+  "7|7|CERVANTES|-58.520128,-34.613492",
+  "7|7|JUAREZ, BENITO|-58.509472,-34.614760",
+  "7|7|SIMBRON|-58.512815,-34.609265"
+ ],
+ "agregados": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.5151265,
+     -34.6108169
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     },
+     {
+      "codigo": "V5",
+      "archivo": "V5.png",
+      "texto": "Sentido de circulación derecha",
+      "_obra": "V5"
+     },
+     {
+      "codigo": "V1",
+      "archivo": "V1.png",
+      "texto": "Velocidad máxima 20",
+      "_obra": "V1"
+     }
+    ],
+    "calle": "ALLENDE",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvtl0no54zqa"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.5145015,
+     -34.6104158
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     },
+     {
+      "codigo": "V5",
+      "archivo": "V5.png",
+      "texto": "Sentido de circulación derecha",
+      "_obra": "V5"
+     },
+     {
+      "codigo": "V1",
+      "archivo": "V1.png",
+      "texto": "Velocidad máxima 20",
+      "_obra": "V1"
+     }
+    ],
+    "calle": "CHUMBICHA",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvtl0no5xyc4"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.5155873,
+     -34.6168565
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     },
+     {
+      "codigo": "V5",
+      "archivo": "V5.png",
+      "texto": "Sentido de circulación derecha",
+      "_obra": "V5"
+     },
+     {
+      "codigo": "V1",
+      "archivo": "V1.png",
+      "texto": "Velocidad máxima 20",
+      "_obra": "V1"
+     }
+    ],
+    "calle": "LAURELES ARGENTINOS",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvtl0no5i5e4"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.5110809,
+     -34.6132084
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     },
+     {
+      "codigo": "V5",
+      "archivo": "V5.png",
+      "texto": "Sentido de circulación derecha",
+      "_obra": "V5"
+     },
+     {
+      "codigo": "V1",
+      "archivo": "V1.png",
+      "texto": "Velocidad máxima 20",
+      "_obra": "V1"
+     }
+    ],
+    "calle": "MELINCUE",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvtl0no5bgdj"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.5167739,
+     -34.615955
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     },
+     {
+      "codigo": "V5",
+      "archivo": "V5.png",
+      "texto": "Sentido de circulación derecha",
+      "_obra": "V5"
+     },
+     {
+      "codigo": "V1",
+      "archivo": "V1.png",
+      "texto": "Velocidad máxima 20",
+      "_obra": "V1"
+     }
+    ],
+    "calle": "NAZARRE",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvtl0no5pxmw"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.5117716,
+     -34.6124414
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     },
+     {
+      "codigo": "V5",
+      "archivo": "V5.png",
+      "texto": "Sentido de circulación derecha",
+      "_obra": "V5"
+     },
+     {
+      "codigo": "V1",
+      "archivo": "V1.png",
+      "texto": "Velocidad máxima 20",
+      "_obra": "V1"
+     }
+    ],
+    "calle": "NAZARRE",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvtl0no5wynt"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.5151853,
+     -34.6171619
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     },
+     {
+      "codigo": "V5",
+      "archivo": "V5.png",
+      "texto": "Sentido de circulación derecha",
+      "_obra": "V5"
+     },
+     {
+      "codigo": "V1",
+      "archivo": "V1.png",
+      "texto": "Velocidad máxima 20",
+      "_obra": "V1"
+     }
+    ],
+    "calle": "NOGOYA",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvtl0no5g8da"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.5175696,
+     -34.612385
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     },
+     {
+      "codigo": "V5",
+      "archivo": "V5.png",
+      "texto": "Sentido de circulación derecha",
+      "_obra": "V5"
+     },
+     {
+      "codigo": "V1",
+      "archivo": "V1.png",
+      "texto": "Velocidad máxima 20",
+      "_obra": "V1"
+     }
+    ],
+    "calle": "QUEVEDO",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvtl0no5x25z"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.5114265,
+     -34.6128246
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     },
+     {
+      "codigo": "V5",
+      "archivo": "V5.png",
+      "texto": "Sentido de circulación derecha",
+      "_obra": "V5"
+     },
+     {
+      "codigo": "V1",
+      "archivo": "V1.png",
+      "texto": "Velocidad máxima 20",
+      "_obra": "V1"
+     }
+    ],
+    "calle": "SOLA, MANUEL",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvtl0no5oact"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.5184666,
+     -34.6146645
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     },
+     {
+      "codigo": "V5",
+      "archivo": "V5.png",
+      "texto": "Sentido de circulación derecha",
+      "_obra": "V5"
+     },
+     {
+      "codigo": "V1",
+      "archivo": "V1.png",
+      "texto": "Velocidad máxima 20",
+      "_obra": "V1"
+     }
+    ],
+    "calle": "TINOGASTA",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvtl0no52gy4"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.5130927,
+     -34.6166941
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     },
+     {
+      "codigo": "V4",
+      "archivo": "V4.png",
+      "texto": "Sentido de circulación izquierda",
+      "_obra": "V4"
+     },
+     {
+      "codigo": "V1",
+      "archivo": "V1.png",
+      "texto": "Velocidad máxima 20",
+      "_obra": "V1"
+     }
+    ],
+    "calle": "BERMUDEZ",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvtl0qubavqt"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.5104699,
+     -34.6151294
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     },
+     {
+      "codigo": "V4",
+      "archivo": "V4.png",
+      "texto": "Sentido de circulación izquierda",
+      "_obra": "V4"
+     },
+     {
+      "codigo": "V1",
+      "archivo": "V1.png",
+      "texto": "Velocidad máxima 20",
+      "_obra": "V1"
+     }
+    ],
+    "calle": "EZEIZA, GABINO",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvtl0qub8s1l"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.5121769,
+     -34.6161501
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     },
+     {
+      "codigo": "V4",
+      "archivo": "V4.png",
+      "texto": "Sentido de circulación izquierda",
+      "_obra": "V4"
+     },
+     {
+      "codigo": "V1",
+      "archivo": "V1.png",
+      "texto": "Velocidad máxima 20",
+      "_obra": "V1"
+     }
+    ],
+    "calle": "MAGDALENA",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvtl0qub05lv"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.5112954,
+     -34.6156277
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     },
+     {
+      "codigo": "V4",
+      "archivo": "V4.png",
+      "texto": "Sentido de circulación izquierda",
+      "_obra": "V4"
+     },
+     {
+      "codigo": "V1",
+      "archivo": "V1.png",
+      "texto": "Velocidad máxima 20",
+      "_obra": "V1"
+     }
+    ],
+    "calle": "POSADAS, ALEJANDRO, DR.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvtl0qub0jd2"
+   }
+  }
+ ]
+}

@@ -1,0 +1,1410 @@
+{
+ "eliminados": [
+  "0|0|CHONINO|-58.402824,-34.574231",
+  "0|0|GELLY|-58.405115,-34.576722",
+  "0|0|GODOY CRUZ|-58.425215,-34.578620",
+  "0|0|HERNANDEZ, JOSE|-58.441688,-34.558878",
+  "0|0|LA PAMPA|-58.446640,-34.560369",
+  "0|0|MONTAÑESES|-58.447207,-34.559348",
+  "0|0|REPUBLICA ARABE SIRIA|-58.414197,-34.581701",
+  "0|0|SEGUI, JUAN FRANCISCO|-58.407765,-34.579535",
+  "0|0|ZABALA|-58.443594,-34.564203",
+  "0|0|BULLRICH, INT. AV.|-58.426546,-34.578115",
+  "0|0|CAMPOS, LUIS M. AV.|-58.445486,-34.561183",
+  "0|0|CASARES AV.|-58.409430,-34.569058",
+  "0|0|CERVIÑO AV.|-58.408492,-34.580365",
+  "0|0|DEL LIBERTADOR AV.|-58.446010,-34.558638",
+  "0|0|DORREGO AV.|-58.434375,-34.574420",
+  "0|0|FIGUEROA ALCORTA, PRES. AV.|-58.404922,-34.576512",
+  "0|0|LACROZE, FEDERICO AV.|-58.441477,-34.566455",
+  "0|0|LAS HERAS GENERAL AV.|-58.410254,-34.582219",
+  "0|0|SARMIENTO AV.|-58.412136,-34.571689",
+  "0|0|SARMIENTO AV.|-58.411839,-34.571889",
+  "0|0|VERTIZ VIRREY AV.|-58.445472,-34.561168",
+  "0|0|GOROSTIAGA|-58.439565,-34.567936",
+  "0|0|LA PAMPA|-58.443119,-34.558283",
+  "0|0|PINO, VIRREY DEL|-58.446153,-34.562911",
+  "0|0|CAMPOS, LUIS M. AV.|-58.428099,-34.577487",
+  "0|0|CASARES AV.|-58.407880,-34.567321",
+  "0|0|OLLEROS AV.|-58.434907,-34.562128",
+  "0|0|SARMIENTO AV.|-58.420546,-34.580752",
+  "1|1|ALSINA, VALENTIN AV.|-58.441297,-34.559049",
+  "1|1|CASARES AV.|-58.409921,-34.568775",
+  "1|1|CERVIÑO AV.|-58.407932,-34.580568",
+  "1|1|DEL LIBERTADOR AV.|-58.446365,-34.558226",
+  "1|1|DORREGO AV.|-58.434892,-34.574690",
+  "1|1|FIGUEROA ALCORTA, PRES. AV.|-58.404474,-34.576856",
+  "1|1|GODOY CRUZ|-58.425580,-34.579026",
+  "1|1|GOROSTIAGA|-58.440000,-34.568283",
+  "1|1|LA PAMPA|-58.447139,-34.560662",
+  "1|1|LA PAMPA|-58.442621,-34.557990",
+  "1|1|LACROZE, FEDERICO AV.|-58.441861,-34.566849",
+  "1|1|LAS HERAS GENERAL AV.|-58.409680,-34.582394",
+  "1|1|MONTAÑESES|-58.447565,-34.558937",
+  "1|1|PINO, VIRREY DEL|-58.446652,-34.563204",
+  "1|1|REPUBLICA ARABE SIRIA|-58.414550,-34.582114",
+  "1|1|SANTA FE AV.|-58.427273,-34.577794",
+  "1|1|SARMIENTO AV.|-58.407534,-34.566908",
+  "1|1|SARMIENTO AV.|-58.411751,-34.571274",
+  "1|1|SARMIENTO AV.|-58.411518,-34.571422",
+  "1|1|VERTIZ VIRREY AV.|-58.445962,-34.560866",
+  "1|1|ZABALA|-58.444092,-34.564497",
+  "4|4+5|ANCON|-58.433954,-34.574670",
+  "4|4+5|ARRIBEÑOS|-58.445891,-34.563312",
+  "4|4+5|CALZADA CIRCULAR PLAZA ITALIA|-58.420220,-34.581127",
+  "4|4+5|FIGUEROA ALCORTA, PRES. AV.|-58.419632,-34.565644",
+  "4|4+5|FIGUEROA ALCORTA, PRES. AV.|-58.420573,-34.565190",
+  "4|4+5|JUSTO, JUAN B. AV.|-58.426844,-34.578540",
+  "4|4+5|LUGONES, LEOPOLDO AV.|-58.408116,-34.567669",
+  "4|4+5|LUGONES, LEOPOLDO AV.|-58.409250,-34.568597",
+  "4|4+5|MIÑONES|-58.442122,-34.558644",
+  "4|4+5|MIÑONES|-58.443384,-34.557884",
+  "4|4+5|SALGUERO, JERONIMO|-58.408820,-34.580698",
+  "4|4+5|SALGUERO, JERONIMO|-58.410339,-34.582672",
+  "4|4+5|SALGUERO, JERONIMO|-58.405401,-34.577123",
+  "4|4+5|SALGUERO, JERONIMO|-58.402438,-34.573929",
+  "4|4+5|SALGUERO, JERONIMO|-58.403118,-34.574636",
+  "4|4+5|SALGUERO, JERONIMO|-58.408027,-34.579925",
+  "4|4+5|SANTA FE AV.|-58.425720,-34.578428",
+  "4|4+5|SANTA FE AV.|-58.424779,-34.578871",
+  "4|4+5|SANTA FE AV.|-58.427049,-34.578022",
+  "4|4+5|SANTA FE AV.|-58.426010,-34.578296",
+  "4|4+5|SARMIENTO AV.|-58.408183,-34.567633",
+  "4|4+5|SARMIENTO AV.|-58.409794,-34.569366",
+  "4|4+5|SARMIENTO AV.|-58.409123,-34.568652",
+  "4|4+5|SAVIO, MANUEL N., GRAL.|-58.434885,-34.574200",
+  "4|4+5|SUCRE, ANTONIO JOSE DE, MCAL.|-58.445605,-34.558331",
+  "4|4+5|SUCRE, ANTONIO JOSE DE, MCAL.|-58.446802,-34.559041",
+  "4|4+5|VERTIZ VIRREY AV.|-58.447194,-34.560221",
+  "4|4+5|VILLANUEVA|-58.439228,-34.568260",
+  "4|4+5|VILLANUEVA|-58.441914,-34.566186",
+  "4|4+5|VILLANUEVA|-58.441118,-34.566805",
+  "2|2|SARMIENTO AV.|-58.407103,-34.566643",
+  "2|2|ALSINA, VALENTIN AV.|-58.441152,-34.559485",
+  "3|3|ALSINA, VALENTIN AV.|-58.440651,-34.560280",
+  "3|3|SANTA FE AV.|-58.426974,-34.578046",
+  "6|6|LUGONES, LEOPOLDO AV.|-58.408925,-34.568235",
+  "6|6|SARMIENTO AV.|-58.408509,-34.567996",
+  "6|6|LUGONES, LEOPOLDO AV.|-58.408253,-34.568092",
+  "3|3|SARMIENTO AV.|-58.406045,-34.566692",
+  "6|6|FIGUEROA ALCORTA, PRES. AV.|-58.421059,-34.564984",
+  "6|6|FIGUEROA ALCORTA, PRES. AV.|-58.419229,-34.565948",
+  "6|6|SALGUERO, JERONIMO|-58.405722,-34.577473",
+  "6|6|SALGUERO, JERONIMO|-58.409251,-34.580976",
+  "6|6|CALZADA CIRCULAR PLAZA ITALIA|-58.420200,-34.581551",
+  "6|6|SANTA FE AV.|-58.425538,-34.578520",
+  "6|6|SANTA FE AV.|-58.426215,-34.578246",
+  "6|6|SANTA FE AV.|-58.427558,-34.577858",
+  "6|6|JUSTO, JUAN B. AV.|-58.427155,-34.578911",
+  "6|6|ANCON|-58.433475,-34.574886",
+  "6|6|VILLANUEVA|-58.442445,-34.565728",
+  "7|7|FIGUEROA ALCORTA, PRES. AV.|-58.418388,-34.566521",
+  "7|7|FIGUEROA ALCORTA, PRES. AV.|-58.422018,-34.564554",
+  "7|7|LUGONES, LEOPOLDO AV.|-58.408547,-34.567422",
+  "7|7|SARMIENTO AV.|-58.409178,-34.568711",
+  "7|7|SARMIENTO AV.|-58.408134,-34.567571",
+  "7|7|LUGONES, LEOPOLDO AV.|-58.407482,-34.568055",
+  "7|7|SARMIENTO AV.|-58.410801,-34.570435",
+  "6|6|SARMIENTO AV.|-58.410129,-34.569722",
+  "7|7|SALGUERO, JERONIMO|-58.406382,-34.578193",
+  "7|7|SANTA FE AV.|-58.427248,-34.577958",
+  "7|7|SANTA FE AV.|-58.428836,-34.577433",
+  "7|7|SANTA FE AV.|-58.423278,-34.579727",
+  "7|7|SAVIO, MANUEL N., GRAL.|-58.436446,-34.573344",
+  "7|7|ARRIBEÑOS|-58.444944,-34.564418",
+  "7|7|SUCRE, ANTONIO JOSE DE, MCAL.|-58.445470,-34.558252",
+  "7|7|SUCRE, ANTONIO JOSE DE, MCAL.|-58.444273,-34.557542",
+  "7|7|MIÑONES|-58.443404,-34.557860"
+ ],
+ "agregados": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4028237,
+     -34.5742313
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "CHONINO",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvyjdw5dc8af"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4051149,
+     -34.5767219
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "GELLY",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvyjdw5e93u9"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.425215,
+     -34.5786202
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "GODOY CRUZ",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvyjdw5e394y"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4416879,
+     -34.5588783
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "HERNANDEZ, JOSE",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvyjdw5e32g5"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4466402,
+     -34.560369
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "LA PAMPA",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvyjdw5exbai"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4472072,
+     -34.5593476
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "MONTAÑESES",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvyjdw5ela3u"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4141969,
+     -34.5817011
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "REPUBLICA ARABE SIRIA",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvyjdw5e5979"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4077651,
+     -34.5795355
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "SEGUI, JUAN FRANCISCO",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvyjdw5er7zb"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4435944,
+     -34.5642028
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "ZABALA",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvyjdw5e6a29"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4265457,
+     -34.5781146
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "BULLRICH, INT. AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvyjdz4a8g3o"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4454862,
+     -34.5611828
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "CAMPOS, LUIS M. AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvyjdz4akp01"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4094296,
+     -34.5690576
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "CASARES AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvyjdz4amtsj"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4084918,
+     -34.5803647
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "CERVIÑO AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvyjdz4ak0jt"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4460103,
+     -34.5586384
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "DEL LIBERTADOR AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvyjdz4agjtu"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4343746,
+     -34.5744203
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "DORREGO AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvyjdz4a85bj"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4049219,
+     -34.5765121
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "FIGUEROA ALCORTA, PRES. AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvyjdz4afpnt"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4414768,
+     -34.5664547
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "LACROZE, FEDERICO AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvyjdz4aaqmb"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4102535,
+     -34.5822188
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "LAS HERAS GENERAL AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvyjdz4ay8sv"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4121356,
+     -34.5716894
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "SARMIENTO AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvyjdz4ahna1"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4118395,
+     -34.5718891
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "SARMIENTO AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvyjdz4alju9"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4454717,
+     -34.561168
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "VERTIZ VIRREY AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvyjdz4aaqtw"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4395654,
+     -34.5679359
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "GOROSTIAGA",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvyje83eo9m6"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4431191,
+     -34.558283
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "LA PAMPA",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvyje83efru3"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4461533,
+     -34.5629113
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "PINO, VIRREY DEL",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvyje83ezg40"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4280993,
+     -34.5774868
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "CAMPOS, LUIS M. AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvyjed3e9j1s"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4349069,
+     -34.5621277
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "OLLEROS AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvyjed3ebolm"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4205457,
+     -34.5807516
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "SARMIENTO AV.",
+    "distancia_m": 0,
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "_manual": "mmvyjed3esmji"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4168855,
+     -34.5814712
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "REPUBLICA DE LA INDIA",
+    "altura": 2710,
+    "distancia_m": 0,
+    "_manual": "mmvyjew3wmzi6"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4200774,
+     -34.5655539
+    ]
+   },
+   "properties": {
+    "ref": 0,
+    "etiqueta": "0",
+    "descripcion": "Inicio de corte: inicio evento + evento + sentido del evento + velocidad máxima",
+    "_desc_obra": "Inicio de corte: inicio obras + desvío + sentido del desvío + velocidad máxima",
+    "carteles": [
+     {
+      "codigo": "A12",
+      "archivo": "A12.png",
+      "texto": "INICIO EVENTO",
+      "_obra": "A1"
+     }
+    ],
+    "calle": "DORREGO AV.",
+    "altura": null,
+    "distancia_m": 0,
+    "_manual": "mmvyjfytxz9pc"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.436212,
+     -34.5755731
+    ]
+   },
+   "properties": {
+    "ref": 3,
+    "etiqueta": "3",
+    "descripcion": "A 200 m: evento",
+    "_desc_obra": "A 200 m: desvío",
+    "carteles": [
+     {
+      "codigo": "A14",
+      "archivo": "A14.png",
+      "texto": "A 200m EVENTO",
+      "_obra": "A8_200m"
+     }
+    ],
+    "calle": "DORREGO",
+    "altura": 2481,
+    "distancia_m": 0,
+    "_manual": "mmvyjl7xd8q4b"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4257046,
+     -34.5784356
+    ]
+   },
+   "properties": {
+    "ref": 3,
+    "etiqueta": "3",
+    "descripcion": "A 200 m: evento",
+    "carteles": [
+     {
+      "codigo": "A14",
+      "archivo": "A14.png",
+      "texto": "A 200m EVENTO",
+      "_obra": "A8_200m"
+     }
+    ],
+    "calle": "SANTA FE AV.",
+    "distancia_m": 200,
+    "_desc_obra": "A 200 m: desvío",
+    "_manual": "mmvyjlfwzefp8",
+    "altura": 4637
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4186407,
+     -34.5663815
+    ]
+   },
+   "properties": {
+    "ref": 6,
+    "etiqueta": "6",
+    "descripcion": "A 100 m: calle transversal cerrada",
+    "carteles": [
+     {
+      "codigo": "A11_100m",
+      "archivo": "A11_100m.png",
+      "texto": "A 100m CALLE TRANSVERSAL CERRADA",
+      "_obra": "A11_100m"
+     }
+    ],
+    "calle": "FIGUEROA ALCORTA, PRES. AV.",
+    "distancia_m": 100,
+    "_desc_obra": "A 100 m: calle transversal cerrada",
+    "_manual": "mmvyjmhesjip4",
+    "altura": 5136
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4067046,
+     -34.5785174
+    ]
+   },
+   "properties": {
+    "ref": 6,
+    "etiqueta": "6",
+    "descripcion": "A 100 m: calle transversal cerrada",
+    "carteles": [
+     {
+      "codigo": "A11_100m",
+      "archivo": "A11_100m.png",
+      "texto": "A 100m CALLE TRANSVERSAL CERRADA",
+      "_obra": "A11_100m"
+     }
+    ],
+    "calle": "SALGUERO, JERONIMO",
+    "distancia_m": 100,
+    "_desc_obra": "A 100 m: calle transversal cerrada",
+    "_manual": "mmvyjmucsmz9m",
+    "altura": 2923
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.409786,
+     -34.5811518
+    ]
+   },
+   "properties": {
+    "ref": 6,
+    "etiqueta": "6",
+    "descripcion": "A 100 m: calle transversal cerrada",
+    "carteles": [
+     {
+      "codigo": "A11_100m",
+      "archivo": "A11_100m.png",
+      "texto": "A 100m CALLE TRANSVERSAL CERRADA",
+      "_obra": "A11_100m"
+     }
+    ],
+    "calle": "SALGUERO, JERONIMO",
+    "distancia_m": 100,
+    "_desc_obra": "A 100 m: calle transversal cerrada",
+    "_manual": "mmvyjn24l1ndw",
+    "altura": 2590
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4126517,
+     -34.5817501
+    ]
+   },
+   "properties": {
+    "ref": 6,
+    "etiqueta": "6",
+    "descripcion": "A 100 m: calle transversal cerrada",
+    "_desc_obra": "A 100 m: calle transversal cerrada",
+    "carteles": [
+     {
+      "codigo": "A11_100m",
+      "archivo": "A11_100m.png",
+      "texto": "A 100m CALLE TRANSVERSAL CERRADA",
+      "_obra": "A11_100m"
+     }
+    ],
+    "calle": "UGARTECHE",
+    "altura": 2918,
+    "distancia_m": 0,
+    "_manual": "mmvyjng2mz34o"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4151536,
+     -34.5815718
+    ]
+   },
+   "properties": {
+    "ref": 6,
+    "etiqueta": "6",
+    "descripcion": "A 100 m: calle transversal cerrada",
+    "_desc_obra": "A 100 m: calle transversal cerrada",
+    "carteles": [
+     {
+      "codigo": "A11_100m",
+      "archivo": "A11_100m.png",
+      "texto": "A 100m CALLE TRANSVERSAL CERRADA",
+      "_obra": "A11_100m"
+     }
+    ],
+    "calle": "LAFINUR",
+    "altura": 2912,
+    "distancia_m": 0,
+    "_manual": "mmvyjnl3pc4ik"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.419317,
+     -34.5811961
+    ]
+   },
+   "properties": {
+    "ref": 6,
+    "etiqueta": "6",
+    "descripcion": "A 100 m: calle transversal cerrada",
+    "carteles": [
+     {
+      "codigo": "A11_100m",
+      "archivo": "A11_100m.png",
+      "texto": "A 100m CALLE TRANSVERSAL CERRADA",
+      "_obra": "A11_100m"
+     }
+    ],
+    "calle": "LAS HERAS GENERAL AV.",
+    "distancia_m": 100,
+    "_desc_obra": "A 100 m: calle transversal cerrada",
+    "_manual": "mmvyjnoz236fl",
+    "altura": 4251
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.425293,
+     -34.5783517
+    ]
+   },
+   "properties": {
+    "ref": 6,
+    "etiqueta": "6",
+    "descripcion": "A 100 m: calle transversal cerrada",
+    "carteles": [
+     {
+      "codigo": "A11_100m",
+      "archivo": "A11_100m.png",
+      "texto": "A 100m CALLE TRANSVERSAL CERRADA",
+      "_obra": "A11_100m"
+     }
+    ],
+    "calle": "GODOY CRUZ",
+    "distancia_m": 100,
+    "_desc_obra": "A 100 m: calle transversal cerrada",
+    "_manual": "mmvyjo4m6li78",
+    "altura": 2720
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4368264,
+     -34.5619148
+    ]
+   },
+   "properties": {
+    "ref": 6,
+    "etiqueta": "6",
+    "descripcion": "A 100 m: calle transversal cerrada",
+    "_desc_obra": "A 100 m: calle transversal cerrada",
+    "carteles": [
+     {
+      "codigo": "A11_100m",
+      "archivo": "A11_100m.png",
+      "texto": "A 100m CALLE TRANSVERSAL CERRADA",
+      "_obra": "A11_100m"
+     }
+    ],
+    "calle": "ALSINA, VALENTIN AV.",
+    "altura": 1522,
+    "distancia_m": 0,
+    "_manual": "mmvyjpv4wdcx0"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.417308,
+     -34.5670685
+    ]
+   },
+   "properties": {
+    "ref": 7,
+    "etiqueta": "7",
+    "descripcion": "A 200 m: calle transversal cerrada",
+    "carteles": [
+     {
+      "codigo": "A11",
+      "archivo": "A11.png",
+      "texto": "A 200m CALLE TRANSVERSAL CERRADA",
+      "_obra": "A11"
+     }
+    ],
+    "calle": "FIGUEROA ALCORTA, PRES. AV.",
+    "distancia_m": 200,
+    "_desc_obra": "A 200 m: calle transversal cerrada",
+    "_manual": "mmvyjq221w1gq",
+    "altura": 5084
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4084196,
+     -34.5678983
+    ]
+   },
+   "properties": {
+    "ref": 7,
+    "etiqueta": "7",
+    "descripcion": "A 200 m: calle transversal cerrada",
+    "carteles": [
+     {
+      "codigo": "A11",
+      "archivo": "A11.png",
+      "texto": "A 200m CALLE TRANSVERSAL CERRADA",
+      "_obra": "A11"
+     }
+    ],
+    "calle": "SARMIENTO AV.",
+    "distancia_m": 200,
+    "_desc_obra": "A 200 m: calle transversal cerrada",
+    "_manual": "mmvyjqf9mre49",
+    "altura": 4503
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4099565,
+     -34.5695387
+    ]
+   },
+   "properties": {
+    "ref": 7,
+    "etiqueta": "7",
+    "descripcion": "A 200 m: calle transversal cerrada",
+    "carteles": [
+     {
+      "codigo": "A11",
+      "archivo": "A11.png",
+      "texto": "A 200m CALLE TRANSVERSAL CERRADA",
+      "_obra": "A11"
+     }
+    ],
+    "calle": "SARMIENTO AV.",
+    "distancia_m": 200,
+    "_desc_obra": "A 200 m: calle transversal cerrada",
+    "_manual": "mmvyjqnoxmntr",
+    "altura": 4347
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4106381,
+     -34.5702629
+    ]
+   },
+   "properties": {
+    "ref": 6,
+    "etiqueta": "6",
+    "descripcion": "A 100 m: calle transversal cerrada",
+    "carteles": [
+     {
+      "codigo": "A11_100m",
+      "archivo": "A11_100m.png",
+      "texto": "A 100m CALLE TRANSVERSAL CERRADA",
+      "_obra": "A11_100m"
+     }
+    ],
+    "calle": "SARMIENTO AV.",
+    "distancia_m": 100,
+    "_desc_obra": "A 100 m: calle transversal cerrada",
+    "_manual": "mmvyjqpjuit56",
+    "altura": 4274
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4103772,
+     -34.5821148
+    ]
+   },
+   "properties": {
+    "ref": 7,
+    "etiqueta": "7",
+    "descripcion": "A 200 m: calle transversal cerrada",
+    "_desc_obra": "A 200 m: calle transversal cerrada",
+    "carteles": [
+     {
+      "codigo": "A11",
+      "archivo": "A11.png",
+      "texto": "A 200m CALLE TRANSVERSAL CERRADA",
+      "_obra": "A11"
+     }
+    ],
+    "calle": "LAS HERAS GENERAL AV.",
+    "altura": 3625,
+    "distancia_m": 0,
+    "_manual": "mmvyjrnaqocch"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4177291,
+     -34.5813065
+    ]
+   },
+   "properties": {
+    "ref": 7,
+    "etiqueta": "7",
+    "descripcion": "A 200 m: calle transversal cerrada",
+    "_desc_obra": "A 200 m: calle transversal cerrada",
+    "carteles": [
+     {
+      "codigo": "A11",
+      "archivo": "A11.png",
+      "texto": "A 200m CALLE TRANSVERSAL CERRADA",
+      "_obra": "A11"
+     }
+    ],
+    "calle": "LAS HERAS GENERAL AV.",
+    "altura": 4151,
+    "distancia_m": 0,
+    "_manual": "mmvyjrtwrix8l"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.4226557,
+     -34.5801394
+    ]
+   },
+   "properties": {
+    "ref": 7,
+    "etiqueta": "7",
+    "descripcion": "A 200 m: calle transversal cerrada",
+    "carteles": [
+     {
+      "codigo": "A11",
+      "archivo": "A11.png",
+      "texto": "A 200m CALLE TRANSVERSAL CERRADA",
+      "_obra": "A11"
+     }
+    ],
+    "calle": "SANTA FE AV.",
+    "distancia_m": 217,
+    "_desc_obra": "A 200 m: calle transversal cerrada",
+    "_manual": "mmvyjshpfc02f",
+    "altura": 4331
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -58.436808,
+     -34.5731417
+    ]
+   },
+   "properties": {
+    "ref": 7,
+    "etiqueta": "7",
+    "descripcion": "A 200 m: calle transversal cerrada",
+    "carteles": [
+     {
+      "codigo": "A11",
+      "archivo": "A11.png",
+      "texto": "A 200m CALLE TRANSVERSAL CERRADA",
+      "_obra": "A11"
+     }
+    ],
+    "calle": "SAVIO, MANUEL N., GRAL.",
+    "distancia_m": 221,
+    "_desc_obra": "A 200 m: calle transversal cerrada",
+    "_manual": "mmvyjspqk88gk",
+    "altura": 437
+   }
+  }
+ ]
+}

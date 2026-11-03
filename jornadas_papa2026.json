@@ -1,368 +1,705 @@
 {
   "version": 2,
-  "descripcion": "Cronograma extraído de Visita León XIV - CGM.html. Las carpetas no se asignan hasta confirmar equivalencia exacta entre escenarios del informe y paquetes QGIS.",
-  "fuente": "Visita León XIV - CGM.html",
-  "estado": "MATRIZ_PRELIMINAR_NO_APTA_PARA_CONFIRMAR_CORTES",
+  "revision": 3,
+  "fuente_informe": "Visita León XIV - CGM (1).html",
+  "fuente_qgis": "OPERATIVO PAPA 2026 (2.11.26)-20261103T143726Z-1-001.zip",
+  "advertencia": "Planificación propuesta. No representa vigencia ni aprobación en calle. Escenario D en proceso. Las vistas derivadas son composiciones de archivos QGIS originales sin recalcular rutas.",
   "jornadas": [
+    {
+      "fecha": "2026-11-04",
+      "etiqueta": "Miércoles 4/11/2026",
+      "nota": "Desvíos vigentes desde las 00:01 hs por el corte total previo en Palermo (armado en Av. del Libertador y Monumento a los Españoles).",
+      "casos": [
+        {
+          "id": "general",
+          "nombre": "General",
+          "descripcion": "Monumento a los Españoles (Palermo) · corte previo: Av. del Libertador entre Infanta Isabel y Kennedy, con las transversales hasta Segui.",
+          "total_lineas": 4,
+          "total_paradas_anuladas": 10,
+          "locaciones_detalle": [
+            {
+              "nombre": "Palermo · corte previo",
+              "candidatos": [
+                "P26V2_mie4"
+              ],
+              "nota": "Paquete de fecha del motor QGIS"
+            }
+          ],
+          "paquetes": [
+            "P26V2_mie4"
+          ],
+          "estado": "PLANIFICADO_POR_INFORME",
+          "archivo_qgis": "2_MIER 4.11.26_00.01_hs/Desvios_Mier 4.11.26_00.01 hs/",
+          "informe_caso": "mie4"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-11-05",
+      "etiqueta": "Jueves 5/11/2026",
+      "nota": "Desvíos vigentes desde las 00:01 hs. El corte de Palermo se amplía hacia Gorostiaga.",
+      "casos": [
+        {
+          "id": "general",
+          "nombre": "General",
+          "descripcion": "Monumento a los Españoles (Palermo) · corte ampliado: Av. del Libertador desde Gorostiaga hasta Kennedy, con las transversales hasta Migueletes, Juncal y Bullrich.",
+          "total_lineas": 9,
+          "total_paradas_anuladas": 60,
+          "locaciones_detalle": [
+            {
+              "nombre": "Palermo · corte previo",
+              "candidatos": [
+                "P26V2_jue5"
+              ],
+              "nota": "Paquete de fecha del motor QGIS"
+            }
+          ],
+          "paquetes": [
+            "P26V2_jue5"
+          ],
+          "estado": "PLANIFICADO_POR_INFORME",
+          "archivo_qgis": "3_JUEV 5.11.26_00.01 hs/Desvios_ Juev 5.11.26/",
+          "informe_caso": "jue5"
+        }
+      ]
+    },
     {
       "fecha": "2026-11-06",
       "etiqueta": "Viernes 6/11/2026",
+      "nota": "Mismos desvíos que el Sábado 7/11: Nunciatura (recortada) y Palermo en el escenario A.",
       "casos": [
         {
-          "nombre": "General",
-          "descripcion": "Nunciatura",
-          "total_lineas": 4,
-          "total_paradas_anuladas": 8,
-          "locaciones": [
-            "Nunciatura"
-          ],
           "id": "general",
+          "nombre": "General",
+          "descripcion": "Nunciatura (recortada) + Palermo · Esc. A (LMC habilitada)",
+          "total_lineas": 18,
+          "total_paradas_anuladas": 108,
           "locaciones_detalle": [
             {
-              "nombre": "Nunciatura",
+              "nombre": "Vista integral de la jornada",
               "candidatos": [
-                "Papa2026_Nunciatura_Original",
-                "Papa2026_Nunciatura_Recortada"
+                "P26V2_viesab"
               ],
-              "estado": "pendiente_de_validacion",
-              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+              "nota": "Paquete combinado, una sola instancia sin superposición de escenarios"
+            },
+            {
+              "nombre": "Nunciatura (recortada) · referencia aislada",
+              "candidatos": [
+                "P26V2_nunc"
+              ],
+              "nota": "Consulta por locación; verificar alcance por jornada"
+            },
+            {
+              "nombre": "Palermo · Escenario A",
+              "candidatos": [
+                "P26V2_palA"
+              ],
+              "nota": "Paquete aislado"
             }
           ],
-          "estado": "pendiente_de_validacion"
+          "paquetes": [
+            "P26V2_viesab"
+          ],
+          "estado": "PLANIFICADO_POR_INFORME",
+          "archivo_qgis": "5_SAB_7.11.26/",
+          "informe_caso": "viesab"
         }
       ]
     },
     {
       "fecha": "2026-11-07",
       "etiqueta": "Sábado 7/11/2026",
+      "nota": "Mismos desvíos que el Viernes 6/11: Nunciatura (recortada) y Palermo en el escenario A.",
       "casos": [
         {
-          "nombre": "General",
-          "descripcion": "Nunciatura + Monumento a los Españoles (LMC habilitada)",
-          "total_lineas": 23,
-          "total_paradas_anuladas": 141,
-          "locaciones": [
-            "Nunciatura",
-            "Monumento a los Españoles — LMC habilitada"
-          ],
           "id": "general",
+          "nombre": "General",
+          "descripcion": "Nunciatura (recortada) + Palermo · Esc. A (LMC habilitada)",
+          "total_lineas": 18,
+          "total_paradas_anuladas": 108,
           "locaciones_detalle": [
             {
-              "nombre": "Nunciatura",
+              "nombre": "Vista integral de la jornada",
               "candidatos": [
-                "Papa2026_Nunciatura_Original",
-                "Papa2026_Nunciatura_Recortada"
+                "P26V2_viesab"
               ],
-              "estado": "pendiente_de_validacion",
-              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+              "nota": "Paquete combinado, una sola instancia sin superposición de escenarios"
             },
             {
-              "nombre": "Monumento a los Españoles — LMC habilitada",
+              "nombre": "Nunciatura (recortada) · referencia aislada",
               "candidatos": [
-                "Papa2026_Palermo_A"
+                "P26V2_nunc"
               ],
-              "estado": "pendiente_de_validacion",
-              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+              "nota": "Consulta por locación; verificar alcance por jornada"
+            },
+            {
+              "nombre": "Palermo · Escenario A",
+              "candidatos": [
+                "P26V2_palA"
+              ],
+              "nota": "Paquete aislado"
             }
           ],
-          "estado": "pendiente_de_validacion"
+          "paquetes": [
+            "P26V2_viesab"
+          ],
+          "estado": "PLANIFICADO_POR_INFORME",
+          "archivo_qgis": "5_SAB_7.11.26/",
+          "informe_caso": "viesab"
         }
       ]
     },
     {
       "fecha": "2026-11-08",
       "etiqueta": "Domingo 8/11/2026",
+      "nota": "Nunciatura, Plaza San Martín, Catedral y CCK, más Palermo en el escenario elegido.",
       "casos": [
         {
-          "nombre": "General",
-          "descripcion": "Nunciatura + Monumento (LMC habilitada) + Plaza San Martín + Catedral + CCK",
-          "total_lineas": 65,
-          "total_paradas_anuladas": 312,
-          "locaciones": [
-            "Nunciatura",
-            "Monumento a los Españoles — LMC habilitada",
-            "Plaza San Martín",
-            "Catedral Metropolitana",
-            "CCK"
-          ],
-          "id": "general",
+          "id": "A",
+          "nombre": "Escenario A · Luis María Campos habilitada",
+          "descripcion": "Nunciatura + Plaza San Martín + Catedral + CCK + Palermo · Esc. A (LMC habilitada)",
+          "total_lineas": 62,
+          "total_paradas_anuladas": 277,
           "locaciones_detalle": [
             {
-              "nombre": "Nunciatura",
+              "nombre": "Vista integral de la jornada",
               "candidatos": [
-                "Papa2026_Nunciatura_Original",
-                "Papa2026_Nunciatura_Recortada"
+                "P26V2_dom8A"
               ],
-              "estado": "pendiente_de_validacion",
-              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+              "nota": "Paquete combinado, una sola instancia sin superposición de escenarios"
             },
             {
-              "nombre": "Monumento a los Españoles — LMC habilitada",
+              "nombre": "Nunciatura (recortada) · referencia aislada",
               "candidatos": [
-                "Papa2026_Palermo_A"
+                "P26V2_nunc"
               ],
-              "estado": "pendiente_de_validacion",
-              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+              "nota": "Consulta por locación; verificar alcance por jornada"
             },
             {
-              "nombre": "Plaza San Martín",
+              "nombre": "Retiro / Casa Rosada / CCK (incluye Nunciatura)",
               "candidatos": [
-                "Papa2026_Retiro_CasaRosada_CCK"
+                "P26V2_cck"
               ],
-              "estado": "pendiente_de_validacion",
-              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+              "nota": "Este paquete ya incluye Nunciatura: no sumar por separado"
             },
             {
-              "nombre": "Catedral Metropolitana",
+              "nombre": "Palermo · Escenario A",
               "candidatos": [
-                "Papa2026_Retiro_CasaRosada_CCK"
+                "P26V2_palA"
               ],
-              "estado": "pendiente_de_validacion",
-              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
-            },
-            {
-              "nombre": "CCK",
-              "candidatos": [
-                "Papa2026_Retiro_CasaRosada_CCK"
-              ],
-              "estado": "pendiente_de_validacion",
-              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+              "nota": "Paquete aislado, no confundir con integral de jornada"
             }
           ],
-          "estado": "pendiente_de_validacion"
+          "paquetes": [
+            "P26V2_dom8A"
+          ],
+          "estado": "PLANIFICADO_POR_INFORME",
+          "archivo_qgis": "vista_derivada",
+          "informe_caso": "dom8A"
+        },
+        {
+          "id": "B",
+          "nombre": "Escenario B · Luis María Campos inhabilitada",
+          "descripcion": "Nunciatura + Plaza San Martín + Catedral + CCK + Palermo · Esc. B (LMC inhabilitada)",
+          "total_lineas": 70,
+          "total_paradas_anuladas": 364,
+          "locaciones_detalle": [
+            {
+              "nombre": "Vista integral de la jornada",
+              "candidatos": [
+                "P26V2_dom8B"
+              ],
+              "nota": "Paquete combinado, una sola instancia sin superposición de escenarios"
+            },
+            {
+              "nombre": "Nunciatura (recortada) · referencia aislada",
+              "candidatos": [
+                "P26V2_nunc"
+              ],
+              "nota": "Consulta por locación; verificar alcance por jornada"
+            },
+            {
+              "nombre": "Retiro / Casa Rosada / CCK (incluye Nunciatura)",
+              "candidatos": [
+                "P26V2_cck"
+              ],
+              "nota": "Este paquete ya incluye Nunciatura: no sumar por separado"
+            },
+            {
+              "nombre": "Palermo · Escenario B",
+              "candidatos": [
+                "P26V2_palB"
+              ],
+              "nota": "Paquete aislado, no confundir con integral de jornada"
+            }
+          ],
+          "paquetes": [
+            "P26V2_dom8B"
+          ],
+          "estado": "PLANIFICADO_POR_INFORME",
+          "archivo_qgis": "vista_derivada",
+          "informe_caso": "dom8B"
+        },
+        {
+          "id": "C",
+          "nombre": "Escenario C · Luis María Campos y Las Heras inhabilitadas",
+          "descripcion": "Nunciatura + Plaza San Martín + Catedral + CCK + Palermo · Esc. C (LMC + Las Heras inhab.)",
+          "total_lineas": 70,
+          "total_paradas_anuladas": 375,
+          "locaciones_detalle": [
+            {
+              "nombre": "Vista integral de la jornada",
+              "candidatos": [
+                "P26V2_dom8C"
+              ],
+              "nota": "Paquete combinado, una sola instancia sin superposición de escenarios"
+            },
+            {
+              "nombre": "Nunciatura (recortada) · referencia aislada",
+              "candidatos": [
+                "P26V2_nunc"
+              ],
+              "nota": "Consulta por locación; verificar alcance por jornada"
+            },
+            {
+              "nombre": "Retiro / Casa Rosada / CCK (incluye Nunciatura)",
+              "candidatos": [
+                "P26V2_cck"
+              ],
+              "nota": "Este paquete ya incluye Nunciatura: no sumar por separado"
+            },
+            {
+              "nombre": "Palermo · Escenario C",
+              "candidatos": [
+                "P26V2_palC"
+              ],
+              "nota": "Paquete aislado, no confundir con integral de jornada"
+            }
+          ],
+          "paquetes": [
+            "P26V2_dom8C"
+          ],
+          "estado": "PLANIFICADO_POR_INFORME",
+          "archivo_qgis": "vista_derivada",
+          "informe_caso": "dom8C"
+        },
+        {
+          "id": "D",
+          "nombre": "Escenario D · Caos total (en proceso)",
+          "descripcion": "Nunciatura + Plaza San Martín + Catedral + CCK + Palermo · Esc. D (caos total)",
+          "total_lineas": 71,
+          "total_paradas_anuladas": 405,
+          "locaciones_detalle": [
+            {
+              "nombre": "Vista integral de la jornada",
+              "candidatos": [
+                "P26V2_dom8D"
+              ],
+              "nota": "Paquete combinado, una sola instancia sin superposición de escenarios"
+            },
+            {
+              "nombre": "Nunciatura (recortada) · referencia aislada",
+              "candidatos": [
+                "P26V2_nunc"
+              ],
+              "nota": "Consulta por locación; verificar alcance por jornada"
+            },
+            {
+              "nombre": "Retiro / Casa Rosada / CCK (incluye Nunciatura)",
+              "candidatos": [
+                "P26V2_cck"
+              ],
+              "nota": "Este paquete ya incluye Nunciatura: no sumar por separado"
+            },
+            {
+              "nombre": "Palermo · Escenario D",
+              "candidatos": [
+                "P26V2_palD"
+              ],
+              "nota": "Paquete aislado, no confundir con integral de jornada"
+            }
+          ],
+          "paquetes": [
+            "P26V2_dom8D"
+          ],
+          "estado": "EN_PROCESO_NO_APROBADO",
+          "archivo_qgis": "vista_derivada",
+          "informe_caso": "dom8D"
         }
       ]
     },
     {
       "fecha": "2026-11-09",
       "etiqueta": "Lunes 9/11/2026",
+      "nota": "Nunciatura, Plaza San Martín, Catedral y UCA (Puerto Madero), más Palermo en el escenario elegido.",
       "casos": [
         {
-          "nombre": "Caso A",
-          "descripcion": "Nunciatura + Monumento (LMC habilitada) + Plaza San Martín + Catedral + UCA",
-          "total_lineas": 66,
-          "total_paradas_anuladas": 315,
-          "locaciones": [
-            "Nunciatura",
-            "Monumento a los Españoles — LMC habilitada",
-            "Plaza San Martín",
-            "Catedral Metropolitana",
-            "UCA"
-          ],
-          "id": "caso-a",
+          "id": "A",
+          "nombre": "Escenario A · Luis María Campos habilitada",
+          "descripcion": "Nunciatura + Plaza San Martín + Catedral + UCA + Palermo · Esc. A (LMC habilitada)",
+          "total_lineas": 63,
+          "total_paradas_anuladas": 288,
           "locaciones_detalle": [
             {
-              "nombre": "Nunciatura",
+              "nombre": "Vista integral de la jornada",
               "candidatos": [
-                "Papa2026_Nunciatura_Original",
-                "Papa2026_Nunciatura_Recortada"
+                "P26V2_lun9A"
               ],
-              "estado": "pendiente_de_validacion",
-              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+              "nota": "Paquete combinado, una sola instancia sin superposición de escenarios"
             },
             {
-              "nombre": "Monumento a los Españoles — LMC habilitada",
+              "nombre": "Nunciatura (recortada) · referencia aislada",
               "candidatos": [
-                "Papa2026_Palermo_A"
+                "P26V2_nunc"
               ],
-              "estado": "pendiente_de_validacion",
-              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+              "nota": "Consulta por locación; verificar alcance por jornada"
             },
             {
-              "nombre": "Plaza San Martín",
+              "nombre": "Retiro / Casa Rosada / UCA (incluye Nunciatura)",
               "candidatos": [
-                "Papa2026_Retiro_CasaRosada_UCA"
+                "P26V2_uca"
               ],
-              "estado": "pendiente_de_validacion",
-              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+              "nota": "Este paquete ya incluye Nunciatura: no sumar por separado"
             },
             {
-              "nombre": "Catedral Metropolitana",
+              "nombre": "Palermo · Escenario A",
               "candidatos": [
-                "Papa2026_Retiro_CasaRosada_UCA"
+                "P26V2_palA"
               ],
-              "estado": "pendiente_de_validacion",
-              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
-            },
-            {
-              "nombre": "UCA",
-              "candidatos": [
-                "Papa2026_Retiro_CasaRosada_UCA"
-              ],
-              "estado": "pendiente_de_validacion",
-              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+              "nota": "Paquete aislado, no confundir con integral de jornada"
             }
           ],
-          "estado": "pendiente_de_validacion"
+          "paquetes": [
+            "P26V2_lun9A"
+          ],
+          "estado": "PLANIFICADO_POR_INFORME",
+          "archivo_qgis": "vista_derivada",
+          "informe_caso": "lun9A"
         },
         {
-          "nombre": "Caso B",
-          "descripcion": "Nunciatura + Monumento (LMC inhabilitada) + Plaza San Martín + Catedral + UCA",
-          "total_lineas": 70,
-          "total_paradas_anuladas": 370,
-          "locaciones": [
-            "Nunciatura",
-            "Monumento a los Españoles — LMC inhabilitada",
-            "Plaza San Martín",
-            "Catedral Metropolitana",
-            "UCA"
-          ],
-          "id": "caso-b",
+          "id": "B",
+          "nombre": "Escenario B · Luis María Campos inhabilitada",
+          "descripcion": "Nunciatura + Plaza San Martín + Catedral + UCA + Palermo · Esc. B (LMC inhabilitada)",
+          "total_lineas": 71,
+          "total_paradas_anuladas": 375,
           "locaciones_detalle": [
             {
-              "nombre": "Nunciatura",
+              "nombre": "Vista integral de la jornada",
               "candidatos": [
-                "Papa2026_Nunciatura_Original",
-                "Papa2026_Nunciatura_Recortada"
+                "P26V2_lun9B"
               ],
-              "estado": "pendiente_de_validacion",
-              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+              "nota": "Paquete combinado, una sola instancia sin superposición de escenarios"
             },
             {
-              "nombre": "Monumento a los Españoles — LMC inhabilitada",
+              "nombre": "Nunciatura (recortada) · referencia aislada",
               "candidatos": [
-                "Papa2026_Palermo_B",
-                "Papa2026_Palermo_C"
+                "P26V2_nunc"
               ],
-              "estado": "pendiente_de_validacion",
-              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+              "nota": "Consulta por locación; verificar alcance por jornada"
             },
             {
-              "nombre": "Plaza San Martín",
+              "nombre": "Retiro / Casa Rosada / UCA (incluye Nunciatura)",
               "candidatos": [
-                "Papa2026_Retiro_CasaRosada_UCA"
+                "P26V2_uca"
               ],
-              "estado": "pendiente_de_validacion",
-              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+              "nota": "Este paquete ya incluye Nunciatura: no sumar por separado"
             },
             {
-              "nombre": "Catedral Metropolitana",
+              "nombre": "Palermo · Escenario B",
               "candidatos": [
-                "Papa2026_Retiro_CasaRosada_UCA"
+                "P26V2_palB"
               ],
-              "estado": "pendiente_de_validacion",
-              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
-            },
-            {
-              "nombre": "UCA",
-              "candidatos": [
-                "Papa2026_Retiro_CasaRosada_UCA"
-              ],
-              "estado": "pendiente_de_validacion",
-              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+              "nota": "Paquete aislado, no confundir con integral de jornada"
             }
           ],
-          "estado": "pendiente_de_validacion"
+          "paquetes": [
+            "P26V2_lun9B"
+          ],
+          "estado": "PLANIFICADO_POR_INFORME",
+          "archivo_qgis": "vista_derivada",
+          "informe_caso": "lun9B"
+        },
+        {
+          "id": "C",
+          "nombre": "Escenario C · Luis María Campos y Las Heras inhabilitadas",
+          "descripcion": "Palermo · Esc. C (LMC + Las Heras inhab.) + Nunciatura + Plaza San Martín + Catedral + UCA",
+          "total_lineas": 71,
+          "total_paradas_anuladas": 386,
+          "locaciones_detalle": [
+            {
+              "nombre": "Vista integral de la jornada",
+              "candidatos": [
+                "P26V2_lun9C"
+              ],
+              "nota": "Paquete combinado, una sola instancia sin superposición de escenarios"
+            },
+            {
+              "nombre": "Nunciatura (recortada) · referencia aislada",
+              "candidatos": [
+                "P26V2_nunc"
+              ],
+              "nota": "Consulta por locación; verificar alcance por jornada"
+            },
+            {
+              "nombre": "Retiro / Casa Rosada / UCA (incluye Nunciatura)",
+              "candidatos": [
+                "P26V2_uca"
+              ],
+              "nota": "Este paquete ya incluye Nunciatura: no sumar por separado"
+            },
+            {
+              "nombre": "Palermo · Escenario C",
+              "candidatos": [
+                "P26V2_palC"
+              ],
+              "nota": "Paquete aislado, no confundir con integral de jornada"
+            }
+          ],
+          "paquetes": [
+            "P26V2_lun9C"
+          ],
+          "estado": "PLANIFICADO_POR_INFORME",
+          "archivo_qgis": "vista_derivada",
+          "informe_caso": "lun9C"
+        },
+        {
+          "id": "D",
+          "nombre": "Escenario D · Caos total (en proceso)",
+          "descripcion": "Nunciatura + Plaza San Martín + Catedral + UCA + Palermo · Esc. D (caos total)",
+          "total_lineas": 72,
+          "total_paradas_anuladas": 416,
+          "locaciones_detalle": [
+            {
+              "nombre": "Vista integral de la jornada",
+              "candidatos": [
+                "P26V2_lun9D"
+              ],
+              "nota": "Paquete combinado, una sola instancia sin superposición de escenarios"
+            },
+            {
+              "nombre": "Nunciatura (recortada) · referencia aislada",
+              "candidatos": [
+                "P26V2_nunc"
+              ],
+              "nota": "Consulta por locación; verificar alcance por jornada"
+            },
+            {
+              "nombre": "Retiro / Casa Rosada / UCA (incluye Nunciatura)",
+              "candidatos": [
+                "P26V2_uca"
+              ],
+              "nota": "Este paquete ya incluye Nunciatura: no sumar por separado"
+            },
+            {
+              "nombre": "Palermo · Escenario D",
+              "candidatos": [
+                "P26V2_palD"
+              ],
+              "nota": "Paquete aislado, no confundir con integral de jornada"
+            }
+          ],
+          "paquetes": [
+            "P26V2_lun9D"
+          ],
+          "estado": "EN_PROCESO_NO_APROBADO",
+          "archivo_qgis": "vista_derivada",
+          "informe_caso": "lun9D"
         }
       ]
     },
     {
       "fecha": "2026-11-10",
       "etiqueta": "Martes 10/11/2026",
+      "nota": "Nunciatura (recortada) más Palermo en el escenario elegido. El escenario A es el mismo archivo que el Viernes y el Sábado.",
       "casos": [
         {
-          "nombre": "Caso A",
-          "descripcion": "Nunciatura + Monumento (LMC habilitada)",
-          "total_lineas": 23,
-          "total_paradas_anuladas": 141,
-          "locaciones": [
-            "Nunciatura",
-            "Monumento a los Españoles — LMC habilitada"
-          ],
-          "id": "caso-a",
+          "id": "A",
+          "nombre": "Escenario A · Luis María Campos habilitada",
+          "descripcion": "Nunciatura (recortada) + Palermo · Esc. A (LMC habilitada)",
+          "total_lineas": 18,
+          "total_paradas_anuladas": 108,
           "locaciones_detalle": [
             {
-              "nombre": "Nunciatura",
+              "nombre": "Vista integral de la jornada",
               "candidatos": [
-                "Papa2026_Nunciatura_Original",
-                "Papa2026_Nunciatura_Recortada"
+                "P26V2_mar10A"
               ],
-              "estado": "pendiente_de_validacion",
-              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+              "nota": "Paquete combinado, una sola instancia sin superposición de escenarios"
             },
             {
-              "nombre": "Monumento a los Españoles — LMC habilitada",
+              "nombre": "Nunciatura (recortada) · referencia aislada",
               "candidatos": [
-                "Papa2026_Palermo_A"
+                "P26V2_nunc"
               ],
-              "estado": "pendiente_de_validacion",
-              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+              "nota": "Consulta por locación; verificar alcance por jornada"
+            },
+            {
+              "nombre": "Palermo · Escenario A",
+              "candidatos": [
+                "P26V2_palA"
+              ],
+              "nota": "Paquete aislado, no confundir con integral de jornada"
             }
           ],
-          "estado": "pendiente_de_validacion"
+          "paquetes": [
+            "P26V2_mar10A"
+          ],
+          "estado": "PLANIFICADO_POR_INFORME",
+          "archivo_qgis": "5_SAB_7.11.26/",
+          "informe_caso": "viesab"
         },
         {
-          "nombre": "Caso B",
-          "descripcion": "Nunciatura + Monumento (LMC inhabilitada)",
+          "id": "B",
+          "nombre": "Escenario B · Luis María Campos inhabilitada",
+          "descripcion": "Nunciatura (recortada) + Palermo · Esc. B (LMC inhabilitada)",
           "total_lineas": 29,
-          "total_paradas_anuladas": 196,
-          "locaciones": [
-            "Nunciatura",
-            "Monumento a los Españoles — LMC inhabilitada"
-          ],
-          "id": "caso-b",
+          "total_paradas_anuladas": 195,
           "locaciones_detalle": [
             {
-              "nombre": "Nunciatura",
+              "nombre": "Vista integral de la jornada",
               "candidatos": [
-                "Papa2026_Nunciatura_Original",
-                "Papa2026_Nunciatura_Recortada"
+                "P26V2_mar10B"
               ],
-              "estado": "pendiente_de_validacion",
-              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+              "nota": "Paquete combinado, una sola instancia sin superposición de escenarios"
             },
             {
-              "nombre": "Monumento a los Españoles — LMC inhabilitada",
+              "nombre": "Nunciatura (recortada) · referencia aislada",
               "candidatos": [
-                "Papa2026_Palermo_B",
-                "Papa2026_Palermo_C"
+                "P26V2_nunc"
               ],
-              "estado": "pendiente_de_validacion",
-              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+              "nota": "Consulta por locación; verificar alcance por jornada"
+            },
+            {
+              "nombre": "Palermo · Escenario B",
+              "candidatos": [
+                "P26V2_palB"
+              ],
+              "nota": "Paquete aislado, no confundir con integral de jornada"
             }
           ],
-          "estado": "pendiente_de_validacion"
+          "paquetes": [
+            "P26V2_mar10B"
+          ],
+          "estado": "PLANIFICADO_POR_INFORME",
+          "archivo_qgis": "8_MAR_10.11.26/MARTES 10.11 (B)/",
+          "informe_caso": "mar10B"
+        },
+        {
+          "id": "C",
+          "nombre": "Escenario C · Luis María Campos y Las Heras inhabilitadas",
+          "descripcion": "Palermo · Esc. C (LMC + Las Heras inhab.) + Nunciatura (recortada)",
+          "total_lineas": 29,
+          "total_paradas_anuladas": 206,
+          "locaciones_detalle": [
+            {
+              "nombre": "Vista integral de la jornada",
+              "candidatos": [
+                "P26V2_mar10C"
+              ],
+              "nota": "Paquete combinado, una sola instancia sin superposición de escenarios"
+            },
+            {
+              "nombre": "Nunciatura (recortada) · referencia aislada",
+              "candidatos": [
+                "P26V2_nunc"
+              ],
+              "nota": "Consulta por locación; verificar alcance por jornada"
+            },
+            {
+              "nombre": "Palermo · Escenario C",
+              "candidatos": [
+                "P26V2_palC"
+              ],
+              "nota": "Paquete aislado, no confundir con integral de jornada"
+            }
+          ],
+          "paquetes": [
+            "P26V2_mar10C"
+          ],
+          "estado": "PLANIFICADO_POR_INFORME",
+          "archivo_qgis": "8_MAR_10.11.26/MARTES 10.11 (C)/",
+          "informe_caso": "mar10C"
+        },
+        {
+          "id": "D",
+          "nombre": "Escenario D · Caos total (en proceso)",
+          "descripcion": "Nunciatura (recortada) + Palermo · Esc. D (caos total)",
+          "total_lineas": 32,
+          "total_paradas_anuladas": 236,
+          "locaciones_detalle": [
+            {
+              "nombre": "Vista integral de la jornada",
+              "candidatos": [
+                "P26V2_mar10D"
+              ],
+              "nota": "Paquete combinado, una sola instancia sin superposición de escenarios"
+            },
+            {
+              "nombre": "Nunciatura (recortada) · referencia aislada",
+              "candidatos": [
+                "P26V2_nunc"
+              ],
+              "nota": "Consulta por locación; verificar alcance por jornada"
+            },
+            {
+              "nombre": "Palermo · Escenario D",
+              "candidatos": [
+                "P26V2_palD"
+              ],
+              "nota": "Paquete aislado, no confundir con integral de jornada"
+            }
+          ],
+          "paquetes": [
+            "P26V2_mar10D"
+          ],
+          "estado": "EN_PROCESO_NO_APROBADO",
+          "archivo_qgis": "8_MAR_10.11.26/MARTES 10.11 (D)/",
+          "informe_caso": "mar10D"
         }
       ]
     },
     {
       "fecha": "2026-11-11",
       "etiqueta": "Miércoles 11/11/2026",
+      "nota": "Nunciatura (recortada) y Cárcel de Devoto.",
       "casos": [
         {
-          "nombre": "General",
-          "descripcion": "Nunciatura + Cárcel de Devoto",
-          "total_lineas": 8,
-          "total_paradas_anuladas": 14,
-          "locaciones": [
-            "Nunciatura",
-            "Cárcel de Devoto"
-          ],
           "id": "general",
+          "nombre": "General",
+          "descripcion": "Nunciatura (recortada) + Cárcel de Devoto",
+          "total_lineas": 6,
+          "total_paradas_anuladas": 10,
           "locaciones_detalle": [
             {
-              "nombre": "Nunciatura",
+              "nombre": "Vista integral de la jornada",
               "candidatos": [
-                "Papa2026_Nunciatura_Original",
-                "Papa2026_Nunciatura_Recortada"
+                "P26V2_mie11"
               ],
-              "estado": "pendiente_de_validacion",
-              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+              "nota": "Paquete combinado, una sola instancia sin superposición de escenarios"
+            },
+            {
+              "nombre": "Nunciatura (recortada) · referencia aislada",
+              "candidatos": [
+                "P26V2_nunc"
+              ],
+              "nota": "Consulta por locación; verificar alcance por jornada"
             },
             {
               "nombre": "Cárcel de Devoto",
               "candidatos": [
-                "Papa2026_Carcel_Devoto"
+                "P26V2_devoto"
               ],
-              "estado": "pendiente_de_validacion",
-              "nota": "Coincidencia preliminar por zona y nombre QGIS; no confirma vigencia horaria ni equivalencia exacta de geometrías."
+              "nota": "Solo locación, sin contexto Nunciatura"
             }
           ],
-          "estado": "pendiente_de_validacion"
+          "paquetes": [
+            "P26V2_mie11"
+          ],
+          "estado": "PLANIFICADO_POR_INFORME",
+          "archivo_qgis": "vista_derivada",
+          "informe_caso": "mie11"
         }
       ]
     }
-  ],
-  "advertencia": "Candidatos inferidos por nombres de carpetas y escenarios. Único vínculo explícito de fecha en manifiesto: Palermo A / sábado 7. Deben validarse coincidencias por ramales y por turnos con responsables de operativo. No dibujar escenarios de locaciones distintas como simultáneos sin verificación.",
-  "manual": "El selector solo abre un paquete por vez. No fusiona GeoJSON, no establece si hay cortes vigentes ni valida que los totales de reporte se correspondan con cantidad de geometrías."
+  ]
 }
