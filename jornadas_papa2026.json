@@ -3,7 +3,7 @@
   "revision": 3,
   "fuente_informe": "Visita León XIV - CGM (1).html",
   "fuente_qgis": "OPERATIVO PAPA 2026 (2.11.26)-20261103T143726Z-1-001.zip",
-  "advertencia": "Planificación propuesta. No representa vigencia ni aprobación en calle. Escenario D en proceso. Las vistas derivadas son composiciones de archivos QGIS originales sin recalcular rutas.",
+  "advertencia": "Planificación propuesta. No representa vigencia ni aprobación en calle. Escenarios D del 8, 9 y 10 aprobados; la vigencia en calle debe confirmarse por separado. Las vistas derivadas son composiciones de archivos QGIS originales sin recalcular rutas.",
   "jornadas": [
     {
       "fecha": "2026-11-04",
@@ -285,7 +285,7 @@
         },
         {
           "id": "D",
-          "nombre": "Escenario D · Caos total (en proceso)",
+          "nombre": "Escenario D · Caos total",
           "descripcion": "Nunciatura + Plaza San Martín + Catedral + CCK + Palermo · Esc. D (caos total)",
           "total_lineas": 71,
           "total_paradas_anuladas": 405,
@@ -322,7 +322,7 @@
           "paquetes": [
             "P26V2_dom8D"
           ],
-          "estado": "EN_PROCESO_NO_APROBADO",
+          "estado": "APROBADO",
           "archivo_qgis": "vista_derivada",
           "informe_caso": "dom8D"
         }
@@ -464,7 +464,7 @@
         },
         {
           "id": "D",
-          "nombre": "Escenario D · Caos total (en proceso)",
+          "nombre": "Escenario D · Caos total",
           "descripcion": "Nunciatura + Plaza San Martín + Catedral + UCA + Palermo · Esc. D (caos total)",
           "total_lineas": 72,
           "total_paradas_anuladas": 416,
@@ -501,7 +501,7 @@
           "paquetes": [
             "P26V2_lun9D"
           ],
-          "estado": "EN_PROCESO_NO_APROBADO",
+          "estado": "APROBADO",
           "archivo_qgis": "vista_derivada",
           "informe_caso": "lun9D"
         }
@@ -622,7 +622,7 @@
         },
         {
           "id": "D",
-          "nombre": "Escenario D · Caos total (en proceso)",
+          "nombre": "Escenario D · Caos total",
           "descripcion": "Nunciatura (recortada) + Palermo · Esc. D (caos total)",
           "total_lineas": 32,
           "total_paradas_anuladas": 236,
@@ -652,7 +652,7 @@
           "paquetes": [
             "P26V2_mar10D"
           ],
-          "estado": "EN_PROCESO_NO_APROBADO",
+          "estado": "APROBADO",
           "archivo_qgis": "8_MAR_10.11.26/MARTES 10.11 (D)/",
           "informe_caso": "mar10D"
         }

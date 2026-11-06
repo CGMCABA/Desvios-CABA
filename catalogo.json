@@ -1,4 +1,4 @@
-﻿{
+{
     "version":  1,
     "afectaciones":  [
                          {
@@ -247,7 +247,7 @@
                                            },
                                            {
                                                "id":  "p26v2_pald",
-                                               "nombre":  "Operativo Papa 2026 · palD · EN PROCESO",
+                                               "nombre":  "Operativo Papa 2026 - Palermo D",
                                                "carpeta":  "P26V2_palD",
                                                "activa":  true,
                                                "origen":  "PAPA2026_NOV_2026",
@@ -450,7 +450,7 @@
                          },
                          {
                              "id":  "p26v2_pald",
-                             "nombre":  "Operativo Papa 2026 · palD · EN PROCESO",
+                             "nombre":  "Operativo Papa 2026 - Palermo D",
                              "carpeta":  "P26V2_palD",
                              "activa":  true,
                              "origen":  "PAPA2026_NOV_2026",
