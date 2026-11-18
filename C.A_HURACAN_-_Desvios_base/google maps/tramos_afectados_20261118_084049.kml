@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='utf-8'?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document id="root_doc">
+    <Style id="line-A52714-10106-normal"><LineStyle><color>ff1427a5</color><width>10.106</width></LineStyle></Style><Style id="line-A52714-10106-highlight"><LineStyle><color>ff1427a5</color><width>15.159</width></LineStyle></Style><StyleMap id="line-A52714-10106"><Pair><key>normal</key><styleUrl>#line-A52714-10106-normal</styleUrl></Pair><Pair><key>highlight</key><styleUrl>#line-A52714-10106-highlight</styleUrl></Pair></StyleMap><Document id="tramos_afectados_20261118_084049">
+      <name>tramos_afectados_20261118_084049</name>
+      <Placemark id="tramos_afectados_20261118_084049.1">
+        <name>COLONIA AV.</name><description>entre LOS PATOS y CHUTRO, PEDRO, PROF., DR.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3975342565516,-34.6393583405474,0
+            -58.3969029961469,-34.6409336460042,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_084049.2">
+        <name>LUNA</name><description>entre LOS PATOS y CHUTRO, PEDRO, PROF., DR.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3991779132015,-34.6395975784497,0
+            -58.3985221609948,-34.6401848624274,0
+            -58.3982713645333,-34.6412133997863,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_084049.3">
+        <name>ALCORTA, AMANCIO AV.</name><description>entre MONASTERIO y GARCIA, MANUEL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3938059831911,-34.6415614329391,0
+            -58.3950061884715,-34.6419006349286,0
+            -58.3950725373289,-34.6419345455892,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_084049.4">
+        <name>GARCIA, MANUEL</name><description>entre CHUTRO, PEDRO, PROF., DR. y ALCORTA, AMANCIO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3955550043996,-34.6406500149092,0
+            -58.3950725373289,-34.6419345455892,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_084049.5">
+        <name>ALCORTA, AMANCIO AV.</name><description>entre GARCIA, MANUEL y COLONIA AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3950725373289,-34.6419345455892,0
+            -58.3962589902041,-34.6425407720138,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_084049.6">
+        <name>COLONIA AV.</name><description>entre CHUTRO, PEDRO, PROF., DR. y ALCORTA, AMANCIO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3969029961469,-34.6409336460042,0
+            -58.3962589902041,-34.6425407720138,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_084049.7">
+        <name>MONASTERIO</name><description>entre ALCORTA, AMANCIO AV. y MIRAVE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3938059831911,-34.6415614329391,0
+            -58.393510318775,-34.6429801491389,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_084049.8">
+        <name>ALCORTA, AMANCIO AV.</name><description>entre COLONIA AV. y LUNA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3962589902041,-34.6425407720138,0
+            -58.397746296762,-34.6433006713207,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_084049.9">
+        <name>LUNA</name><description>entre CHUTRO, PEDRO, PROF., DR. y ALCORTA, AMANCIO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3982713645333,-34.6412133997863,0
+            -58.3978366019096,-34.6429961398666,0
+            -58.397746296762,-34.6433006713207,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_084049.10">
+        <name>ALCORTA, AMANCIO AV.</name><description>entre LUNA y MONTESQUIEU</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.397746296762,-34.6433006713207,0
+            -58.3980899773319,-34.6434762091222,0
+            -58.3991671700822,-34.6440564329508,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_084049.11">
+        <name>MONTESQUIEU</name><description>entre CHUTRO, PEDRO, PROF., DR. y ALCORTA, AMANCIO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3997058252177,-34.6414307777935,0
+            -58.3991671700822,-34.6440564329508,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_084049.12">
+        <name>MIRAVE</name><description>entre MONASTERIO y GARCIA, MANUEL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.393510318775,-34.6429801491389,0
+            -58.3947783067223,-34.6435184541946,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_084049.13">
+        <name>LUNA</name><description>entre ALCORTA, AMANCIO AV. y MIRAVE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.397746296762,-34.6433006713207,0
+            -58.3976677813374,-34.6435652087127,0
+            -58.3972627134335,-34.6445731128966,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_084049.14">
+        <name>ALCORTA, AMANCIO AV.</name><description>entre MONTESQUIEU y LAVARDEN</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3991671700822,-34.6440564329508,0
+            -58.4002479553458,-34.6446384096526,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_084049.15">
+        <name>MIRAVE</name><description>entre LUNA y MONTESQUIEU</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3972627134335,-34.6445731128966,0
+            -58.398525606838,-34.6451120908503,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_084049.16">
+        <name>LUNA</name><description>entre MIRAVE y PIAZZOLLA, ASTOR</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3972627134335,-34.6445731128966,0
+            -58.3971864293004,-34.6446951867418,0
+            -58.396989179259,-34.6451798429659,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_084049.17">
+        <name>MIRAVE</name><description>entre MONTESQUIEU y MAFALDA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.398525606838,-34.6451120908503,0
+            -58.3996817748049,-34.6456003181773,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_084049.18">
+        <name>MIRAVE</name><description>entre LAVARDEN y MAFALDA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3996817748049,-34.6456003181773,0
+            -58.4003824861931,-34.645900742591,0
+            -58.400495123857,-34.6459167162697,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_084049.19">
+        <name>MIRAVE</name><description>entre GARCIA, MANUEL y COLONIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3947783067223,-34.6435184541946,0
+            -58.3959922953598,-34.6440338157563,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_084049.20">
+        <name>MIRAVE</name><description>entre LUNA y COLONIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.3959922953598,-34.6440338157563,0
+            -58.3972627134335,-34.6445731128966,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+    </Document>
+  </Document>
+</kml>

@@ -1,0 +1,141 @@
+08:40:33 === sesión de motor iniciada ===
+08:40:33 [AFECTACIONES] Sin restricciones TENOR TOTAL
+08:40:33 [MOTOR WEB] archivo=C:\Users\Operador\Desktop\Desvios de colectivos\desvios_colectivo_v3_jerarquia.py
+08:40:33 [MOTOR WEB] sha256=2a4d86e9081c83599bf4ac5a70758fd043657b533c2561637ed1ca2932e825da
+08:40:33 [MOTOR WEB] seleccion_ids=['20331', '20420', '20632', '20637', '20825', '20826', '20955', '21028', '21029', '21259', '21260', '21429', '21430', '21449', '21877', '31437', '32380', '32381', '32588', '32589']
+08:40:33 [MOTOR WEB] corte id=20331 | calle=COLONIA AV. | entre=LOS PATOS / CHUTRO, PEDRO, PROF., DR.
+08:40:33 [MOTOR WEB] corte id=20420 | calle=LUNA | entre=LOS PATOS / CHUTRO, PEDRO, PROF., DR.
+08:40:33 [MOTOR WEB] corte id=20632 | calle=ALCORTA, AMANCIO AV. | entre=MONASTERIO / GARCIA, MANUEL
+08:40:33 [MOTOR WEB] corte id=20637 | calle=GARCIA, MANUEL | entre=CHUTRO, PEDRO, PROF., DR. / ALCORTA, AMANCIO AV.
+08:40:33 [MOTOR WEB] corte id=20825 | calle=ALCORTA, AMANCIO AV. | entre=GARCIA, MANUEL / COLONIA AV.
+08:40:33 [MOTOR WEB] corte id=20826 | calle=COLONIA AV. | entre=CHUTRO, PEDRO, PROF., DR. / ALCORTA, AMANCIO AV.
+08:40:33 [MOTOR WEB] corte id=20955 | calle=MONASTERIO | entre=ALCORTA, AMANCIO AV. / MIRAVE
+08:40:33 [MOTOR WEB] corte id=21028 | calle=ALCORTA, AMANCIO AV. | entre=COLONIA AV. / LUNA
+08:40:33 [MOTOR WEB] corte id=21029 | calle=LUNA | entre=CHUTRO, PEDRO, PROF., DR. / ALCORTA, AMANCIO AV.
+08:40:33 [MOTOR WEB] corte id=21259 | calle=ALCORTA, AMANCIO AV. | entre=LUNA / MONTESQUIEU
+08:40:33 [MOTOR WEB] corte id=21260 | calle=MONTESQUIEU | entre=CHUTRO, PEDRO, PROF., DR. / ALCORTA, AMANCIO AV.
+08:40:33 [MOTOR WEB] corte id=21429 | calle=MIRAVE | entre=MONASTERIO / GARCIA, MANUEL
+08:40:33 [MOTOR WEB] corte id=21430 | calle=LUNA | entre=ALCORTA, AMANCIO AV. / MIRAVE
+08:40:33 [MOTOR WEB] corte id=21449 | calle=ALCORTA, AMANCIO AV. | entre=MONTESQUIEU / LAVARDEN
+08:40:33 [MOTOR WEB] corte id=21877 | calle=MIRAVE | entre=LUNA / MONTESQUIEU
+08:40:33 [MOTOR WEB] corte id=31437 | calle=LUNA | entre=MIRAVE / PIAZZOLLA, ASTOR
+08:40:33 [MOTOR WEB] corte id=32380 | calle=MIRAVE | entre=MONTESQUIEU / MAFALDA
+08:40:33 [MOTOR WEB] corte id=32381 | calle=MIRAVE | entre=LAVARDEN / MAFALDA
+08:40:33 [MOTOR WEB] corte id=32588 | calle=MIRAVE | entre=GARCIA, MANUEL / COLONIA
+08:40:33 [MOTOR WEB] corte id=32589 | calle=MIRAVE | entre=LUNA / COLONIA
+08:40:33 [BRIDGE] processing.run() — inicio
+08:40:33 SCRIPT BUILD: 2026-02-20 bufferROI + groupTop + XYZbottom
+08:40:33 MOTOR ACTIVO: desvios_colectivo_v3_jerarquia.py
+08:40:33 [COMPAT] QGIS 3.20.3-Odense | tipos de campo=Type | unidad metros=si
+08:40:33 FUENTE CALLEJERO: C:\Users\Operador\Desktop\Desvios de colectivos\callejero_entrecalles.geojson
+08:40:33 FUENTE COLECTIVOS: C:\Users\Operador\AppData\Local\Temp\desvios_calculo_zh3frbsr\.colectivos_combinados.geojson
+08:40:33 FEATURES COLECTIVOS: 979
+08:40:36 Results: {'OUTPUT': 'Selected_features_616bd1f0_0c87_4465_8ac6_d22945bb75a2'}
+08:40:36 [PERF-PROC] native:saveselectedfeatures | 2.077s | features=20
+08:40:42 Results: {'OUTPUT': 'Reprojected_722e4561_81dd_4c26_a5aa_864399b8ea49'}
+08:40:45 Results: {'OUTPUT': 'Reprojected_450c224a_d70d_4c95_9009_aef565e8bf26'}
+08:40:45 Results: {'OUTPUT': 'Reprojected_32746e06_cfce_4e42_8b04_f31e0e0bce79'}
+08:40:45 Results: {'OUTPUT': 'Reprojected_722e4561_81dd_4c26_a5aa_864399b8ea49'}
+08:40:45 Results: {'OUTPUT': 'Reprojected_450c224a_d70d_4c95_9009_aef565e8bf26'}
+08:40:45 Results: {'OUTPUT': 'Reprojected_32746e06_cfce_4e42_8b04_f31e0e0bce79'}
+08:40:45 Results: {'OUTPUT': 'Reprojected_4cc19f8d_2dba_4aa5_a434_5ad8d4e32d15'}
+08:40:45 [Semáforos] Exención de giro a la izquierda activa | cruces=3955 | rigen reglas base (giro_izq=0)=3663 | eximen giro (giro_izq=1)=292 | sin semáforo -> también exime | tolerancia=22 m
+08:40:45 [Modo zona] 20 tramos seleccionados. ROI=700 m, AutoBuffer desactivado (1 sola pasada).
+08:40:45 [AutoBuffer] Ciclo #1 | Buffer ROI = 700 m
+08:40:45 [COMPAT] native:buffer: esta version de QGIS no acepta SEPARATE_DISJOINT; se omite
+08:40:45 Results: {'OUTPUT': 'Buffered_bdb21829_2b9a_4178_ba2a_2a8cd5e5ee80'}
+08:40:45 [PERF-PROC] native:buffer | 0.005s | features=1
+08:40:45 Results: {'OUTPUT': 'Extracted__location__4f5c6d76_e652_4e65_8e17_ce5fad5880fa'}
+08:40:45 [PERF-PROC] native:extractbylocation | 0.013s | features=423
+08:40:45 Results: {'OUTPUT': 'Extracted__location__4f5c6d76_e652_4e65_8e17_ce5fad5880fa'}
+08:40:46 Results: {'OUTPUT': 'Extracted__location__92bd7bff_6bd0_4cbe_9c75_510fc6d10ec9'}
+08:40:46 [PERF-PROC] native:extractbylocation | 0.045s | features=86
+08:40:46 Results: {'OUTPUT': 'Extracted__location__92bd7bff_6bd0_4cbe_9c75_510fc6d10ec9'}
+08:40:46 [COMPAT] native:difference: esta version de QGIS no acepta GRID_SIZE; se omite
+08:40:46 Results: {'OUTPUT': 'Difference_14777942_fa7c_418e_8b33_748488ddbe85'}
+08:40:46 [PERF-PROC] native:difference | 0.013s | features=403
+08:40:46 Results: {'OUTPUT': 'Difference_14777942_fa7c_418e_8b33_748488ddbe85'}
+08:40:46 Results: {'OUTPUT': 'Centroids_3320421a_693f_4fe3_96e7_caab14f142f5'}
+08:40:46 [PERF-PROC] native:centroids | 0.004s | features=20
+08:40:46 Results: {'OUTPUT': 'Centroids_3320421a_693f_4fe3_96e7_caab14f142f5'}
+08:40:46 [COMPAT] native:buffer: esta version de QGIS no acepta SEPARATE_DISJOINT; se omite
+08:40:46 Results: {'OUTPUT': 'Buffered_c21e967b_ff26_4404_bc4b_4c55e66dd027'}
+08:40:46 [PERF-PROC] native:buffer | 0.003s | features=20
+08:40:46 Results: {'OUTPUT': 'Buffered_c21e967b_ff26_4404_bc4b_4c55e66dd027'}
+08:40:46 Results: {'OUTPUT': 'Dissolved_631828b2_999d_47d5_a508_dfc504dcfa1e'}
+08:40:46 [PERF-PROC] native:dissolve | 0.004s | features=1
+08:40:46 Results: {'OUTPUT': 'Dissolved_631828b2_999d_47d5_a508_dfc504dcfa1e'}
+08:40:46 [COMPAT] native:buffer: esta version de QGIS no acepta SEPARATE_DISJOINT; se omite
+08:40:46 Results: {'OUTPUT': 'Buffered_845c50c3_601f_46ac_98f4_42a32d897859'}
+08:40:46 [PERF-PROC] native:buffer | 0.006s | features=1
+08:40:46 Results: {'OUTPUT': 'Buffered_845c50c3_601f_46ac_98f4_42a32d897859'}
+08:40:46 Results: {'OUTPUT': 'Centroids_3bf7d9c7_d1eb_4aaf_910e_6543f2719b36'}
+08:40:46 [PERF-PROC] native:centroids | 0.005s | features=403
+08:40:46 Results: {'OUTPUT': 'Centroids_3bf7d9c7_d1eb_4aaf_910e_6543f2719b36'}
+08:40:46 [COMPAT] native:buffer: esta version de QGIS no acepta SEPARATE_DISJOINT; se omite
+08:40:46 Results: {'OUTPUT': 'Buffered_4a128fb8_6b39_412e_939f_4040ce8e8fd2'}
+08:40:46 [PERF-PROC] native:buffer | 0.013s | features=403
+08:40:46 Results: {'OUTPUT': 'Buffered_4a128fb8_6b39_412e_939f_4040ce8e8fd2'}
+08:40:46 Results: {'OUTPUT': 'Extracted__location__0ee60363_acf4_4a70_acfa_31b64295af89'}
+08:40:46 [PERF-PROC] native:extractbylocation | 0.116s | features=6
+08:40:46 Results: {'OUTPUT': 'Extracted__location__0ee60363_acf4_4a70_acfa_31b64295af89'}
+08:40:46 Results: {'OUTPUT': 'Clipped_12cd99bd_11de_4f67_915b_e095819cdec5'}
+08:40:46 [PERF-PROC] native:clip | 0.003s | features=6
+08:40:46 Results: {'OUTPUT': 'Clipped_12cd99bd_11de_4f67_915b_e095819cdec5'}
+08:40:46 Results: {'OUTPUT': 'lineas_base_por_fid_ab63d5df_5582_4a62_b0ef_0481fea0164b'}
+08:40:46 [TERMINAL DIAG] fid_co=508 | dist_O=9873.6m | dist_D=0.0m | ini_afect=0.0m | fin_afect=0.0m | BUF=50.0m | EXCLUIDA | motivos=extremo_destino_cerca_corte
+08:40:46 [TERMINAL DIAG] fid_co=506 | dist_O=1.8m | dist_D=9873.6m | ini_afect=0.0m | fin_afect=0.0m | BUF=50.0m | EXCLUIDA | motivos=extremo_origen_cerca_corte
+08:40:46 [COMPAT] native:difference: esta version de QGIS no acepta GRID_SIZE; se omite
+08:40:46 Results: {'OUTPUT': 'Difference_6fa15307_b1f3_4a12_9a6d_e605b57244f8'}
+08:40:46 [PERF-PROC] native:difference | 0.004s | features=6
+08:40:46 Results: {'OUTPUT': 'Difference_6fa15307_b1f3_4a12_9a6d_e605b57244f8'}
+08:40:46 Results: {'OUTPUT': 'Single_parts_9a8e0d5c_ab51_4b73_8bc1_a00f97f1ebec'}
+08:40:46 [PERF-PROC] native:multiparttosingleparts | 0.002s | features=23
+08:40:46 Results: {'OUTPUT': 'Single_parts_9a8e0d5c_ab51_4b73_8bc1_a00f97f1ebec'}
+08:40:46 Results: {'OUTPUT': 'lineas_cortadas_con_vertex_aeec125d_d326_45fb_b15b_48b750f3a918'}
+08:40:46 Results: {'JOINED_COUNT': 115, 'OUTPUT': 'Joined_layer_4ff51e08_4041_4b79_b52f_65ce7001dfa4'}
+08:40:46 [PERF-PROC] native:joinattributesbylocation | 0.040s | features=115
+08:40:46 Results: {'OUTPUT': 'Joined_layer_4ff51e08_4041_4b79_b52f_65ce7001dfa4'}
+08:40:46 Results: {'OUTPUT': 'Centroids_e3bb9ef8_bc0a_4814_96a2_acf0496b5cbb'}
+08:40:46 [PERF-PROC] native:centroids | 0.004s | features=115
+08:40:46 Results: {'OUTPUT': 'Centroids_e3bb9ef8_bc0a_4814_96a2_acf0496b5cbb'}
+08:40:46 [COMPAT] native:difference: esta version de QGIS no acepta GRID_SIZE; se omite
+08:40:46 Results: {'OUTPUT': 'Difference_808c6275_8adb_495a_b1c7_884ba255250f'}
+08:40:46 [PERF-PROC] native:difference | 0.004s | features=6
+08:40:46 Results: {'OUTPUT': 'Difference_808c6275_8adb_495a_b1c7_884ba255250f'}
+08:40:46 [PERF-FASE] construccion_OD_desde_centroides | 0.022s | centroides=115 fids=6
+08:40:46 AVISO: [OD-DIAG] fid_co=506 118 - A - IDA | origenes_validos=0 destinos_validos=0 | centroides_raw=25 vertex_O=0 vertex_D=0 otros_vertex=0 node_fail=0 terminal_skip=25 | ROI=700m recorte_linea=60m det_lineas=15m
+08:40:46 AVISO: [OD-DIAG] fid_co=508 118 - A - VUELTA | origenes_validos=0 destinos_validos=0 | centroides_raw=18 vertex_O=0 vertex_D=0 otros_vertex=0 node_fail=0 terminal_skip=18 | ROI=700m recorte_linea=60m det_lineas=15m
+08:40:48 [REENGANCHE D OK] fid_co=585 | D (371453.9220824067, 6165215.271057711) -> (371534.96704813547, 6165343.379282677) | score_conductor 5030.1->4831.0 | cambios 5->5
+08:40:48 [POSTOPT V3.3 OK] fid_co=585 | global=False | interno=False | reenganche_D=True | Ruta=COLONIA AV. - LOS PATOS - GARCIA, MANUEL - USPALLATA - ZAVALETA - ALCORTA, AMANCIO AV. - SU RUTA
+08:40:48 [OD mínimo 2 pares] fid_co=585: 2/15 pares OD evaluados; seleccionado OD rank=1
+08:40:48 [REENGANCHE D OK] fid_co=193 | D (371519.5060766273, 6165409.879957821) -> (371452.26274419145, 6165744.437102279) | score_conductor 4454.8->3874.2 | cambios 4->4
+08:40:48 [POSTOPT V3.3 OK] fid_co=193 | global=False | interno=False | reenganche_D=True | Ruta=COLONIA AV. - LOS PATOS - GARCIA, MANUEL - USPALLATA - ZAVALETA - SU RUTA
+08:40:48 [OD mínimo 2 pares] fid_co=193: 2/20 pares OD evaluados; seleccionado OD rank=2
+08:40:48 [REENGANCHE D OK] fid_co=943 | D (372830.76160812087, 6166185.700915744) -> (372541.4119105697, 6165941.624334045) | score_conductor 3456.2->3132.9 | cambios 2->2
+08:40:48 [POSTOPT V3.3 OK] fid_co=943 | global=False | interno=False | reenganche_D=True | Ruta=SUAREZ - LAFAYETTE - ALCORTA, AMANCIO AV. - SU RUTA
+08:40:48 [OD mínimo 2 pares] fid_co=943: 2/14 pares OD evaluados; seleccionado OD rank=1
+08:40:49 [REENGANCHE D OK] fid_co=196 | D (372830.76160812087, 6166185.700915744) -> (372541.4119105697, 6165941.624334045) | score_conductor 3456.2->3132.9 | cambios 2->2
+08:40:49 [POSTOPT V3.3 OK] fid_co=196 | global=False | interno=False | reenganche_D=True | Ruta=SUAREZ - LAFAYETTE - ALCORTA, AMANCIO AV. - SU RUTA
+08:40:49 [OD mínimo 2 pares] fid_co=196: 2/14 pares OD evaluados; seleccionado OD rank=1
+08:40:49 [FAMILIA V3.3 RESUMEN] familias_multi=1 | herencias_aplicadas=0
+08:40:49 [POSTOPT V3.3 RESUMEN] llamadas=4 | mejoras_globales=0 | mejoras_internas=0 | reenganches_D=4 | herencias_familia=0 | sin_cambio=0 | errores=0 | ventanas=53 | D_probados=37 | tiempo=0.272s
+08:40:49 [AutoBuffer] Resultado ciclo #1 | afectadas=6 | excluidas_terminal=2 | objetivo=4 | con_desvio=4 | sin_desvio(criterio)=0 | sin_desvio_con_NXNoPath=0
+08:40:49 [AutoBuffer] Ciclos totales: 1 | Buffer final (ROI): 700 m | modo_zona=True
+08:40:49 [Log ruteo completo] Guardado en: C:\Users\Operador\AppData\Local\Temp\desvios_calculo_zh3frbsr\log_ruteo_todos_fid_20261118_084049.txt
+08:40:49 Results: {'OUTPUT': 'Reprojected_e6707431_fd42_4add_803d_2fa108bdac95'}
+08:40:49 Results: {'OUTPUT': 'Reprojected_5f656136_ce59_4924_a7ac_2a3219b627dd'}
+08:40:49 Results: {'OUTPUT': 'Reprojected_d7e27765_4164_4506_bb9b_e87321ce0cbf'}
+08:40:49 Results: {'OUTPUT': 'Reprojected_08518090_df36_4c54_91cf_601d08f8b63c'}
+08:40:49 Results: {'OUTPUT': 'Reprojected_fbd183aa_d227_46ad_b0d7_8b40271ecee1'}
+08:40:49 Results: {'OUTPUT': 'Reprojected_eecc499c_42e0_4f66_b618_0a595d4389d7'}
+08:40:49 [TERMINAL RESUMEN] excluidas=2 | fids=[506, 508]
+08:40:49 Mapa web exportado en Escritorio: C:\Users\Operador\AppData\Local\Temp\desvios_calculo_zh3frbsr\afectacion_20261118_084049.html
+08:40:50 Results: {'OUTPUT': 'C:\\Users\\Operador\\AppData\\Local\\Temp\\desvios_calculo_zh3frbsr\\desvios_por_ruta_1_3_20261118_084049.kml'}
+08:40:50 KML exportado: 1-3 (3 elementos) -> C:\Users\Operador\AppData\Local\Temp\desvios_calculo_zh3frbsr\desvios_por_ruta_1_3_20261118_084049.kml
+08:40:50 KML de desvíos agrupados por Ruta exportado (3 desvíos) en: C:\Users\Operador\AppData\Local\Temp\desvios_calculo_zh3frbsr\desvios_por_ruta_1_3_20261118_084049.kml
+08:40:50 Results: {'OUTPUT': 'C:\\Users\\Operador\\AppData\\Local\\Temp\\desvios_calculo_zh3frbsr\\tramos_afectados_20261118_084049.kml'}
+08:40:50 Estilo My Maps aplicado al KML de tramos (rojo RGB(165,39,20), ancho ~1/3, estilo uniforme).
+08:40:50 KML de tramos afectados exportado en: C:\Users\Operador\AppData\Local\Temp\desvios_calculo_zh3frbsr\tramos_afectados_20261118_084049.kml
+08:40:50 Results: {'OUT_CENTROIDES_OD': 'Reprojected_d7e27765_4164_4506_bb9b_e87321ce0cbf', 'OUT_DEBUG_RUTEOS': None, 'OUT_DEBUG_SUBTRAMOS': None, 'OUT_DESVIOS': 'Reprojected_eecc499c_42e0_4f66_b618_0a595d4389d7', 'OUT_LINEAS_AFECTADAS': 'Reprojected_08518090_df36_4c54_91cf_601d08f8b63c', 'OUT_LINEAS_CORTADAS': 'Reprojected_fbd183aa_d227_46ad_b0d7_8b40271ecee1', 'OUT_RED_NETA': 'Reprojected_5f656136_ce59_4924_a7ac_2a3219b627dd', 'OUT_TRAMOS': 'Reprojected_e6707431_fd42_4add_803d_2fa108bdac95'}
+08:40:50 [BRIDGE] processing.run() — fin, guardando capas
