@@ -1,0 +1,1462 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>Afectación – 20261118_091917</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <style>
+  :root {
+    --fucsia: #005C59;
+    --rojo: #3949AB;
+    --panel-w: 320px;
+    --report-h: 240px;
+  }
+  html, body { height: 100%; margin: 0; padding: 0; }
+
+  #app {
+    position: absolute; inset: 0;
+    display: flex;
+ height: 100vh;
+ max-height: 100vh;
+ height: -webkit-fill-available;
+    background: #e5e5e5;
+    font-family: system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    font-size: 14px;
+  }
+
+  /* Panel izquierdo (capas) */
+  #leftpanel {
+ position: relative;
+    width: var(--panel-w);
+    background: #fff;
+    border-right: 4px solid var(--fucsia);
+    padding: 10px 12px;
+    overflow-y: auto;
+ overflow-x: visible;
+    box-sizing: border-box;
+    transition: width .25s ease, padding .25s ease, border-right-color .25s ease;
+  }
+  #leftpanel.hidden {
+    width: 0;
+    padding: 0;
+    border-right-color: transparent;
+    overflow: hidden;
+  }
+
+  #main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+ min-height: 0;
+    position: relative;
+  }
+
+  #map {
+    flex: 1;
+    min-height: 200px;
+    background: #e5e5e5;
+  }
+
+  /* Botón único para mostrar/ocultar capas */
+  #btnLayers {
+    position: absolute;
+    z-index: 9999;
+    top: 10px;
+    left: 10px;
+ background-color: #005C59;
+ background: var(--fucsia, #005C59);
+    color: #fff;
+    border: 0;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  
+ opacity: 1;
+}
+
+  /* Drag bar + reporte */
+  #dragbar {
+    height: 10px;
+    cursor: row-resize;
+    background: linear-gradient(90deg, transparent, rgba(57,73,171,.35), transparent);
+    border-top: 1px solid rgba(0,0,0,.08);
+    border-bottom: 1px solid rgba(0,0,0,.08);
+    user-select: none;
+    touch-action: none;
+  }
+
+  #bottompanel {
+    height: var(--report-h);
+    background: #fff;
+    border-top: 4px solid var(--rojo);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    transition: height .25s ease;
+  }
+
+  #bottombar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 8px 10px;
+    border-bottom: 1px solid #ddd;
+    user-select: none;
+  }
+
+  #toggleReport {
+ background-color: #3949AB;
+ background: var(--rojo, #3949AB);
+    color: #fff;
+    border: 0;
+    border-radius: 6px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-weight: 800;
+  
+ opacity: 1;
+}
+
+  #btnCopyReport {
+    background: #111;
+    color: #fff;
+    border: 0;
+    border-radius: 6px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-weight: 800;
+    transition: background .18s ease;
+  }
+  #btnCopyReport.copied {
+    background: #16a34a;
+    animation: btnCopiedPulse .32s ease;
+  }
+  @keyframes btnCopiedPulse { 40% { transform: scale(1.09); } }
+
+  #reporte-html {
+    padding: 10px 12px;
+    overflow-y: auto;
+  }
+
+  #bottompanel.collapsed { height: 38px; }
+  #bottompanel.collapsed #reporte-html { display: none; }
+  #bottompanel.collapsed + #dragbar { display: none; }
+
+  .muted { color: #666; }
+
+  .group {
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 8px;
+    margin: 8px 0;
+  }
+  .group-title {
+    font-weight: 900;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    cursor:pointer;
+    user-select:none;
+  }
+  .group-children { margin-top: 8px; padding-left: 6px; }
+  .group.collapsed .group-children { display: none; }
+
+  /* Flechas como marker rotado */
+  .arrow-end-icon { background: transparent !important; border: 0 !important; }
+  .arrow-end { pointer-events: none; line-height:0; margin:0; padding:0; }
+  .arrow-end svg { display:block; }
+  .base-map-light { filter: saturate(.42) brightness(1.13) contrast(.88); }
+
+  /* Resaltado permanente: paradas asociadas al desvío seleccionado en el panel */
+  .stop-p-icon > span { transition: transform .15s ease; }
+  .stop-p-icon.stop-assoc-hl > span { box-shadow: 0 0 0 2px #ff1f1f, 0 0 0 4px #fff; }
+  .stop-p-icon.stop-shrunk > span { transform: scale(.5); }
+  .group-children label.sel-label { cursor: pointer; }
+  .group-children label.sel-label:hover { text-decoration: underline; }
+  .group-children label.sel-label.is-selected { color: #d61f1f; font-weight: 800; }
+
+  
+/* Barra vertical en degradé al borde del panel de capas (solo cuando está visible) */
+#leftpanel::after {
+ content: '';
+ position: absolute;
+ top: 0;
+ right: -10px;
+ width: 10px;
+ height: 100%;
+ background: linear-gradient(180deg, transparent, rgba(0,92,89,.35), transparent);
+ border-left: 1px solid rgba(0,0,0,.08);
+ border-right: 1px solid rgba(0,0,0,.08);
+ pointer-events: none;
+}
+#leftpanel.hidden::after { display: none; }
+
+/* iOS Safari: usar dynamic viewport height cuando está disponible */
+@supports (height: 100dvh) {
+  #app { height: 100dvh; max-height: 100dvh; }
+}
+</style>
+</head>
+<body>
+  <div id="app">
+    <div id="leftpanel" class="hidden">
+      <h2>Capas y elementos</h2>
+      <div id="checklist"></div>
+      <hr/>
+      <h3>Mapa base</h3>
+      <div id="basemap"></div>
+    </div>
+
+    <div id="main">
+      <button id="btnLayers" type="button">Mostrar capas</button>
+      <div id="map"></div>
+      <div id="dragbar" title="Arrastrá para cambiar la altura del reporte"></div>
+      <div id="bottompanel" class="collapsed">
+        <div id="bottombar">
+          <div><strong>Reporte</strong> <span class="muted">– 18/11 - 09:18</span></div>
+          <div style="display:flex; gap:8px;">
+            <button id="btnCopyReport" type="button">Copiar</button>
+            <button id="toggleReport" type="button">Mostrar reporte</button>
+          </div>
+        </div>
+        <div id="reporte-html"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+  const TRAMOS = {"type": "FeatureCollection", "features": [{"type": "Feature", "geometry": {"coordinates": [[[-58.44193872826398, -34.65088971747921], [-58.442794680877576, -34.651089302459496], [-58.44294064354648, -34.651116551266355]]], "type": "MultiLineString"}, "properties": {"id": 23225, "codigo": 4108, "nomoficial": "MORENO, PERITO AV.", "alt_izqini": 2302, "alt_izqfin": 2370, "alt_derini": 0, "alt_derfin": 0, "tipo_c": "AVENIDA", "long": 95.2545240243381, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA DISTRIBUIDORA PRINCIPAL", "tipo_ffcc": "Sin Iteracción", "barrio": "FLORES", "Calle1": "MORENO, PERITO AV.", "Calle2": "NULL", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 1, "wkt": "MultiLineString ((-58.44193873 -34.65088972, -58.44279468 -34.6510893, -58.44294064 -34.65111655))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 1, "ce": 0, "cant_linea": 4.0, "criticidad": 100, "ZONA_FUNC": "5", "ZONA_CPU": "OTRO", "congestion": 22, "jerarquia": 2, "COMUNA": 7, "cb": 0, "alta_compl": 1}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.44153407715993, -34.653007407135284], [-58.440404429563614, -34.65388734700667]]], "type": "MultiLineString"}, "properties": {"id": 23847, "codigo": 23011, "nomoficial": "VARELA AV.", "alt_izqini": 2502, "alt_izqfin": 2600, "alt_derini": 0, "alt_derfin": 0, "tipo_c": "AVENIDA", "long": 142.3166508380842, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "FLORES", "Calle1": "PLAZA", "Calle2": "NULL", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.44153408 -34.65300741, -58.44040443 -34.65388735))", "escuela": 0, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 6.0, "criticidad": 100, "ZONA_FUNC": "5", "ZONA_CPU": "E4", "congestion": 22, "jerarquia": 4, "COMUNA": 7, "cb": 0, "alta_compl": 1}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.4416665645736, -34.6531148962294], [-58.44053734203532, -34.65399842896497]]], "type": "MultiLineString"}, "properties": {"id": 23877, "codigo": 23011, "nomoficial": "VARELA AV.", "alt_izqini": 0, "alt_izqfin": 0, "alt_derini": 2501, "alt_derfin": 2599, "tipo_c": "AVENIDA", "long": 142.56194361566617, "sentido": "CRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "VILLA SOLDATI", "Calle1": "JANER, ANA MARIA", "Calle2": "NULL", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.44166656 -34.6531149, -58.44053734 -34.65399843))", "escuela": 0, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 100, "ZONA_FUNC": "6", "ZONA_CPU": "E4", "congestion": 6, "jerarquia": 4, "COMUNA": 8, "cb": 0, "alta_compl": 1}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.440404429563614, -34.65388734700667], [-58.439487090094644, -34.65460182389361]]], "type": "MultiLineString"}, "properties": {"id": 24033, "codigo": 23011, "nomoficial": "VARELA AV.", "alt_izqini": 2602, "alt_izqfin": 2700, "alt_derini": 0, "alt_derfin": 0, "tipo_c": "AVENIDA", "long": 115.56231089638314, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "FLORES", "Calle1": "CHILAVERT, MARTINIANO, CORONEL", "Calle2": "NULL", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.44040443 -34.65388735, -58.43948709 -34.65460182))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 6.0, "criticidad": 100, "ZONA_FUNC": "5", "ZONA_CPU": "E4", "congestion": 22, "jerarquia": 4, "COMUNA": 7, "cb": 0, "alta_compl": 1}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.44053734203532, -34.65399842896497], [-58.439607817317594, -34.654708045285226]]], "type": "MultiLineString"}, "properties": {"id": 24062, "codigo": 23011, "nomoficial": "VARELA AV.", "alt_izqini": 0, "alt_izqfin": 0, "alt_derini": 2601, "alt_derfin": 2699, "tipo_c": "AVENIDA", "long": 116.0110915362176, "sentido": "CRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "VILLA SOLDATI", "Calle1": "CHILAVERT, MARTINIANO, CORONEL", "Calle2": "NULL", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.44053734 -34.65399843, -58.43960782 -34.65470805))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 100, "ZONA_FUNC": "6", "ZONA_CPU": "E4", "congestion": 6, "jerarquia": 4, "COMUNA": 8, "cb": 0, "alta_compl": 1}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.441777796229836, -34.65303407029498], [-58.44188097125465, -34.6531314834878], [-58.44385912644577, -34.65473429034268]]], "type": "MultiLineString"}, "properties": {"id": 24065, "codigo": 22006, "nomoficial": "JANER, ANA MARIA", "alt_izqini": 0, "alt_izqfin": 0, "alt_derini": 2501, "alt_derfin": 2799, "tipo_c": "CALLE", "long": 268.33607176465205, "sentido": "CRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "VILLA SOLDATI", "Calle1": "VARELA AV.", "Calle2": "NULL", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.4417778 -34.65303407, -58.44188097 -34.65313148, -58.44385913 -34.65473429))", "escuela": 0, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 6.0, "criticidad": 16, "ZONA_FUNC": "6", "ZONA_CPU": "U1", "congestion": 6, "jerarquia": 4, "COMUNA": 8, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.4416665645736, -34.6531148962294], [-58.44376033717431, -34.65481335957268]]], "type": "MultiLineString"}, "properties": {"id": 24086, "codigo": 22006, "nomoficial": "JANER, ANA MARIA", "alt_izqini": 2502, "alt_izqfin": 2800, "alt_derini": 0, "alt_derfin": 0, "tipo_c": "CALLE", "long": 268.97227418475376, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "VILLA SOLDATI", "Calle1": "VARELA AV.", "Calle2": "NULL", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.44166656 -34.6531149, -58.44376034 -34.65481336))", "escuela": 0, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 3, "ZONA_FUNC": "6", "ZONA_CPU": "U1", "congestion": 6, "jerarquia": 4, "COMUNA": 8, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.439487090094644, -34.65460182389361], [-58.43884668201353, -34.65510057361234], [-58.43841909708456, -34.65548992622289]]], "type": "MultiLineString"}, "properties": {"id": 24235, "codigo": 23011, "nomoficial": "VARELA AV.", "alt_izqini": 2702, "alt_izqfin": 2800, "alt_derini": 0, "alt_derfin": 0, "tipo_c": "AVENIDA", "long": 139.00073726312112, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "FLORES", "Calle1": "CHILAVERT, MARTINIANO, CORONEL", "Calle2": "FERNANDEZ DE LA CRUZ, F., GRAL. AV.", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.43948709 -34.65460182, -58.43884668 -34.65510057, -58.4384191 -34.65548993))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 6.0, "criticidad": 100, "ZONA_FUNC": "5", "ZONA_CPU": "E4", "congestion": 22, "jerarquia": 4, "COMUNA": 7, "cb": 0, "alta_compl": 1}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.439607817317594, -34.654708045285226], [-58.43850413088903, -34.65554754954506]]], "type": "MultiLineString"}, "properties": {"id": 24239, "codigo": 23011, "nomoficial": "VARELA AV.", "alt_izqini": 0, "alt_izqfin": 0, "alt_derini": 2701, "alt_derfin": 2799, "tipo_c": "AVENIDA", "long": 137.51608567959164, "sentido": "CRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "VILLA SOLDATI", "Calle1": "FERNANDEZ DE LA CRUZ, F., GRAL. AV.", "Calle2": "CHILAVERT, MARTINIANO, CORONEL", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.43960782 -34.65470805, -58.43850413 -34.65554755))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 100, "ZONA_FUNC": "6", "ZONA_CPU": "UP", "congestion": 6, "jerarquia": 4, "COMUNA": 8, "cb": 0, "alta_compl": 1}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.44385912644577, -34.65473429034268], [-58.44460782418247, -34.65534004512736], [-58.445778224489274, -34.65628501364397], [-58.44619190811584, -34.656626975925946], [-58.44627907786283, -34.656690298376674]]], "type": "MultiLineString"}, "properties": {"id": 24483, "codigo": 22006, "nomoficial": "JANER, ANA MARIA", "alt_izqini": 0, "alt_izqfin": 0, "alt_derini": 2801, "alt_derfin": 2999, "tipo_c": "CALLE", "long": 310.341913095295, "sentido": "CRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "VILLA SOLDATI", "Calle1": "ESTOMBA", "Calle2": "HEREDIA", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.44385913 -34.65473429, -58.44460782 -34.65534005, -58.44577822 -34.65628501, -58.44619191 -34.65662698, -58.44627908 -34.6566903))", "escuela": 0, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 6.0, "criticidad": 16, "ZONA_FUNC": "6", "ZONA_CPU": "U1", "congestion": 6, "jerarquia": 4, "COMUNA": 8, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.439607817317594, -34.654708045285226], [-58.441921715830766, -34.65674404920639]]], "type": "MultiLineString"}, "properties": {"id": 24495, "codigo": 3229, "nomoficial": "CHILAVERT, MARTINIANO, CORONEL", "alt_izqini": 2602, "alt_izqfin": 2800, "alt_derini": 2601, "alt_derfin": 2799, "tipo_c": "CALLE", "long": 309.8575770691097, "sentido": "DOBLE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "VILLA SOLDATI", "Calle1": "VARELA AV.", "Calle2": "CASTAÑON", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.43960782 -34.65470805, -58.44192172 -34.65674405))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 24, "ZONA_FUNC": "6", "ZONA_CPU": "R2", "congestion": 6, "jerarquia": 4, "COMUNA": 8, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.44376033717431, -34.65481335957268], [-58.44617517463908, -34.656772115319505]]], "type": "MultiLineString"}, "properties": {"id": 24503, "codigo": 22006, "nomoficial": "JANER, ANA MARIA", "alt_izqini": 2802, "alt_izqfin": 3000, "alt_derini": 0, "alt_derfin": 0, "tipo_c": "CALLE", "long": 310.2017797409124, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "VILLA SOLDATI", "Calle1": "LAFUENTE AV.", "Calle2": "NULL", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.44376034 -34.65481336, -58.44617517 -34.65677212))", "escuela": 0, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 6.0, "criticidad": 16, "ZONA_FUNC": "6", "ZONA_CPU": "U1", "congestion": 6, "jerarquia": 4, "COMUNA": 8, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.441921715830766, -34.65674404920639], [-58.44285972964139, -34.65757013059436]]], "type": "MultiLineString"}, "properties": {"id": 24687, "codigo": 3229, "nomoficial": "CHILAVERT, MARTINIANO, CORONEL", "alt_izqini": 2802, "alt_izqfin": 2900, "alt_derini": 2801, "alt_derfin": 2899, "tipo_c": "CALLE", "long": 125.66815202995089, "sentido": "DOBLE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "VILLA SOLDATI", "Calle1": "CASTAÑON", "Calle2": "SAN PEDRITO", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.44192172 -34.65674405, -58.44285973 -34.65757013))", "escuela": 0, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 6, "ZONA_FUNC": "6", "ZONA_CPU": "R2", "congestion": 6, "jerarquia": 4, "COMUNA": 8, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.44285972964139, -34.65757013059436], [-58.44296257234203, -34.65766064129465], [-58.444013930917826, -34.65859222611283]]], "type": "MultiLineString"}, "properties": {"id": 24898, "codigo": 3229, "nomoficial": "CHILAVERT, MARTINIANO, CORONEL", "alt_izqini": 2902, "alt_izqfin": 3000, "alt_derini": 2901, "alt_derfin": 2999, "tipo_c": "CALLE", "long": 155.0862135515502, "sentido": "DOBLE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "VILLA SOLDATI", "Calle1": "SAN PEDRITO", "Calle2": "LAFUENTE", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.44285973 -34.65757013, -58.44296257 -34.65766064, -58.44401393 -34.65859223))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 0.0, "criticidad": 24, "ZONA_FUNC": "6", "ZONA_CPU": "R2", "congestion": 6, "jerarquia": 4, "COMUNA": 8, "cb": 0, "alta_compl": 0}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.443324791505745, -34.65118826439161], [-58.44329620705045, -34.6513412889574], [-58.44326695599861, -34.651430932675076], [-58.443243847588114, -34.65149128141415], [-58.44320556528548, -34.65157303624973], [-58.44315799394679, -34.65165584588364], [-58.443112556759665, -34.65172295151591], [-58.443060984652305, -34.651786675807074], [-58.44300626042437, -34.65184624459258], [-58.44295247590511, -34.65189602470919], [-58.442909261412666, -34.65193320084805], [-58.442823771336016, -34.652000933472465], [-58.44274893520052, -34.65206120299169], [-58.44265304654168, -34.65213590562128], [-58.44163243966566, -34.65293080441499]]], "type": "MultiLineString"}, "properties": {"id": 27441, "codigo": 23011, "nomoficial": "VARELA AV.", "alt_izqini": 2202, "alt_izqfin": 2500, "alt_derini": 0, "alt_derfin": 0, "tipo_c": "AVENIDA", "long": 253.93884818553778, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "FLORES", "Calle1": "JANER, ANA MARIA", "Calle2": "MORENO, PERITO AV.", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.44332479 -34.65118826, -58.44329621 -34.65134129, -58.44326696 -34.65143093, -58.44324385 -34.65149128, -58.44320557 -34.65157304, -58.44315799 -34.65165585, -58.44311256 -34.65172295, -58.44306098 -34.65178668, -58.44300626 -34.651", "escuela": 0, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 7.0, "criticidad": 100, "ZONA_FUNC": "5", "ZONA_CPU": "OTRO", "congestion": 22, "jerarquia": 4, "COMUNA": 7, "cb": 0, "alta_compl": 1}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.44352232990419, -34.651165620373824], [-58.44349716552433, -34.65127230718626], [-58.4434820654744, -34.651342164381795], [-58.44345793358065, -34.651406949647], [-58.44340054543213, -34.651561589271054], [-58.4433250873869, -34.65173108516434], [-58.44322245537663, -34.65185578749013], [-58.44298106110266, -34.652092580138294], [-58.441777796229836, -34.65303407029498]]], "type": "MultiLineString"}, "properties": {"id": 27442, "codigo": 23011, "nomoficial": "VARELA AV.", "alt_izqini": 0, "alt_izqfin": 0, "alt_derini": 2201, "alt_derfin": 2499, "tipo_c": "AVENIDA", "long": 268.4211721219255, "sentido": "CRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA LOCAL", "tipo_ffcc": "Sin Iteracción", "barrio": "VILLA SOLDATI", "Calle1": "JANER, ANA MARIA", "Calle2": "MORENO, PERITO AV.", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.44352233 -34.65116562, -58.44349717 -34.65127231, -58.44348207 -34.65134216, -58.44345793 -34.65140695, -58.44340055 -34.65156159, -58.44332509 -34.65173109, -58.44322246 -34.65185579, -58.44298106 -34.65209258, -58.4417778 -34.6530", "escuela": 0, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 0, "ce": 0, "cant_linea": 8.0, "criticidad": 100, "ZONA_FUNC": "5", "ZONA_CPU": "OTRO", "congestion": 6, "jerarquia": 4, "COMUNA": 8, "cb": 0, "alta_compl": 1}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.44074927767427, -34.650805973231485], [-58.44193872826398, -34.65088971747921]]], "type": "MultiLineString"}, "properties": {"id": 28646, "codigo": 4108, "nomoficial": "MORENO, PERITO AV.", "alt_izqini": 2202, "alt_izqfin": 2300, "alt_derini": 2201, "alt_derfin": 2299, "tipo_c": "AVENIDA", "long": 109.44158754981005, "sentido": "DOBLE", "bicisenda": "NULL", "red_jerarq": "VÍA DISTRIBUIDORA PRINCIPAL", "tipo_ffcc": "Sin Iteracción", "barrio": "FLORES", "Calle1": "RIVERA INDARTE AV.", "Calle2": "NULL", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.44074928 -34.65080597, -58.44193873 -34.65088972))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 1, "ce": 0, "cant_linea": 2.0, "criticidad": 100, "ZONA_FUNC": "5", "ZONA_CPU": "OTRO", "congestion": 22, "jerarquia": 2, "COMUNA": 7, "cb": 0, "alta_compl": 1}}, {"type": "Feature", "geometry": {"coordinates": [[[-58.44294064354648, -34.651116551266355], [-58.443324791505745, -34.65118826439161]]], "type": "MultiLineString"}, "properties": {"id": 29986, "codigo": 4108, "nomoficial": "MORENO, PERITO AV.", "alt_izqini": 2372, "alt_izqfin": 2400, "alt_derini": 0, "alt_derfin": 0, "tipo_c": "AVENIDA", "long": 36.105218349533416, "sentido": "DECRECIENTE", "bicisenda": "NULL", "red_jerarq": "VÍA DISTRIBUIDORA PRINCIPAL", "tipo_ffcc": "Sin Iteracción", "barrio": "FLORES", "Calle1": "VARELA AV.", "Calle2": "NULL", "Calle3": "NULL", "Calle4": "NULL", "Calle5": "NULL", "Calle6": "NULL", "Calle7": "NULL", "tipo_entre": 0, "wkt": "MultiLineString ((-58.44294064 -34.65111655, -58.44332479 -34.65118826))", "escuela": 1, "hospital": 0, "ct": 0, "pan": 0, "mtb": 0, "zona_com": 0, "rtp": 1, "ce": 0, "cant_linea": 4.0, "criticidad": 100, "ZONA_FUNC": "5", "ZONA_CPU": "OTRO", "congestion": 22, "jerarquia": 2, "COMUNA": 7, "cb": 0, "alta_compl": 1}}]};
+  const DESVIOS = {"type": "FeatureCollection", "features": [{"type": "Feature", "geometry": {"coordinates": [[-58.443243792648694, -34.65012706684689], [-58.44337437746914, -34.650388365469006], [-58.44335945961411, -34.65068182751762], [-58.44367455289951, -34.65075809574138], [-58.444617276336785, -34.65097795608791], [-58.44474605747369, -34.65117533071257], [-58.44895466334263, -34.65459126296442], [-58.44907616209729, -34.65468738256512], [-58.44898786763073, -34.654775704688795], [-58.44882737238266, -34.654917869766734], [-58.44754026118078, -34.65592982935247], [-58.4464223152712, -34.65679806543224], [-58.446312275277094, -34.65688347321223], [-58.445968766540524, -34.65717511679811], [-58.44532360605486, -34.657668758775145], [-58.44516142150088, -34.657686974302244], [-58.44489240951083, -34.65789559721032], [-58.444013930917826, -34.65859222611283], [-58.44339244061764, -34.659085121960246], [-58.442770942945856, -34.659578014782866], [-58.44315412918719, -34.65988072129758]], "type": "LineString"}, "properties": {"fid_co": 121, "length_m": 1608.9456032454473, "linea": "115", "recorrido": "B", "sentido": "IDA", "linea_sentido": "115 - B - IDA", "Ruta": "RIESTRA AV. - MORENO, PERITO AV. - RIESTRA AV. - LAFUENTE AV. - LAFUENTE - FERNANDEZ DE LA CRUZ, F., GRAL. AV. - SU RUTA", "id_desvio": 1, "lineas_agrupadas": "115 - B - IDA"}}, {"type": "Feature", "geometry": {"coordinates": [[-58.433882821760136, -34.65046803063198], [-58.436369407842385, -34.65059102463026], [-58.43885599943878, -34.65071396771717], [-58.43890829575029, -34.650177824084864], [-58.43968029056691, -34.64962844759122], [-58.44070024092934, -34.64881328188955], [-58.44128810168325, -34.64909680204005], [-58.44187596637349, -34.649380319243086], [-58.44200003770834, -34.64944015614901], [-58.44212410921853, -34.649499992923666], [-58.442475234419064, -34.649625674240006], [-58.442826360649946, -34.649751354516], [-58.44305719258235, -34.64992160878964], [-58.443243792648694, -34.65012706684689], [-58.44337437746914, -34.650388365469006], [-58.44335945961411, -34.65068182751762], [-58.44367455289951, -34.65075809574138], [-58.444617276336785, -34.65097795608791], [-58.44474605747369, -34.65117533071257], [-58.44895466334263, -34.65459126296442], [-58.44907616209729, -34.65468738256512], [-58.44898786763073, -34.654775704688795], [-58.44882737238266, -34.654917869766734], [-58.44754026118078, -34.65592982935247], [-58.4464223152712, -34.65679806543224], [-58.44722641923619, -34.65746124261624], [-58.448030536016454, -34.65812441410544]], "type": "LineString"}, "properties": {"fid_co": 192, "length_m": 2328.5899516287054, "linea": "046", "recorrido": "C", "sentido": "IDA", "linea_sentido": "046 - C - IDA", "Ruta": "MORENO, PERITO AV. - BONORINO, ESTEBAN, CNEL. AV. - RIESTRA AV. - MORENO, PERITO AV. - RIESTRA AV. - LAFUENTE AV. - JANER, ANA MARIA - SU RUTA", "id_desvio": 2, "lineas_agrupadas": "046 - A/C - IDA"}}, {"type": "Feature", "geometry": {"coordinates": [[-58.43457604167344, -34.6530080792766], [-58.434884663857716, -34.65325178001328], [-58.43519328784681, -34.653495479914355], [-58.43566877253755, -34.6538709432538], [-58.43614426151242, -34.65424640460973], [-58.43685532229214, -34.65449345166163], [-58.43752397296175, -34.65480515842315], [-58.4382267110136, -34.65534425208225], [-58.43841909708456, -34.65548992622289], [-58.43850413088903, -34.65554754954506], [-58.43914806665102, -34.65607303580904], [-58.43939626961768, -34.65629730988943], [-58.439461180788385, -34.65639570349186], [-58.439536907723436, -34.656520859895835], [-58.4397640134903, -34.65686513142123], [-58.43987221374384, -34.65698142057764], [-58.440899856579996, -34.65783992875603], [-58.44104209599362, -34.6579976889187], [-58.441065881944645, -34.658042969381576], [-58.44118345673808, -34.65826679147727], [-58.44136813319003, -34.65843902024815], [-58.44155281040921, -34.658611248715516], [-58.442160552995695, -34.65909576494895], [-58.442770942945856, -34.659578014782866], [-58.44339244061764, -34.659085121960246], [-58.444013930917826, -34.65859222611283], [-58.44489240951083, -34.65789559721032], [-58.44516142150088, -34.657686974302244], [-58.4451991203197, -34.65754916217217], [-58.44617517463908, -34.656772115319505], [-58.44627907786283, -34.656690298376674], [-58.4464223152712, -34.65679806543224], [-58.44722641923619, -34.65746124261624], [-58.448030536016454, -34.65812441410544]], "type": "LineString"}, "properties": {"fid_co": 197, "length_m": 1742.5780151840715, "linea": "046", "recorrido": "D", "sentido": "IDA", "linea_sentido": "046 - D - IDA", "Ruta": "FERNANDEZ DE LA CRUZ, F., GRAL. AV. - LAFUENTE - LAFUENTE AV. - JANER, ANA MARIA - SU RUTA", "id_desvio": 3, "lineas_agrupadas": "046 - B/D - IDA"}}, {"type": "Feature", "geometry": {"coordinates": [[-58.45100350562537, -34.65882510454983], [-58.450446487358754, -34.6592617510288], [-58.44989671973202, -34.65970435917378], [-58.44910989638234, -34.66031856938012], [-58.44857255466636, -34.6607413249084], [-58.4483142012267, -34.66091382958893], [-58.44742668393362, -34.661617453490166], [-58.44651889212932, -34.662337236871636], [-58.44636527274018, -34.662417505264386], [-58.44595180879707, -34.662090871413746], [-58.44553834809584, -34.66176423606255], [-58.44503495193137, -34.66136658918824], [-58.444531560571896, -34.66096894008976], [-58.44403443704898, -34.66057618439118], [-58.44353731821267, -34.66018342652359], [-58.44315412918719, -34.65988072129758], [-58.442770942945856, -34.659578014782866], [-58.442160552995695, -34.65909576494895], [-58.44155281040921, -34.658611248715516], [-58.44136813319003, -34.65843902024815], [-58.44118345673808, -34.65826679147727], [-58.44056144064226, -34.65781127439377], [-58.44018935173112, -34.65751099136242], [-58.43962555279271, -34.65707207771441], [-58.43898891134008, -34.65657547051398], [-58.43876157517964, -34.65639770979565], [-58.438032464984964, -34.65582755907766], [-58.43756571534802, -34.65546370973022], [-58.43709896978507, -34.6550998584732]], "type": "LineString"}, "properties": {"fid_co": 198, "length_m": 1757.9930285530097, "linea": "046", "recorrido": "D", "sentido": "VUELTA", "linea_sentido": "046 - D - VUELTA", "Ruta": "ACOSTA, MARIANO - FERNANDEZ DE LA CRUZ, F., GRAL. AV. - SU RUTA", "id_desvio": 4, "lineas_agrupadas": "046 - B/D - VUELTA"}}, {"type": "Feature", "geometry": {"coordinates": [[-58.449218213577254, -34.64724919899199], [-58.44802584911232, -34.6482081224265], [-58.44683345715499, -34.649167034736486], [-58.44650164424057, -34.649436047845086], [-58.446169829180306, -34.649705060092394], [-58.44522429822548, -34.65046676033438], [-58.44494734454301, -34.65068986446499], [-58.444822269045055, -34.65079062027937], [-58.444617276336785, -34.65097795608791], [-58.44474605747369, -34.65117533071257], [-58.44895466334263, -34.65459126296442], [-58.44907616209729, -34.65468738256512], [-58.44898786763073, -34.654775704688795], [-58.44882737238266, -34.654917869766734], [-58.44754026118078, -34.65592982935247], [-58.4464223152712, -34.65679806543224], [-58.446312275277094, -34.65688347321223], [-58.445968766540524, -34.65717511679811], [-58.44532360605486, -34.657668758775145], [-58.44516142150088, -34.657686974302244], [-58.44489240951083, -34.65789559721032], [-58.444013930917826, -34.65859222611283], [-58.44339244061764, -34.659085121960246], [-58.442770942945856, -34.659578014782866], [-58.44315412918719, -34.65988072129758], [-58.44353731821267, -34.66018342652359], [-58.44403443704898, -34.66057618439118], [-58.444531560571896, -34.66096894008976], [-58.44401302875674, -34.66138273459255]], "type": "LineString"}, "properties": {"fid_co": 379, "length_m": 2256.5755761605833, "linea": "076", "recorrido": "A", "sentido": "VUELTA", "linea_sentido": "076 - A - VUELTA", "Ruta": "VARELA AV. - RIESTRA AV. - LAFUENTE AV. - LAFUENTE - FERNANDEZ DE LA CRUZ, F., GRAL. AV. - PORTELA - SU RUTA", "id_desvio": 5, "lineas_agrupadas": "076 - A - VUELTA"}}, {"type": "Feature", "geometry": {"coordinates": [[-58.449218213577254, -34.64724919899199], [-58.44802584911232, -34.6482081224265], [-58.44683345715499, -34.649167034736486], [-58.44650164424057, -34.649436047845086], [-58.446169829180306, -34.649705060092394], [-58.44522429822548, -34.65046676033438], [-58.44494734454301, -34.65068986446499], [-58.444822269045055, -34.65079062027937], [-58.444617276336785, -34.65097795608791], [-58.44474605747369, -34.65117533071257], [-58.44895466334263, -34.65459126296442], [-58.44907616209729, -34.65468738256512], [-58.44898786763073, -34.654775704688795], [-58.44882737238266, -34.654917869766734], [-58.44754026118078, -34.65592982935247], [-58.4464223152712, -34.65679806543224], [-58.446312275277094, -34.65688347321223], [-58.445968766540524, -34.65717511679811], [-58.44532360605486, -34.657668758775145], [-58.44516142150088, -34.657686974302244], [-58.44489240951083, -34.65789559721032], [-58.444013930917826, -34.65859222611283], [-58.44339244061764, -34.659085121960246], [-58.442770942945856, -34.659578014782866]], "type": "LineString"}, "properties": {"fid_co": 383, "length_m": 1967.2707684067811, "linea": "076", "recorrido": "B", "sentido": "VUELTA", "linea_sentido": "076 - B - VUELTA", "Ruta": "VARELA AV. - RIESTRA AV. - LAFUENTE AV. - LAFUENTE - SU RUTA", "id_desvio": 6, "lineas_agrupadas": "076 - B - VUELTA"}}, {"type": "Feature", "geometry": {"coordinates": [[-58.433882821760136, -34.65046803063198], [-58.436369407842385, -34.65059102463026], [-58.43885599943878, -34.65071396771717], [-58.43890829575029, -34.650177824084864], [-58.43968029056691, -34.64962844759122], [-58.44070024092934, -34.64881328188955], [-58.44128810168325, -34.64909680204005], [-58.44187596637349, -34.649380319243086], [-58.44200003770834, -34.64944015614901], [-58.44212410921853, -34.649499992923666], [-58.442475234419064, -34.649625674240006], [-58.442826360649946, -34.649751354516], [-58.44305719258235, -34.64992160878964], [-58.443243792648694, -34.65012706684689], [-58.44337437746914, -34.650388365469006], [-58.44335945961411, -34.65068182751762], [-58.44367455289951, -34.65075809574138], [-58.444617276336785, -34.65097795608791], [-58.44474605747369, -34.65117533071257], [-58.44895466334263, -34.65459126296442], [-58.44907616209729, -34.65468738256512], [-58.44898786763073, -34.654775704688795], [-58.44882737238266, -34.654917869766734], [-58.44754026118078, -34.65592982935247], [-58.4464223152712, -34.65679806543224], [-58.44722641923619, -34.65746124261624], [-58.448030536016454, -34.65812441410544]], "type": "LineString"}, "properties": {"fid_co": 942, "length_m": 2328.5899516287054, "linea": "046", "recorrido": "A", "sentido": "IDA", "linea_sentido": "046 - A - IDA", "Ruta": "MORENO, PERITO AV. - BONORINO, ESTEBAN, CNEL. AV. - RIESTRA AV. - MORENO, PERITO AV. - RIESTRA AV. - LAFUENTE AV. - JANER, ANA MARIA - SU RUTA", "id_desvio": 2, "lineas_agrupadas": "046 - A/C - IDA"}}, {"type": "Feature", "geometry": {"coordinates": [[-58.43457604167344, -34.6530080792766], [-58.434884663857716, -34.65325178001328], [-58.43519328784681, -34.653495479914355], [-58.43566877253755, -34.6538709432538], [-58.43614426151242, -34.65424640460973], [-58.43685532229214, -34.65449345166163], [-58.43752397296175, -34.65480515842315], [-58.4382267110136, -34.65534425208225], [-58.43841909708456, -34.65548992622289], [-58.43850413088903, -34.65554754954506], [-58.43914806665102, -34.65607303580904], [-58.43939626961768, -34.65629730988943], [-58.439461180788385, -34.65639570349186], [-58.439536907723436, -34.656520859895835], [-58.4397640134903, -34.65686513142123], [-58.43987221374384, -34.65698142057764], [-58.440899856579996, -34.65783992875603], [-58.44104209599362, -34.6579976889187], [-58.441065881944645, -34.658042969381576], [-58.44118345673808, -34.65826679147727], [-58.44136813319003, -34.65843902024815], [-58.44155281040921, -34.658611248715516], [-58.442160552995695, -34.65909576494895], [-58.442770942945856, -34.659578014782866], [-58.44339244061764, -34.659085121960246], [-58.444013930917826, -34.65859222611283], [-58.44489240951083, -34.65789559721032], [-58.44516142150088, -34.657686974302244], [-58.4451991203197, -34.65754916217217], [-58.44617517463908, -34.656772115319505], [-58.44627907786283, -34.656690298376674], [-58.4464223152712, -34.65679806543224], [-58.44722641923619, -34.65746124261624], [-58.448030536016454, -34.65812441410544]], "type": "LineString"}, "properties": {"fid_co": 944, "length_m": 1742.5780151840715, "linea": "046", "recorrido": "B", "sentido": "IDA", "linea_sentido": "046 - B - IDA", "Ruta": "FERNANDEZ DE LA CRUZ, F., GRAL. AV. - LAFUENTE - LAFUENTE AV. - JANER, ANA MARIA - SU RUTA", "id_desvio": 3, "lineas_agrupadas": "046 - B/D - IDA"}}, {"type": "Feature", "geometry": {"coordinates": [[-58.45100350562537, -34.65882510454983], [-58.450446487358754, -34.6592617510288], [-58.44989671973202, -34.65970435917378], [-58.44910989638234, -34.66031856938012], [-58.44857255466636, -34.6607413249084], [-58.4483142012267, -34.66091382958893], [-58.44742668393362, -34.661617453490166], [-58.44651889212932, -34.662337236871636], [-58.44636527274018, -34.662417505264386], [-58.44595180879707, -34.662090871413746], [-58.44553834809584, -34.66176423606255], [-58.44503495193137, -34.66136658918824], [-58.444531560571896, -34.66096894008976], [-58.44403443704898, -34.66057618439118], [-58.44353731821267, -34.66018342652359], [-58.44315412918719, -34.65988072129758], [-58.442770942945856, -34.659578014782866], [-58.442160552995695, -34.65909576494895], [-58.44155281040921, -34.658611248715516], [-58.44136813319003, -34.65843902024815], [-58.44118345673808, -34.65826679147727], [-58.44056144064226, -34.65781127439377], [-58.44018935173112, -34.65751099136242], [-58.43962555279271, -34.65707207771441], [-58.43898891134008, -34.65657547051398], [-58.43876157517964, -34.65639770979565], [-58.438032464984964, -34.65582755907766], [-58.43756571534802, -34.65546370973022], [-58.43709896978507, -34.6550998584732]], "type": "LineString"}, "properties": {"fid_co": 945, "length_m": 1757.9930285530097, "linea": "046", "recorrido": "B", "sentido": "VUELTA", "linea_sentido": "046 - B - VUELTA", "Ruta": "ACOSTA, MARIANO - FERNANDEZ DE LA CRUZ, F., GRAL. AV. - SU RUTA", "id_desvio": 4, "lineas_agrupadas": "046 - B/D - VUELTA"}}, {"type": "Feature", "geometry": {"coordinates": [[-58.43292223043271, -34.6504121464131], [-58.433402525969264, -34.65044008947286], [-58.433882821760136, -34.65046803063198], [-58.436369407842385, -34.65059102463026], [-58.43885599943878, -34.65071396771717]], "type": "LineString"}, "properties": {"fid_co": 806, "length_m": 544.907453085885, "linea": "193", "recorrido": "A", "sentido": "IDA", "linea_sentido": "193 - A - IDA", "Ruta": "MORENO, PERITO AV. - SU RUTA", "id_desvio": 7, "lineas_agrupadas": "193 - A/B/C - IDA"}}, {"type": "Feature", "geometry": {"coordinates": [[-58.43292223043271, -34.6504121464131], [-58.433402525969264, -34.65044008947286], [-58.433882821760136, -34.65046803063198], [-58.436369407842385, -34.65059102463026], [-58.43885599943878, -34.65071396771717]], "type": "LineString"}, "properties": {"fid_co": 878, "length_m": 544.907453085885, "linea": "193", "recorrido": "B", "sentido": "IDA", "linea_sentido": "193 - B - IDA", "Ruta": "MORENO, PERITO AV. - SU RUTA", "id_desvio": 7, "lineas_agrupadas": "193 - A/B/C - IDA"}}, {"type": "Feature", "geometry": {"coordinates": [[-58.43292223043271, -34.6504121464131], [-58.433402525969264, -34.65044008947286], [-58.433882821760136, -34.65046803063198], [-58.436369407842385, -34.65059102463026], [-58.43885599943878, -34.65071396771717]], "type": "LineString"}, "properties": {"fid_co": 882, "length_m": 544.907453085885, "linea": "193", "recorrido": "C", "sentido": "IDA", "linea_sentido": "193 - C - IDA", "Ruta": "MORENO, PERITO AV. - SU RUTA", "id_desvio": 7, "lineas_agrupadas": "193 - A/B/C - IDA"}}, {"type": "Feature", "geometry": {"coordinates": [[-58.44118345673808, -34.65826679147727], [-58.44087244784206, -34.65803903335759], [-58.44056144064226, -34.65781127439377], [-58.44018935173112, -34.65751099136242], [-58.43962555279271, -34.65707207771441], [-58.43898891134008, -34.65657547051398], [-58.43876157517964, -34.65639770979565], [-58.438032464984964, -34.65582755907766], [-58.43709896978507, -34.6550998584732], [-58.43602235654092, -34.654369054259924], [-58.43506220200864, -34.65360845685697], [-58.43443471588551, -34.653111378850745], [-58.433679366269914, -34.65251299854382], [-58.43299198575781, -34.651973111747715], [-58.432032082315466, -34.65120779315816], [-58.4309844202528, -34.650339626509684], [-58.431312240631605, -34.65035548770638], [-58.43292223043271, -34.6504121464131], [-58.433882821760136, -34.65046803063198], [-58.43885599943878, -34.65071396771717], [-58.43890829575029, -34.650177824084864], [-58.43968029056691, -34.64962844759122], [-58.44070024092934, -34.64881328188955], [-58.44054864903287, -34.6487839838724], [-58.44010223142102, -34.64858784129339], [-58.439518894796066, -34.64833153666849]], "type": "LineString"}, "properties": {"fid_co": 120, "length_m": 2410.6900905569487, "linea": "115", "recorrido": "B", "sentido": "VUELTA", "linea_sentido": "115 - B - VUELTA", "Ruta": "FERNANDEZ DE LA CRUZ, F., GRAL. AV. - MORENO, PERITO AV. - BONORINO, ESTEBAN, CNEL. AV. - RIESTRA AV. - SU RUTA", "id_desvio": 8, "lineas_agrupadas": "115 - B - VUELTA"}}, {"type": "Feature", "geometry": {"coordinates": [[-58.45100350562537, -34.65882510454983], [-58.450446487358754, -34.6592617510288], [-58.450004289923356, -34.659608384488706], [-58.44989671973202, -34.65970435917378], [-58.44910989638234, -34.66031856938012], [-58.44857255466636, -34.6607413249084], [-58.4483142012267, -34.66091382958893], [-58.44742668393362, -34.661617453490166], [-58.44651889212932, -34.662337236871636], [-58.44636527274018, -34.662417505264386], [-58.44595180879707, -34.662090871413746], [-58.44553834809584, -34.66176423606255], [-58.44503495193137, -34.66136658918824], [-58.444531560571896, -34.66096894008976], [-58.44403443704898, -34.66057618439118], [-58.44353731821267, -34.66018342652359], [-58.44315412918719, -34.65988072129758], [-58.442770942945856, -34.659578014782866], [-58.442160552995695, -34.65909576494895], [-58.44181413985877, -34.65882207092588], [-58.44155281040921, -34.658611248715516], [-58.44136813319003, -34.65843902024815], [-58.44118345673808, -34.65826679147727], [-58.44056144064226, -34.65781127439377], [-58.44018935173112, -34.65751099136242], [-58.43962555279271, -34.65707207771441], [-58.43898891134008, -34.65657547051398], [-58.43876157517964, -34.65639770979565], [-58.438032464984964, -34.65582755907766], [-58.43709896978507, -34.6550998584732], [-58.43602235654092, -34.654369054259924], [-58.43506220200864, -34.65360845685697], [-58.43443471588551, -34.653111378850745], [-58.433679366269914, -34.65251299854382], [-58.43299198575781, -34.651973111747715], [-58.432032082315466, -34.65120779315816], [-58.4309844202528, -34.650339626509684], [-58.43043129619826, -34.64987264431067], [-58.43059086597159, -34.649755362420045], [-58.43081760437412, -34.64958852040158], [-58.43196324321094, -34.64867346130925], [-58.43284146405355, -34.64797191798188], [-58.43296829813218, -34.64787286433594], [-58.433454298730965, -34.648293118090024], [-58.433898201746295, -34.64866584572875], [-58.434337113301524, -34.6490420827986], [-58.4348026797377, -34.6494698417234], [-58.434615421621054, -34.64948742475882], [-58.43450552765395, -34.64959972622264], [-58.434380726641564, -34.64974433731892], [-58.43419446372513, -34.64993663436058], [-58.43416536225806, -34.64996028542806], [-58.43412239490177, -34.65003471111467], [-58.43407839676418, -34.650060666754186], [-58.43406745621309, -34.65008598099532], [-58.4340562514701, -34.65011811123735], [-58.434019123293766, -34.65015364341573], [-58.43400202424761, -34.65019404891502], [-58.43397609089974, -34.650226175681965], [-58.43395134623807, -34.65022811729758], [-58.43392620054941, -34.65033817817579], [-58.433882821760136, -34.65046803063198], [-58.433402525969264, -34.65044008947286], [-58.43292223043271, -34.6504121464131]], "type": "LineString"}, "properties": {"fid_co": 196, "length_m": 3403.473158490605, "linea": "046", "recorrido": "C", "sentido": "VUELTA", "linea_sentido": "046 - C - VUELTA", "Ruta": "ACOSTA, MARIANO - FERNANDEZ DE LA CRUZ, F., GRAL. AV. - VEDIA, AGUSTIN DE - BARROS PAZOS, JOSE - TORRES Y TENORIO, PRES. - MORENO, PERITO AV. - SU RUTA", "id_desvio": 9, "lineas_agrupadas": "046 - A/C - VUELTA"}}, {"type": "Feature", "geometry": {"coordinates": [[-58.44248703760381, -34.66101712961375], [-58.443012180542205, -34.660600279148476], [-58.44353731821267, -34.66018342652359], [-58.4447358961788, -34.659231919357886], [-58.44561326753679, -34.65853542601263], [-58.44548843721878, -34.65842505507841], [-58.44489240951083, -34.65789559721032], [-58.44516142150088, -34.657686974302244], [-58.4451991203197, -34.65754916217217], [-58.44617517463908, -34.656772115319505], [-58.44627907786283, -34.656690298376674], [-58.44876894393403, -34.654728565813016], [-58.448852982262956, -34.65466639229512], [-58.44895466334263, -34.65459126296442], [-58.449459230627504, -34.65421836108608], [-58.44986126495998, -34.6539018546652], [-58.4516163898531, -34.65252012470924], [-58.451849146427115, -34.65233683566557], [-58.45246968388499, -34.65184576218419], [-58.45269109870543, -34.65169437213719], [-58.45323933011416, -34.65147033251786], [-58.45329472599289, -34.65143174525401], [-58.453347226438126, -34.65137639704654], [-58.453399562784156, -34.65126717518147], [-58.4533390116947, -34.6509473088188], [-58.45328125780139, -34.65075554215109], [-58.453225793412805, -34.650659691822604], [-58.45315021706769, -34.65057222013704], [-58.45307455413452, -34.6504972132749], [-58.452976223307296, -34.65042635940741], [-58.45284516624027, -34.65038261553074], [-58.45262088394926, -34.65033034219569], [-58.45253890645203, -34.65032709552873], [-58.45241738940756, -34.650318281863804], [-58.45229485040978, -34.6503048200645], [-58.45217324945902, -34.65028663988357], [-58.45205284220455, -34.65026388219344], [-58.45193371387158, -34.6502366174286], [-58.451816290558256, -34.650204845632814], [-58.45170074270379, -34.65016863725025], [-58.45158732595214, -34.65012813315681], [-58.45147629596539, -34.650083333383165], [-58.451367823168304, -34.650034378798445], [-58.45126241790026, -34.649987959649515], [-58.45108594866608, -34.64990174428854], [-58.450981908631626, -34.64984546580577], [-58.45088997012595, -34.64978397716008], [-58.4508164362997, -34.64973587070993], [-58.45074486415982, -34.64967684884389], [-58.450684966108355, -34.649621278873134], [-58.450627113991, -34.64956120200965], [-58.450530753245665, -34.64944506433984], [-58.45046115036581, -34.64932857729659], [-58.45043176381025, -34.649246672183395], [-58.45041694358686, -34.64920019140027], [-58.45040220931473, -34.64914906270214], [-58.45037657619076, -34.64904229863001], [-58.45035315541944, -34.64895673212697], [-58.45034200446412, -34.64887849092111], [-58.45033494292976, -34.64880602483926], [-58.45032038514429, -34.648716797269245], [-58.45030812330079, -34.648658837781625], [-58.450284788428085, -34.648570031808156], [-58.4502679290055, -34.648486860366496], [-58.450247148429845, -34.64841220969289], [-58.45021171438825, -34.648316430522385], [-58.45016656317047, -34.648238819445886], [-58.45014177292055, -34.64819437981642], [-58.450078216478175, -34.64811148498797], [-58.44983710315313, -34.64785230170045], [-58.449218213577254, -34.64724919899199], [-58.449706292367445, -34.64685664562977], [-58.45019436655098, -34.64646409040381]], "type": "LineString"}, "properties": {"fid_co": 377, "length_m": 2337.8662806193206, "linea": "076", "recorrido": "A", "sentido": "IDA", "linea_sentido": "076 - A - IDA", "Ruta": "MARTI, JOSE - BARROS PAZOS, JOSE - LAFUENTE AV. - CASTAÑARES AV. - VARELA AV. - SU RUTA", "id_desvio": 10, "lineas_agrupadas": "076 - A - IDA"}}, {"type": "Feature", "geometry": {"coordinates": [[-58.442770942945856, -34.659578014782866], [-58.44339244061764, -34.659085121960246], [-58.444013930917826, -34.65859222611283], [-58.44489240951083, -34.65789559721032], [-58.44516142150088, -34.657686974302244], [-58.4451991203197, -34.65754916217217], [-58.44617517463908, -34.656772115319505], [-58.44627907786283, -34.656690298376674], [-58.44876894393403, -34.654728565813016], [-58.448852982262956, -34.65466639229512], [-58.44895466334263, -34.65459126296442], [-58.449459230627504, -34.65421836108608], [-58.44986126495998, -34.6539018546652], [-58.4516163898531, -34.65252012470924], [-58.451849146427115, -34.65233683566557], [-58.45246968388499, -34.65184576218419], [-58.45269109870543, -34.65169437213719], [-58.45323933011416, -34.65147033251786], [-58.45329472599289, -34.65143174525401], [-58.453347226438126, -34.65137639704654], [-58.453399562784156, -34.65126717518147], [-58.4533390116947, -34.6509473088188], [-58.45328125780139, -34.65075554215109], [-58.453225793412805, -34.650659691822604], [-58.45315021706769, -34.65057222013704], [-58.45307455413452, -34.6504972132749], [-58.452976223307296, -34.65042635940741], [-58.45284516624027, -34.65038261553074], [-58.45262088394926, -34.65033034219569], [-58.45253890645203, -34.65032709552873], [-58.45241738940756, -34.650318281863804], [-58.45229485040978, -34.6503048200645], [-58.45217324945902, -34.65028663988357], [-58.45205284220455, -34.65026388219344], [-58.45193371387158, -34.6502366174286], [-58.451816290558256, -34.650204845632814], [-58.45170074270379, -34.65016863725025], [-58.45158732595214, -34.65012813315681], [-58.45147629596539, -34.650083333383165], [-58.451367823168304, -34.650034378798445], [-58.45126241790026, -34.649987959649515], [-58.45108594866608, -34.64990174428854], [-58.450981908631626, -34.64984546580577], [-58.45088997012595, -34.64978397716008], [-58.4508164362997, -34.64973587070993], [-58.45074486415982, -34.64967684884389], [-58.450684966108355, -34.649621278873134], [-58.450627113991, -34.64956120200965], [-58.450530753245665, -34.64944506433984], [-58.45046115036581, -34.64932857729659], [-58.45043176381025, -34.649246672183395], [-58.45041694358686, -34.64920019140027], [-58.45040220931473, -34.64914906270214], [-58.45037657619076, -34.64904229863001], [-58.45035315541944, -34.64895673212697], [-58.45034200446412, -34.64887849092111], [-58.45033494292976, -34.64880602483926], [-58.45032038514429, -34.648716797269245], [-58.45030812330079, -34.648658837781625], [-58.450284788428085, -34.648570031808156], [-58.4502679290055, -34.648486860366496], [-58.450247148429845, -34.64841220969289], [-58.45021171438825, -34.648316430522385], [-58.45016656317047, -34.648238819445886], [-58.45014177292055, -34.64819437981642], [-58.450078216478175, -34.64811148498797], [-58.44983710315313, -34.64785230170045], [-58.449218213577254, -34.64724919899199], [-58.449706292367445, -34.64685664562977], [-58.45019436655098, -34.64646409040381]], "type": "LineString"}, "properties": {"fid_co": 381, "length_m": 2113.087136330246, "linea": "076", "recorrido": "B", "sentido": "IDA", "linea_sentido": "076 - B - IDA", "Ruta": "LAFUENTE - LAFUENTE AV. - CASTAÑARES AV. - VARELA AV. - SU RUTA", "id_desvio": 11, "lineas_agrupadas": "076 - B - IDA"}}, {"type": "Feature", "geometry": {"coordinates": [[-58.45100350562537, -34.65882510454983], [-58.450446487358754, -34.6592617510288], [-58.44989671973202, -34.65970435917378], [-58.44910989638234, -34.66031856938012], [-58.44857255466636, -34.6607413249084], [-58.4483142012267, -34.66091382958893], [-58.44742668393362, -34.661617453490166], [-58.44651889212932, -34.662337236871636], [-58.44636527274018, -34.662417505264386], [-58.44595180879707, -34.662090871413746], [-58.44553834809584, -34.66176423606255], [-58.44503495193137, -34.66136658918824], [-58.444531560571896, -34.66096894008976], [-58.44403443704898, -34.66057618439118], [-58.44353731821267, -34.66018342652359], [-58.44315412918719, -34.65988072129758], [-58.442770942945856, -34.659578014782866], [-58.442160552995695, -34.65909576494895], [-58.44181413985877, -34.65882207092588], [-58.44155281040921, -34.658611248715516], [-58.44136813319003, -34.65843902024815], [-58.44118345673808, -34.65826679147727], [-58.44056144064226, -34.65781127439377], [-58.44018935173112, -34.65751099136242], [-58.43962555279271, -34.65707207771441], [-58.43898891134008, -34.65657547051398], [-58.43876157517964, -34.65639770979565], [-58.438032464984964, -34.65582755907766], [-58.43709896978507, -34.6550998584732], [-58.43602235654092, -34.654369054259924], [-58.43506220200864, -34.65360845685697], [-58.43443471588551, -34.653111378850745], [-58.433679366269914, -34.65251299854382], [-58.43299198575781, -34.651973111747715], [-58.432032082315466, -34.65120779315816], [-58.4309844202528, -34.650339626509684], [-58.43043129619826, -34.64987264431067], [-58.43059086597159, -34.649755362420045], [-58.43081760437412, -34.64958852040158], [-58.43196324321094, -34.64867346130925], [-58.43284146405355, -34.64797191798188], [-58.43296829813218, -34.64787286433594], [-58.433454298730965, -34.648293118090024], [-58.433898201746295, -34.64866584572875], [-58.434337113301524, -34.6490420827986], [-58.4348026797377, -34.6494698417234], [-58.434615421621054, -34.64948742475882], [-58.43450552765395, -34.64959972622264], [-58.434380726641564, -34.64974433731892], [-58.43419446372513, -34.64993663436058], [-58.43416536225806, -34.64996028542806], [-58.43412239490177, -34.65003471111467], [-58.43407839676418, -34.650060666754186], [-58.43406745621309, -34.65008598099532], [-58.4340562514701, -34.65011811123735], [-58.434019123293766, -34.65015364341573], [-58.43400202424761, -34.65019404891502], [-58.43397609089974, -34.650226175681965], [-58.43395134623807, -34.65022811729758], [-58.43392620054941, -34.65033817817579], [-58.433882821760136, -34.65046803063198], [-58.433402525969264, -34.65044008947286], [-58.43292223043271, -34.6504121464131]], "type": "LineString"}, "properties": {"fid_co": 943, "length_m": 3403.449079389491, "linea": "046", "recorrido": "A", "sentido": "VUELTA", "linea_sentido": "046 - A - VUELTA", "Ruta": "ACOSTA, MARIANO - FERNANDEZ DE LA CRUZ, F., GRAL. AV. - VEDIA, AGUSTIN DE - BARROS PAZOS, JOSE - TORRES Y TENORIO, PRES. - MORENO, PERITO AV. - SU RUTA", "id_desvio": 9, "lineas_agrupadas": "046 - A/C - VUELTA"}}]};
+  const PARADAS = {"type": "FeatureCollection", "features": [{"type": "Feature", "properties": {"id": 6641, "CALLE": "VARELA AV.", "ALT PLANO": "2225", "DIRECCION": "2225 VARELA AV.", "coord_X": -58.4434201, "coord_Y": -34.6517506, "COMUNA": 7, "BARRIO": "FLORES", "BV_buffer_": "Barrio 1-11-14", "HITO": null, "CATEGORIA": "OFICIAL", "L1": "115", "l1_sen": "I", "L1_Ramal": "B", "L2": "76", "l2_sen": "V", "L2_Ramal": "A-B", "L3": 46, "l3_sen": "I", "L3_Ramal": "A", "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 942, "linea": "046", "recorrido": "A", "sentido": "IDA", "linea_sentido": "046 - A - IDA", "id_desvio": 2, "orden_recorrido_m": 14997.04, "dir": "VARELA AV. 2225"}, "geometry": {"type": "Point", "coordinates": [-58.4434201, -34.6517506]}}, {"type": "Feature", "properties": {"id": 6795, "CALLE": "ANA MARIA JANER", "ALT PLANO": "2751", "DIRECCION": "Janer, Ana 2751", "coord_X": -58.4434483, "coord_Y": -34.6543577, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "46", "l1_sen": "I", "L1_Ramal": null, "L2": "76", "l2_sen": "V", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 942, "linea": "046", "recorrido": "A", "sentido": "IDA", "linea_sentido": "046 - A - IDA", "id_desvio": 2, "orden_recorrido_m": 15415.26, "dir": "ANA MARIA JANER 2751"}, "geometry": {"type": "Point", "coordinates": [-58.4434483, -34.6543577]}}, {"type": "Feature", "properties": {"id": 6845, "CALLE": "ANA MARIA JANER", "ALT PLANO": "2997", "DIRECCION": "Janer, Ana MarÃ­a 2997 e/Lafuente Av.", "coord_X": -58.4461866, "coord_Y": -34.6565816, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "46", "l1_sen": "I", "L1_Ramal": null, "L2": "76", "l2_sen": "V", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 942, "linea": "046", "recorrido": "A", "sentido": "IDA", "linea_sentido": "046 - A - IDA", "id_desvio": 2, "orden_recorrido_m": 15766.34, "dir": "ANA MARIA JANER 2997"}, "geometry": {"type": "Point", "coordinates": [-58.4461866, -34.6565816]}}, {"type": "Feature", "properties": {"id": 9064, "CALLE": "ANA MARIA JANER", "ALT PLANO": "3290", "DIRECCION": "Ana Maria Janer 3290", "coord_X": -58.449427, "coord_Y": -34.659453, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "46", "l1_sen": "V", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 943, "linea": "046", "recorrido": "A", "sentido": "VUELTA", "linea_sentido": "046 - A - VUELTA", "id_desvio": 9, "orden_recorrido_m": 17779.7, "dir": "ANA MARIA JANER 3290"}, "geometry": {"type": "Point", "coordinates": [-58.449427, -34.659453]}}, {"type": "Feature", "properties": {"id": 6626, "CALLE": "ANA MARIA JANER", "ALT PLANO": "3204", "DIRECCION": "Ana Maria Janer 3204", "coord_X": -58.448077, "coord_Y": -34.658356, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": "Los Pinos", "HITO": null, "CATEGORIA": "OFICIAL", "L1": "46", "l1_sen": "V", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 943, "linea": "046", "recorrido": "A", "sentido": "VUELTA", "linea_sentido": "046 - A - VUELTA", "id_desvio": 9, "orden_recorrido_m": 17952.7, "dir": "ANA MARIA JANER 3204"}, "geometry": {"type": "Point", "coordinates": [-58.448077, -34.658356]}}, {"type": "Feature", "properties": {"id": 6834, "CALLE": "ANA MARIA JANER", "ALT PLANO": "3000", "DIRECCION": "Ana Maria Janer 3010", "coord_X": -58.4463889, "coord_Y": -34.6569852, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "46", "l1_sen": "V", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 943, "linea": "046", "recorrido": "A", "sentido": "VUELTA", "linea_sentido": "046 - A - VUELTA", "id_desvio": 9, "orden_recorrido_m": 18169.35, "dir": "ANA MARIA JANER 3000"}, "geometry": {"type": "Point", "coordinates": [-58.4463889, -34.6569852]}}, {"type": "Feature", "properties": {"id": 6794, "CALLE": "ANA MARIA JANER", "ALT PLANO": "2750", "DIRECCION": "Janer, Ana 2750", "coord_X": -58.4436401, "coord_Y": -34.6547595, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "46", "l1_sen": "V", "L1_Ramal": null, "L2": "76", "l2_sen": "I", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 943, "linea": "046", "recorrido": "A", "sentido": "VUELTA", "linea_sentido": "046 - A - VUELTA", "id_desvio": 9, "orden_recorrido_m": 18521.39, "dir": "ANA MARIA JANER 2750"}, "geometry": {"type": "Point", "coordinates": [-58.4436401, -34.6547595]}}, {"type": "Feature", "properties": {"id": 9330, "CALLE": "VARELA AV.", "ALT PLANO": "2226", "DIRECCION": "2226 VARELA AV.", "coord_X": -58.442974, "coord_Y": -34.651813, "COMUNA": 7, "BARRIO": "FLORES", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "115", "l1_sen": "V", "L1_Ramal": "B", "L2": "76", "l2_sen": "I", "L2_Ramal": "A-B", "L3": 46, "l3_sen": "V", "L3_Ramal": "A", "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 943, "linea": "046", "recorrido": "A", "sentido": "VUELTA", "linea_sentido": "046 - A - VUELTA", "id_desvio": 9, "orden_recorrido_m": 18969.55, "dir": "VARELA AV. 2226"}, "geometry": {"type": "Point", "coordinates": [-58.442974, -34.651813]}}, {"type": "Feature", "properties": {"id": 8766, "CALLE": "PERITO MORENO AV.", "ALT PLANO": "2370", "DIRECCION": "2370 MORENO, PERITO AV.", "coord_X": -58.4381448, "coord_Y": -34.650849, "COMUNA": 7, "BARRIO": "FLORES", "BV_buffer_": "Barrio 1-11-14", "HITO": null, "CATEGORIA": "OFICIAL", "L1": "193", "l1_sen": "V", "L1_Ramal": null, "L2": "46", "l2_sen": "V", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 943, "linea": "046", "recorrido": "A", "sentido": "VUELTA", "linea_sentido": "046 - A - VUELTA", "id_desvio": 9, "orden_recorrido_m": 19520.21, "dir": "PERITO MORENO AV. 2370"}, "geometry": {"type": "Point", "coordinates": [-58.4381448, -34.650849]}}, {"type": "Feature", "properties": {"id": 5007, "CALLE": "VARELA AV.", "ALT PLANO": "2668", "DIRECCION": "2668 VARELA AV.", "coord_X": -58.4397372, "coord_Y": -34.6542787, "COMUNA": 7, "BARRIO": "FLORES", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "115", "l1_sen": "V", "L1_Ramal": "B", "L2": "46", "l2_sen": "I", "L2_Ramal": "B", "L3": 76, "l3_sen": "I", "L3_Ramal": "A", "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 944, "linea": "046", "recorrido": "B", "sentido": "IDA", "linea_sentido": "046 - B - IDA", "id_desvio": 3, "orden_recorrido_m": 15337.56, "dir": "VARELA AV. 2668"}, "geometry": {"type": "Point", "coordinates": [-58.4397372, -34.6542787]}}, {"type": "Feature", "properties": {"id": 6795, "CALLE": "ANA MARIA JANER", "ALT PLANO": "2751", "DIRECCION": "Janer, Ana 2751", "coord_X": -58.4434483, "coord_Y": -34.6543577, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "46", "l1_sen": "I", "L1_Ramal": null, "L2": "76", "l2_sen": "V", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 944, "linea": "046", "recorrido": "B", "sentido": "IDA", "linea_sentido": "046 - B - IDA", "id_desvio": 3, "orden_recorrido_m": 15790.33, "dir": "ANA MARIA JANER 2751"}, "geometry": {"type": "Point", "coordinates": [-58.4434483, -34.6543577]}}, {"type": "Feature", "properties": {"id": 6845, "CALLE": "ANA MARIA JANER", "ALT PLANO": "2997", "DIRECCION": "Janer, Ana MarÃ­a 2997 e/Lafuente Av.", "coord_X": -58.4461866, "coord_Y": -34.6565816, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "46", "l1_sen": "I", "L1_Ramal": null, "L2": "76", "l2_sen": "V", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 944, "linea": "046", "recorrido": "B", "sentido": "IDA", "linea_sentido": "046 - B - IDA", "id_desvio": 3, "orden_recorrido_m": 16141.41, "dir": "ANA MARIA JANER 2997"}, "geometry": {"type": "Point", "coordinates": [-58.4461866, -34.6565816]}}, {"type": "Feature", "properties": {"id": 9064, "CALLE": "ANA MARIA JANER", "ALT PLANO": "3290", "DIRECCION": "Ana Maria Janer 3290", "coord_X": -58.449427, "coord_Y": -34.659453, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "46", "l1_sen": "V", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 945, "linea": "046", "recorrido": "B", "sentido": "VUELTA", "linea_sentido": "046 - B - VUELTA", "id_desvio": 4, "orden_recorrido_m": 17779.7, "dir": "ANA MARIA JANER 3290"}, "geometry": {"type": "Point", "coordinates": [-58.449427, -34.659453]}}, {"type": "Feature", "properties": {"id": 6626, "CALLE": "ANA MARIA JANER", "ALT PLANO": "3204", "DIRECCION": "Ana Maria Janer 3204", "coord_X": -58.448077, "coord_Y": -34.658356, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": "Los Pinos", "HITO": null, "CATEGORIA": "OFICIAL", "L1": "46", "l1_sen": "V", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 945, "linea": "046", "recorrido": "B", "sentido": "VUELTA", "linea_sentido": "046 - B - VUELTA", "id_desvio": 4, "orden_recorrido_m": 17952.7, "dir": "ANA MARIA JANER 3204"}, "geometry": {"type": "Point", "coordinates": [-58.448077, -34.658356]}}, {"type": "Feature", "properties": {"id": 6834, "CALLE": "ANA MARIA JANER", "ALT PLANO": "3000", "DIRECCION": "Ana Maria Janer 3010", "coord_X": -58.4463889, "coord_Y": -34.6569852, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "46", "l1_sen": "V", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 945, "linea": "046", "recorrido": "B", "sentido": "VUELTA", "linea_sentido": "046 - B - VUELTA", "id_desvio": 4, "orden_recorrido_m": 18169.35, "dir": "ANA MARIA JANER 3000"}, "geometry": {"type": "Point", "coordinates": [-58.4463889, -34.6569852]}}, {"type": "Feature", "properties": {"id": 6794, "CALLE": "ANA MARIA JANER", "ALT PLANO": "2750", "DIRECCION": "Janer, Ana 2750", "coord_X": -58.4436401, "coord_Y": -34.6547595, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "46", "l1_sen": "V", "L1_Ramal": null, "L2": "76", "l2_sen": "I", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 945, "linea": "046", "recorrido": "B", "sentido": "VUELTA", "linea_sentido": "046 - B - VUELTA", "id_desvio": 4, "orden_recorrido_m": 18521.39, "dir": "ANA MARIA JANER 2750"}, "geometry": {"type": "Point", "coordinates": [-58.4436401, -34.6547595]}}, {"type": "Feature", "properties": {"id": 8159, "CALLE": "VARELA AV.", "ALT PLANO": "2739", "DIRECCION": "VARELA AV. 2739", "coord_X": -58.43924879, "coord_Y": -34.65506171, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "115", "l1_sen": "I", "L1_Ramal": "B", "L2": "46", "l2_sen": "V", "L2_Ramal": "B", "L3": 76, "l3_sen": "V", "L3_Ramal": "A", "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 945, "linea": "046", "recorrido": "B", "sentido": "VUELTA", "linea_sentido": "046 - B - VUELTA", "id_desvio": 4, "orden_recorrido_m": 19110.26, "dir": "VARELA AV. 2739"}, "geometry": {"type": "Point", "coordinates": [-58.43924879, -34.65506171]}}, {"type": "Feature", "properties": {"id": 6641, "CALLE": "VARELA AV.", "ALT PLANO": "2225", "DIRECCION": "2225 VARELA AV.", "coord_X": -58.4434201, "coord_Y": -34.6517506, "COMUNA": 7, "BARRIO": "FLORES", "BV_buffer_": "Barrio 1-11-14", "HITO": null, "CATEGORIA": "OFICIAL", "L1": "115", "l1_sen": "I", "L1_Ramal": "B", "L2": "76", "l2_sen": "V", "L2_Ramal": "A-B", "L3": 46, "l3_sen": "I", "L3_Ramal": "A", "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 192, "linea": "046", "recorrido": "C", "sentido": "IDA", "linea_sentido": "046 - C - IDA", "id_desvio": 2, "orden_recorrido_m": 11546.78, "dir": "VARELA AV. 2225"}, "geometry": {"type": "Point", "coordinates": [-58.4434201, -34.6517506]}}, {"type": "Feature", "properties": {"id": 6795, "CALLE": "ANA MARIA JANER", "ALT PLANO": "2751", "DIRECCION": "Janer, Ana 2751", "coord_X": -58.4434483, "coord_Y": -34.6543577, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "46", "l1_sen": "I", "L1_Ramal": null, "L2": "76", "l2_sen": "V", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 192, "linea": "046", "recorrido": "C", "sentido": "IDA", "linea_sentido": "046 - C - IDA", "id_desvio": 2, "orden_recorrido_m": 11965.03, "dir": "ANA MARIA JANER 2751"}, "geometry": {"type": "Point", "coordinates": [-58.4434483, -34.6543577]}}, {"type": "Feature", "properties": {"id": 6845, "CALLE": "ANA MARIA JANER", "ALT PLANO": "2997", "DIRECCION": "Janer, Ana MarÃ­a 2997 e/Lafuente Av.", "coord_X": -58.4461866, "coord_Y": -34.6565816, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "46", "l1_sen": "I", "L1_Ramal": null, "L2": "76", "l2_sen": "V", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 192, "linea": "046", "recorrido": "C", "sentido": "IDA", "linea_sentido": "046 - C - IDA", "id_desvio": 2, "orden_recorrido_m": 12316.12, "dir": "ANA MARIA JANER 2997"}, "geometry": {"type": "Point", "coordinates": [-58.4461866, -34.6565816]}}, {"type": "Feature", "properties": {"id": 9064, "CALLE": "ANA MARIA JANER", "ALT PLANO": "3290", "DIRECCION": "Ana Maria Janer 3290", "coord_X": -58.449427, "coord_Y": -34.659453, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "46", "l1_sen": "V", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 196, "linea": "046", "recorrido": "C", "sentido": "VUELTA", "linea_sentido": "046 - C - VUELTA", "id_desvio": 9, "orden_recorrido_m": 10402.31, "dir": "ANA MARIA JANER 3290"}, "geometry": {"type": "Point", "coordinates": [-58.449427, -34.659453]}}, {"type": "Feature", "properties": {"id": 6626, "CALLE": "ANA MARIA JANER", "ALT PLANO": "3204", "DIRECCION": "Ana Maria Janer 3204", "coord_X": -58.448077, "coord_Y": -34.658356, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": "Los Pinos", "HITO": null, "CATEGORIA": "OFICIAL", "L1": "46", "l1_sen": "V", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 196, "linea": "046", "recorrido": "C", "sentido": "VUELTA", "linea_sentido": "046 - C - VUELTA", "id_desvio": 9, "orden_recorrido_m": 10575.3, "dir": "ANA MARIA JANER 3204"}, "geometry": {"type": "Point", "coordinates": [-58.448077, -34.658356]}}, {"type": "Feature", "properties": {"id": 6834, "CALLE": "ANA MARIA JANER", "ALT PLANO": "3000", "DIRECCION": "Ana Maria Janer 3010", "coord_X": -58.4463889, "coord_Y": -34.6569852, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "46", "l1_sen": "V", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 196, "linea": "046", "recorrido": "C", "sentido": "VUELTA", "linea_sentido": "046 - C - VUELTA", "id_desvio": 9, "orden_recorrido_m": 10791.92, "dir": "ANA MARIA JANER 3000"}, "geometry": {"type": "Point", "coordinates": [-58.4463889, -34.6569852]}}, {"type": "Feature", "properties": {"id": 6794, "CALLE": "ANA MARIA JANER", "ALT PLANO": "2750", "DIRECCION": "Janer, Ana 2750", "coord_X": -58.4436401, "coord_Y": -34.6547595, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "46", "l1_sen": "V", "L1_Ramal": null, "L2": "76", "l2_sen": "I", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 196, "linea": "046", "recorrido": "C", "sentido": "VUELTA", "linea_sentido": "046 - C - VUELTA", "id_desvio": 9, "orden_recorrido_m": 11143.93, "dir": "ANA MARIA JANER 2750"}, "geometry": {"type": "Point", "coordinates": [-58.4436401, -34.6547595]}}, {"type": "Feature", "properties": {"id": 9330, "CALLE": "VARELA AV.", "ALT PLANO": "2226", "DIRECCION": "2226 VARELA AV.", "coord_X": -58.442974, "coord_Y": -34.651813, "COMUNA": 7, "BARRIO": "FLORES", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "115", "l1_sen": "V", "L1_Ramal": "B", "L2": "76", "l2_sen": "I", "L2_Ramal": "A-B", "L3": 46, "l3_sen": "V", "L3_Ramal": "A", "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 196, "linea": "046", "recorrido": "C", "sentido": "VUELTA", "linea_sentido": "046 - C - VUELTA", "id_desvio": 9, "orden_recorrido_m": 11592.04, "dir": "VARELA AV. 2226"}, "geometry": {"type": "Point", "coordinates": [-58.442974, -34.651813]}}, {"type": "Feature", "properties": {"id": 8766, "CALLE": "PERITO MORENO AV.", "ALT PLANO": "2370", "DIRECCION": "2370 MORENO, PERITO AV.", "coord_X": -58.4381448, "coord_Y": -34.650849, "COMUNA": 7, "BARRIO": "FLORES", "BV_buffer_": "Barrio 1-11-14", "HITO": null, "CATEGORIA": "OFICIAL", "L1": "193", "l1_sen": "V", "L1_Ramal": null, "L2": "46", "l2_sen": "V", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 196, "linea": "046", "recorrido": "C", "sentido": "VUELTA", "linea_sentido": "046 - C - VUELTA", "id_desvio": 9, "orden_recorrido_m": 12142.69, "dir": "PERITO MORENO AV. 2370"}, "geometry": {"type": "Point", "coordinates": [-58.4381448, -34.650849]}}, {"type": "Feature", "properties": {"id": 5007, "CALLE": "VARELA AV.", "ALT PLANO": "2668", "DIRECCION": "2668 VARELA AV.", "coord_X": -58.4397372, "coord_Y": -34.6542787, "COMUNA": 7, "BARRIO": "FLORES", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "115", "l1_sen": "V", "L1_Ramal": "B", "L2": "46", "l2_sen": "I", "L2_Ramal": "B", "L3": 76, "l3_sen": "I", "L3_Ramal": "A", "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 197, "linea": "046", "recorrido": "D", "sentido": "IDA", "linea_sentido": "046 - D - IDA", "id_desvio": 3, "orden_recorrido_m": 11887.32, "dir": "VARELA AV. 2668"}, "geometry": {"type": "Point", "coordinates": [-58.4397372, -34.6542787]}}, {"type": "Feature", "properties": {"id": 6795, "CALLE": "ANA MARIA JANER", "ALT PLANO": "2751", "DIRECCION": "Janer, Ana 2751", "coord_X": -58.4434483, "coord_Y": -34.6543577, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "46", "l1_sen": "I", "L1_Ramal": null, "L2": "76", "l2_sen": "V", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 197, "linea": "046", "recorrido": "D", "sentido": "IDA", "linea_sentido": "046 - D - IDA", "id_desvio": 3, "orden_recorrido_m": 12340.1, "dir": "ANA MARIA JANER 2751"}, "geometry": {"type": "Point", "coordinates": [-58.4434483, -34.6543577]}}, {"type": "Feature", "properties": {"id": 6845, "CALLE": "ANA MARIA JANER", "ALT PLANO": "2997", "DIRECCION": "Janer, Ana MarÃ­a 2997 e/Lafuente Av.", "coord_X": -58.4461866, "coord_Y": -34.6565816, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "46", "l1_sen": "I", "L1_Ramal": null, "L2": "76", "l2_sen": "V", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 197, "linea": "046", "recorrido": "D", "sentido": "IDA", "linea_sentido": "046 - D - IDA", "id_desvio": 3, "orden_recorrido_m": 12691.19, "dir": "ANA MARIA JANER 2997"}, "geometry": {"type": "Point", "coordinates": [-58.4461866, -34.6565816]}}, {"type": "Feature", "properties": {"id": 9064, "CALLE": "ANA MARIA JANER", "ALT PLANO": "3290", "DIRECCION": "Ana Maria Janer 3290", "coord_X": -58.449427, "coord_Y": -34.659453, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "46", "l1_sen": "V", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 198, "linea": "046", "recorrido": "D", "sentido": "VUELTA", "linea_sentido": "046 - D - VUELTA", "id_desvio": 4, "orden_recorrido_m": 10406.23, "dir": "ANA MARIA JANER 3290"}, "geometry": {"type": "Point", "coordinates": [-58.449427, -34.659453]}}, {"type": "Feature", "properties": {"id": 6626, "CALLE": "ANA MARIA JANER", "ALT PLANO": "3204", "DIRECCION": "Ana Maria Janer 3204", "coord_X": -58.448077, "coord_Y": -34.658356, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": "Los Pinos", "HITO": null, "CATEGORIA": "OFICIAL", "L1": "46", "l1_sen": "V", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 198, "linea": "046", "recorrido": "D", "sentido": "VUELTA", "linea_sentido": "046 - D - VUELTA", "id_desvio": 4, "orden_recorrido_m": 10579.21, "dir": "ANA MARIA JANER 3204"}, "geometry": {"type": "Point", "coordinates": [-58.448077, -34.658356]}}, {"type": "Feature", "properties": {"id": 6834, "CALLE": "ANA MARIA JANER", "ALT PLANO": "3000", "DIRECCION": "Ana Maria Janer 3010", "coord_X": -58.4463889, "coord_Y": -34.6569852, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "46", "l1_sen": "V", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 198, "linea": "046", "recorrido": "D", "sentido": "VUELTA", "linea_sentido": "046 - D - VUELTA", "id_desvio": 4, "orden_recorrido_m": 10795.84, "dir": "ANA MARIA JANER 3000"}, "geometry": {"type": "Point", "coordinates": [-58.4463889, -34.6569852]}}, {"type": "Feature", "properties": {"id": 6794, "CALLE": "ANA MARIA JANER", "ALT PLANO": "2750", "DIRECCION": "Janer, Ana 2750", "coord_X": -58.4436401, "coord_Y": -34.6547595, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "46", "l1_sen": "V", "L1_Ramal": null, "L2": "76", "l2_sen": "I", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 198, "linea": "046", "recorrido": "D", "sentido": "VUELTA", "linea_sentido": "046 - D - VUELTA", "id_desvio": 4, "orden_recorrido_m": 11147.85, "dir": "ANA MARIA JANER 2750"}, "geometry": {"type": "Point", "coordinates": [-58.4436401, -34.6547595]}}, {"type": "Feature", "properties": {"id": 8159, "CALLE": "VARELA AV.", "ALT PLANO": "2739", "DIRECCION": "VARELA AV. 2739", "coord_X": -58.43924879, "coord_Y": -34.65506171, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "115", "l1_sen": "I", "L1_Ramal": "B", "L2": "46", "l2_sen": "V", "L2_Ramal": "B", "L3": 76, "l3_sen": "V", "L3_Ramal": "A", "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 198, "linea": "046", "recorrido": "D", "sentido": "VUELTA", "linea_sentido": "046 - D - VUELTA", "id_desvio": 4, "orden_recorrido_m": 11736.72, "dir": "VARELA AV. 2739"}, "geometry": {"type": "Point", "coordinates": [-58.43924879, -34.65506171]}}, {"type": "Feature", "properties": {"id": 5182, "CALLE": "GRAL. FRANCISCO FERNANDEZ DE LA CRUZ AV.", "ALT PLANO": "2993", "DIRECCION": "2993 FERNANDEZ DE LA CRUZ, F., GRAL. AV.", "coord_X": -58.4425143, "coord_Y": -34.6591933, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "76", "l1_sen": "I", "L1_Ramal": "A", "L2": "101", "l2_sen": "V", "L2_Ramal": "B", "L3": 143, "l3_sen": "I", "L3_Ramal": "A-B-C-D-E-F-G", "L4": 150, "l4_sen": "I", "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PARADORES", "MTB / CT": "MTB SUR", "NOMBRE PAR": "LAFUENTE", "fid_co": 377, "linea": "076", "recorrido": "A", "sentido": "IDA", "linea_sentido": "076 - A - IDA", "id_desvio": 10, "orden_recorrido_m": 3235.92, "dir": "GRAL. FRANCISCO FERNANDEZ DE LA CRUZ AV. 2993"}, "geometry": {"type": "Point", "coordinates": [-58.4425143, -34.6591933]}}, {"type": "Feature", "properties": {"id": 5024, "CALLE": "GRAL. FRANCISCO FERNANDEZ DE LA CRUZ AV.", "ALT PLANO": "2613", "DIRECCION": "2613 FERNANDEZ DE LA CRUZ, F., GRAL. AV.", "coord_X": -58.4385088, "coord_Y": -34.6561804, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "76", "l1_sen": "I", "L1_Ramal": "A", "L2": "150", "l2_sen": "V", "L2_Ramal": "A-B", "L3": 101, "l3_sen": "I", "L3_Ramal": "B", "L4": 143, "l4_sen": "V", "L4_Ramal": "A-B-C-D-E-F-G", "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PARADORES", "MTB / CT": "MTB SUR", "NOMBRE PAR": "VARELA", "fid_co": 377, "linea": "076", "recorrido": "A", "sentido": "IDA", "linea_sentido": "076 - A - IDA", "id_desvio": 10, "orden_recorrido_m": 3734.62, "dir": "GRAL. FRANCISCO FERNANDEZ DE LA CRUZ AV. 2613"}, "geometry": {"type": "Point", "coordinates": [-58.4385088, -34.6561804]}}, {"type": "Feature", "properties": {"id": 5007, "CALLE": "VARELA AV.", "ALT PLANO": "2668", "DIRECCION": "2668 VARELA AV.", "coord_X": -58.4397372, "coord_Y": -34.6542787, "COMUNA": 7, "BARRIO": "FLORES", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "115", "l1_sen": "V", "L1_Ramal": "B", "L2": "46", "l2_sen": "I", "L2_Ramal": "B", "L3": 76, "l3_sen": "I", "L3_Ramal": "A", "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 377, "linea": "076", "recorrido": "A", "sentido": "IDA", "linea_sentido": "076 - A - IDA", "id_desvio": 10, "orden_recorrido_m": 4241.72, "dir": "VARELA AV. 2668"}, "geometry": {"type": "Point", "coordinates": [-58.4397372, -34.6542787]}}, {"type": "Feature", "properties": {"id": 8157, "CALLE": "VARELA AV.", "ALT PLANO": "2526", "DIRECCION": "VARELA AV. 2526", "coord_X": -58.44034691, "coord_Y": -34.6538897, "COMUNA": 7, "BARRIO": "FLORES", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "115", "l1_sen": "V", "L1_Ramal": "B", "L2": "76", "l2_sen": "I", "L2_Ramal": "A", "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 377, "linea": "076", "recorrido": "A", "sentido": "IDA", "linea_sentido": "076 - A - IDA", "id_desvio": 10, "orden_recorrido_m": 4311.55, "dir": "VARELA AV. 2526"}, "geometry": {"type": "Point", "coordinates": [-58.44034691, -34.6538897]}}, {"type": "Feature", "properties": {"id": 9330, "CALLE": "VARELA AV.", "ALT PLANO": "2226", "DIRECCION": "2226 VARELA AV.", "coord_X": -58.442974, "coord_Y": -34.651813, "COMUNA": 7, "BARRIO": "FLORES", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "115", "l1_sen": "V", "L1_Ramal": "B", "L2": "76", "l2_sen": "I", "L2_Ramal": "A-B", "L3": 46, "l3_sen": "V", "L3_Ramal": "A", "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 377, "linea": "076", "recorrido": "A", "sentido": "IDA", "linea_sentido": "076 - A - IDA", "id_desvio": 10, "orden_recorrido_m": 4644.09, "dir": "VARELA AV. 2226"}, "geometry": {"type": "Point", "coordinates": [-58.442974, -34.651813]}}, {"type": "Feature", "properties": {"id": 5008, "CALLE": "VARELA AV.", "ALT PLANO": "1834", "DIRECCION": "1834 VARELA AV.", "coord_X": -58.4488052, "coord_Y": -34.6474837, "COMUNA": 7, "BARRIO": "FLORES", "BV_buffer_": "Barrio 1-11-14", "HITO": null, "CATEGORIA": "OFICIAL", "L1": "76", "l1_sen": "I", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 377, "linea": "076", "recorrido": "A", "sentido": "IDA", "linea_sentido": "076 - A - IDA", "id_desvio": 10, "orden_recorrido_m": 5494.12, "dir": "VARELA AV. 1834"}, "geometry": {"type": "Point", "coordinates": [-58.4488052, -34.6474837]}}, {"type": "Feature", "properties": {"id": 5683, "CALLE": "PERITO MORENO AV.", "ALT PLANO": "2489", "DIRECCION": "2489 MORENO, PERITO AV.", "coord_X": -58.4444127, "coord_Y": -34.6508185, "COMUNA": 7, "BARRIO": "FLORES", "BV_buffer_": "Barrio 1-11-14", "HITO": null, "CATEGORIA": "OFICIAL", "L1": "76", "l1_sen": "V", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 379, "linea": "076", "recorrido": "A", "sentido": "VUELTA", "linea_sentido": "076 - A - VUELTA", "id_desvio": 5, "orden_recorrido_m": 19592.35, "dir": "PERITO MORENO AV. 2489"}, "geometry": {"type": "Point", "coordinates": [-58.4444127, -34.6508185]}}, {"type": "Feature", "properties": {"id": 6641, "CALLE": "VARELA AV.", "ALT PLANO": "2225", "DIRECCION": "2225 VARELA AV.", "coord_X": -58.4434201, "coord_Y": -34.6517506, "COMUNA": 7, "BARRIO": "FLORES", "BV_buffer_": "Barrio 1-11-14", "HITO": null, "CATEGORIA": "OFICIAL", "L1": "115", "l1_sen": "I", "L1_Ramal": "B", "L2": "76", "l2_sen": "V", "L2_Ramal": "A-B", "L3": 46, "l3_sen": "I", "L3_Ramal": "A", "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 379, "linea": "076", "recorrido": "A", "sentido": "VUELTA", "linea_sentido": "076 - A - VUELTA", "id_desvio": 5, "orden_recorrido_m": 19753.73, "dir": "VARELA AV. 2225"}, "geometry": {"type": "Point", "coordinates": [-58.4434201, -34.6517506]}}, {"type": "Feature", "properties": {"id": 8159, "CALLE": "VARELA AV.", "ALT PLANO": "2739", "DIRECCION": "VARELA AV. 2739", "coord_X": -58.43924879, "coord_Y": -34.65506171, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "115", "l1_sen": "I", "L1_Ramal": "B", "L2": "46", "l2_sen": "V", "L2_Ramal": "B", "L3": 76, "l3_sen": "V", "L3_Ramal": "A", "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 379, "linea": "076", "recorrido": "A", "sentido": "VUELTA", "linea_sentido": "076 - A - VUELTA", "id_desvio": 5, "orden_recorrido_m": 20279.37, "dir": "VARELA AV. 2739"}, "geometry": {"type": "Point", "coordinates": [-58.43924879, -34.65506171]}}, {"type": "Feature", "properties": {"id": 5023, "CALLE": "VARELA AV.", "ALT PLANO": "2779", "DIRECCION": "2779 VARELA AV.", "coord_X": -58.4387118, "coord_Y": -34.6554694, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "115", "l1_sen": "I", "L1_Ramal": "B", "L2": "76", "l2_sen": "V", "L2_Ramal": "A", "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 379, "linea": "076", "recorrido": "A", "sentido": "VUELTA", "linea_sentido": "076 - A - VUELTA", "id_desvio": 5, "orden_recorrido_m": 20381.97, "dir": "VARELA AV. 2779"}, "geometry": {"type": "Point", "coordinates": [-58.4387118, -34.6554694]}}, {"type": "Feature", "properties": {"id": 6233, "CALLE": "LAFUENTE AV.", "ALT PLANO": "2789", "DIRECCION": "LAFUENTE 2789", "coord_X": -58.4430762, "coord_Y": -34.6594019, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "76", "l1_sen": "V", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 379, "linea": "076", "recorrido": "A", "sentido": "VUELTA", "linea_sentido": "076 - A - VUELTA", "id_desvio": 5, "orden_recorrido_m": 20978.28, "dir": "LAFUENTE AV. 2789"}, "geometry": {"type": "Point", "coordinates": [-58.4430762, -34.6594019]}}, {"type": "Feature", "properties": {"id": 5181, "CALLE": "GRAL. FRANCISCO FERNANDEZ DE LA CRUZ AV.", "ALT PLANO": "3036", "DIRECCION": "3036 FERNANDEZ DE LA CRUZ, F., GRAL. AV.", "coord_X": -58.4429624, "coord_Y": -34.65986, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "101", "l1_sen": "I", "L1_Ramal": "B", "L2": "150", "l2_sen": "V", "L2_Ramal": "A-B", "L3": 143, "l3_sen": "V", "L3_Ramal": "A-B-C-D-E-F-G", "L4": 76, "l4_sen": "V", "L4_Ramal": "B", "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PARADORES", "MTB / CT": "MTB SUR", "NOMBRE PAR": "LAFUENTE", "fid_co": 379, "linea": "076", "recorrido": "A", "sentido": "VUELTA", "linea_sentido": "076 - A - VUELTA", "id_desvio": 5, "orden_recorrido_m": 21005.96, "dir": "GRAL. FRANCISCO FERNANDEZ DE LA CRUZ AV. 3036"}, "geometry": {"type": "Point", "coordinates": [-58.4429624, -34.65986]}}, {"type": "Feature", "properties": {"id": 6794, "CALLE": "ANA MARIA JANER", "ALT PLANO": "2750", "DIRECCION": "Janer, Ana 2750", "coord_X": -58.4436401, "coord_Y": -34.6547595, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "46", "l1_sen": "V", "L1_Ramal": null, "L2": "76", "l2_sen": "I", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 381, "linea": "076", "recorrido": "B", "sentido": "IDA", "linea_sentido": "076 - B - IDA", "id_desvio": 11, "orden_recorrido_m": 3771.59, "dir": "ANA MARIA JANER 2750"}, "geometry": {"type": "Point", "coordinates": [-58.4436401, -34.6547595]}}, {"type": "Feature", "properties": {"id": 9330, "CALLE": "VARELA AV.", "ALT PLANO": "2226", "DIRECCION": "2226 VARELA AV.", "coord_X": -58.442974, "coord_Y": -34.651813, "COMUNA": 7, "BARRIO": "FLORES", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "115", "l1_sen": "V", "L1_Ramal": "B", "L2": "76", "l2_sen": "I", "L2_Ramal": "A-B", "L3": 46, "l3_sen": "V", "L3_Ramal": "A", "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 381, "linea": "076", "recorrido": "B", "sentido": "IDA", "linea_sentido": "076 - B - IDA", "id_desvio": 11, "orden_recorrido_m": 4217.12, "dir": "VARELA AV. 2226"}, "geometry": {"type": "Point", "coordinates": [-58.442974, -34.651813]}}, {"type": "Feature", "properties": {"id": 5008, "CALLE": "VARELA AV.", "ALT PLANO": "1834", "DIRECCION": "1834 VARELA AV.", "coord_X": -58.4488052, "coord_Y": -34.6474837, "COMUNA": 7, "BARRIO": "FLORES", "BV_buffer_": "Barrio 1-11-14", "HITO": null, "CATEGORIA": "OFICIAL", "L1": "76", "l1_sen": "I", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 381, "linea": "076", "recorrido": "B", "sentido": "IDA", "linea_sentido": "076 - B - IDA", "id_desvio": 11, "orden_recorrido_m": 5067.15, "dir": "VARELA AV. 1834"}, "geometry": {"type": "Point", "coordinates": [-58.4488052, -34.6474837]}}, {"type": "Feature", "properties": {"id": 5683, "CALLE": "PERITO MORENO AV.", "ALT PLANO": "2489", "DIRECCION": "2489 MORENO, PERITO AV.", "coord_X": -58.4444127, "coord_Y": -34.6508185, "COMUNA": 7, "BARRIO": "FLORES", "BV_buffer_": "Barrio 1-11-14", "HITO": null, "CATEGORIA": "OFICIAL", "L1": "76", "l1_sen": "V", "L1_Ramal": null, "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 383, "linea": "076", "recorrido": "B", "sentido": "VUELTA", "linea_sentido": "076 - B - VUELTA", "id_desvio": 6, "orden_recorrido_m": 19592.35, "dir": "PERITO MORENO AV. 2489"}, "geometry": {"type": "Point", "coordinates": [-58.4444127, -34.6508185]}}, {"type": "Feature", "properties": {"id": 6641, "CALLE": "VARELA AV.", "ALT PLANO": "2225", "DIRECCION": "2225 VARELA AV.", "coord_X": -58.4434201, "coord_Y": -34.6517506, "COMUNA": 7, "BARRIO": "FLORES", "BV_buffer_": "Barrio 1-11-14", "HITO": null, "CATEGORIA": "OFICIAL", "L1": "115", "l1_sen": "I", "L1_Ramal": "B", "L2": "76", "l2_sen": "V", "L2_Ramal": "A-B", "L3": 46, "l3_sen": "I", "L3_Ramal": "A", "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 383, "linea": "076", "recorrido": "B", "sentido": "VUELTA", "linea_sentido": "076 - B - VUELTA", "id_desvio": 6, "orden_recorrido_m": 19753.73, "dir": "VARELA AV. 2225"}, "geometry": {"type": "Point", "coordinates": [-58.4434201, -34.6517506]}}, {"type": "Feature", "properties": {"id": 6795, "CALLE": "ANA MARIA JANER", "ALT PLANO": "2751", "DIRECCION": "Janer, Ana 2751", "coord_X": -58.4434483, "coord_Y": -34.6543577, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "46", "l1_sen": "I", "L1_Ramal": null, "L2": "76", "l2_sen": "V", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 383, "linea": "076", "recorrido": "B", "sentido": "VUELTA", "linea_sentido": "076 - B - VUELTA", "id_desvio": 6, "orden_recorrido_m": 20186.45, "dir": "ANA MARIA JANER 2751"}, "geometry": {"type": "Point", "coordinates": [-58.4434483, -34.6543577]}}, {"type": "Feature", "properties": {"id": 6845, "CALLE": "ANA MARIA JANER", "ALT PLANO": "2997", "DIRECCION": "Janer, Ana MarÃ­a 2997 e/Lafuente Av.", "coord_X": -58.4461866, "coord_Y": -34.6565816, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "46", "l1_sen": "I", "L1_Ramal": null, "L2": "76", "l2_sen": "V", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 383, "linea": "076", "recorrido": "B", "sentido": "VUELTA", "linea_sentido": "076 - B - VUELTA", "id_desvio": 6, "orden_recorrido_m": 20537.51, "dir": "ANA MARIA JANER 2997"}, "geometry": {"type": "Point", "coordinates": [-58.4461866, -34.6565816]}}, {"type": "Feature", "properties": {"id": 6641, "CALLE": "VARELA AV.", "ALT PLANO": "2225", "DIRECCION": "2225 VARELA AV.", "coord_X": -58.4434201, "coord_Y": -34.6517506, "COMUNA": 7, "BARRIO": "FLORES", "BV_buffer_": "Barrio 1-11-14", "HITO": null, "CATEGORIA": "OFICIAL", "L1": "115", "l1_sen": "I", "L1_Ramal": "B", "L2": "76", "l2_sen": "V", "L2_Ramal": "A-B", "L3": 46, "l3_sen": "I", "L3_Ramal": "A", "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 121, "linea": "115", "recorrido": "B", "sentido": "IDA", "linea_sentido": "115 - B - IDA", "id_desvio": 1, "orden_recorrido_m": 7311.24, "dir": "VARELA AV. 2225"}, "geometry": {"type": "Point", "coordinates": [-58.4434201, -34.6517506]}}, {"type": "Feature", "properties": {"id": 8159, "CALLE": "VARELA AV.", "ALT PLANO": "2739", "DIRECCION": "VARELA AV. 2739", "coord_X": -58.43924879, "coord_Y": -34.65506171, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "115", "l1_sen": "I", "L1_Ramal": "B", "L2": "46", "l2_sen": "V", "L2_Ramal": "B", "L3": 76, "l3_sen": "V", "L3_Ramal": "A", "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 121, "linea": "115", "recorrido": "B", "sentido": "IDA", "linea_sentido": "115 - B - IDA", "id_desvio": 1, "orden_recorrido_m": 7838.33, "dir": "VARELA AV. 2739"}, "geometry": {"type": "Point", "coordinates": [-58.43924879, -34.65506171]}}, {"type": "Feature", "properties": {"id": 5023, "CALLE": "VARELA AV.", "ALT PLANO": "2779", "DIRECCION": "2779 VARELA AV.", "coord_X": -58.4387118, "coord_Y": -34.6554694, "COMUNA": 8, "BARRIO": "VILLA SOLDATI", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "115", "l1_sen": "I", "L1_Ramal": "B", "L2": "76", "l2_sen": "V", "L2_Ramal": "A", "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 121, "linea": "115", "recorrido": "B", "sentido": "IDA", "linea_sentido": "115 - B - IDA", "id_desvio": 1, "orden_recorrido_m": 7905.24, "dir": "VARELA AV. 2779"}, "geometry": {"type": "Point", "coordinates": [-58.4387118, -34.6554694]}}, {"type": "Feature", "properties": {"id": 5007, "CALLE": "VARELA AV.", "ALT PLANO": "2668", "DIRECCION": "2668 VARELA AV.", "coord_X": -58.4397372, "coord_Y": -34.6542787, "COMUNA": 7, "BARRIO": "FLORES", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "115", "l1_sen": "V", "L1_Ramal": "B", "L2": "46", "l2_sen": "I", "L2_Ramal": "B", "L3": 76, "l3_sen": "I", "L3_Ramal": "A", "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 120, "linea": "115", "recorrido": "B", "sentido": "VUELTA", "linea_sentido": "115 - B - VUELTA", "id_desvio": 8, "orden_recorrido_m": 4398.38, "dir": "VARELA AV. 2668"}, "geometry": {"type": "Point", "coordinates": [-58.4397372, -34.6542787]}}, {"type": "Feature", "properties": {"id": 8157, "CALLE": "VARELA AV.", "ALT PLANO": "2526", "DIRECCION": "VARELA AV. 2526", "coord_X": -58.44034691, "coord_Y": -34.6538897, "COMUNA": 7, "BARRIO": "FLORES", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "115", "l1_sen": "V", "L1_Ramal": "B", "L2": "76", "l2_sen": "I", "L2_Ramal": "A", "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 120, "linea": "115", "recorrido": "B", "sentido": "VUELTA", "linea_sentido": "115 - B - VUELTA", "id_desvio": 8, "orden_recorrido_m": 4468.57, "dir": "VARELA AV. 2526"}, "geometry": {"type": "Point", "coordinates": [-58.44034691, -34.6538897]}}, {"type": "Feature", "properties": {"id": 9330, "CALLE": "VARELA AV.", "ALT PLANO": "2226", "DIRECCION": "2226 VARELA AV.", "coord_X": -58.442974, "coord_Y": -34.651813, "COMUNA": 7, "BARRIO": "FLORES", "BV_buffer_": null, "HITO": null, "CATEGORIA": "OFICIAL", "L1": "115", "l1_sen": "V", "L1_Ramal": "B", "L2": "76", "l2_sen": "I", "L2_Ramal": "A-B", "L3": 46, "l3_sen": "V", "L3_Ramal": "A", "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "RMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 120, "linea": "115", "recorrido": "B", "sentido": "VUELTA", "linea_sentido": "115 - B - VUELTA", "id_desvio": 8, "orden_recorrido_m": 4801.24, "dir": "VARELA AV. 2226"}, "geometry": {"type": "Point", "coordinates": [-58.442974, -34.651813]}}, {"type": "Feature", "properties": {"id": 8193, "CALLE": "RIESTRA AV.", "ALT PLANO": "2490", "DIRECCION": "RIESTRA AV. 2490", "coord_X": -58.44282544, "coord_Y": -34.64983703, "COMUNA": 7, "BARRIO": "FLORES", "BV_buffer_": "Villa 1-11-14", "HITO": null, "CATEGORIA": "OFICIAL", "L1": "115", "l1_sen": "V", "L1_Ramal": "B", "L2": null, "l2_sen": null, "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 120, "linea": "115", "recorrido": "B", "sentido": "VUELTA", "linea_sentido": "115 - B - VUELTA", "id_desvio": 8, "orden_recorrido_m": 5107.43, "dir": "RIESTRA AV. 2490"}, "geometry": {"type": "Point", "coordinates": [-58.44282544, -34.64983703]}}, {"type": "Feature", "properties": {"id": 8767, "CALLE": "PERITO MORENO AV.", "ALT PLANO": "2379", "DIRECCION": "2379 MORENO, PERITO AV.", "coord_X": -58.4383126, "coord_Y": -34.6505384, "COMUNA": 7, "BARRIO": "FLORES", "BV_buffer_": "Barrio 1-11-14", "HITO": null, "CATEGORIA": "OFICIAL", "L1": "193", "l1_sen": "I", "L1_Ramal": null, "L2": "46", "l2_sen": "I", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 806, "linea": "193", "recorrido": "A", "sentido": "IDA", "linea_sentido": "193 - A - IDA", "id_desvio": 7, "orden_recorrido_m": 2187.09, "dir": "PERITO MORENO AV. 2379"}, "geometry": {"type": "Point", "coordinates": [-58.4383126, -34.6505384]}}, {"type": "Feature", "properties": {"id": 8767, "CALLE": "PERITO MORENO AV.", "ALT PLANO": "2379", "DIRECCION": "2379 MORENO, PERITO AV.", "coord_X": -58.4383126, "coord_Y": -34.6505384, "COMUNA": 7, "BARRIO": "FLORES", "BV_buffer_": "Barrio 1-11-14", "HITO": null, "CATEGORIA": "OFICIAL", "L1": "193", "l1_sen": "I", "L1_Ramal": null, "L2": "46", "l2_sen": "I", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 878, "linea": "193", "recorrido": "B", "sentido": "IDA", "linea_sentido": "193 - B - IDA", "id_desvio": 7, "orden_recorrido_m": 2187.09, "dir": "PERITO MORENO AV. 2379"}, "geometry": {"type": "Point", "coordinates": [-58.4383126, -34.6505384]}}, {"type": "Feature", "properties": {"id": 8767, "CALLE": "PERITO MORENO AV.", "ALT PLANO": "2379", "DIRECCION": "2379 MORENO, PERITO AV.", "coord_X": -58.4383126, "coord_Y": -34.6505384, "COMUNA": 7, "BARRIO": "FLORES", "BV_buffer_": "Barrio 1-11-14", "HITO": null, "CATEGORIA": "OFICIAL", "L1": "193", "l1_sen": "I", "L1_Ramal": null, "L2": "46", "l2_sen": "I", "L2_Ramal": null, "L3": null, "l3_sen": null, "L3_Ramal": null, "L4": null, "l4_sen": null, "L4_Ramal": null, "L5": null, "l5_sen": null, "L5_Ramal": null, "L6": null, "l6_sen": null, "L6_Ramal": null, "ELEMENTO": "PMU", "MTB / CT": "NO", "NOMBRE PAR": null, "fid_co": 882, "linea": "193", "recorrido": "C", "sentido": "IDA", "linea_sentido": "193 - C - IDA", "id_desvio": 7, "orden_recorrido_m": 2187.09, "dir": "PERITO MORENO AV. 2379"}, "geometry": {"type": "Point", "coordinates": [-58.4383126, -34.6505384]}}]};
+  const COLOR_MAP = {"046 - A - IDA": "#006400", "046 - A - VUELTA": "#000096", "046 - B - IDA": "#4B0082", "046 - B - VUELTA": "#008080", "046 - C - IDA": "#556B2F", "046 - C - VUELTA": "#8B008B", "046 - D - IDA": "#00008B", "046 - D - VUELTA": "#006400", "076 - A - IDA": "#000096", "076 - A - VUELTA": "#4B0082", "076 - B - IDA": "#008080", "076 - B - VUELTA": "#556B2F", "115 - B - IDA": "#8B008B", "115 - B - VUELTA": "#00008B", "193 - A - IDA": "#006400", "193 - B - IDA": "#000096", "193 - C - IDA": "#4B0082"};
+
+  // Agrupación de desvíos IGUAL que la app: por id_desvio (el grupo de "Ruta"),
+  // no por linea_sentido. Dos líneas con el mismo recorrido caen en un único
+  // ítem, con la etiqueta lineas_agrupadas y un solo color.
+  const LS_TO_GID = {};    // linea_sentido -> id_desvio (string)
+  const GID_LABEL = {};    // id_desvio -> lineas_agrupadas
+  const GID_MEMBERS = {};  // id_desvio -> [linea_sentido...]
+  (DESVIOS.features || []).forEach(ft => {
+    const p = ft.properties || {};
+    const ls = p.linea_sentido || 'Desvíos de colectivo';
+    let gid;
+    if (p.id_desvio !== undefined && p.id_desvio !== null && String(p.id_desvio) !== '') {
+      gid = String(p.id_desvio);
+    } else {
+      // Sin id_desvio (caso anómalo): se conserva el criterio previo, agrupar
+      // por linea+sentido fusionando ramales.
+      const pr = String(ls).split(' - ').map(x => x.trim()).filter(Boolean);
+      gid = pr.length >= 2 ? (pr[0] + '||' + pr[pr.length - 1]) : ls;
+    }
+    LS_TO_GID[ls] = gid;
+    if (p.lineas_agrupadas) GID_LABEL[gid] = String(p.lineas_agrupadas);
+    (GID_MEMBERS[gid] = GID_MEMBERS[gid] || []);
+    if (GID_MEMBERS[gid].indexOf(ls) < 0) GID_MEMBERS[gid].push(ls);
+  });
+  const GID_COLOR = {};
+  Object.keys(GID_MEMBERS).forEach(gid => {
+    const first = GID_MEMBERS[gid].slice().sort(lsSort)[0];
+    GID_COLOR[gid] = (first && COLOR_MAP[first]) ? COLOR_MAP[first] : '#3949AB';
+  });
+
+  function colorFor(ls) {
+    const gid = LS_TO_GID[ls];
+    if (gid && GID_COLOR[gid]) return GID_COLOR[gid];
+    return (ls && COLOR_MAP[ls]) ? COLOR_MAP[ls] : "#3949AB";
+  }
+
+  const WIDTH_TRAMOS = 12.0;
+  const WIDTH_DESVIOS = 3.0;
+
+  // Grosor y guion de los desvíos calculados por zoom con la misma curva que
+  // la app (deviationZoomStyle) pero a la mitad del grosor: de z17 en adelante
+  // usa WIDTH_DESVIOS completo y se va afinando al alejar. Opacidad 0.8.
+  function dvZoomStyle() {
+    const factor = Math.min(1, Math.pow(2, (map.getZoom() - 17) * 0.45));
+    const weight = Math.max(WIDTH_DESVIOS * 0.225, WIDTH_DESVIOS * factor);
+    const dash = Math.max(4, weight * 2.2);
+    const gap  = Math.max(3, weight * 1.5);
+    return { weight: weight, opacity: 0.8, dashArray: dash + ',' + gap, lineCap: 'round', lineJoin: 'round' };
+  }
+  // Grosor extra (+25%) del desvío resaltado en rojo, salvo en zoom out
+  // lejano, donde se mantiene el grosor normal.
+  const SEL_WEIGHT_MULT = 1.25, SEL_WEIGHT_MIN_ZOOM = 14;
+  function selWeight(w) {
+    return map.getZoom() >= SEL_WEIGHT_MIN_ZOOM ? w * SEL_WEIGHT_MULT : w;
+  }
+
+  // Banda de tramos afectados: mismo criterio que los desvíos. De z17 en
+  // adelante usa WIDTH_TRAMOS completo (no crece más); al alejar se afina para
+  // mantener la proporción con la vista. Piso al 20% para que no desaparezca.
+  function tramosZoomStyle() {
+    const factor = Math.min(1, Math.pow(2, (map.getZoom() - 17) * 0.45));
+    const weight = Math.max(WIDTH_TRAMOS * 0.20, WIDTH_TRAMOS * factor);
+    return { color: '#8E2A1B', weight: weight, opacity: 0.65, lineCap: 'butt', lineJoin: 'round' };
+  }
+
+  // Map
+  const map = L.map('map', { zoomControl: false });
+  map.setView([-34.6037, -58.3816], 12);
+ // Zoom arriba a la derecha (evita solape con botón Capas)
+ L.control.zoom({ position: 'topright' }).addTo(map);
+// ✅ Botón debajo del zoom: Zoom a desvíos (lupa con flechas)
+const ZoomDesviosControl = L.Control.extend({
+  options: { position: 'topright' },
+  onAdd: function () {
+    const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+    const btn = L.DomUtil.create('a', '', container);
+    btn.href = '#';
+    btn.title = 'Zoom a desvíos de colectivos';
+    btn.setAttribute('aria-label','Zoom a desvíos de colectivos');
+    btn.innerHTML = "<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='10' cy='10' r='6'/><line x1='14.5' y1='14.5' x2='20' y2='20'/><line x1='10' y1='2' x2='10' y2='5'/><polyline points='8,4 10,2 12,4'/><line x1='10' y1='15' x2='10' y2='22'/><polyline points='8,20 10,22 12,20'/><line x1='2' y1='10' x2='5' y2='10'/><polyline points='4,8 2,10 4,12'/><line x1='15' y1='10' x2='22' y2='10'/><polyline points='20,8 22,10 20,12'/></svg>";
+    btn.style.display = 'flex';
+    btn.style.alignItems = 'center';
+    btn.style.justifyContent = 'center';
+    btn.style.width = '30px';
+    btn.style.height = '30px';
+    btn.style.textDecoration = 'none';
+
+    L.DomEvent.disableClickPropagation(container);
+    L.DomEvent.on(btn, 'click', function (e) {
+      L.DomEvent.preventDefault(e);
+      try {
+        const layers = (typeof grpDesviosAll.getLayers === 'function') ? grpDesviosAll.getLayers() : [];
+        if (!layers || !layers.length) return;
+        const b = L.featureGroup(layers).getBounds();
+        if (b && b.isValid()) map.fitBounds(b.pad(0.15));
+      } catch(err) {}
+    });
+
+    return container;
+  }
+});
+map.addControl(new ZoomDesviosControl());
+
+
+  // Base maps (Google siempre abajo)
+  const baseGoogle = L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', { maxZoom: 20, attribution: '© Google' });
+  const baseOSM = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' });
+  const baseOSMLight = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap', className: 'base-map-light' });
+  // Google por defecto: los tiles de tile.openstreetmap.org exigen Referer y
+  // el HTML abierto desde el disco (file://) no lo manda -> "Access blocked".
+  baseGoogle.addTo(map);
+
+  // Overlays (grupo arriba)
+  const grpTramos = L.layerGroup().addTo(map);
+  const grpDesviosAll = L.layerGroup();
+  const grpFlechasAll = L.layerGroup();
+  const grpParadasAll = L.layerGroup().addTo(map);
+
+  const boundLayers = [];
+
+  function popupTramos(p) {
+    const n = (p && p.nomoficial) ? p.nomoficial : 'Tramo afectado';
+    return '<div><b>' + n + '</b></div>';
+  }
+
+  function popupDesvio(p) {
+    const ls = (p && p.linea_sentido) ? p.linea_sentido : 'Desvíos de colectivo';
+    const ruta = (p && p.Ruta) ? p.Ruta : '';
+    return '<div><b>' + ls + '</b></div><div class="muted">' + ruta + '</div>';
+  }
+
+  // Tramos: extremos planos (no engrosa las puntas), opacidad 0.65 y grosor
+  // que se afina al alejar el zoom (ver tramosZoomStyle).
+  const lyrTramos = L.geoJSON(TRAMOS, {
+    style: () => tramosZoomStyle(),
+    onEachFeature: (f, l) => l.bindPopup(popupTramos((f && f.properties) ? f.properties : {}))
+  });
+  grpTramos.addLayer(lyrTramos);
+  boundLayers.push(lyrTramos);
+
+  // Flechas: ángulo en pantalla
+  function angleDegEnd(a, b) {
+    const zref = map.getZoom();
+    const p1 = map.project(a, zref);
+    const p2 = map.project(b, zref);
+    return (Math.atan2((p2.y - p1.y), (p2.x - p1.x)) * 180 / Math.PI);
+  }
+
+  function metersToPixels(meters, latlng) {
+    const z = map.getZoom();
+    const p1 = map.project(latlng, z);
+    const latlng2 = L.latLng(latlng.lat, latlng.lng + 0.00001);
+    const p2 = map.project(latlng2, z);
+    const metersPerPixel = map.distance(latlng, latlng2) / Math.max(1e-9, Math.abs(p2.x - p1.x));
+    return meters / metersPerPixel;
+  }
+
+  const ARROW_LENGTH_M = 25;
+  // Base +50% (12 -> 18): la relación base/largo (18/25 ≈ 0.72) queda igual a
+  // la de la app (26/36 ≈ 0.72). El largo se mantiene.
+  const ARROW_WIDTH_M  = 18;
+
+  function makeArrowIcon(color, latlng, angleDeg) {
+    // Una única escala preserva la proporción en todas las geometrías.
+    // La punta (tipX) coincide exactamente con el último vértice.
+    const w = Math.max(3, Math.min(22, metersToPixels(ARROW_LENGTH_M, latlng)));
+    const h = w * (ARROW_WIDTH_M / ARROW_LENGTH_M);
+    const tipX = w;
+    const tipY = h / 2;
+    const html = '<div class="arrow-end" style="width:' + w + 'px;height:' + h + 'px;transform: rotate(' + angleDeg + 'deg);transform-origin:' + tipX + 'px ' + tipY + 'px;">'
+      + '<svg width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + ' ' + h + '" xmlns="http://www.w3.org/2000/svg">'
+      + '<polygon points="0,0 0,' + h + ' ' + w + ',' + (h/2) + '" fill="' + color + '" stroke="' + color + '" stroke-width="2" />'
+      + '</svg></div>';
+    return L.divIcon({ className: 'arrow-end-icon', html: html, iconSize: [w, h], iconAnchor: [tipX, tipY] });
+  }
+
+  // Desvíos por linea_sentido
+  const desviosByLS = {};
+  (DESVIOS.features || []).forEach(ft => {
+    const ls = ((ft.properties||{}).linea_sentido || 'Desvíos de colectivo');
+    (desviosByLS[ls] = desviosByLS[ls] || []).push(ft);
+  });
+
+  const layerByLS = {};
+  const arrowsCacheByLS = {};
+  const enabledLS = {};
+
+ function parseLineNumber(ls){
+   const first = (ls||'').split(' - ')[0].trim();
+   const m = first.match(/^(\d+)/);
+   return m ? parseInt(m[1],10) : 1e9;
+ }
+ function sentidoOrderFromLS(ls){
+   const parts = (ls||'').split(' - ').map(x=>x.trim()).filter(Boolean);
+   const s = parts.length ? parts[parts.length-1].toUpperCase() : '';
+   if (s==='IDA') return 0;
+   if (s==='VUELTA') return 1;
+   return 9;
+ }
+ function recPart(ls){
+   const parts = (ls||'').split(' - ').map(x=>x.trim()).filter(Boolean);
+   return (parts.length===3) ? parts[1] : '';
+ }
+ function lsSort(a,b){
+   const na=parseLineNumber(a), nb=parseLineNumber(b);
+   if(na!==nb) return na-nb;
+   const sa=sentidoOrderFromLS(a), sb=sentidoOrderFromLS(b);
+   if(sa!==sb) return sa-sb;
+   return recPart(a).localeCompare(recPart(b),'es');
+ }
+
+
+  Object.keys(desviosByLS).sort(lsSort).forEach(ls => {
+    enabledLS[ls] = true;
+    arrowsCacheByLS[ls] = [];
+    const fc = { type: 'FeatureCollection', features: desviosByLS[ls] };
+    const lyr = L.geoJSON(fc, {
+      style: () => Object.assign({ color: colorFor(ls) }, dvZoomStyle()),
+      bubblingMouseEvents: false,
+      onEachFeature: (f, l) => {
+        l.bindPopup(popupDesvio((f && f.properties) ? f.properties : {}));
+        l.on('click', () => selectDesvioGroup(_groupKeyForLs(ls)));
+        try {
+          let latlngs = l.getLatLngs();
+          if (Array.isArray(latlngs) && latlngs.length && Array.isArray(latlngs[0])) latlngs = latlngs[latlngs.length - 1];
+          if (latlngs && latlngs.length >= 2) {
+            const b = latlngs[latlngs.length - 1];
+            // Puede haber varios vértices finales duplicados. Buscar hacia
+            // atrás el último segmento de longitud real evita ángulos cero
+            // y flechas que parecen separadas o giradas respecto de la línea.
+            let a = null;
+            for (let i = latlngs.length - 2; i >= 0; i--) {
+              if (map.distance(latlngs[i], b) > 0.05) { a = latlngs[i]; break; }
+            }
+            if (a) arrowsCacheByLS[ls].push({ latlng: b, angleDeg: angleDegEnd(a, b) });
+          }
+        } catch(e) {}
+      }
+    });
+    layerByLS[ls] = lyr;
+    grpDesviosAll.addLayer(lyr);
+    boundLayers.push(lyr);
+  });
+
+  // ---- Claves de "línea afectada" (linea|recorrido|sentido) para sincronizar
+  //      desvíos <-> paradas <-> reporte y para el resaltado permanente. ----
+  function _normAff(v) {
+    const t = String(v == null ? '' : v).trim().toUpperCase();
+    return /^[0-9]+$/.test(t) ? String(parseInt(t, 10)) : t;
+  }
+  function _affKey(linea, recorrido, sentido) {
+    return _normAff(linea) + '|' + _normAff(recorrido) + '|' + _normAff(sentido);
+  }
+  function _lsAffKeys(ls) {
+    const parts = String(ls || '').split(' - ').map(x => x.trim()).filter(Boolean);
+    if (parts.length >= 3) return [_affKey(parts[0], parts.slice(1, -1).join(' - '), parts[parts.length - 1])];
+    if (parts.length === 2) return [_affKey(parts[0], '', parts[1])];
+    return parts.length ? [_affKey(parts[0], '', '')] : [];
+  }
+  // Paradas físicas distintas: varias líneas en el mismo punto cuentan 1 sola vez.
+  function _distinctStopPoints(fc) {
+    const seen = {};
+    ((fc && fc.features) || []).forEach((f, i) => {
+      const p = f.properties || {};
+      const d = String(p.dir || '').trim().toLowerCase();
+      if (d && d !== 'sin dirección' && d !== 'sin direccion') { seen['d:' + d] = 1; return; }
+      const c = (f.geometry || {}).coordinates || [];
+      seen[c.length >= 2 ? ('c:' + (+c[1]).toFixed(5) + ',' + (+c[0]).toFixed(5)) : ('x:' + (p.id != null ? p.id : i))] = 1;
+    });
+    return Object.keys(seen).length;
+  }
+
+  // Paradas anuladas: agrupamos por línea/sentido y fusionamos ramales que
+  // comparten exactamente la misma secuencia de direcciones (igual criterio
+  // que el reporte de paradas anuladas).
+  function stopIcon(color) {
+    return L.divIcon({
+      className: 'stop-p-icon', iconSize: [20, 20], iconAnchor: [10, 10], popupAnchor: [0, -10],
+      html: '<span style="display:flex;width:20px;height:20px;align-items:center;justify-content:center;border-radius:50%;background:' + color + ';color:#fff;font:bold 12px/1 Arial,sans-serif">P</span>'
+    });
+  }
+  function popupParada(p) {
+    const ls = (p && p.linea_sentido) ? p.linea_sentido : 'Parada anulada';
+    const dir = (p && p.dir) ? p.dir : 'Sin dirección';
+    return '<div><b>Parada anulada</b></div><div>' + ls + '</div><div class="muted">' + dir + '</div>';
+  }
+  const paradasByKey = {};
+  const enabledPa = {};
+  (function() {
+    const rawGroups = {};
+    (PARADAS.features || []).forEach(f => {
+      const key = String((f.properties || {}).linea_sentido || 'Línea sin identificar');
+      (rawGroups[key] = rawGroups[key] || []).push(f);
+    });
+    const merged = {};
+    Object.keys(rawGroups).sort().forEach(label => {
+      const items = rawGroups[label];
+      const addresses = items.map(f => String((f.properties || {}).dir || 'Sin dirección')).join('§');
+      const p0 = items[0].properties || {};
+      const linea = p0.linea, sentido = p0.sentido, recorrido = p0.recorrido;
+      const hasLineaSentido = linea !== undefined && linea !== null && linea !== '' && sentido !== undefined && sentido !== null && sentido !== '';
+      const mergeKey = hasLineaSentido ? (linea + '||' + sentido + '||' + addresses) : ('__raw__||' + label);
+      if (!merged[mergeKey]) merged[mergeKey] = { recorridos: [], rawLabels: [], features: [], linea, sentido, label };
+      const entry = merged[mergeKey];
+      if (recorrido !== undefined && recorrido !== null && recorrido !== '' && entry.recorridos.indexOf(String(recorrido)) < 0) entry.recorridos.push(String(recorrido));
+      entry.rawLabels.push(label);
+      entry.features.push.apply(entry.features, items);
+    });
+    Object.keys(merged).sort((a, b) => {
+      const ea = merged[a], eb = merged[b];
+      const ka = (ea.linea || '') + '|' + (ea.sentido || '') + '|' + ea.recorridos.join('/');
+      const kb = (eb.linea || '') + '|' + (eb.sentido || '') + '|' + eb.recorridos.join('/');
+      return ka.localeCompare(kb, 'es', { numeric: true });
+    }).forEach(mergeKey => {
+      const entry = merged[mergeKey];
+      const displayLabel = entry.recorridos.length
+        ? (entry.linea + ' - ' + entry.recorridos.slice().sort((a, b) => a.localeCompare(b, 'es', { numeric: true })).join('/') + ' - ' + entry.sentido)
+        : entry.label;
+      const holder = L.geoJSON({ type: 'FeatureCollection', features: entry.features }, {
+        pointToLayer: (f, latlng) => L.marker(latlng, { icon: stopIcon('#dc2626') }),
+        onEachFeature: (f, l) => l.bindPopup(popupParada((f && f.properties) ? f.properties : {}))
+      });
+      grpParadasAll.addLayer(holder);
+      enabledPa[mergeKey] = true;
+      const _ak = {};
+      entry.features.forEach(f => {
+        const p = f.properties || {};
+        _ak[_affKey(p.linea, p.recorrido, p.sentido)] = true;
+      });
+      paradasByKey[mergeKey] = { holder, displayLabel, rawLabels: entry.rawLabels, count: _distinctStopPoints({ features: entry.features }), affKeys: Object.keys(_ak) };
+    });
+  })();
+
+  // Puente entre el panel de capas (scope de su IIFE) y la sincronización /
+  // resaltado que se arma más abajo.
+  const _syncBridge = { dvGroupCbs: {}, paGroupCbs: {}, dvGroups: {}, dvMaster: null, paMaster: null, refresh: function() {} };
+
+  // ---- Resaltado permanente: click en el TEXTO de un desvío del panel ----
+  let _selDvKey = null;
+  // Encuadre activo tras clickear un desvío (o "Todos"): se reaplica al
+  // maximizar/minimizar el reporte para que la geometría siga llenando la
+  // ventana visible del mapa.
+  let _focusBounds = null;
+  // Parada puntual resaltada (una sola por vez, como el desvío): clickear
+  // otra parada asociada al mismo desvío la reemplaza (se despinta la
+  // anterior); clickear la misma deselecciona todo.
+  let _selStopKey = null;
+  function _clearStopAssocHL() {
+    document.querySelectorAll('.stop-p-icon.stop-assoc-hl, .stop-p-icon.stop-shrunk').forEach(el => {
+      el.classList.remove('stop-assoc-hl');
+      el.classList.remove('stop-shrunk');
+    });
+    Object.keys(paradasByKey).forEach(mk => {
+      (paradasByKey[mk].holder.getLayers() || []).forEach(ly => { if (ly.setZIndexOffset) ly.setZIndexOffset(0); });
+    });
+  }
+  // Identidad de parada física: dos features de líneas distintas en la misma
+  // parada comparten dirección (o coordenada si no hay dirección).
+  function _stopIdentity(props, latlng) {
+    const d = String((props && props.dir) || '').trim().toLowerCase();
+    if (d && d !== 'sin dirección' && d !== 'sin direccion') return 'd:' + d;
+    if (latlng) return 'c:' + latlng.lat.toFixed(5) + ',' + latlng.lng.toFixed(5);
+    return 'x:' + ((props && props.id) || '');
+  }
+  function _dvGroupAffKeys(key) {
+    const g = _syncBridge.dvGroups[key];
+    if (!g) return [];
+    const set = {};
+    g.members.forEach(ls => _lsAffKeys(ls).forEach(k => set[k] = true));
+    return Object.keys(set);
+  }
+  function _restyleDvGroup(key, selected) {
+    const g = _syncBridge.dvGroups[key];
+    if (!g) return;
+    g.members.forEach(ls => {
+      const lyr = layerByLS[ls];
+      if (!lyr) return;
+      if (selected) {
+        // Rojo + 25% de grosor (adaptado al zoom; sin extra en zoom out lejano).
+        const _zs = dvZoomStyle();
+        lyr.setStyle(Object.assign({}, _zs, { color: '#ff0000', weight: selWeight(_zs.weight) }));
+        if (lyr.bringToFront) lyr.bringToFront();
+      } else {
+        lyr.setStyle(Object.assign({ color: colorFor(ls) }, dvZoomStyle()));
+      }
+    });
+    rebuildArrows();
+  }
+  function _isSelectedLs(ls) {
+    if (_selDvKey == null) return false;
+    const g = _syncBridge.dvGroups[_selDvKey];
+    return !!(g && g.members.indexOf(ls) >= 0);
+  }
+  // Clave de grupo (linea||sentido) que contiene un linea_sentido crudo: permite
+  // que el click en la geometría del mapa dispare el mismo resaltado que el panel.
+  function _groupKeyForLs(ls) {
+    const groups = _syncBridge.dvGroups;
+    for (const gk in groups) {
+      if ((groups[gk].members || []).indexOf(ls) >= 0) return gk;
+    }
+    return null;
+  }
+  function clearDesvioSelection() {
+    if (_selDvKey == null) return;
+    const prev = _selDvKey;
+    _selDvKey = null;
+    _selStopKey = null;
+    _focusBounds = null;
+    _restyleDvGroup(prev, false);
+    _clearStopAssocHL();
+    document.querySelectorAll('#checklist label.sel-label.is-selected').forEach(el => el.classList.remove('is-selected'));
+  }
+  // Resalta en el mapa (borde rojo / reducidas) las paradas asociadas al
+  // desvío `key`. El título del panel se marca en rojo según `cascadeStops`:
+  // true (clic en el propio desvío) -> TODAS las paradas asociadas a sus
+  // líneas; false (clic en una parada puntual) -> solo el título de
+  // _selStopKey (la parada clickeada a mano). Reutilizable sin pasar por el
+  // toggle de selectDesvioGroup, para que clickear una segunda parada del
+  // mismo desvío no lo deseleccione.
+  function _applyStopHighlightForDvGroup(key, cascadeStops) {
+    const want = {};
+    _dvGroupAffKeys(key).forEach(k => want[k] = true);
+    // Paso 1: identidades de las paradas asociadas al desvío seleccionado.
+    const assocIds = {};
+    Object.keys(paradasByKey).forEach(mk => {
+      const entry = paradasByKey[mk];
+      if (!(entry.affKeys || []).some(k => want[k])) return;
+      (entry.holder.getLayers() || []).forEach(ly => {
+        assocIds[_stopIdentity((ly.feature && ly.feature.properties) || {}, ly.getLatLng && ly.getLatLng())] = true;
+      });
+    });
+    // Paso 2: asociada (por línea o por parada física compartida) -> borde rojo;
+    // el resto -> 50%. El título del panel solo se pinta si fue clickeado.
+    Object.keys(paradasByKey).forEach(mk => {
+      const entry = paradasByKey[mk];
+      const direct = (entry.affKeys || []).some(k => want[k]);
+      if (entry.labelEl) entry.labelEl.classList.toggle('is-selected', mk === _selStopKey || (cascadeStops && direct));
+      (entry.holder.getLayers() || []).forEach(ly => {
+        if (!ly._icon) return;
+        const shared = !!assocIds[_stopIdentity((ly.feature && ly.feature.properties) || {}, ly.getLatLng && ly.getLatLng())];
+        const assoc = direct || shared;
+        ly._icon.classList.add(assoc ? 'stop-assoc-hl' : 'stop-shrunk');
+        if (ly.setZIndexOffset) ly.setZIndexOffset(assoc ? 0 : -100000);
+      });
+    });
+  }
+  function selectDesvioGroup(key) {
+    if (key == null) { clearDesvioSelection(); return; }
+    if (_selDvKey === key) { clearDesvioSelection(); return; }
+    clearDesvioSelection();
+    _selDvKey = key;
+    _restyleDvGroup(key, true);
+    _applyStopHighlightForDvGroup(key, true);
+    const g = _syncBridge.dvGroups[key];
+    const cb = _syncBridge.dvGroupCbs[key];
+    if (g && cb) {
+      const row = cb.closest('div');
+      const lab = row && row.querySelector('label.sel-label');
+      if (lab) lab.classList.add('is-selected');
+    }
+    try {
+      const lyrs = ((g && g.members) || []).map(ls => layerByLS[ls]).filter(Boolean);
+      if (lyrs.length) {
+        const b = L.featureGroup(lyrs).getBounds();
+        if (b && b.isValid()) _fitFocus(b);
+      }
+    } catch(e) {}
+  }
+  map.on('click', () => clearDesvioSelection());
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape' && event.key !== 'Esc') return;
+    if (['INPUT', 'TEXTAREA', 'SELECT'].indexOf((document.activeElement || {}).tagName) >= 0) return;
+    clearDesvioSelection();
+  });
+  grpDesviosAll.on('layerremove', (e) => {
+    if (_selDvKey == null) return;
+    const g = _syncBridge.dvGroups[_selDvKey];
+    if (g && g.members.some(ls => layerByLS[ls] === e.layer)) clearDesvioSelection();
+  });
+
+  // Reaplica el grosor/guion adaptado al zoom a todas las capas de desvío,
+  // respetando cuál está seleccionada (roja).
+  function restyleAllDesvios() {
+    const _zs = dvZoomStyle();
+    Object.keys(layerByLS).forEach(ls => {
+      const lyr = layerByLS[ls];
+      if (!lyr) return;
+      const _sel = _isSelectedLs(ls);
+      lyr.setStyle(Object.assign({}, _zs, {
+        color: _sel ? '#ff0000' : colorFor(ls),
+        weight: _sel ? selWeight(_zs.weight) : _zs.weight
+      }));
+    });
+  }
+
+  function rebuildArrows() {
+    grpFlechasAll.clearLayers();
+    if (!map.hasLayer(grpDesviosAll)) return;
+    // El ls seleccionado se dibuja último y con zIndexOffset alto para que su
+    // flecha roja quede siempre por encima de las flechas de las demás capas.
+    const keys = Object.keys(layerByLS);
+    const ordered = keys.filter(ls => !_isSelectedLs(ls)).concat(keys.filter(ls => _isSelectedLs(ls)));
+    ordered.forEach(ls => {
+      if (!enabledLS[ls]) return;
+      if (!grpDesviosAll.hasLayer(layerByLS[ls])) return;
+      const sel = _isSelectedLs(ls);
+      (arrowsCacheByLS[ls] || []).forEach(a => {
+        const icon = makeArrowIcon(sel ? '#ff0000' : colorFor(ls), a.latlng, a.angleDeg);
+        L.marker(a.latlng, { icon: icon, interactive: false, keyboard: false, zIndexOffset: sel ? 10000 : 0 }).addTo(grpFlechasAll);
+      });
+    });
+  }
+
+  // Inicial: mostramos desvíos + flechas
+  grpDesviosAll.addTo(map);
+  grpFlechasAll.addTo(map);
+  rebuildArrows();
+  map.on('zoomend', () => { lyrTramos.setStyle(tramosZoomStyle()); restyleAllDesvios(); rebuildArrows(); });
+
+  // Fit bounds
+  const all = [];
+  boundLayers.forEach(l => {
+    if (typeof l.getLayers === 'function') all.push(...l.getLayers());
+    else all.push(l);
+  });
+  if (all.length) {
+    const fg = L.featureGroup(all);
+    const b = fg.getBounds();
+    if (b && b.isValid()) map.fitBounds(b.pad(0.1));
+  }
+
+  // Reencuadra el mapa a las capas activas (desvíos / paradas / tramos visibles).
+  function fitActiveArea() {
+    try {
+      const active = [];
+      [grpTramos, grpDesviosAll, grpParadasAll].forEach(g => {
+        if (!map.hasLayer(g)) return;
+        const inner = (typeof g.getLayers === 'function') ? g.getLayers() : [g];
+        inner.forEach(l => {
+          if (typeof l.getLayers === 'function') active.push.apply(active, l.getLayers());
+          else active.push(l);
+        });
+      });
+      if (!active.length) return;
+      const bb = L.featureGroup(active).getBounds();
+      if (!bb || !bb.isValid()) return;
+      // Descontar del encuadre la parte del mapa tapada por el reporte (si lo
+      // solapa; cuando el reporte es un panel aparte el solape es 0).
+      const mc = map.getContainer().getBoundingClientRect();
+      const bp = document.getElementById('bottompanel');
+      let bottom = 28;
+      if (bp) {
+        const rr = bp.getBoundingClientRect();
+        bottom = Math.max(28, Math.min(mc.bottom - rr.top + 12, mc.height * 0.72));
+      }
+      map.fitBounds(bb, { paddingTopLeft: [28, 28], paddingBottomRight: [28, bottom] });
+    } catch(e) {}
+  }
+
+  // Encuadra `b` de modo que la geometría llene la ventana visible del mapa
+  // (descontando lo que tapa el reporte) y recuerda el encuadre para poder
+  // reaplicarlo cuando el reporte se maximiza / minimiza.
+  function _fitFocus(b) {
+    if (!b || !b.isValid()) return;
+    let bb = L.latLngBounds(b.getSouthWest(), b.getNorthEast());
+    try {
+      if (lyrTramos && lyrTramos.getBounds) {
+        const tb = lyrTramos.getBounds();
+        if (tb && tb.isValid()) bb.extend(tb);
+      }
+    } catch(e) {}
+    _focusBounds = bb;
+    try {
+      const mc = map.getContainer().getBoundingClientRect();
+      const bp = document.getElementById('bottompanel');
+      let bottom = 16;
+      if (bp && !bp.classList.contains('collapsed')) {
+        const rr = bp.getBoundingClientRect();
+        bottom = Math.max(16, Math.min(mc.bottom - rr.top + 12, mc.height * 0.72));
+      }
+      map.fitBounds(bb.pad(0.08), { paddingTopLeft: [44, 16], paddingBottomRight: [16, bottom] });
+    } catch(e) {
+      map.fitBounds(bb.pad(0.1));
+    }
+  }
+
+  // Bounds del grupo de desvío con mayor extensión (para el botón "Todos").
+  function _largestDvBounds() {
+    let best = null, bestArea = -1;
+    const groups = _syncBridge.dvGroups || {};
+    Object.keys(groups).forEach(k => {
+      const g = groups[k];
+      const lyrs = ((g && g.members) || []).map(ls => layerByLS[ls]).filter(Boolean);
+      if (!lyrs.length) return;
+      let b;
+      try { b = L.featureGroup(lyrs).getBounds(); } catch(e) { return; }
+      if (!b || !b.isValid()) return;
+      const dx = b.getEast() - b.getWest(), dy = b.getNorth() - b.getSouth();
+      const area = Math.abs(dx * dy);
+      if (area > bestArea) { bestArea = area; best = b; }
+    });
+    return best;
+  }
+
+  // UI helpers
+  function addToggleRow(container, label, initial, onChange) {
+    const id = 'id_' + label.replace(/\W+/g,'_') + '_' + Math.random().toString(16).slice(2);
+    const row = document.createElement('div');
+    row.style.display = 'flex';
+    row.style.alignItems = 'center';
+    row.style.gap = '8px';
+    row.style.margin = '6px 0';
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.id = id;
+    cb.checked = initial;
+    const lab = document.createElement('label');
+    lab.htmlFor = id;
+    lab.textContent = label;
+    lab.style.cursor = 'pointer';
+    cb.onchange = () => onChange(cb.checked);
+    row.appendChild(cb);
+    row.appendChild(lab);
+    container.appendChild(row);
+    return cb;
+  }
+
+  // Base map selector (al final)
+  (function() {
+    const base = document.getElementById('basemap');
+    function addRadio(label, layer, checked) {
+      const id = 'rb_' + label.replace(/\W+/g,'_');
+      const row = document.createElement('div');
+      row.style.display='flex'; row.style.alignItems='center'; row.style.gap='8px'; row.style.margin='6px 0';
+      const rb = document.createElement('input');
+      rb.type='radio'; rb.name='basemap'; rb.id=id; rb.checked=checked;
+      const lab = document.createElement('label'); lab.htmlFor=id; lab.textContent=label; lab.style.cursor='pointer';
+      rb.onchange = () => {
+        if (!rb.checked) return;
+        if (map.hasLayer(baseGoogle)) map.removeLayer(baseGoogle);
+        if (map.hasLayer(baseOSM)) map.removeLayer(baseOSM);
+        if (map.hasLayer(baseOSMLight)) map.removeLayer(baseOSMLight);
+        layer.addTo(map);
+      };
+      row.appendChild(rb); row.appendChild(lab); base.appendChild(row);
+    }
+    addRadio('OSM claro (sentidos y nombres)', baseOSMLight, false);
+    addRadio('Google Maps', baseGoogle, true);
+    addRadio('OpenStreetMap', baseOSM, false);
+  })();
+
+  // Panel de capas: jerárquico
+  (function() {
+    const checklist = document.getElementById('checklist');
+    if (!checklist) return;
+
+    // Grupo Tramos
+    const gTr = document.createElement('div');
+    gTr.className='group';
+    gTr.innerHTML = '<div class="group-title">Tramos afectados</div><div class="group-children"></div>';
+    const trChildren = gTr.querySelector('.group-children');
+    checklist.appendChild(gTr);
+    addToggleRow(trChildren, 'Tramos afectados', true, (on) => {
+      if (on) map.addLayer(grpTramos); else map.removeLayer(grpTramos);
+    });
+    gTr.querySelector('.group-title').onclick = () => gTr.classList.toggle('collapsed');
+
+    // Grupo Desvíos
+    const gDv = document.createElement('div');
+    gDv.className='group';
+    gDv.innerHTML = '<div class="group-title">Desvíos de colectivo</div><div class="group-children"></div>';
+    const dvChildren = gDv.querySelector('.group-children');
+    checklist.appendChild(gDv);
+
+    const childCbs = _syncBridge.dvGroupCbs;
+
+    // Master real: prende/apaga todos los hijos
+    const cbAll = addToggleRow(dvChildren, 'Todos', true, (on) => {
+      cbAll.indeterminate = false;
+      Object.keys(layerByLS).forEach(ls => {
+        enabledLS[ls] = on;
+        if (on) grpDesviosAll.addLayer(layerByLS[ls]);
+        else grpDesviosAll.removeLayer(layerByLS[ls]);
+      });
+      Object.keys(childCbs).forEach(key => { childCbs[key].checked = on; });
+      if (on) {
+        if (!map.hasLayer(grpDesviosAll)) map.addLayer(grpDesviosAll);
+        if (!map.hasLayer(grpFlechasAll)) map.addLayer(grpFlechasAll);
+      } else {
+        if (map.hasLayer(grpDesviosAll)) map.removeLayer(grpDesviosAll);
+        if (map.hasLayer(grpFlechasAll)) map.removeLayer(grpFlechasAll);
+      }
+      rebuildArrows();
+      _syncBridge.refresh('desvios');
+      if (on) { clearDesvioSelection(); _fitFocus(_largestDvBounds()); }
+      else { _focusBounds = null; }
+    });
+    _syncBridge.dvMaster = cbAll;
+
+    // Hijos: un ítem por id_desvio (grupo de "Ruta"), IGUAL que la app. La
+    // etiqueta es lineas_agrupadas (p. ej. "084 - A - VUELTA ; 088 - A/C - VUELTA").
+    const desvioGroups = _syncBridge.dvGroups;
+    Object.keys(layerByLS).forEach(ls => {
+      const gid = LS_TO_GID[ls] || ls;
+      if (!desvioGroups[gid]) desvioGroups[gid] = { gid, label: GID_LABEL[gid] || ls, members: [] };
+      if (desvioGroups[gid].members.indexOf(ls) < 0) desvioGroups[gid].members.push(ls);
+    });
+
+    // Pueden prenderse individualmente aunque el master esté apagado.
+    Object.keys(desvioGroups)
+      .sort((a, b) => {
+        const na = parseInt(a, 10), nb = parseInt(b, 10);
+        if (!isNaN(na) && !isNaN(nb) && na !== nb) return na - nb;
+        const ma = desvioGroups[a].members.slice().sort(lsSort)[0] || '';
+        const mb = desvioGroups[b].members.slice().sort(lsSort)[0] || '';
+        return lsSort(ma, mb);
+      })
+      .forEach(key => {
+        const group = desvioGroups[key];
+        const displayLabel = group.label;
+        childCbs[key] = addToggleRow(dvChildren, displayLabel, true, (on) => {
+          group.members.forEach(ls => {
+            enabledLS[ls] = on;
+            if (on) grpDesviosAll.addLayer(layerByLS[ls]);
+            else grpDesviosAll.removeLayer(layerByLS[ls]);
+          });
+
+          const anyOn = Object.values(enabledLS).some(v => v);
+          if (anyOn) {
+            if (!map.hasLayer(grpDesviosAll)) map.addLayer(grpDesviosAll);
+            if (!map.hasLayer(grpFlechasAll)) map.addLayer(grpFlechasAll);
+          } else {
+            if (map.hasLayer(grpDesviosAll)) map.removeLayer(grpDesviosAll);
+            if (map.hasLayer(grpFlechasAll)) map.removeLayer(grpFlechasAll);
+          }
+          // mantener el master sincronizado visualmente (checked si todos están activos)
+          const allOn = Object.values(enabledLS).every(v => v);
+          const anyOnNow = Object.values(enabledLS).some(v => v);
+          cbAll.checked = allOn;
+          cbAll.indeterminate = anyOnNow && !allOn;
+          rebuildArrows();
+          _syncBridge.refresh('desvios');
+        });
+        // Click en el TEXTO (no en el checkbox): resaltado permanente en rojo
+        // del desvío + borde rojo en las paradas asociadas, hasta clickear otro
+        // ítem o un área vacía del mapa.
+        const _row = childCbs[key].closest('div');
+        const _lab = _row && _row.querySelector('label');
+        if (_lab) {
+          _lab.removeAttribute('for');
+          _lab.className = 'sel-label';
+          _lab.title = 'Resaltar este desvío y sus paradas asociadas';
+          _lab.onclick = (e) => { e.preventDefault(); selectDesvioGroup(key); };
+        }
+      });
+
+    gDv.querySelector('.group-title').onclick = () => gDv.classList.toggle('collapsed');
+
+    // Grupo Paradas anuladas
+    const gPa = document.createElement('div');
+    gPa.className = 'group';
+    gPa.innerHTML = '<div class="group-title">Paradas anuladas (' + _distinctStopPoints(PARADAS) + ')</div><div class="group-children"></div>';
+    const paChildren = gPa.querySelector('.group-children');
+    checklist.appendChild(gPa);
+
+    const paChildCbs = _syncBridge.paGroupCbs;
+
+    function syncPaMaster() {
+      const values = Object.values(enabledPa);
+      const allOn = values.length > 0 && values.every(v => v);
+      const anyOn = values.some(v => v);
+      cbPaAll.checked = allOn;
+      cbPaAll.indeterminate = anyOn && !allOn;
+    }
+
+    const cbPaAll = addToggleRow(paChildren, 'Todos', true, (on) => {
+      cbPaAll.indeterminate = false;
+      Object.keys(paradasByKey).forEach(key => {
+        enabledPa[key] = on;
+        if (paChildCbs[key]) paChildCbs[key].checked = on;
+        if (on) grpParadasAll.addLayer(paradasByKey[key].holder);
+        else grpParadasAll.removeLayer(paradasByKey[key].holder);
+      });
+      if (on) { if (!map.hasLayer(grpParadasAll)) map.addLayer(grpParadasAll); }
+      else if (map.hasLayer(grpParadasAll)) map.removeLayer(grpParadasAll);
+      _syncBridge.refresh('paradas');
+    });
+    _syncBridge.paMaster = cbPaAll;
+
+    Object.keys(paradasByKey).forEach(key => {
+      const entry = paradasByKey[key];
+      paChildCbs[key] = addToggleRow(paChildren, entry.displayLabel + ' (' + entry.count + ')', true, (on) => {
+        enabledPa[key] = on;
+        if (on) grpParadasAll.addLayer(entry.holder);
+        else grpParadasAll.removeLayer(entry.holder);
+        const anyOn = Object.values(enabledPa).some(v => v);
+        if (anyOn) { if (!map.hasLayer(grpParadasAll)) map.addLayer(grpParadasAll); }
+        else if (map.hasLayer(grpParadasAll)) map.removeLayer(grpParadasAll);
+        syncPaMaster();
+        _syncBridge.refresh('paradas');
+      });
+      // Click en el TEXTO (no en el checkbox): enciende esta parada si estaba
+      // apagada y resalta en rojo su desvío asociado + reduce las paradas no
+      // asociadas, igual que clickear el desvío desde su propio panel.
+      const _paRow = paChildCbs[key].closest('div');
+      const _paLab = _paRow && _paRow.querySelector('label');
+      if (_paLab) {
+        _paLab.removeAttribute('for');
+        _paLab.className = 'sel-label';
+        _paLab.title = 'Encender y resaltar el desvío asociado a esta parada';
+        entry.labelEl = _paLab;
+        _paLab.onclick = (e) => {
+          e.preventDefault();
+          const targetLs = (entry.rawLabels || []).find(ls => _groupKeyForLs(ls) != null);
+          const dvKey = targetLs ? _groupKeyForLs(targetLs) : null;
+          if (dvKey == null) return;
+          // Clic en la misma parada ya resaltada: deselecciona todo, igual
+          // que clickear dos veces el mismo desvío.
+          if (_selStopKey === key) { clearDesvioSelection(); return; }
+          if (!paChildCbs[key].checked) {
+            paChildCbs[key].checked = true;
+            enabledPa[key] = true;
+            grpParadasAll.addLayer(entry.holder);
+            if (!map.hasLayer(grpParadasAll)) map.addLayer(grpParadasAll);
+            syncPaMaster();
+            _syncBridge.refresh('paradas');
+          }
+          // Si ya es el desvío seleccionado, no volver a llamar a
+          // selectDesvioGroup: alternaría a "deseleccionar" (mismo id). Otra
+          // parada asociada al mismo desvío debe dejarlo tal cual (en rojo),
+          // solo se reemplaza cuál parada puntual queda marcada.
+          if (dvKey !== _selDvKey) selectDesvioGroup(dvKey);
+          _selStopKey = key;
+          _applyStopHighlightForDvGroup(dvKey, false);
+        };
+      }
+    });
+
+    gPa.querySelector('.group-title').onclick = () => gPa.classList.toggle('collapsed');
+  })();
+
+  // Botón único Mostrar/Ocultar capas
+  (function() {
+    const leftpanel = document.getElementById('leftpanel');
+    const btn = document.getElementById('btnLayers');
+    function applyText() {
+      btn.textContent = leftpanel.classList.contains('hidden') ? 'Mostrar capas' : 'Ocultar capas';
+    }
+    applyText();
+    btn.onclick = () => {
+      leftpanel.classList.toggle('hidden');
+      applyText();
+      setTimeout(() => map.invalidateSize(), 250);
+    };
+  })();
+
+  // Reporte (contenido + copiar)
+  (function() {
+    const reporteDiv = document.getElementById('reporte-html');
+    reporteDiv.innerHTML = "<h3>Tramos afectados</h3><ul><li>VARELA AV. entre CHILAVERT, MARTINIANO, CORONEL y MORENO, PERITO AV.</li><li>JANER, ANA MARIA entre ESTOMBA y HEREDIA</li><li>CHILAVERT, MARTINIANO, CORONEL entre VARELA AV. y LAFUENTE</li></ul><h3><input type='checkbox' id='cbReportAll' checked/>Líneas afectadas (Total 8)</h3><h3>Líneas con desvío (Total 7 - 87,5%)</h3><h3>Detalle de las líneas con desvío</h3><ul><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"115 - B - IDA\"]'/><b>115 - B - IDA</b>: RIESTRA AV. - MORENO, PERITO AV. - RIESTRA AV. - LAFUENTE AV. - LAFUENTE - FERNANDEZ DE LA CRUZ, F., GRAL. AV. - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"046 - A - IDA\", \"046 - C - IDA\"]'/><b>046 - A/C - IDA</b>: MORENO, PERITO AV. - BONORINO, ESTEBAN, CNEL. AV. - RIESTRA AV. - MORENO, PERITO AV. - RIESTRA AV. - LAFUENTE AV. - JANER, ANA MARIA - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"046 - B - IDA\", \"046 - D - IDA\"]'/><b>046 - B/D - IDA</b>: FERNANDEZ DE LA CRUZ, F., GRAL. AV. - LAFUENTE - LAFUENTE AV. - JANER, ANA MARIA - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"046 - B - VUELTA\", \"046 - D - VUELTA\"]'/><b>046 - B/D - VUELTA</b>: ACOSTA, MARIANO - FERNANDEZ DE LA CRUZ, F., GRAL. AV. - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"076 - A - VUELTA\"]'/><b>076 - A - VUELTA</b>: VARELA AV. - RIESTRA AV. - LAFUENTE AV. - LAFUENTE - FERNANDEZ DE LA CRUZ, F., GRAL. AV. - PORTELA - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"076 - B - VUELTA\"]'/><b>076 - B - VUELTA</b>: VARELA AV. - RIESTRA AV. - LAFUENTE AV. - LAFUENTE - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"193 - A - IDA\", \"193 - B - IDA\", \"193 - C - IDA\"]'/><b>193 - A/B/C - IDA</b>: MORENO, PERITO AV. - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"115 - B - VUELTA\"]'/><b>115 - B - VUELTA</b>: FERNANDEZ DE LA CRUZ, F., GRAL. AV. - MORENO, PERITO AV. - BONORINO, ESTEBAN, CNEL. AV. - RIESTRA AV. - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"046 - A - VUELTA\", \"046 - C - VUELTA\"]'/><b>046 - A/C - VUELTA</b>: ACOSTA, MARIANO - FERNANDEZ DE LA CRUZ, F., GRAL. AV. - VEDIA, AGUSTIN DE - BARROS PAZOS, JOSE - TORRES Y TENORIO, PRES. - MORENO, PERITO AV. - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"076 - A - IDA\"]'/><b>076 - A - IDA</b>: MARTI, JOSE - BARROS PAZOS, JOSE - LAFUENTE AV. - CASTAÑARES AV. - VARELA AV. - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"076 - B - IDA\"]'/><b>076 - B - IDA</b>: LAFUENTE - LAFUENTE AV. - CASTAÑARES AV. - VARELA AV. - SU RUTA</li></ul><h3>Líneas sin desvío (Total <span style='color:red'>1</span> - 12,5%)</h3><h3>Detalle de líneas sin desvío</h3><ul><li><b>193 - A/B/C - VUELTA</b></li></ul><h3><input type='checkbox' id='cbReportStopsAll' checked/>Paradas anuladas (Total 21)</h3><ul><li><input type='checkbox' class='parada-toggle' checked data-parada-key='046 - A - IDA||046 - C - IDA'/><b>046 - A/C - IDA</b>: VARELA AV. 2225 - ANA MARIA JANER 2751 - ANA MARIA JANER 2997</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='046 - B - IDA||046 - D - IDA'/><b>046 - B/D - IDA</b>: VARELA AV. 2668 - ANA MARIA JANER 2751 - ANA MARIA JANER 2997</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='046 - A - VUELTA||046 - C - VUELTA'/><b>046 - A/C - VUELTA</b>: ANA MARIA JANER 3290 - ANA MARIA JANER 3204 - ANA MARIA JANER 3000 - ANA MARIA JANER 2750 - VARELA AV. 2226 - PERITO MORENO AV. 2370</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='046 - B - VUELTA||046 - D - VUELTA'/><b>046 - B/D - VUELTA</b>: ANA MARIA JANER 3290 - ANA MARIA JANER 3204 - ANA MARIA JANER 3000 - ANA MARIA JANER 2750 - VARELA AV. 2739</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='076 - A - IDA'/><b>076 - A - IDA</b>: GRAL. FRANCISCO FERNANDEZ DE LA CRUZ AV. 2993 - GRAL. FRANCISCO FERNANDEZ DE LA CRUZ AV. 2613 - VARELA AV. 2668 - VARELA AV. 2526 - VARELA AV. 2226 - VARELA AV. 1834</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='076 - B - IDA'/><b>076 - B - IDA</b>: ANA MARIA JANER 2750 - VARELA AV. 2226 - VARELA AV. 1834</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='076 - A - VUELTA'/><b>076 - A - VUELTA</b>: PERITO MORENO AV. 2489 - VARELA AV. 2225 - VARELA AV. 2739 - VARELA AV. 2779 - LAFUENTE AV. 2789 - GRAL. FRANCISCO FERNANDEZ DE LA CRUZ AV. 3036</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='076 - B - VUELTA'/><b>076 - B - VUELTA</b>: PERITO MORENO AV. 2489 - VARELA AV. 2225 - ANA MARIA JANER 2751 - ANA MARIA JANER 2997</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='115 - B - IDA'/><b>115 - B - IDA</b>: VARELA AV. 2225 - VARELA AV. 2739 - VARELA AV. 2779</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='115 - B - VUELTA'/><b>115 - B - VUELTA</b>: VARELA AV. 2668 - VARELA AV. 2526 - VARELA AV. 2226 - RIESTRA AV. 2490</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='193 - A - IDA||193 - B - IDA||193 - C - IDA'/><b>193 - A/B/C - IDA</b>: PERITO MORENO AV. 2379</li></ul>";
+
+ // ✅ Toggles por Ruta (reporte) con retrofuncionalidad:
+ // - Si TODO está prendido, al tocar una Ruta se apagan todas y quedan solo las seleccionadas.
+ function setLS(ls, on){
+   enabledLS[ls] = !!on;
+   if (!layerByLS[ls]) return;
+   if (on) grpDesviosAll.addLayer(layerByLS[ls]);
+   else grpDesviosAll.removeLayer(layerByLS[ls]);
+ }
+ function ensureGroups(){
+   const anyOn = Object.values(enabledLS).some(v => v);
+   if (anyOn){
+     if (!map.hasLayer(grpDesviosAll)) map.addLayer(grpDesviosAll);
+     if (!map.hasLayer(grpFlechasAll)) map.addLayer(grpFlechasAll);
+   } else {
+     if (map.hasLayer(grpDesviosAll)) map.removeLayer(grpDesviosAll);
+     if (map.hasLayer(grpFlechasAll)) map.removeLayer(grpFlechasAll);
+   }
+ }
+ function applySelectionFromReport(){
+   // unión de keys de todas las rutas tildadas
+   const toggles = Array.from(document.querySelectorAll('.ruta-toggle'));
+   const selected = new Set();
+   toggles.forEach(cb => {
+     if (!cb.checked) return;
+     let keys = [];
+     try { keys = JSON.parse(cb.getAttribute('data-keys') || '[]'); } catch(e) { keys = []; }
+     keys.forEach(k => selected.add(k));
+   });
+   // apagar todas, prender solo seleccionadas
+   Object.keys(layerByLS).forEach(ls => setLS(ls, selected.has(ls)));
+   ensureGroups();
+   rebuildArrows();
+ }
+ (function(){
+   const toggles = Array.from(document.querySelectorAll('.ruta-toggle'));
+   if (!toggles.length) return;
+
+   // ✅ Master checkbox en el Reporte (a la izquierda de "Líneas Afectadas"): activa/desactiva todos los items
+   const cbAllReport = document.getElementById('cbReportAll');
+   function syncCbAllReport(){
+     if (!cbAllReport) return;
+     cbAllReport.checked = toggles.every(x => x.checked);
+   }
+   if (cbAllReport){
+     cbAllReport.addEventListener('change', () => {
+       const on = !!cbAllReport.checked;
+       toggles.forEach(x => x.checked = on);
+       // prender/apagar todas las capas en el mapa
+       Object.keys(layerByLS).forEach(ls => setLS(ls, on));
+       ensureGroups();
+       rebuildArrows();
+     });
+   }
+
+   toggles.forEach(cb => {
+     cb.addEventListener('change', (ev) => {
+       // Estado previo: todo prendido + todas las rutas tildadas
+       const allLayersOn = Object.values(enabledLS).every(v => v);
+       const allRoutesChecked = toggles.every(x => x.checked);
+
+       // Si estaba TODO prendido y el usuario tocó una ruta (normalmente la destilda), usamos modo "solo selección":
+       if (allLayersOn && allRoutesChecked) {
+         // dejar SOLO esta ruta prendida
+         toggles.forEach(x => x.checked = false);
+         cb.checked = true;
+       }
+
+       applySelectionFromReport();
+       syncCbAllReport();
+     });
+   });
+   syncCbAllReport();
+ })();
+
+ // Paradas anuladas del reporte: mismo criterio de fusión que usó
+ // paradas_anuladas.report_html() al armar 'data-parada-key' (labels crudos
+ // de linea_sentido unidos con '||'), por lo que el set ordenado de labels
+ // identifica sin ambigüedad la misma agrupación que arma paradasByKey arriba.
+ function setParadaGroup(key, on){
+   enabledPa[key] = !!on;
+   if (!paradasByKey[key]) return;
+   if (on) grpParadasAll.addLayer(paradasByKey[key].holder);
+   else grpParadasAll.removeLayer(paradasByKey[key].holder);
+ }
+ function ensureParadasGroup(){
+   const anyOn = Object.values(enabledPa).some(v => v);
+   if (anyOn) { if (!map.hasLayer(grpParadasAll)) map.addLayer(grpParadasAll); }
+   else if (map.hasLayer(grpParadasAll)) map.removeLayer(grpParadasAll);
+ }
+ const paradaKeyByLabelSet = {};
+ Object.keys(paradasByKey).forEach(key => {
+   const norm = paradasByKey[key].rawLabels.slice().sort().join('||');
+   paradaKeyByLabelSet[norm] = key;
+ });
+ function paradaKeyFromToggle(cb){
+   const raw = (cb.getAttribute('data-parada-key') || '').split('||').map(x => x.trim()).filter(Boolean);
+   return paradaKeyByLabelSet[raw.slice().sort().join('||')];
+ }
+ function applyParadaSelectionFromReport(){
+   const toggles = Array.from(document.querySelectorAll('.parada-toggle'));
+   const selected = new Set();
+   toggles.forEach(cb => {
+     if (!cb.checked) return;
+     const key = paradaKeyFromToggle(cb);
+     if (key) selected.add(key);
+   });
+   Object.keys(paradasByKey).forEach(key => setParadaGroup(key, selected.has(key)));
+   ensureParadasGroup();
+ }
+ (function(){
+   const toggles = Array.from(document.querySelectorAll('.parada-toggle'));
+   if (!toggles.length) return;
+
+   const cbAllReportStops = document.getElementById('cbReportStopsAll');
+   function syncCbAllReportStops(){
+     if (!cbAllReportStops) return;
+     cbAllReportStops.checked = toggles.every(x => x.checked);
+   }
+   if (cbAllReportStops){
+     cbAllReportStops.addEventListener('change', () => {
+       const on = !!cbAllReportStops.checked;
+       toggles.forEach(x => x.checked = on);
+       Object.keys(paradasByKey).forEach(key => setParadaGroup(key, on));
+       ensureParadasGroup();
+     });
+   }
+
+   toggles.forEach(cb => {
+     cb.addEventListener('change', () => {
+       const allOnBefore = Object.values(enabledPa).every(v => v);
+       const allCheckedBefore = toggles.every(x => x.checked);
+       if (allOnBefore && allCheckedBefore) {
+         toggles.forEach(x => x.checked = false);
+         cb.checked = true;
+       }
+       applyParadaSelectionFromReport();
+       syncCbAllReportStops();
+     });
+   });
+   syncCbAllReportStops();
+ })();
+
+
+    function reportToPlainText(root){
+      if(!root) return '';
+      var lines=[];
+      root.querySelectorAll('h3,h4,li,p').forEach(function(el){
+        var text=(el.textContent||'').replace(/\s+/g,' ').trim();
+        if(!text) return;
+        if(el.tagName==='H3'||el.tagName==='H4'){ lines.push(''); lines.push('*'+text+'*'); }
+        else lines.push(text);
+      });
+      return lines.join('\n').replace(/\n{3,}/g,'\n\n').replace(/^\n+/,'').trim();
+    }
+    function flashBtnCopied(){
+      var b=document.getElementById('btnCopyReport');
+      if(!b) return;
+      clearTimeout(b._copiedTimer);
+      b.classList.add('copied');
+      b.textContent='✓ Copiado';
+      b._copiedTimer=setTimeout(function(){ b.classList.remove('copied'); b.textContent='Copiar'; },1500);
+    }
+    document.getElementById('btnCopyReport').onclick = async () => {
+      const txt = reportToPlainText(document.getElementById('reporte-html'));
+      try {
+        await navigator.clipboard.writeText(txt);
+      } catch(e) {
+        try {
+          const ta=document.createElement('textarea');
+          ta.value=txt; ta.style.position='fixed'; ta.style.opacity='0';
+          document.body.appendChild(ta); ta.select();
+          document.execCommand('copy'); ta.remove();
+        } catch(_) { alert('No se pudo copiar el reporte'); }
+      }
+      flashBtnCopied();
+    };
+  })();
+
+  // ---- Sincronización desvíos <-> paradas <-> reporte (paridad con la app) ----
+  // Estado compartido por "clave afectada" (linea|recorrido|sentido). Cada
+  // superficie (panel de desvíos, panel de paradas, checkboxes del reporte)
+  // vuelca su estado a keyState y luego se re-aplica a las otras tres.
+  (function() {
+    const bridge = _syncBridge;
+    const keyState = {};
+
+    function lsAll() { return Object.keys(layerByLS); }
+    function isActive(keys) { return keys.length > 0 && keys.some(k => keyState[k] !== false); }
+
+    function setLSLocal(ls, on) {
+      enabledLS[ls] = !!on;
+      if (!layerByLS[ls]) return;
+      if (on) grpDesviosAll.addLayer(layerByLS[ls]);
+      else grpDesviosAll.removeLayer(layerByLS[ls]);
+    }
+    function ensureDesviosGroups() {
+      const anyOn = Object.values(enabledLS).some(v => v);
+      if (anyOn) {
+        if (!map.hasLayer(grpDesviosAll)) map.addLayer(grpDesviosAll);
+        if (!map.hasLayer(grpFlechasAll)) map.addLayer(grpFlechasAll);
+      } else {
+        if (map.hasLayer(grpDesviosAll)) map.removeLayer(grpDesviosAll);
+        if (map.hasLayer(grpFlechasAll)) map.removeLayer(grpFlechasAll);
+      }
+    }
+    function setParadaLocal(mk, on) {
+      enabledPa[mk] = !!on;
+      if (!paradasByKey[mk]) return;
+      if (on) grpParadasAll.addLayer(paradasByKey[mk].holder);
+      else grpParadasAll.removeLayer(paradasByKey[mk].holder);
+    }
+    function ensureParadasGroup() {
+      const anyOn = Object.values(enabledPa).some(v => v);
+      if (anyOn) { if (!map.hasLayer(grpParadasAll)) map.addLayer(grpParadasAll); }
+      else if (map.hasLayer(grpParadasAll)) map.removeLayer(grpParadasAll);
+    }
+
+    const paradaKeyByLabelSet = {};
+    Object.keys(paradasByKey).forEach(mk => {
+      paradaKeyByLabelSet[(paradasByKey[mk].rawLabels || []).slice().sort().join('||')] = mk;
+    });
+    function toggleToMergeKey(cb) {
+      const raw = String(cb.getAttribute('data-parada-key') || '').split('||').map(x => x.trim()).filter(Boolean);
+      return paradaKeyByLabelSet[raw.slice().sort().join('||')];
+    }
+    function rutaToggleKeys(cb) {
+      let ks = [];
+      try { ks = JSON.parse(cb.getAttribute('data-keys') || '[]'); } catch(e) { ks = []; }
+      const out = [];
+      ks.forEach(ls => _lsAffKeys(ls).forEach(k => out.push(k)));
+      return out;
+    }
+
+    // PULL: superficie -> keyState
+    function pullDesvios() { lsAll().forEach(ls => _lsAffKeys(ls).forEach(k => keyState[k] = !!enabledLS[ls])); }
+    function pullParadas() { Object.keys(paradasByKey).forEach(mk => (paradasByKey[mk].affKeys || []).forEach(k => keyState[k] = !!enabledPa[mk])); }
+    function pullReportRoutes() {
+      document.querySelectorAll('#reporte-html .ruta-toggle').forEach(cb => {
+        rutaToggleKeys(cb).forEach(k => keyState[k] = !!cb.checked);
+      });
+    }
+    function pullReportStops() {
+      document.querySelectorAll('#reporte-html .parada-toggle').forEach(cb => {
+        const mk = toggleToMergeKey(cb);
+        if (mk && paradasByKey[mk]) (paradasByKey[mk].affKeys || []).forEach(k => keyState[k] = !!cb.checked);
+      });
+    }
+
+    // APPLY: keyState -> superficie
+    function applyDesvios() {
+      lsAll().forEach(ls => {
+        const desired = isActive(_lsAffKeys(ls));
+        if (!!enabledLS[ls] !== desired) setLSLocal(ls, desired);
+      });
+      ensureDesviosGroups();
+      Object.keys(bridge.dvGroups).forEach(gk => {
+        const g = bridge.dvGroups[gk], cb = bridge.dvGroupCbs[gk];
+        if (!cb) return;
+        const states = g.members.map(ls => !!enabledLS[ls]);
+        const allOn = states.length > 0 && states.every(Boolean), anyOn = states.some(Boolean);
+        cb.checked = allOn;
+        cb.indeterminate = anyOn && !allOn;
+      });
+      if (bridge.dvMaster) {
+        const vals = Object.values(enabledLS);
+        const allOn = vals.length > 0 && vals.every(Boolean), anyOn = vals.some(Boolean);
+        bridge.dvMaster.checked = allOn;
+        bridge.dvMaster.indeterminate = anyOn && !allOn;
+      }
+      rebuildArrows();
+    }
+    function applyParadas() {
+      Object.keys(paradasByKey).forEach(mk => {
+        const desired = isActive(paradasByKey[mk].affKeys || []);
+        if (!!enabledPa[mk] !== desired) setParadaLocal(mk, desired);
+        const cb = bridge.paGroupCbs[mk];
+        if (cb) cb.checked = !!enabledPa[mk];
+      });
+      ensureParadasGroup();
+      if (bridge.paMaster) {
+        const vals = Object.values(enabledPa);
+        const allOn = vals.length > 0 && vals.every(Boolean), anyOn = vals.some(Boolean);
+        bridge.paMaster.checked = allOn;
+        bridge.paMaster.indeterminate = anyOn && !allOn;
+      }
+    }
+    function applyReport() {
+      const rutas = Array.prototype.slice.call(document.querySelectorAll('#reporte-html .ruta-toggle'));
+      rutas.forEach(cb => {
+        const keys = rutaToggleKeys(cb);
+        if (keys.length) cb.checked = isActive(keys);
+      });
+      const cbAllR = document.getElementById('cbReportAll');
+      if (cbAllR) cbAllR.checked = rutas.length > 0 && rutas.every(x => x.checked);
+      const paradas = Array.prototype.slice.call(document.querySelectorAll('#reporte-html .parada-toggle'));
+      paradas.forEach(cb => {
+        const mk = toggleToMergeKey(cb);
+        const keys = (mk && paradasByKey[mk] && paradasByKey[mk].affKeys) || [];
+        if (keys.length) cb.checked = isActive(keys);
+      });
+      const cbAllS = document.getElementById('cbReportStopsAll');
+      if (cbAllS) cbAllS.checked = paradas.length > 0 && paradas.every(x => x.checked);
+    }
+
+    let busy = false;
+    function refresh(source) {
+      if (busy) return;
+      busy = true;
+      try {
+        if (source === 'desvios') pullDesvios();
+        else if (source === 'paradas') pullParadas();
+        else if (source === 'report-routes') pullReportRoutes();
+        else if (source === 'report-stops') pullReportStops();
+        else pullDesvios();
+        applyDesvios();
+        applyParadas();
+        applyReport();
+      } finally {
+        busy = false;
+      }
+    }
+    bridge.refresh = refresh;
+
+    const rep = document.getElementById('reporte-html');
+    if (rep && !rep._syncBound) {
+      rep._syncBound = true;
+      rep.addEventListener('change', (ev) => {
+        if (ev.target.matches('.ruta-toggle, #cbReportAll')) refresh('report-routes');
+        else if (ev.target.matches('.parada-toggle, #cbReportStopsAll')) refresh('report-stops');
+      });
+    }
+
+    // Estado inicial coherente entre las tres superficies.
+    pullDesvios();
+    applyParadas();
+    applyReport();
+  })();
+
+  // Ocultar/mostrar reporte
+  const bottomPanel = document.getElementById('bottompanel');
+  const btnToggle = document.getElementById('toggleReport');
+  const dragbar = document.getElementById('dragbar');
+  btnToggle.onclick = () => {
+    const collapsed = bottomPanel.classList.toggle('collapsed');
+    btnToggle.textContent = collapsed ? 'Mostrar reporte' : 'Ocultar reporte';
+    dragbar.style.display = collapsed ? 'none' : 'block';
+    // Esperar a que termine la transición de altura del panel antes de
+    // recalcular el tamaño del mapa y reencuadrar al área activa.
+    setTimeout(() => {
+      map.invalidateSize();
+      requestAnimationFrame(() => {
+        map.invalidateSize();
+        if (_focusBounds && _focusBounds.isValid()) _fitFocus(_focusBounds);
+        else fitActiveArea();
+      });
+    }, 320);
+  };
+
+  map.whenReady(() => setTimeout(() => map.invalidateSize(true), 350));
+  window.addEventListener('resize', () => setTimeout(() => map.invalidateSize(), 250));
+ window.addEventListener('orientationchange', () => setTimeout(() => map.invalidateSize(true), 400));
+  </script>
+</body>
+</html>

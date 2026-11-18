@@ -1,0 +1,61 @@
+{
+  "ok": true,
+  "folder": "C.A_San_Lorenzo_de_Almagro_-_Desvios_base",
+  "layers": {
+    "OUT_TRAMOS": "geodata/tramos_afectados.geojson",
+    "OUT_RED_NETA": "geodata/red_neta.geojson",
+    "OUT_CENTROIDES_OD": "geodata/centroides_od.geojson",
+    "OUT_LINEAS_AFECTADAS": "geodata/lineas_afectadas.geojson",
+    "OUT_LINEAS_CORTADAS": "geodata/lineas_cortadas.geojson",
+    "OUT_DESVIOS": "geodata/desvios.geojson",
+    "DESVIOS_AGRUPADOS": "geodata/desvios_agrupados.geojson",
+    "LINEAS_SIN_DESVIO": "geodata/lineas_sin_desvio.geojson",
+    "PARADAS_ANULADAS": "geodata/paradas_anuladas.geojson",
+    "PARADAS_ASOCIADAS": "geodata/paradas_asociadas.geojson",
+    "PAQUETE_EJECUCION": "C.A_San_Lorenzo_de_Almagro_-_Desvios_base.desvio"
+  },
+  "selection_ids": [
+    "23225",
+    "23847",
+    "23877",
+    "24033",
+    "24062",
+    "24065",
+    "24086",
+    "24235",
+    "24239",
+    "24483",
+    "24495",
+    "24503",
+    "24687",
+    "24898",
+    "27441",
+    "27442",
+    "28646",
+    "29986"
+  ],
+  "resumen": {
+    "total": 8,
+    "con_desvio": 7,
+    "sin_desvio": 1
+  },
+  "algorithm": "desvios_colectivo_v3_jerarquia.py",
+  "algorithm_sha256": "2a4d86e9081c83599bf4ac5a70758fd043657b533c2561637ed1ca2932e825da",
+  "callejero_sha256": "6032f18c65a7b3296c09451f81c3c52afb8485641552999fa8eea83b7a7da774",
+  "colectivos_sha256": "6908f4f3286b6368f6283cc205c5a153ea9edb3595404578a72d8b673c477374",
+  "report": "afectacion_20261118_091915.html",
+  "report_html": "<h3>Tramos afectados</h3><ul><li>VARELA AV. entre CHILAVERT, MARTINIANO, CORONEL y MORENO, PERITO AV.</li><li>JANER, ANA MARIA entre ESTOMBA y HEREDIA</li><li>CHILAVERT, MARTINIANO, CORONEL entre VARELA AV. y LAFUENTE</li></ul><h3><input type='checkbox' id='cbReportAll' checked/>Líneas afectadas (Total 8)</h3><h3>Líneas con desvío (Total 7 - 87,5%)</h3><h3>Detalle de las líneas con desvío</h3><ul><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"115 - B - IDA\"]'/><b>115 - B - IDA</b>: RIESTRA AV. - MORENO, PERITO AV. - RIESTRA AV. - LAFUENTE AV. - LAFUENTE - FERNANDEZ DE LA CRUZ, F., GRAL. AV. - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"046 - A - IDA\", \"046 - C - IDA\"]'/><b>046 - A/C - IDA</b>: MORENO, PERITO AV. - BONORINO, ESTEBAN, CNEL. AV. - RIESTRA AV. - MORENO, PERITO AV. - RIESTRA AV. - LAFUENTE AV. - JANER, ANA MARIA - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"046 - B - IDA\", \"046 - D - IDA\"]'/><b>046 - B/D - IDA</b>: FERNANDEZ DE LA CRUZ, F., GRAL. AV. - LAFUENTE - LAFUENTE AV. - JANER, ANA MARIA - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"046 - B - VUELTA\", \"046 - D - VUELTA\"]'/><b>046 - B/D - VUELTA</b>: ACOSTA, MARIANO - FERNANDEZ DE LA CRUZ, F., GRAL. AV. - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"076 - A - VUELTA\"]'/><b>076 - A - VUELTA</b>: VARELA AV. - RIESTRA AV. - LAFUENTE AV. - LAFUENTE - FERNANDEZ DE LA CRUZ, F., GRAL. AV. - PORTELA - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"076 - B - VUELTA\"]'/><b>076 - B - VUELTA</b>: VARELA AV. - RIESTRA AV. - LAFUENTE AV. - LAFUENTE - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"193 - A - IDA\", \"193 - B - IDA\", \"193 - C - IDA\"]'/><b>193 - A/B/C - IDA</b>: MORENO, PERITO AV. - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"115 - B - VUELTA\"]'/><b>115 - B - VUELTA</b>: FERNANDEZ DE LA CRUZ, F., GRAL. AV. - MORENO, PERITO AV. - BONORINO, ESTEBAN, CNEL. AV. - RIESTRA AV. - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"046 - A - VUELTA\", \"046 - C - VUELTA\"]'/><b>046 - A/C - VUELTA</b>: ACOSTA, MARIANO - FERNANDEZ DE LA CRUZ, F., GRAL. AV. - VEDIA, AGUSTIN DE - BARROS PAZOS, JOSE - TORRES Y TENORIO, PRES. - MORENO, PERITO AV. - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"076 - A - IDA\"]'/><b>076 - A - IDA</b>: MARTI, JOSE - BARROS PAZOS, JOSE - LAFUENTE AV. - CASTAÑARES AV. - VARELA AV. - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"076 - B - IDA\"]'/><b>076 - B - IDA</b>: LAFUENTE - LAFUENTE AV. - CASTAÑARES AV. - VARELA AV. - SU RUTA</li></ul><h3>Líneas sin desvío (Total <span style='color:red'>1</span> - 12,5%)</h3><h3>Detalle de líneas sin desvío</h3><ul><li><b>193 - A/B/C - VUELTA</b></li></ul><h3><input type='checkbox' id='cbReportStopsAll' checked/>Paradas anuladas (Total 21)</h3><ul><li><input type='checkbox' class='parada-toggle' checked data-parada-key='046 - A - IDA||046 - C - IDA'/><b>046 - A/C - IDA</b>: VARELA AV. 2225 - ANA MARIA JANER 2751 - ANA MARIA JANER 2997</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='046 - B - IDA||046 - D - IDA'/><b>046 - B/D - IDA</b>: VARELA AV. 2668 - ANA MARIA JANER 2751 - ANA MARIA JANER 2997</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='046 - A - VUELTA||046 - C - VUELTA'/><b>046 - A/C - VUELTA</b>: ANA MARIA JANER 3290 - ANA MARIA JANER 3204 - ANA MARIA JANER 3000 - ANA MARIA JANER 2750 - VARELA AV. 2226 - PERITO MORENO AV. 2370</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='046 - B - VUELTA||046 - D - VUELTA'/><b>046 - B/D - VUELTA</b>: ANA MARIA JANER 3290 - ANA MARIA JANER 3204 - ANA MARIA JANER 3000 - ANA MARIA JANER 2750 - VARELA AV. 2739</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='076 - A - IDA'/><b>076 - A - IDA</b>: GRAL. FRANCISCO FERNANDEZ DE LA CRUZ AV. 2993 - GRAL. FRANCISCO FERNANDEZ DE LA CRUZ AV. 2613 - VARELA AV. 2668 - VARELA AV. 2526 - VARELA AV. 2226 - VARELA AV. 1834</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='076 - B - IDA'/><b>076 - B - IDA</b>: ANA MARIA JANER 2750 - VARELA AV. 2226 - VARELA AV. 1834</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='076 - A - VUELTA'/><b>076 - A - VUELTA</b>: PERITO MORENO AV. 2489 - VARELA AV. 2225 - VARELA AV. 2739 - VARELA AV. 2779 - LAFUENTE AV. 2789 - GRAL. FRANCISCO FERNANDEZ DE LA CRUZ AV. 3036</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='076 - B - VUELTA'/><b>076 - B - VUELTA</b>: PERITO MORENO AV. 2489 - VARELA AV. 2225 - ANA MARIA JANER 2751 - ANA MARIA JANER 2997</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='115 - B - IDA'/><b>115 - B - IDA</b>: VARELA AV. 2225 - VARELA AV. 2739 - VARELA AV. 2779</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='115 - B - VUELTA'/><b>115 - B - VUELTA</b>: VARELA AV. 2668 - VARELA AV. 2526 - VARELA AV. 2226 - RIESTRA AV. 2490</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='193 - A - IDA||193 - B - IDA||193 - C - IDA'/><b>193 - A/B/C - IDA</b>: PERITO MORENO AV. 2379</li></ul>",
+  "kml": [
+    "google maps/Desvíos_de_linea_C.A_San_Lorenzo_de_Almagro_-_Desvios_base.kml"
+  ],
+  "kml_tramos": "google maps/tramos_afectados_20261118_091917.kml",
+  "kml_paradas": "google maps/Paradas_anuladas_desvios_calculo_rcw94r1c.kml",
+  "log": "log/motor.log",
+  "routing_log": "log/log_ruteo_todos_fid_20261118_091915.txt",
+  "package": "C.A_San_Lorenzo_de_Almagro_-_Desvios_base.desvio",
+  "perf": null,
+  "name": "C.A San Lorenzo de Almagro - Desvios base",
+  "temporary": false,
+  "imported": false,
+  "kml_combinado": "google maps/Mapa_completo_C.A_San_Lorenzo_de_Almagro_-_Desvios_base.kmz"
+}

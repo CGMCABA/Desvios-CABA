@@ -1,0 +1,175 @@
+09:18:58 === sesión de motor iniciada ===
+09:18:58 [AFECTACIONES] Sin restricciones TENOR TOTAL
+09:18:58 [MOTOR WEB] archivo=C:\Users\Operador\Desktop\Desvios de colectivos\desvios_colectivo_v3_jerarquia.py
+09:18:58 [MOTOR WEB] sha256=2a4d86e9081c83599bf4ac5a70758fd043657b533c2561637ed1ca2932e825da
+09:18:58 [MOTOR WEB] seleccion_ids=['23225', '23847', '23877', '24033', '24062', '24065', '24086', '24235', '24239', '24483', '24495', '24503', '24687', '24898', '27441', '27442', '28646', '29986']
+09:18:58 [MOTOR WEB] corte id=23225 | calle=MORENO, PERITO AV. | entre=MORENO, PERITO AV. / NULL
+09:18:58 [MOTOR WEB] corte id=23847 | calle=VARELA AV. | entre=PLAZA / NULL
+09:18:58 [MOTOR WEB] corte id=23877 | calle=VARELA AV. | entre=JANER, ANA MARIA / NULL
+09:18:58 [MOTOR WEB] corte id=24033 | calle=VARELA AV. | entre=CHILAVERT, MARTINIANO, CORONEL / NULL
+09:18:58 [MOTOR WEB] corte id=24062 | calle=VARELA AV. | entre=CHILAVERT, MARTINIANO, CORONEL / NULL
+09:18:58 [MOTOR WEB] corte id=24065 | calle=JANER, ANA MARIA | entre=VARELA AV. / NULL
+09:18:58 [MOTOR WEB] corte id=24086 | calle=JANER, ANA MARIA | entre=VARELA AV. / NULL
+09:18:58 [MOTOR WEB] corte id=24235 | calle=VARELA AV. | entre=CHILAVERT, MARTINIANO, CORONEL / FERNANDEZ DE LA CRUZ, F., GRAL. AV.
+09:18:58 [MOTOR WEB] corte id=24239 | calle=VARELA AV. | entre=FERNANDEZ DE LA CRUZ, F., GRAL. AV. / CHILAVERT, MARTINIANO, CORONEL
+09:18:58 [MOTOR WEB] corte id=24483 | calle=JANER, ANA MARIA | entre=ESTOMBA / HEREDIA
+09:18:58 [MOTOR WEB] corte id=24495 | calle=CHILAVERT, MARTINIANO, CORONEL | entre=VARELA AV. / CASTAÑON
+09:18:58 [MOTOR WEB] corte id=24503 | calle=JANER, ANA MARIA | entre=LAFUENTE AV. / NULL
+09:18:58 [MOTOR WEB] corte id=24687 | calle=CHILAVERT, MARTINIANO, CORONEL | entre=CASTAÑON / SAN PEDRITO
+09:18:58 [MOTOR WEB] corte id=24898 | calle=CHILAVERT, MARTINIANO, CORONEL | entre=SAN PEDRITO / LAFUENTE
+09:18:58 [MOTOR WEB] corte id=27441 | calle=VARELA AV. | entre=JANER, ANA MARIA / MORENO, PERITO AV.
+09:18:58 [MOTOR WEB] corte id=27442 | calle=VARELA AV. | entre=JANER, ANA MARIA / MORENO, PERITO AV.
+09:18:58 [MOTOR WEB] corte id=28646 | calle=MORENO, PERITO AV. | entre=RIVERA INDARTE AV. / NULL
+09:18:58 [MOTOR WEB] corte id=29986 | calle=MORENO, PERITO AV. | entre=VARELA AV. / NULL
+09:18:58 [BRIDGE] processing.run() — inicio
+09:18:58 SCRIPT BUILD: 2026-02-20 bufferROI + groupTop + XYZbottom
+09:18:58 MOTOR ACTIVO: desvios_colectivo_v3_jerarquia.py
+09:18:58 [COMPAT] QGIS 3.20.3-Odense | tipos de campo=Type | unidad metros=si
+09:18:58 FUENTE CALLEJERO: C:\Users\Operador\Desktop\Desvios de colectivos\callejero_entrecalles.geojson
+09:18:58 FUENTE COLECTIVOS: C:\Users\Operador\AppData\Local\Temp\desvios_calculo_rcw94r1c\.colectivos_combinados.geojson
+09:18:58 FEATURES COLECTIVOS: 979
+09:19:00 Results: {'OUTPUT': 'Selected_features_883bd374_b84a_43ec_bc7d_24b58bfb9fd6'}
+09:19:00 [PERF-PROC] native:saveselectedfeatures | 2.045s | features=18
+09:19:06 Results: {'OUTPUT': 'Reprojected_208a7418_8c3b_4c74_a42d_631c40c69700'}
+09:19:10 Results: {'OUTPUT': 'Reprojected_06955320_dc3f_40ff_b432_62dde8358da6'}
+09:19:10 Results: {'OUTPUT': 'Reprojected_c50bc9b0_46ec_479a_b78c_5038e4935dd6'}
+09:19:10 Results: {'OUTPUT': 'Reprojected_208a7418_8c3b_4c74_a42d_631c40c69700'}
+09:19:10 Results: {'OUTPUT': 'Reprojected_06955320_dc3f_40ff_b432_62dde8358da6'}
+09:19:10 Results: {'OUTPUT': 'Reprojected_c50bc9b0_46ec_479a_b78c_5038e4935dd6'}
+09:19:10 Results: {'OUTPUT': 'Reprojected_1a176bb2_4cfa_4a6b_81c2_045cdeb3a1e7'}
+09:19:10 [Semáforos] Exención de giro a la izquierda activa | cruces=3955 | rigen reglas base (giro_izq=0)=3663 | eximen giro (giro_izq=1)=292 | sin semáforo -> también exime | tolerancia=22 m
+09:19:10 [Modo zona] 18 tramos seleccionados. ROI=700 m, AutoBuffer desactivado (1 sola pasada).
+09:19:10 [AutoBuffer] Ciclo #1 | Buffer ROI = 700 m
+09:19:10 [COMPAT] native:buffer: esta version de QGIS no acepta SEPARATE_DISJOINT; se omite
+09:19:10 Results: {'OUTPUT': 'Buffered_5cbde333_b2d0_44e8_962c_fa0b734bdb3c'}
+09:19:10 [PERF-PROC] native:buffer | 0.005s | features=1
+09:19:10 Results: {'OUTPUT': 'Extracted__location__497b01ea_6777_4167_91f4_566233ceca55'}
+09:19:10 [PERF-PROC] native:extractbylocation | 0.018s | features=602
+09:19:10 Results: {'OUTPUT': 'Extracted__location__497b01ea_6777_4167_91f4_566233ceca55'}
+09:19:10 Results: {'OUTPUT': 'Extracted__location__06b3e9ec_2a3c_4cad_8e73_77cde2b9d3b4'}
+09:19:10 [PERF-PROC] native:extractbylocation | 0.046s | features=42
+09:19:10 Results: {'OUTPUT': 'Extracted__location__06b3e9ec_2a3c_4cad_8e73_77cde2b9d3b4'}
+09:19:10 [COMPAT] native:difference: esta version de QGIS no acepta GRID_SIZE; se omite
+09:19:10 Results: {'OUTPUT': 'Difference_c8204295_eefb_492a_9a93_754e41a2500a'}
+09:19:10 [PERF-PROC] native:difference | 0.016s | features=584
+09:19:10 Results: {'OUTPUT': 'Difference_c8204295_eefb_492a_9a93_754e41a2500a'}
+09:19:10 Results: {'OUTPUT': 'Centroids_1945c14b_77d9_4e61_97bc_ef2d74517485'}
+09:19:10 [PERF-PROC] native:centroids | 0.003s | features=18
+09:19:10 Results: {'OUTPUT': 'Centroids_1945c14b_77d9_4e61_97bc_ef2d74517485'}
+09:19:10 [COMPAT] native:buffer: esta version de QGIS no acepta SEPARATE_DISJOINT; se omite
+09:19:10 Results: {'OUTPUT': 'Buffered_2ea0c81b_11e7_41f3_9cd9_076b34a6b044'}
+09:19:10 [PERF-PROC] native:buffer | 0.002s | features=18
+09:19:10 Results: {'OUTPUT': 'Buffered_2ea0c81b_11e7_41f3_9cd9_076b34a6b044'}
+09:19:10 Results: {'OUTPUT': 'Dissolved_e3205dc8_b889_45ce_9d59_85015707e628'}
+09:19:10 [PERF-PROC] native:dissolve | 0.002s | features=1
+09:19:10 Results: {'OUTPUT': 'Dissolved_e3205dc8_b889_45ce_9d59_85015707e628'}
+09:19:10 [COMPAT] native:buffer: esta version de QGIS no acepta SEPARATE_DISJOINT; se omite
+09:19:10 Results: {'OUTPUT': 'Buffered_5c133dc2_ef08_4428_ba93_820b0f8a0713'}
+09:19:10 [PERF-PROC] native:buffer | 0.002s | features=1
+09:19:10 Results: {'OUTPUT': 'Buffered_5c133dc2_ef08_4428_ba93_820b0f8a0713'}
+09:19:10 Results: {'OUTPUT': 'Centroids_6e571bd8_4276_4187_a90f_35a60f272096'}
+09:19:10 [PERF-PROC] native:centroids | 0.007s | features=584
+09:19:10 Results: {'OUTPUT': 'Centroids_6e571bd8_4276_4187_a90f_35a60f272096'}
+09:19:10 [COMPAT] native:buffer: esta version de QGIS no acepta SEPARATE_DISJOINT; se omite
+09:19:10 Results: {'OUTPUT': 'Buffered_452ed1db_e918_4e44_afee_72c5b480f73d'}
+09:19:10 [PERF-PROC] native:buffer | 0.020s | features=584
+09:19:10 Results: {'OUTPUT': 'Buffered_452ed1db_e918_4e44_afee_72c5b480f73d'}
+09:19:11 Results: {'OUTPUT': 'Extracted__location__dbaa663a_46b4_49f8_a9fa_2f4dd404f676'}
+09:19:11 [PERF-PROC] native:extractbylocation | 0.038s | features=20
+09:19:11 Results: {'OUTPUT': 'Extracted__location__dbaa663a_46b4_49f8_a9fa_2f4dd404f676'}
+09:19:11 Results: {'OUTPUT': 'Clipped_8157a7cd_bd15_4338_a067_d5507f7b92a6'}
+09:19:11 [PERF-PROC] native:clip | 0.004s | features=20
+09:19:11 Results: {'OUTPUT': 'Clipped_8157a7cd_bd15_4338_a067_d5507f7b92a6'}
+09:19:11 Results: {'OUTPUT': 'lineas_base_por_fid_1edbee4e_e28e_466d_92b3_6ae19a9b87d9'}
+09:19:11 [COMPAT] native:difference: esta version de QGIS no acepta GRID_SIZE; se omite
+09:19:11 Results: {'OUTPUT': 'Difference_e0b3deb0_aa9a_472c_971a_cf5c71aee533'}
+09:19:11 [PERF-PROC] native:difference | 0.007s | features=20
+09:19:11 Results: {'OUTPUT': 'Difference_e0b3deb0_aa9a_472c_971a_cf5c71aee533'}
+09:19:11 Results: {'OUTPUT': 'Single_parts_a44586ed_d179_487d_beba_681927488adf'}
+09:19:11 [PERF-PROC] native:multiparttosingleparts | 0.002s | features=49
+09:19:11 Results: {'OUTPUT': 'Single_parts_a44586ed_d179_487d_beba_681927488adf'}
+09:19:11 Results: {'OUTPUT': 'lineas_cortadas_con_vertex_b5396e51_0b9f_4705_8e1a_cfaaefa24f2f'}
+09:19:11 Results: {'JOINED_COUNT': 186, 'OUTPUT': 'Joined_layer_d4f9952c_97c9_409d_9f66_33a4fb6359e7'}
+09:19:11 [PERF-PROC] native:joinattributesbylocation | 0.198s | features=186
+09:19:11 Results: {'OUTPUT': 'Joined_layer_d4f9952c_97c9_409d_9f66_33a4fb6359e7'}
+09:19:11 Results: {'OUTPUT': 'Centroids_1776aed0_08a0_4c3a_9d86_ff1fee1f3136'}
+09:19:11 [PERF-PROC] native:centroids | 0.004s | features=186
+09:19:11 Results: {'OUTPUT': 'Centroids_1776aed0_08a0_4c3a_9d86_ff1fee1f3136'}
+09:19:11 [COMPAT] native:difference: esta version de QGIS no acepta GRID_SIZE; se omite
+09:19:11 Results: {'OUTPUT': 'Difference_bafd99a6_de40_42d1_8d5d_6de5808c817c'}
+09:19:11 [PERF-PROC] native:difference | 0.008s | features=20
+09:19:11 Results: {'OUTPUT': 'Difference_bafd99a6_de40_42d1_8d5d_6de5808c817c'}
+09:19:11 [PERF-FASE] construccion_OD_desde_centroides | 0.071s | centroides=186 fids=20
+09:19:11 AVISO: [OD-DIAG] fid_co=806 193 - A - IDA | origenes_validos=1 destinos_validos=0 | centroides_raw=1 vertex_O=1 vertex_D=0 otros_vertex=0 node_fail=0 terminal_skip=0 | ROI=700m recorte_linea=60m det_lineas=15m
+09:19:11 AVISO: [OD-DIAG] fid_co=847 193 - A - VUELTA | origenes_validos=0 destinos_validos=1 | centroides_raw=1 vertex_O=0 vertex_D=1 otros_vertex=0 node_fail=0 terminal_skip=0 | ROI=700m recorte_linea=60m det_lineas=15m
+09:19:11 AVISO: [OD-DIAG] fid_co=878 193 - B - IDA | origenes_validos=1 destinos_validos=0 | centroides_raw=1 vertex_O=1 vertex_D=0 otros_vertex=0 node_fail=0 terminal_skip=0 | ROI=700m recorte_linea=60m det_lineas=15m
+09:19:11 AVISO: [OD-DIAG] fid_co=880 193 - B - VUELTA | origenes_validos=0 destinos_validos=1 | centroides_raw=1 vertex_O=0 vertex_D=1 otros_vertex=0 node_fail=0 terminal_skip=0 | ROI=700m recorte_linea=60m det_lineas=15m
+09:19:11 AVISO: [OD-DIAG] fid_co=882 193 - C - IDA | origenes_validos=1 destinos_validos=0 | centroides_raw=1 vertex_O=1 vertex_D=0 otros_vertex=0 node_fail=0 terminal_skip=0 | ROI=700m recorte_linea=60m det_lineas=15m
+09:19:11 AVISO: [OD-DIAG] fid_co=883 193 - C - VUELTA | origenes_validos=0 destinos_validos=1 | centroides_raw=1 vertex_O=0 vertex_D=1 otros_vertex=0 node_fail=0 terminal_skip=0 | ROI=700m recorte_linea=60m det_lineas=15m
+09:19:11 [OD mínimo 2 pares] fid_co=198: 2/4 pares OD evaluados; seleccionado OD rank=1
+09:19:11 [OD mínimo 2 pares] fid_co=197: 2/10 pares OD evaluados; seleccionado OD rank=1
+09:19:11 [OD mínimo 2 pares] fid_co=944: 2/10 pares OD evaluados; seleccionado OD rank=1
+09:19:12 [OD mínimo 2 pares] fid_co=945: 2/4 pares OD evaluados; seleccionado OD rank=1
+09:19:12 [REENGANCHE D OK] fid_co=379 | D (367685.910807847, 6163558.876560973) -> (367796.86409923376, 6163760.655616151) | score_conductor 5332.2->4532.9 | cambios 5->4
+09:19:12 [EMPALME +1 ARTERIA] fid_co=379 | FERNANDEZ DE LA CRUZ, F., GRAL. AV. -> PORTELA | extra=240.7m
+09:19:12 [POSTOPT V3.3 OK] fid_co=379 | global=False | interno=False | reenganche_D=True | Ruta=VARELA AV. - RIESTRA AV. - LAFUENTE AV. - LAFUENTE - FERNANDEZ DE LA CRUZ, F., GRAL. AV. - PORTELA - SU RUTA
+09:19:12 [OD mínimo 2 pares] fid_co=379: 2/10 pares OD evaluados; seleccionado OD rank=2
+09:19:12 [REENGANCHE D OK] fid_co=121 | D (367682.66664434236, 6163648.296908696) -> (367796.86409923376, 6163760.655616151) | score_conductor 4781.9->4607.3 | cambios 5->5
+09:19:12 [POSTOPT V3.3 OK] fid_co=121 | global=False | interno=False | reenganche_D=True | Ruta=RIESTRA AV. - MORENO, PERITO AV. - RIESTRA AV. - LAFUENTE AV. - LAFUENTE - FERNANDEZ DE LA CRUZ, F., GRAL. AV. - SU RUTA
+09:19:12 [OD mínimo 2 pares] fid_co=121: 2/17 pares OD evaluados; seleccionado OD rank=2
+09:19:12 [OD mínimo 2 pares] fid_co=192: 5/9 pares OD evaluados; seleccionado OD rank=4
+09:19:12 [OD mínimo 2 pares] fid_co=942: 5/9 pares OD evaluados; seleccionado OD rank=4
+09:19:12 [OD mínimo 2 pares] fid_co=383: 2/14 pares OD evaluados; seleccionado OD rank=2
+09:19:12 [FAMILIA V3.3 RESUMEN] familias_multi=3 | herencias_aplicadas=0
+09:19:12 [POSTOPT V3.3 RESUMEN] llamadas=9 | mejoras_globales=0 | mejoras_internas=0 | reenganches_D=2 | herencias_familia=0 | sin_cambio=7 | errores=0 | ventanas=93 | D_probados=32 | tiempo=0.472s
+09:19:12 [AutoBuffer] Resultado ciclo #1 | afectadas=20 | excluidas_terminal=0 | objetivo=20 | con_desvio=9 | sin_desvio(criterio)=11 | sin_desvio_con_NXNoPath=8
+09:19:12 [AutoBuffer] Ciclos totales: 1 | Buffer final (ROI): 700 m | modo_zona=True
+09:19:12 [Refinamiento] 2da pasada sobre 8 fid_co sin ruta (penalización por recorrido; aristas indebidas vistas en toda la corrida: 0) ...
+09:19:13 [Refinamiento] Ningún fid_co adicional pudo recuperarse en la 2da pasada.
+09:19:13 [Herencia OD] 4ta pasada sobre 8 fid_co sin ruta usando 9 rutas válidas como donantes (tolerancia OD: 3.75 m).
+09:19:13 [Herencia OD] Ningún fid_co adicional pudo heredarse por coincidencia OD.
+09:19:13 [Herencia geométrica] 5ta pasada sobre 8 fid_co sin ruta usando 9 rutas válidas como donantes (tolerancias ruta-OD: [10.0, 25.0, 50.0]).
+09:19:13 [Herencia geométrica] Ningún fid_co adicional pudo heredarse por ruta↔OD.
+09:19:13 [DESTINO SINTÉTICO OK] fid_co=806 | D=(368369.2786785221, 6164765.717532965) | Ruta=MORENO, PERITO AV. - SU RUTA
+09:19:13 [DESTINO SINTÉTICO OK] fid_co=878 | D=(368369.2786785221, 6164765.717532965) | Ruta=MORENO, PERITO AV. - SU RUTA
+09:19:14 [DESTINO SINTÉTICO OK] fid_co=882 | D=(368369.2786785221, 6164765.717532965) | Ruta=MORENO, PERITO AV. - SU RUTA
+09:19:14 [DESTINO SINTÉTICO RESUMEN] recuperados=3 [806, 878, 882]
+09:19:14 [ROI ADAPTATIVO] radio=1000m | fid_co pendientes=[120, 196, 377, 381, 943]
+09:19:14 [COMPAT] native:buffer: esta version de QGIS no acepta SEPARATE_DISJOINT; se omite
+09:19:14 Results: {'OUTPUT': 'Buffered_80b561f8_9558_4b6c_af8b_2494f2b196bd'}
+09:19:14 [PERF-PROC] native:buffer | 0.004s | features=1
+09:19:14 Results: {'OUTPUT': 'Extracted__location__4e09852d_64f1_4502_84e0_4249b98b45e9'}
+09:19:14 [PERF-PROC] native:extractbylocation | 0.022s | features=1005
+09:19:14 [COMPAT] native:difference: esta version de QGIS no acepta GRID_SIZE; se omite
+09:19:14 Results: {'OUTPUT': 'Difference_5a05aa08_bc16_4f1f_9c2c_8998862da443'}
+09:19:14 [PERF-PROC] native:difference | 0.021s | features=987
+09:19:14 [CONNECTIVITY DIAG] fid_co=120 | radio=1000m | comp_source=668 nodos | D_mismo_componente=10/10
+09:19:15 [ROI ADAPTATIVO OK] fid_co=120 | radio=1000m | Ruta=FERNANDEZ DE LA CRUZ, F., GRAL. AV. - MORENO, PERITO AV. - BONORINO, ESTEBAN, CNEL. AV. - RIESTRA AV. - SU RUTA
+09:19:15 [CONNECTIVITY DIAG] fid_co=196 | radio=1000m | comp_source=678 nodos | D_mismo_componente=3/3
+09:19:15 [ROI ADAPTATIVO OK] fid_co=196 | radio=1000m | Ruta=ACOSTA, MARIANO - FERNANDEZ DE LA CRUZ, F., GRAL. AV. - VEDIA, AGUSTIN DE - BARROS PAZOS, JOSE - TORRES Y TENORIO, PRES. - MORENO, PERITO AV. - SU RUTA
+09:19:15 [CONNECTIVITY DIAG] fid_co=377 | radio=1000m | comp_source=690 nodos | D_mismo_componente=3/3
+09:19:15 [ROI ADAPTATIVO OK] fid_co=377 | radio=1000m | Ruta=MARTI, JOSE - BARROS PAZOS, JOSE - LAFUENTE AV. - CASTAÑARES AV. - VARELA AV. - SU RUTA
+09:19:15 [CONNECTIVITY DIAG] fid_co=381 | radio=1000m | comp_source=693 nodos | D_mismo_componente=3/3
+09:19:15 [ROI ADAPTATIVO OK] fid_co=381 | radio=1000m | Ruta=LAFUENTE - LAFUENTE AV. - CASTAÑARES AV. - VARELA AV. - SU RUTA
+09:19:15 [CONNECTIVITY DIAG] fid_co=943 | radio=1000m | comp_source=693 nodos | D_mismo_componente=3/3
+09:19:15 [ROI ADAPTATIVO OK] fid_co=943 | radio=1000m | Ruta=ACOSTA, MARIANO - FERNANDEZ DE LA CRUZ, F., GRAL. AV. - VEDIA, AGUSTIN DE - BARROS PAZOS, JOSE - TORRES Y TENORIO, PRES. - MORENO, PERITO AV. - SU RUTA
+09:19:15 [ROI ADAPTATIVO CICLO] radio=1000m | recuperados=[120, 196, 377, 381, 943] | pendientes=[] | tiempo=1.32s
+09:19:15 [ROI ADAPTATIVO RESUMEN] recuperados=5 [120, 196, 377, 381, 943] | sin_ruta_restantes=[]
+09:19:15 [Log fid_co sin ruta] Guardado en: C:\Users\Operador\AppData\Local\Temp\desvios_calculo_rcw94r1c\log_fid_sin_ruta_20261118_091915.txt (0 sin ruta definitiva de 8 con diagnóstico)
+09:19:15 [Log ruteo completo] Guardado en: C:\Users\Operador\AppData\Local\Temp\desvios_calculo_rcw94r1c\log_ruteo_todos_fid_20261118_091915.txt
+09:19:15 Results: {'OUTPUT': 'Reprojected_7c79677e_f2bf_4141_bc19_87b4b451b46e'}
+09:19:15 Results: {'OUTPUT': 'Reprojected_4e934d66_86f5_45e3_a4cb_424ec468c751'}
+09:19:15 Results: {'OUTPUT': 'Reprojected_55dc49e5_cad0_4b00_b58f_06008b085254'}
+09:19:15 Results: {'OUTPUT': 'Reprojected_c805ed0f_1bea_4c94_a5d3_2515c60c0c5e'}
+09:19:15 Results: {'OUTPUT': 'Reprojected_ade5a9ce_178d_4b4a_90a4_acc03111ea7f'}
+09:19:15 Results: {'OUTPUT': 'Reprojected_c45047f6_cd09_49ab_9aab_b9bf27a65d89'}
+09:19:15 [TERMINAL RESUMEN] excluidas=0 | fids=[]
+09:19:17 Mapa web exportado en Escritorio: C:\Users\Operador\AppData\Local\Temp\desvios_calculo_rcw94r1c\afectacion_20261118_091915.html
+09:19:17 Results: {'OUTPUT': 'C:\\Users\\Operador\\AppData\\Local\\Temp\\desvios_calculo_rcw94r1c\\desvios_por_ruta_1_11_20261118_091917.kml'}
+09:19:17 KML exportado: 1-11 (11 elementos) -> C:\Users\Operador\AppData\Local\Temp\desvios_calculo_rcw94r1c\desvios_por_ruta_1_11_20261118_091917.kml
+09:19:17 KML de desvíos agrupados por Ruta exportado (11 desvíos) en: C:\Users\Operador\AppData\Local\Temp\desvios_calculo_rcw94r1c\desvios_por_ruta_1_11_20261118_091917.kml
+09:19:17 Results: {'OUTPUT': 'C:\\Users\\Operador\\AppData\\Local\\Temp\\desvios_calculo_rcw94r1c\\tramos_afectados_20261118_091917.kml'}
+09:19:17 Estilo My Maps aplicado al KML de tramos (rojo RGB(165,39,20), ancho ~1/3, estilo uniforme).
+09:19:17 KML de tramos afectados exportado en: C:\Users\Operador\AppData\Local\Temp\desvios_calculo_rcw94r1c\tramos_afectados_20261118_091917.kml
+09:19:17 Results: {'OUT_CENTROIDES_OD': 'Reprojected_55dc49e5_cad0_4b00_b58f_06008b085254', 'OUT_DEBUG_RUTEOS': None, 'OUT_DEBUG_SUBTRAMOS': None, 'OUT_DESVIOS': 'Reprojected_c45047f6_cd09_49ab_9aab_b9bf27a65d89', 'OUT_LINEAS_AFECTADAS': 'Reprojected_c805ed0f_1bea_4c94_a5d3_2515c60c0c5e', 'OUT_LINEAS_CORTADAS': 'Reprojected_ade5a9ce_178d_4b4a_90a4_acc03111ea7f', 'OUT_RED_NETA': 'Reprojected_4e934d66_86f5_45e3_a4cb_424ec468c751', 'OUT_TRAMOS': 'Reprojected_7c79677e_f2bf_4141_bc19_87b4b451b46e'}
+09:19:17 [BRIDGE] processing.run() — fin, guardando capas

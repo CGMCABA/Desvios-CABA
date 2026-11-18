@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='utf-8'?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document id="root_doc">
+    <Style id="line-A52714-10106-normal"><LineStyle><color>ff1427a5</color><width>10.106</width></LineStyle></Style><Style id="line-A52714-10106-highlight"><LineStyle><color>ff1427a5</color><width>15.159</width></LineStyle></Style><StyleMap id="line-A52714-10106"><Pair><key>normal</key><styleUrl>#line-A52714-10106-normal</styleUrl></Pair><Pair><key>highlight</key><styleUrl>#line-A52714-10106-highlight</styleUrl></Pair></StyleMap><Document id="tramos_afectados_20261118_091917">
+      <name>tramos_afectados_20261118_091917</name>
+      <Placemark id="tramos_afectados_20261118_091917.1">
+        <name>MORENO, PERITO AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.441938728264,-34.6508897174792,0
+            -58.4427946808776,-34.6510893024595,0
+            -58.4429406435465,-34.6511165512664,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_091917.2">
+        <name>VARELA AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4415340771599,-34.6530074071353,0
+            -58.4404044295636,-34.6538873470067,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_091917.3">
+        <name>VARELA AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4416665645736,-34.6531148962294,0
+            -58.4405373420353,-34.653998428965,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_091917.4">
+        <name>VARELA AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4404044295636,-34.6538873470067,0
+            -58.4394870900946,-34.6546018238936,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_091917.5">
+        <name>VARELA AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4405373420353,-34.653998428965,0
+            -58.4396078173176,-34.6547080452852,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_091917.6">
+        <name>JANER, ANA MARIA</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4417777962298,-34.653034070295,0
+            -58.4418809712547,-34.6531314834878,0
+            -58.4438591264458,-34.6547342903427,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_091917.7">
+        <name>JANER, ANA MARIA</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4416665645736,-34.6531148962294,0
+            -58.4437603371743,-34.6548133595727,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_091917.8">
+        <name>VARELA AV.</name><description>entre CHILAVERT, MARTINIANO, CORONEL y FERNANDEZ DE LA CRUZ, F., GRAL. AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4394870900946,-34.6546018238936,0
+            -58.4388466820135,-34.6551005736123,0
+            -58.4384190970846,-34.6554899262229,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_091917.9">
+        <name>VARELA AV.</name><description>entre FERNANDEZ DE LA CRUZ, F., GRAL. AV. y CHILAVERT, MARTINIANO, CORONEL</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4396078173176,-34.6547080452852,0
+            -58.438504130889,-34.6555475495451,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_091917.10">
+        <name>JANER, ANA MARIA</name><description>entre ESTOMBA y HEREDIA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4438591264458,-34.6547342903427,0
+            -58.4446078241825,-34.6553400451274,0
+            -58.4457782244893,-34.656285013644,0
+            -58.4461919081158,-34.6566269759259,0
+            -58.4462790778628,-34.6566902983767,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_091917.11">
+        <name>CHILAVERT, MARTINIANO, CORONEL</name><description>entre VARELA AV. y CASTAÑON</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4396078173176,-34.6547080452852,0
+            -58.4419217158308,-34.6567440492064,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_091917.12">
+        <name>JANER, ANA MARIA</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4437603371743,-34.6548133595727,0
+            -58.4461751746391,-34.6567721153195,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_091917.13">
+        <name>CHILAVERT, MARTINIANO, CORONEL</name><description>entre CASTAÑON y SAN PEDRITO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4419217158308,-34.6567440492064,0
+            -58.4428597296414,-34.6575701305944,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_091917.14">
+        <name>CHILAVERT, MARTINIANO, CORONEL</name><description>entre SAN PEDRITO y LAFUENTE</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4428597296414,-34.6575701305944,0
+            -58.442962572342,-34.6576606412946,0
+            -58.4440139309178,-34.6585922261128,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_091917.15">
+        <name>VARELA AV.</name><description>entre JANER, ANA MARIA y MORENO, PERITO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4433247915057,-34.6511882643916,0
+            -58.4432962070505,-34.6513412889574,0
+            -58.4432669559986,-34.6514309326751,0
+            -58.4432438475881,-34.6514912814142,0
+            -58.4432055652855,-34.6515730362497,0
+            -58.4431579939468,-34.6516558458836,0
+            -58.4431125567597,-34.6517229515159,0
+            -58.4430609846523,-34.6517866758071,0
+            -58.4430062604244,-34.6518462445926,0
+            -58.4429524759051,-34.6518960247092,0
+            -58.4429092614127,-34.651933200848,0
+            -58.442823771336,-34.6520009334725,0
+            -58.4427489352005,-34.6520612029917,0
+            -58.4426530465417,-34.6521359056213,0
+            -58.4416324396657,-34.652930804415,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_091917.16">
+        <name>VARELA AV.</name><description>entre JANER, ANA MARIA y MORENO, PERITO AV.</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4435223299042,-34.6511656203738,0
+            -58.4434971655243,-34.6512723071863,0
+            -58.4434820654744,-34.6513421643818,0
+            -58.4434579335807,-34.651406949647,0
+            -58.4434005454321,-34.6515615892711,0
+            -58.4433250873869,-34.6517310851643,0
+            -58.4432224553766,-34.6518557874901,0
+            -58.4429810611026,-34.6520925801383,0
+            -58.4417777962298,-34.653034070295,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_091917.17">
+        <name>MORENO, PERITO AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4407492776743,-34.6508059732315,0
+            -58.441938728264,-34.6508897174792,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_091917.18">
+        <name>MORENO, PERITO AV.</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4429406435465,-34.6511165512664,0
+            -58.4433247915057,-34.6511882643916,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+    </Document>
+  </Document>
+</kml>

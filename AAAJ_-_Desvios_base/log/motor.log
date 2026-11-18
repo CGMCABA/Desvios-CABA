@@ -1,0 +1,144 @@
+[AFECTACIONES] Sin restricciones TENOR TOTAL
+[MOTOR WEB] archivo=C:\Users\Operador\Desktop\Desvios de colectivos\desvios_colectivo_v3_jerarquia.py
+[MOTOR WEB] sha256=2a4d86e9081c83599bf4ac5a70758fd043657b533c2561637ed1ca2932e825da
+[MOTOR WEB] seleccion_ids=['10438', '10439', '10575', '10576', '10625', '10690', '10691', '10721', '10839', '10840', '10866', '10941', '10942', '10984', '11085', '11086', '11155', '11213']
+[MOTOR WEB] corte id=10438 | calle=GARCIA, JUAN AGUSTIN | entre=LAMAS, ANDRES / BOYACA
+[MOTOR WEB] corte id=10439 | calle=BOYACA | entre=ALVAREZ JONTE / GARCIA, JUAN AGUSTIN
+[MOTOR WEB] corte id=10575 | calle=GARCIA, JUAN AGUSTIN | entre=BOYACA / GAVILAN
+[MOTOR WEB] corte id=10576 | calle=GAVILAN | entre=ALVAREZ JONTE / GARCIA, JUAN AGUSTIN
+[MOTOR WEB] corte id=10625 | calle=SAN BLAS | entre=LAMAS, ANDRES / SUIZA
+[MOTOR WEB] corte id=10690 | calle=SAN BLAS | entre=BOYACA / SUIZA
+[MOTOR WEB] corte id=10691 | calle=BOYACA | entre=GARCIA, JUAN AGUSTIN / SAN BLAS
+[MOTOR WEB] corte id=10721 | calle=GARCIA, JUAN AGUSTIN | entre=GAVILAN / CARACAS
+[MOTOR WEB] corte id=10839 | calle=SAN BLAS | entre=BOYACA / GAVILAN
+[MOTOR WEB] corte id=10840 | calle=GAVILAN | entre=GARCIA, JUAN AGUSTIN / SAN BLAS
+[MOTOR WEB] corte id=10866 | calle=CAMARONES | entre=LAMAS, ANDRES / SUIZA
+[MOTOR WEB] corte id=10941 | calle=CAMARONES | entre=SUIZA / BOYACA
+[MOTOR WEB] corte id=10942 | calle=BOYACA | entre=SAN BLAS / CAMARONES
+[MOTOR WEB] corte id=10984 | calle=SAN BLAS | entre=GAVILAN / CARACAS
+[MOTOR WEB] corte id=11085 | calle=CAMARONES | entre=BOYACA / GAVILAN
+[MOTOR WEB] corte id=11086 | calle=GAVILAN | entre=SAN BLAS / CAMARONES
+[MOTOR WEB] corte id=11155 | calle=CAMARONES | entre=RUIZ HUIDOBRO AV. / NULL
+[MOTOR WEB] corte id=11213 | calle=CAMARONES | entre=CARACAS / EL METODO
+[BRIDGE] processing.run() — inicio
+SCRIPT BUILD: 2026-02-20 bufferROI + groupTop + XYZbottom
+MOTOR ACTIVO: desvios_colectivo_v3_jerarquia.py
+[COMPAT] QGIS 3.20.3-Odense | tipos de campo=Type | unidad metros=si
+FUENTE CALLEJERO: C:\Users\Operador\Desktop\Desvios de colectivos\callejero_entrecalles.geojson
+FUENTE COLECTIVOS: C:\Users\Operador\AppData\Local\Temp\desvios_calculo_1bohh02n\.colectivos_combinados.geojson
+FEATURES COLECTIVOS: 979
+Results: {'OUTPUT': 'Selected_features_e5e6e0da_e045_4e5c_83ef_da7a46f6d343'}
+[PERF-PROC] native:saveselectedfeatures | 2.031s | features=18
+Results: {'OUTPUT': 'Reprojected_65cd0159_3fb3_4437_9e87_11ed5749f19c'}
+Results: {'OUTPUT': 'Reprojected_4aa00367_ddd7_4a8b_a49c_2ca89a2e53db'}
+Results: {'OUTPUT': 'Reprojected_a8ca5fc8_da18_4f38_b7ba_9adc7dfde96a'}
+Results: {'OUTPUT': 'Reprojected_65cd0159_3fb3_4437_9e87_11ed5749f19c'}
+Results: {'OUTPUT': 'Reprojected_4aa00367_ddd7_4a8b_a49c_2ca89a2e53db'}
+Results: {'OUTPUT': 'Reprojected_a8ca5fc8_da18_4f38_b7ba_9adc7dfde96a'}
+Results: {'OUTPUT': 'Reprojected_1f045aa2_3256_4974_a2a6_b5034f5969f3'}
+[Semáforos] Exención de giro a la izquierda activa | cruces=3955 | rigen reglas base (giro_izq=0)=3663 | eximen giro (giro_izq=1)=292 | sin semáforo -> también exime | tolerancia=22 m
+[Modo zona] 18 tramos seleccionados. ROI=700 m, AutoBuffer desactivado (1 sola pasada).
+[AutoBuffer] Ciclo #1 | Buffer ROI = 700 m
+[COMPAT] native:buffer: esta version de QGIS no acepta SEPARATE_DISJOINT; se omite
+Results: {'OUTPUT': 'Buffered_d19680de_1a41_4769_a48b_965f70df840a'}
+[PERF-PROC] native:buffer | 0.019s | features=1
+Results: {'OUTPUT': 'Extracted__location__7c5125d7_8cb2_4f74_b9a8_6a1c2da1127b'}
+[PERF-PROC] native:extractbylocation | 0.012s | features=455
+Results: {'OUTPUT': 'Extracted__location__7c5125d7_8cb2_4f74_b9a8_6a1c2da1127b'}
+Results: {'OUTPUT': 'Extracted__location__604949cb_19f3_496d_be24_e136790b8a03'}
+[PERF-PROC] native:extractbylocation | 0.038s | features=62
+Results: {'OUTPUT': 'Extracted__location__604949cb_19f3_496d_be24_e136790b8a03'}
+[COMPAT] native:difference: esta version de QGIS no acepta GRID_SIZE; se omite
+Results: {'OUTPUT': 'Difference_c7143455_f6ae_4300_bc62_1fbdd347ae58'}
+[PERF-PROC] native:difference | 0.015s | features=437
+Results: {'OUTPUT': 'Difference_c7143455_f6ae_4300_bc62_1fbdd347ae58'}
+Results: {'OUTPUT': 'Centroids_ca58817a_e0b4_479c_8c9d_9f155d5dfbe3'}
+[PERF-PROC] native:centroids | 0.003s | features=18
+Results: {'OUTPUT': 'Centroids_ca58817a_e0b4_479c_8c9d_9f155d5dfbe3'}
+[COMPAT] native:buffer: esta version de QGIS no acepta SEPARATE_DISJOINT; se omite
+Results: {'OUTPUT': 'Buffered_171928b6_6e7b_422f_9d18_1375f22a37dd'}
+[PERF-PROC] native:buffer | 0.002s | features=18
+Results: {'OUTPUT': 'Buffered_171928b6_6e7b_422f_9d18_1375f22a37dd'}
+Results: {'OUTPUT': 'Dissolved_aaf4aea5_9693_4fa1_bd7c_f5578231c9ee'}
+[PERF-PROC] native:dissolve | 0.003s | features=1
+Results: {'OUTPUT': 'Dissolved_aaf4aea5_9693_4fa1_bd7c_f5578231c9ee'}
+[COMPAT] native:buffer: esta version de QGIS no acepta SEPARATE_DISJOINT; se omite
+Results: {'OUTPUT': 'Buffered_cfc3c66d_89cb_49d1_8985_4e59d452a815'}
+[PERF-PROC] native:buffer | 0.003s | features=1
+Results: {'OUTPUT': 'Buffered_cfc3c66d_89cb_49d1_8985_4e59d452a815'}
+Results: {'OUTPUT': 'Centroids_e6779ce8_eb55_4997_bdea_0bd775f8bf43'}
+[PERF-PROC] native:centroids | 0.004s | features=437
+Results: {'OUTPUT': 'Centroids_e6779ce8_eb55_4997_bdea_0bd775f8bf43'}
+[COMPAT] native:buffer: esta version de QGIS no acepta SEPARATE_DISJOINT; se omite
+Results: {'OUTPUT': 'Buffered_0f2d6449_d51a_4baf_9c25_1357b784016f'}
+[PERF-PROC] native:buffer | 0.012s | features=437
+Results: {'OUTPUT': 'Buffered_0f2d6449_d51a_4baf_9c25_1357b784016f'}
+Results: {'OUTPUT': 'Extracted__location__46a2ddd9_d47e_41b0_b3e6_235e143b01a9'}
+[PERF-PROC] native:extractbylocation | 0.062s | features=9
+Results: {'OUTPUT': 'Extracted__location__46a2ddd9_d47e_41b0_b3e6_235e143b01a9'}
+Results: {'OUTPUT': 'Clipped_d48cb55a_f1d2_4f12_b5fa_962979f39f91'}
+[PERF-PROC] native:clip | 0.004s | features=9
+Results: {'OUTPUT': 'Clipped_d48cb55a_f1d2_4f12_b5fa_962979f39f91'}
+Results: {'OUTPUT': 'lineas_base_por_fid_faefbfe0_e1b5_46a2_9533_acf278e531bd'}
+[COMPAT] native:difference: esta version de QGIS no acepta GRID_SIZE; se omite
+Results: {'OUTPUT': 'Difference_28cbae7f_9bfe_401c_8926_183c01d558a6'}
+[PERF-PROC] native:difference | 0.006s | features=9
+Results: {'OUTPUT': 'Difference_28cbae7f_9bfe_401c_8926_183c01d558a6'}
+Results: {'OUTPUT': 'Single_parts_3a6c9213_38b9_4907_97b1_29248c3f6d66'}
+[PERF-PROC] native:multiparttosingleparts | 0.003s | features=20
+Results: {'OUTPUT': 'Single_parts_3a6c9213_38b9_4907_97b1_29248c3f6d66'}
+Results: {'OUTPUT': 'lineas_cortadas_con_vertex_dfd5a7a1_d028_4d1f_9eec_51302e3ce60a'}
+Results: {'JOINED_COUNT': 145, 'OUTPUT': 'Joined_layer_a9c701a2_6b45_47f8_bbec_a7c444fe8e29'}
+[PERF-PROC] native:joinattributesbylocation | 0.086s | features=145
+Results: {'OUTPUT': 'Joined_layer_a9c701a2_6b45_47f8_bbec_a7c444fe8e29'}
+Results: {'OUTPUT': 'Centroids_f5841781_e2a2_436d_a997_2ac7f08d824b'}
+[PERF-PROC] native:centroids | 0.004s | features=145
+Results: {'OUTPUT': 'Centroids_f5841781_e2a2_436d_a997_2ac7f08d824b'}
+[COMPAT] native:difference: esta version de QGIS no acepta GRID_SIZE; se omite
+Results: {'OUTPUT': 'Difference_3823698f_4fee_4341_a3d6_3b918245e078'}
+[PERF-PROC] native:difference | 0.005s | features=9
+Results: {'OUTPUT': 'Difference_3823698f_4fee_4341_a3d6_3b918245e078'}
+[PERF-FASE] construccion_OD_desde_centroides | 0.042s | centroides=145 fids=9
+[REENGANCHE D OK] fid_co=361 | D (365308.52405382023, 6169913.38420807) -> (365180.93089353177, 6169844.875059152) | score_conductor 3721.0->3488.1 | cambios 5->5
+[POSTOPT V3.3 OK] fid_co=361 | global=False | interno=False | reenganche_D=True | Ruta=GAVILAN - ALVAREZ JONTE - LEON, BERNARDO DE - CARRANZA, ADOLFO P. - LAMAS, ANDRES - GARCIA, JUAN AGUSTIN - SU RUTA
+[OD mínimo 2 pares] fid_co=361: 2/19 pares OD evaluados; seleccionado OD rank=1
+[REENGANCHE D OK] fid_co=359 | D (365308.52405382023, 6169913.38420807) -> (365180.93089353177, 6169844.875059152) | score_conductor 3721.0->3488.1 | cambios 5->5
+[POSTOPT V3.3 OK] fid_co=359 | global=False | interno=False | reenganche_D=True | Ruta=GAVILAN - ALVAREZ JONTE - LEON, BERNARDO DE - CARRANZA, ADOLFO P. - LAMAS, ANDRES - GARCIA, JUAN AGUSTIN - SU RUTA
+[OD mínimo 2 pares] fid_co=359: 2/19 pares OD evaluados; seleccionado OD rank=1
+[REENGANCHE D OK] fid_co=974 | D (365308.52405382023, 6169913.38420807) -> (365180.93089353177, 6169844.875059152) | score_conductor 4136.0->3903.0 | cambios 4->4
+[POSTOPT V3.3 OK] fid_co=974 | global=False | interno=False | reenganche_D=True | Ruta=GARCIA, JUAN AGUSTIN - CARACAS - CARRANZA, ADOLFO P. - LAMAS, ANDRES - GARCIA, JUAN AGUSTIN - SU RUTA
+[OD mínimo 2 pares] fid_co=974: 2/14 pares OD evaluados; seleccionado OD rank=1
+[REENGANCHE D OK] fid_co=471 | D (365308.52405382023, 6169913.38420807) -> (365180.93089353177, 6169844.875059152) | score_conductor 3721.0->3488.1 | cambios 5->5
+[POSTOPT V3.3 OK] fid_co=471 | global=False | interno=False | reenganche_D=True | Ruta=GAVILAN - ALVAREZ JONTE - LEON, BERNARDO DE - CARRANZA, ADOLFO P. - LAMAS, ANDRES - GARCIA, JUAN AGUSTIN - SU RUTA
+[OD mínimo 2 pares] fid_co=471: 2/20 pares OD evaluados; seleccionado OD rank=1
+[REENGANCHE D OK] fid_co=494 | D (365308.52405382023, 6169913.38420807) -> (365180.93089353177, 6169844.875059152) | score_conductor 3721.0->3488.1 | cambios 5->5
+[POSTOPT V3.3 OK] fid_co=494 | global=False | interno=False | reenganche_D=True | Ruta=GAVILAN - ALVAREZ JONTE - LEON, BERNARDO DE - CARRANZA, ADOLFO P. - LAMAS, ANDRES - GARCIA, JUAN AGUSTIN - SU RUTA
+[OD mínimo 2 pares] fid_co=494: 2/20 pares OD evaluados; seleccionado OD rank=1
+[OD mínimo 2 pares] fid_co=527: 2/10 pares OD evaluados; seleccionado OD rank=1
+[OD mínimo 2 pares] fid_co=507: 3/10 pares OD evaluados; seleccionado OD rank=3
+[POSTOPT GLOBAL OK] fid_co=505 fase=principal | score_conductor 3775.9->3320.9 | length 1388.6->1466.1 | cambios 4->3 | retornos 0->0
+[REENGANCHE D OK] fid_co=505 | D (365211.3745755278, 6169174.414576323) -> (365175.3600787311, 6169229.800865207) | score_conductor 3320.9->3208.6 | cambios 3->3
+[POSTOPT V3.3 OK] fid_co=505 | global=True | interno=False | reenganche_D=True | Ruta=ALVAREZ JONTE - BUFANO, ALFREDO R. - DIAZ, CESAR, GRAL. - GAVILAN - SU RUTA
+[OD mínimo 2 pares] fid_co=505: 10/13 pares OD evaluados; seleccionado OD rank=9
+[OD mínimo 2 pares] fid_co=187: 2/11 pares OD evaluados; seleccionado OD rank=2
+[FAMILIA V3.3 RESUMEN] familias_multi=2 | herencias_aplicadas=0
+[POSTOPT V3.3 RESUMEN] llamadas=9 | mejoras_globales=1 | mejoras_internas=0 | reenganches_D=6 | herencias_familia=0 | sin_cambio=3 | errores=0 | ventanas=186 | D_probados=25 | tiempo=0.679s
+[AutoBuffer] Resultado ciclo #1 | afectadas=9 | excluidas_terminal=0 | objetivo=9 | con_desvio=9 | sin_desvio(criterio)=0 | sin_desvio_con_NXNoPath=0
+[AutoBuffer] Ciclos totales: 1 | Buffer final (ROI): 700 m | modo_zona=True
+[Log ruteo completo] Guardado en: C:\Users\Operador\AppData\Local\Temp\desvios_calculo_1bohh02n\log_ruteo_todos_fid_20261118_092607.txt
+Results: {'OUTPUT': 'Reprojected_b7a013b4_8eae_4200_acb8_10c40bbb893b'}
+Results: {'OUTPUT': 'Reprojected_14f5266f_49d2_43de_8230_9f3ad5f106d8'}
+Results: {'OUTPUT': 'Reprojected_56e2bab7_7374_4db8_9bed_90e4fd3b2a60'}
+Results: {'OUTPUT': 'Reprojected_c3a53e26_3ff3_4bfd_831f_92d8b3edda28'}
+Results: {'OUTPUT': 'Reprojected_879d9411_16f7_4057_9d1a_47b0b09183de'}
+Results: {'OUTPUT': 'Reprojected_cf74a543_ed6a_4644_adb6_680ace66ab5b'}
+[TERMINAL RESUMEN] excluidas=0 | fids=[]
+Mapa web exportado en Escritorio: C:\Users\Operador\AppData\Local\Temp\desvios_calculo_1bohh02n\afectacion_20261118_092607.html
+Results: {'OUTPUT': 'C:\\Users\\Operador\\AppData\\Local\\Temp\\desvios_calculo_1bohh02n\\desvios_por_ruta_1_6_20261118_092608.kml'}
+KML exportado: 1-6 (6 elementos) -> C:\Users\Operador\AppData\Local\Temp\desvios_calculo_1bohh02n\desvios_por_ruta_1_6_20261118_092608.kml
+KML de desvíos agrupados por Ruta exportado (6 desvíos) en: C:\Users\Operador\AppData\Local\Temp\desvios_calculo_1bohh02n\desvios_por_ruta_1_6_20261118_092608.kml
+Results: {'OUTPUT': 'C:\\Users\\Operador\\AppData\\Local\\Temp\\desvios_calculo_1bohh02n\\tramos_afectados_20261118_092608.kml'}
+Estilo My Maps aplicado al KML de tramos (rojo RGB(165,39,20), ancho ~1/3, estilo uniforme).
+KML de tramos afectados exportado en: C:\Users\Operador\AppData\Local\Temp\desvios_calculo_1bohh02n\tramos_afectados_20261118_092608.kml
+Results: {'OUT_CENTROIDES_OD': 'Reprojected_56e2bab7_7374_4db8_9bed_90e4fd3b2a60', 'OUT_DEBUG_RUTEOS': None, 'OUT_DEBUG_SUBTRAMOS': None, 'OUT_DESVIOS': 'Reprojected_cf74a543_ed6a_4644_adb6_680ace66ab5b', 'OUT_LINEAS_AFECTADAS': 'Reprojected_c3a53e26_3ff3_4bfd_831f_92d8b3edda28', 'OUT_LINEAS_CORTADAS': 'Reprojected_879d9411_16f7_4057_9d1a_47b0b09183de', 'OUT_RED_NETA': 'Reprojected_14f5266f_49d2_43de_8230_9f3ad5f106d8', 'OUT_TRAMOS': 'Reprojected_b7a013b4_8eae_4200_acb8_10c40bbb893b'}
+[BRIDGE] processing.run() — fin, guardando capas

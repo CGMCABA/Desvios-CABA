@@ -472,6 +472,8 @@
                              "origen":  "PAPA2026_NOV_2026",
                              "estado":  "PLANIFICADO_NO_CONFIRMADO"
                          },
-    {"id":"huracan_base","nombre":"C.A. Huracán — Desvíos base","carpeta":"C.A_HURACAN_-_Desvios_base","activa":true}
+    {"id":"huracan_base","nombre":"C.A. Huracán — Desvíos base","carpeta":"C.A_HURACAN_-_Desvios_base","activa":true},
+    {"id":"san_lorenzo_base","nombre":"C. A. San Lorenzo de Almagro - Desvíos base","carpeta":"C.A_San_Lorenzo_de_Almagro_-_Desvios_base","activa":true},
+    {"id":"argentinos_juniors_base","nombre":"Argentinos Juniors - Desvíos base","carpeta":"AAAJ_-_Desvios_base","activa":true}
                      ]
 }

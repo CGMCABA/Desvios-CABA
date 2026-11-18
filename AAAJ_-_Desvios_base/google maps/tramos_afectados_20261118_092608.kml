@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='utf-8'?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document id="root_doc">
+    <Style id="line-A52714-10106-normal"><LineStyle><color>ff1427a5</color><width>10.106</width></LineStyle></Style><Style id="line-A52714-10106-highlight"><LineStyle><color>ff1427a5</color><width>15.159</width></LineStyle></Style><StyleMap id="line-A52714-10106"><Pair><key>normal</key><styleUrl>#line-A52714-10106-normal</styleUrl></Pair><Pair><key>highlight</key><styleUrl>#line-A52714-10106-highlight</styleUrl></Pair></StyleMap><Document id="tramos_afectados_20261118_092608">
+      <name>tramos_afectados_20261118_092608</name>
+      <Placemark id="tramos_afectados_20261118_092608.1">
+        <name>GARCIA, JUAN AGUSTIN</name><description>entre LAMAS, ANDRES y BOYACA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4710815098549,-34.6047041436685,0
+            -58.4712371208665,-34.6047708247708,0
+            -58.4724384940841,-34.6052868750627,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_092608.2">
+        <name>BOYACA</name><description>entre ALVAREZ JONTE y GARCIA, JUAN AGUSTIN</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4724384940841,-34.6052868750627,0
+            -58.4729834263383,-34.6046739366823,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_092608.3">
+        <name>GARCIA, JUAN AGUSTIN</name><description>entre BOYACA y GAVILAN</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4724384940841,-34.6052868750627,0
+            -58.4735928765951,-34.6058727072038,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_092608.4">
+        <name>GAVILAN</name><description>entre ALVAREZ JONTE y GARCIA, JUAN AGUSTIN</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4735928765951,-34.6058727072038,0
+            -58.4739507889995,-34.6054028104629,0
+            -58.4740165285658,-34.6053106906799,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_092608.5">
+        <name>SAN BLAS</name><description>entre LAMAS, ANDRES y SUIZA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4703047640905,-34.6057187831028,0
+            -58.4709869217418,-34.6060103660036,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_092608.6">
+        <name>SAN BLAS</name><description>entre BOYACA y SUIZA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4709869217418,-34.6060103660036,0
+            -58.4716652513054,-34.6063003960204,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_092608.7">
+        <name>BOYACA</name><description>entre GARCIA, JUAN AGUSTIN y SAN BLAS</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4716652513054,-34.6063003960204,0
+            -58.4724384940841,-34.6052868750627,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_092608.8">
+        <name>GARCIA, JUAN AGUSTIN</name><description>entre GAVILAN y CARACAS</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4735928765951,-34.6058727072038,0
+            -58.4737513040254,-34.6059521315133,0
+            -58.4747434435091,-34.6064650781134,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_092608.9">
+        <name>SAN BLAS</name><description>entre BOYACA y GAVILAN</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4716652513054,-34.6063003960204,0
+            -58.4728175136445,-34.6068908130748,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_092608.10">
+        <name>GAVILAN</name><description>entre GARCIA, JUAN AGUSTIN y SAN BLAS</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4728175136445,-34.6068908130748,0
+            -58.4735928765951,-34.6058727072038,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_092608.11">
+        <name>CAMARONES</name><description>entre LAMAS, ANDRES y SUIZA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4695293620346,-34.6067315159191,0
+            -58.4702154429893,-34.6070209901773,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_092608.12">
+        <name>CAMARONES</name><description>entre SUIZA y BOYACA</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4702154429893,-34.6070209901773,0
+            -58.4703728462178,-34.6070873905604,0
+            -58.4708965033302,-34.6073080664756,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_092608.13">
+        <name>BOYACA</name><description>entre SAN BLAS y CAMARONES</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4708965033302,-34.6073080664756,0
+            -58.4716652513054,-34.6063003960204,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_092608.14">
+        <name>SAN BLAS</name><description>entre GAVILAN y CARACAS</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4728175136445,-34.6068908130748,0
+            -58.4729877819699,-34.606977279793,0
+            -58.473964084352,-34.6074703040369,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_092608.15">
+        <name>CAMARONES</name><description>entre BOYACA y GAVILAN</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4708965033302,-34.6073080664756,0
+            -58.4720488594861,-34.6079000400025,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_092608.16">
+        <name>GAVILAN</name><description>entre SAN BLAS y CAMARONES</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4720488594861,-34.6079000400025,0
+            -58.4728175136445,-34.6068908130748,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_092608.17">
+        <name>CAMARONES</name><description>Tramo afectado</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.4720488594861,-34.6079000400025,0
+            -58.4724806246013,-34.6081217719963,0
+            -58.472613502099,-34.6081902136018,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark id="tramos_afectados_20261118_092608.18">
+        <name>CAMARONES</name><description>entre CARACAS y EL METODO</description><styleUrl>#line-A52714-10106</styleUrl><LineString>
+          <coordinates>
+            -58.472613502099,-34.6081902136018,0
+            -58.4731797671173,-34.6084819337602,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+    </Document>
+  </Document>
+</kml>

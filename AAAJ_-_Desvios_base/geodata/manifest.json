@@ -1,0 +1,61 @@
+{
+  "ok": true,
+  "folder": "AAAJ_-_Desvios_base",
+  "layers": {
+    "OUT_TRAMOS": "geodata/tramos_afectados.geojson",
+    "OUT_RED_NETA": "geodata/red_neta.geojson",
+    "OUT_CENTROIDES_OD": "geodata/centroides_od.geojson",
+    "OUT_LINEAS_AFECTADAS": "geodata/lineas_afectadas.geojson",
+    "OUT_LINEAS_CORTADAS": "geodata/lineas_cortadas.geojson",
+    "OUT_DESVIOS": "geodata/desvios.geojson",
+    "DESVIOS_AGRUPADOS": "geodata/desvios_agrupados.geojson",
+    "LINEAS_SIN_DESVIO": "geodata/lineas_sin_desvio.geojson",
+    "PARADAS_ANULADAS": "geodata/paradas_anuladas.geojson",
+    "PARADAS_ASOCIADAS": "geodata/paradas_asociadas.geojson",
+    "PAQUETE_EJECUCION": "AAAJ_-_Desvios_base.desvio"
+  },
+  "selection_ids": [
+    "10438",
+    "10439",
+    "10575",
+    "10576",
+    "10625",
+    "10690",
+    "10691",
+    "10721",
+    "10839",
+    "10840",
+    "10866",
+    "10941",
+    "10942",
+    "10984",
+    "11085",
+    "11086",
+    "11155",
+    "11213"
+  ],
+  "resumen": {
+    "total": 7,
+    "con_desvio": 7,
+    "sin_desvio": 0
+  },
+  "algorithm": "desvios_colectivo_v3_jerarquia.py",
+  "algorithm_sha256": "2a4d86e9081c83599bf4ac5a70758fd043657b533c2561637ed1ca2932e825da",
+  "callejero_sha256": "6032f18c65a7b3296c09451f81c3c52afb8485641552999fa8eea83b7a7da774",
+  "colectivos_sha256": "6908f4f3286b6368f6283cc205c5a153ea9edb3595404578a72d8b673c477374",
+  "report": "afectacion_20261118_092607.html",
+  "report_html": "<h3>Tramos afectados</h3><ul><li>GARCIA, JUAN AGUSTIN entre LAMAS, ANDRES y CARACAS</li><li>BOYACA entre ALVAREZ JONTE y CAMARONES</li><li>GAVILAN entre ALVAREZ JONTE y CAMARONES</li><li>SAN BLAS entre LAMAS, ANDRES y CARACAS</li><li>CAMARONES entre LAMAS, ANDRES y EL METODO</li></ul><h3><input type='checkbox' id='cbReportAll' checked/>Líneas afectadas (Total 7)</h3><h3>Líneas con desvío (Total 7 - 100,0%)</h3><h3>Detalle de las líneas con desvío</h3><ul><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"047 - B - VUELTA\"]'/><b>047 - B - VUELTA</b>: CAMARONES - CARACAS - CARRANZA, ADOLFO P. - LAMAS, ANDRES - CAMARONES - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"063 - A - VUELTA\", \"063 - B - VUELTA\", \"109 - A - IDA\", \"109 - B - IDA\"]'/><b>063 - A/B - VUELTA ; 109 - A/B - IDA</b>: GAVILAN - ALVAREZ JONTE - LEON, BERNARDO DE - CARRANZA, ADOLFO P. - LAMAS, ANDRES - GARCIA, JUAN AGUSTIN - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"113 - A - IDA\"]'/><b>113 - A - IDA</b>: ALVAREZ JONTE - BUFANO, ALFREDO R. - DIAZ, CESAR, GRAL. - GAVILAN - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"113 - A - VUELTA\"]'/><b>113 - A - VUELTA</b>: BOYACA - MAGARIÑOS CERVANTES, A. - CARACAS - CARRANZA, ADOLFO P. - LAMAS, ANDRES - PUNTA ARENAS - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"133 - B - IDA\"]'/><b>133 - B - IDA</b>: GARCIA, JUAN AGUSTIN - CARACAS - CARRANZA, ADOLFO P. - LAMAS, ANDRES - PUNTA ARENAS - SU RUTA</li><li><input type='checkbox' class='ruta-toggle' checked data-keys='[\"135 - A - IDA\"]'/><b>135 - A - IDA</b>: GARCIA, JUAN AGUSTIN - CARACAS - CARRANZA, ADOLFO P. - LAMAS, ANDRES - GARCIA, JUAN AGUSTIN - SU RUTA</li></ul><h3><input type='checkbox' id='cbReportStopsAll' checked/>Paradas anuladas (Total 9)</h3><ul><li><input type='checkbox' class='parada-toggle' checked data-parada-key='047 - B - VUELTA'/><b>047 - B - VUELTA</b>: CAMARONES 2212</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='063 - A - VUELTA||063 - B - VUELTA'/><b>063 - A/B - VUELTA</b>: JUAN AGUSTIN GARCIA 2006</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='109 - A - IDA||109 - B - IDA'/><b>109 - A/B - IDA</b>: JUAN AGUSTIN GARCIA 2144 - JUAN AGUSTIN GARCIA 2008</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='113 - A - IDA'/><b>113 - A - IDA</b>: GAVILAN 2230 - GAVILAN 2008 - GAVILAN 1816</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='113 - A - VUELTA'/><b>113 - A - VUELTA</b>: BOYACA AV. 1993 - BOYACA AV. 2295</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='133 - B - IDA'/><b>133 - B - IDA</b>: BOYACA AV. 2295</li><li><input type='checkbox' class='parada-toggle' checked data-parada-key='135 - A - IDA'/><b>135 - A - IDA</b>: JUAN AGUSTIN GARCIA 2144 - JUAN AGUSTIN GARCIA 2008</li></ul>",
+  "kml": [
+    "google maps/Desvíos_de_linea_AAAJ_-_Desvios_base.kml"
+  ],
+  "kml_tramos": "google maps/tramos_afectados_20261118_092608.kml",
+  "kml_paradas": "google maps/Paradas_anuladas_desvios_calculo_1bohh02n.kml",
+  "log": "log/motor.log",
+  "routing_log": "log/log_ruteo_todos_fid_20261118_092607.txt",
+  "package": "AAAJ_-_Desvios_base.desvio",
+  "perf": null,
+  "name": "AAAJ - Desvios base",
+  "temporary": false,
+  "imported": false,
+  "kml_combinado": "google maps/Mapa_completo_AAAJ_-_Desvios_base.kmz"
+}
